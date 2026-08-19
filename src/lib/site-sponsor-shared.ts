@@ -23,7 +23,7 @@ export const DEFAULT_SPONSOR: SiteSponsor = {
   phone_number: "",
   link_url: SITE.kakaoOpenChatUrl,
   homepage_url: "",
-  recruiting_notice: "전국 안심 장례식장 입점 제휴 · 사이트 임대 모집 중",
+  recruiting_notice: "전국 반려동물 장례식장 입점 제휴 · 사이트 임대 모집 중",
   rental_price: "30만원",
   highlight_points: [
     "24시 긴급 픽업 가능",

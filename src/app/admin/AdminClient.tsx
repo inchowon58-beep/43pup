@@ -34,9 +34,9 @@ const STATUS_LABEL: Record<string, string> = {
 };
 
 const STATUS_STYLE: Record<string, string> = {
-  new: "bg-[var(--coral-soft)] text-[var(--coral-deep)] ring-1 ring-[#e8c4a0]",
+  new: "bg-[var(--coral-soft)] text-[var(--coral-deep)] ring-1 ring-[#e8a0b4]",
   contacted: "bg-[var(--sky-soft)] text-[var(--sky-deep)] ring-1 ring-[#c5d4ca]",
-  done: "bg-[#eaf3ee] text-[#355445] ring-1 ring-[#c6d9cd]",
+  done: "bg-[var(--sky-soft)] text-[var(--sky-deep)] ring-1 ring-[#c5cbe0]",
   cancelled: "bg-[#f3f1ed] text-[#6b6258] ring-1 ring-[#e5e0d6]",
 };
 
@@ -104,7 +104,7 @@ export default function AdminClient() {
   const [detailOrder, setDetailOrder] = useState<OrderItem | null>(null);
 
   function absolutePageUrl(path: string) {
-    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://funeral.puppytimes.co.kr").replace(
+    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://rein.agapet.co.kr").replace(
       /\/$/,
       ""
     );
@@ -359,7 +359,7 @@ export default function AdminClient() {
           <p className="text-sm font-bold text-[var(--orange)]">Admin</p>
           <h1 className="mt-2 text-3xl font-extrabold text-[var(--navy)]">관리자 로그인</h1>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            안심강아지장례식장 · 문의·SEO 발행 관리
+            포옹의마루 · 문의·SEO 발행 관리
           </p>
           <label className="mt-6 block text-sm font-semibold">
             아이디

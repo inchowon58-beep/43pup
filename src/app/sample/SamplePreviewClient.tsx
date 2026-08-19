@@ -8,6 +8,7 @@ import type { SiteSponsor } from "@/lib/site-sponsor-shared";
 import SponsorMidBox from "@/app/components/SponsorMidBox";
 import SponsorStickyFooterBar from "@/app/components/SponsorStickyFooterBar";
 import { SITE, CTA_RENTAL } from "@/lib/site";
+import { imageUrl } from "@/lib/images";
 import {
   SAMPLE_PAGE_H1,
   SAMPLE_PAGE_KEYWORD,
@@ -87,7 +88,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
         </p>
       </div>
 
-      <div className="mt-10 border-y border-[var(--line)] bg-[#f3eee4] py-3">
+        <div className="mt-10 border-y border-[var(--line)] bg-[var(--sky-soft)] py-3">
         <p className="container flex items-center justify-center gap-2 text-center text-xs font-semibold text-[var(--muted)]">
           <Eye size={14} aria-hidden />
           SEO 페이지 미리보기 · {SAMPLE_PAGE_KEYWORD}
@@ -97,7 +98,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
       <article className="container max-w-3xl py-10">
         <div className="mb-8 overflow-hidden border border-[var(--line)]">
           <Image
-            src={`${SITE.imageBase}/01.webp`}
+            src={imageUrl(1)}
             alt={`${SAMPLE_PAGE_KEYWORD} 안내`}
             width={1000}
             height={640}
@@ -137,7 +138,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           </section>
         ))}
 
-        <div className="mt-10 border border-dashed border-[var(--line)] bg-[#fffcf7] p-6">
+        <div className="mt-10 rounded-[1.5rem] border border-dashed border-[var(--line)] bg-white p-6">
           <p className="text-center text-sm font-bold text-[var(--navy)]">하단 고정 바 미리보기</p>
           <p className="mt-1 text-center text-xs text-[var(--muted)]">
             실제 페이지에서는 화면 하단에 고정됩니다
@@ -149,7 +150,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
       </article>
 
       <div className="container max-w-3xl">
-        <aside className="border border-[var(--sky)] bg-[var(--sky-soft)] p-6 text-center md:p-8">
+        <aside className="rounded-[1.6rem] bg-[var(--sky-soft)] p-6 text-center ring-1 ring-[var(--sky)] md:p-8">
           <p className="text-lg font-extrabold text-[var(--navy)] md:text-xl">
             전국 SEO 문서에 입점하고 싶으신가요?
           </p>

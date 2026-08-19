@@ -20,53 +20,54 @@ function asParagraphs(value: unknown): string[] {
 }
 
 function buildPrompt(keyword: string): string {
-  return `당신은 '${SITE.name}'의 SEO·AEO·OG 웹문서 작성 전문가입니다.
-업체명은 반드시 '${SITE.brand}', '${SITE.name}'만 사용하세요.
+  return `당신은 반려동물 장례 정보 가이드 작성자입니다.
+이 문서는 여러 장례식장에 임대되는 사이트에 실리므로, 특정 업체 홍보·브랜드 감성 카피로 쓰지 마세요.
+업체명 '${SITE.brand}'는 남용하지 마세요. 본문은 정보 위주입니다.
 
 메인 키워드: ${keyword}
 핵심 키워드: 강아지장례식장, 강아지장례, 반려동물장례, 24시장례, 긴급픽업
-상담: 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
+상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
 서비스 범위: ${SITE.areaServed}
 
-독자: 강아지가 방금 세상을 떠나 막막하고 슬픈 보호자.
-톤: 공감 먼저, 그다음 지금 할 일. 위로를 남발하지 말고 담담하고 따뜻하게.
-금지: 과장, 허위, 의료 단정, 영문·외래어 남용, 다른 업체명.
+독자: ${keyword}를 검색해 절차·비용·준비를 확인하려는 보호자.
+톤: 백과사전·안내문. 담담하고 사실 중심. 과장된 위로·광고 문장 금지.
+금지: 가격 단정, 허위, 의료 단정, 타사 비방, 영문 남용, 다른 업체명, '마지막 포옹'·'따뜻한 마루' 같은 브랜드 슬로건.
 
 반드시 다룰 내용:
-1) 지금 당장 할 일(아이 몸 두기, 서늘한 곳, 무리한 이동 금지, 24시 연락)
-2) 강아지장례 순서(상담-픽업-안치-배웅-화장-유골·추모)
-3) 비용 투명, 존중, 신뢰
-4) 카카오톡으로 지금 연결하는 방법
+1) 아이 몸 두기(수건, 서늘한 곳, 밀봉·무리 이동 금지)와 상담에 필요한 정보(지역·체중)
+2) 강아지장례 순서(상담-픽업/방문-안치-배웅-화장-유골·추모)
+3) 비용이 달라지는 항목(체중, 화장 방식, 옵션, 픽업 거리)과 물어볼 점
+4) 문의 방법 — 본문 마지막에만, 짧게
 
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 지금 바로 할 일 · ${SITE.brand}'",
-  "metaDescription": "140~158자. '{keyword}', '지금', '24시', 카카오톡 상담 유도. 공감 한 줄 포함",
+  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 절차·비용·준비 안내'",
+  "metaDescription": "140~158자. '{keyword}', 절차·비용 또는 준비, 24시. 광고 문구 없이 정보 요약",
   "metaKeywords": "{keyword}, 강아지장례식장, 강아지장례, 반려동물장례, 24시장례, 긴급픽업, 강아지죽었을때 등 10~14개",
-  "h1": "'{keyword}'와 '지금' 또는 '할 일'이 들어간 H1",
-  "heroSubtitle": "한글 한 문장. 공감+긴급 안내",
-  "heroBadge": "지금 긴급이라면",
-  "heroTitleLine2": "지금 바로 할 일",
-  "heroBar": "혼자 결정하지 마세요. 24시 안내합니다.",
+  "h1": "'{keyword}'와 '안내' 또는 '절차' 또는 '준비'가 들어간 H1",
+  "heroSubtitle": "한글 한 문장. 정보 요약(절차·비용·준비)",
+  "heroBadge": "절차 안내",
+  "heroTitleLine2": "절차 · 비용 · 준비",
+  "heroBar": "픽업·안치·화장·추모 순서를 정리했습니다.",
   "sections": [
-    {"h2": "'{keyword}' 포함, 지금 당장 할 일", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
+    {"h2": "'{keyword}' 포함, 먼저 알면 좋은 점", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
     {"h2": "강아지장례 진행 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
-    {"h2": "신뢰·비용·존중 약속", "paragraphs": ["180자+", "180자+", "160자+"]},
-    {"h2": "지금 상담 연결", "paragraphs": ["160자+", "140자+"]}
+    {"h2": "비용이 달라지는 이유·확인할 항목", "paragraphs": ["180자+", "180자+", "160자+"]},
+    {"h2": "상담 시 준비하면 좋은 정보", "paragraphs": ["160자+", "140자+"]}
   ],
   "faqs": [
-    {"q": "강아지가 갑자기 세상을 떠났는데 어떻게 해야 하나요?", "a": "100자+ 구체 답변"},
+    {"q": "강아지가 세상을 떠났을 때 바로 장례를 해야 하나요?", "a": "100자+ 구체 답변"},
     {"q": "밤이나 새벽에 아이가 떠났을 때도 픽업이 되나요?", "a": "100자+"},
     {"q": "장례 전까지 아이 몸은 어떻게 두어야 하나요?", "a": "100자+"},
-    {"q": "강아지 장례 비용은 얼마인가요?", "a": "100자+"},
+    {"q": "강아지 장례 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
     {"q": "${keyword} 상담은 어떻게 하나요?", "a": "100자+. ${KAKAO_CTA_HINT}"},
     {"q": "화장 후 유골은 언제 받을 수 있나요?", "a": "80자+"}
   ],
-  "ctaText": "지금 아이가 떠났다면 카카오톡 24시 상담 — ${SITE.brand}"
+  "ctaText": "{keyword} 상담 — 지역·체중만 알려 주세요"
 }
 
-AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '강아지장례'를 자연스럽게 반복.`;
+AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '강아지장례'를 자연스럽게 반복. 브랜드 슬로건 반복 금지.`;
 }
 
 export async function generateWithGemini(
@@ -107,25 +108,23 @@ export async function generateWithGemini(
 
   return {
     keyword,
-    title: String(data.title || `${keyword} | 지금 바로 할 일 · ${SITE.name}`),
+    title: String(data.title || `${keyword} | 절차·비용·준비 안내`),
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
         `${keyword}, 강아지장례식장, 강아지장례, 24시장례, 긴급픽업, 강아지죽었을때`
     ),
-    h1: String(data.h1 || `${keyword}, 지금 바로 해야 할 일`),
+    h1: String(data.h1 || `${keyword} 안내 — 절차와 준비`),
     heroSubtitle: String(
-      data.heroSubtitle || "갑작스러운 이별 앞에서, 지금 하실 일을 차분히 안내합니다"
+      data.heroSubtitle || "픽업·안치·화장·추모 순서를 정보로 정리했습니다"
     ),
-    heroBadge: String(data.heroBadge || "지금 긴급이라면"),
+    heroBadge: String(data.heroBadge || "절차 안내"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "지금 바로 할 일"),
-    heroBar: String(data.heroBar || "혼자 결정하지 마세요. 24시 안내합니다."),
+    heroTitleLine2: String(data.heroTitleLine2 || "절차 · 비용 · 준비"),
+    heroBar: String(data.heroBar || "픽업·안치·화장·추모 순서를 정리했습니다."),
     sections,
     faqs,
-    ctaText: String(
-      data.ctaText || `지금 아이가 떠났다면, 카카오톡으로 24시 상담 — ${SITE.brand}`
-    ),
+    ctaText: String(data.ctaText || `${keyword} 상담 — 지역·체중만 알려 주세요`),
   };
 }
 
@@ -142,10 +141,10 @@ export function assembleSeoPage(
     metaKeywords: partial.metaKeywords,
     h1: partial.h1,
     heroSubtitle: partial.heroSubtitle,
-    heroBadge: partial.heroBadge || "지금 긴급이라면",
+    heroBadge: partial.heroBadge || "절차 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "지금 바로 할 일",
-    heroBar: partial.heroBar || "혼자 결정하지 마세요. 24시 안내합니다.",
+    heroTitleLine2: partial.heroTitleLine2 || "절차 · 비용 · 준비",
+    heroBar: partial.heroBar || "픽업·안치·화장·추모 순서를 정리했습니다.",
     sections: partial.sections,
     faqs: partial.faqs,
     images: pickImages(3, Date.now() % 100000),

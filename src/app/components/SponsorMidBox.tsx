@@ -13,9 +13,9 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
 
   if (sponsor.status === "RECRUITING") {
     return (
-      <aside className="my-10 border border-[var(--sky)] bg-[var(--sky-soft)] p-6 text-center md:p-8">
+      <aside className="my-10 rounded-[1.6rem] bg-[var(--sky-soft)] p-6 text-center ring-1 ring-[var(--sky)] md:p-8">
         <p className="text-lg font-extrabold text-[var(--navy)] md:text-xl">
-          📢 전국 안심 장례식장 입점 제휴 / 사이트 임대 모집 중
+          📢 전국 반려동물 장례식장 입점 제휴 / 사이트 임대 모집 중
         </p>
         <p className="mt-2 text-sm text-[var(--muted)]">{sponsor.recruiting_notice}</p>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
@@ -39,7 +39,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
               href={homepageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-[0.4rem] border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
             >
               <Globe size={18} />
               홈페이지
@@ -48,7 +48,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
           {showPreviewLink && (
             <Link
               href="/sample"
-              className="inline-flex items-center gap-1.5 rounded-[0.4rem] border border-[var(--line)] bg-white px-4 py-3 text-sm font-bold text-[var(--navy)]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[var(--line)] bg-white px-4 py-3 text-sm font-bold text-[var(--navy)]"
             >
               <Eye size={18} />
               입점 후 미리보기
@@ -62,13 +62,13 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
   const points = (sponsor.highlight_points || []).slice(0, 5);
 
   return (
-    <aside className="relative my-10 border border-[var(--coral)] bg-[var(--coral-soft)] p-6 md:p-8">
-      <span className="absolute left-4 top-4 inline-flex items-center gap-1 bg-white px-3 py-1 text-xs font-bold text-[var(--coral-deep)] shadow-sm">
+    <aside className="relative my-10 rounded-[1.6rem] bg-[var(--coral-soft)] p-6 ring-1 ring-[var(--coral)] md:p-8">
+      <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 text-xs font-bold text-[var(--coral-deep)] shadow-sm">
         <BadgeCheck size={14} />
         인증 확인
       </span>
       <p className="pt-6 text-center text-lg font-extrabold text-[var(--navy)] md:text-xl">
-        📍 검증된 안심 반려동물 장례식장
+        📍 검증된 반려동물 장례식장
       </p>
       <div className="mt-4 flex flex-col items-center gap-3 text-center">
         {sponsor.sponsor_name && (
@@ -78,7 +78,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
           {points.map((point) => (
             <p
               key={point}
-              className="inline-flex items-center gap-2 bg-white px-4 py-2 text-sm font-semibold text-[var(--navy)]"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--navy)]"
             >
               {point}
             </p>
@@ -96,7 +96,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
               href={homepageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-[0.4rem] border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
             >
               <Globe size={18} />
               홈페이지

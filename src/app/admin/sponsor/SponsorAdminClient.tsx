@@ -18,7 +18,7 @@ export default function SponsorAdminClient() {
     phone_number: "",
     link_url: "",
     homepage_url: "",
-    recruiting_notice: "전국 안심 장례식장 입점 제휴 · 사이트 임대 모집 중",
+    recruiting_notice: "전국 반려동물 장례식장 입점 제휴 · 사이트 임대 모집 중",
     rental_price: "30만원",
     highlight_points: [
       "24시 긴급 픽업 가능",
@@ -243,7 +243,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_name"
                 value={form.sponsor_name}
                 onChange={(e) => setForm({ ...form, sponsor_name: e.target.value })}
-                placeholder="예: 오케이독 안심장례"
+                placeholder="예: 오케이독 포옹장례"
               />
             </div>
             <div className="mt-6">

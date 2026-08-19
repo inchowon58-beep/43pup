@@ -77,14 +77,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: page.createdAt,
       modifiedTime: page.updatedAt,
       authors: [SITE.name],
-      section: "강아지 장례 긴급 안내",
+      section: "강아지 장례 안내",
       tags: keywords.slice(0, 8),
       images: [
         {
           url: ogImage,
           width: 1200,
           height: 1200,
-          alt: `${page.keyword} 지금 바로 할 일 — ${SITE.name}`,
+          alt: `${page.keyword} 절차 안내 — ${SITE.name}`,
         },
       ],
     },
@@ -176,7 +176,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#2a241f_0%,#355445_42%,#f3eee4_42%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#3d4a7a_0%,#6b7bb8_38%,#f6f3f8_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>
@@ -212,7 +212,7 @@ export default async function GuidePage({ params }: Props) {
               </p>
             ))}
             {si < 2 && images[si + 1] && (
-              <figure className="my-7 overflow-hidden border border-[var(--line)]">
+              <figure className="my-7 overflow-hidden rounded-[1.4rem] border border-[var(--line)]">
                 <Image
                   src={images[si + 1]}
                   alt={galleryAlt(page.keyword, si + 2)}
@@ -236,7 +236,7 @@ export default async function GuidePage({ params }: Props) {
               {page.faqs.map((f) => (
                 <details
                   key={f.q}
-                  className="border-l-[3px] border-[var(--sky)] bg-[#fffcf7] px-4 py-3 ring-1 ring-[var(--line)]"
+                  className="rounded-[1.2rem] bg-white px-4 py-3 ring-1 ring-[var(--line)]"
                 >
                   <summary className="cursor-pointer font-medium text-[var(--navy)]">{f.q}</summary>
                   <p className="mt-2 text-sm text-[var(--muted)]">{f.a}</p>
@@ -258,7 +258,7 @@ export default async function GuidePage({ params }: Props) {
         />
 
         {sponsor.status !== "RECRUITING" && (
-          <aside className="mt-10 border border-[var(--coral)] bg-[var(--coral-soft)] p-6 text-center">
+          <aside className="mt-10 rounded-[1.6rem] bg-[var(--coral-soft)] p-6 text-center ring-1 ring-[var(--coral)]">
             <p className="text-xl font-extrabold text-[var(--navy)] md:text-2xl">{page.ctaText}</p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
               <a
@@ -271,7 +271,7 @@ export default async function GuidePage({ params }: Props) {
               </a>
               <Link
                 href="/#contact"
-                className="inline-flex rounded-[0.4rem] border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
+                className="inline-flex rounded-full border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
               >
                 온라인 상담 신청
               </Link>

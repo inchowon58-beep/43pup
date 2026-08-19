@@ -5,18 +5,18 @@ import { imageUrl } from "@/lib/images";
 const PROMISES = [
   {
     n: "01",
-    title: "24시 긴급 대응",
-    desc: "갑작스러운 이별 앞에서도 혼자 두지 않습니다. 아이 몸 두기부터 픽업까지, 지금 할 일을 안내합니다.",
+    title: "충분히 안아 주세요",
+    desc: "급하게 결정을 재촉하지 않습니다. 아이와 마지막 포옹을 나눌 시간을 먼저 드립니다.",
   },
   {
     n: "02",
-    title: "존중받는 장례",
-    desc: "반려견 한 생을 존중하는 장례 절차를 투명하게 안내합니다. 보호자님의 마음을 최우선으로 합니다.",
+    title: "따뜻한 마루에서",
+    desc: "한 생을 존중하는 장례 절차를 차분히 안내합니다. 보호자님의 호흡이 곧 일정입니다.",
   },
   {
     n: "03",
-    title: "투명한 상담",
-    desc: "비용·절차·일정을 숨기지 않습니다. 카카오톡 오픈채팅으로 솔직하고 차분한 안내를 드립니다.",
+    title: "솔직한 상담",
+    desc: "비용·절차·일정을 숨기지 않습니다. 카카오톡 오픈채팅으로 부드럽게 안내합니다.",
   },
 ];
 
@@ -25,10 +25,10 @@ export default function About() {
     <section id="about" className="section">
       <div className="container grid items-center gap-10 md:grid-cols-2 md:gap-14">
         <div className="relative">
-          <div className="absolute -left-3 -top-3 hidden h-24 w-24 border-l-2 border-t-2 border-[var(--coral)] md:block" />
-          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_18px_44px_rgba(42,36,31,0.14)] md:aspect-[5/6]">
+          <div className="absolute -bottom-4 -right-4 hidden h-28 w-28 rounded-full bg-[var(--coral-soft)] md:block" />
+          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(61,74,122,0.16)] md:aspect-[5/6]">
             <Image
-              src={imageUrl(8)}
+              src={imageUrl(3)}
               alt={`${SITE.name} 추모 공간`}
               fill
               unoptimized
@@ -39,23 +39,23 @@ export default function About() {
         </div>
         <div>
           <p className="section-kicker">OUR PROMISE</p>
-          <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            마지막까지,
+          <h2 className="mt-3 text-3xl font-extrabold text-[var(--navy)] md:text-4xl">
+            작별은 서두르지 않아도
             <br />
-            곁에 있겠습니다
+            됩니다
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            {SITE.brand}는 강아지가 갑자기 세상을 떠났을 때, 보호자가 지금 바로 할 일을
-            안내합니다. 슬픔을 재촉하지 않고, 존중받는 마지막 배웅이 되도록 곁에 있겠습니다.
+            {SITE.brand}는 사랑하는 아이를 떠나보내는 보호자가 충분히 안아 주고
+            인사할 수 있도록 돕습니다. 따뜻한 마루에서, 마지막 길을 함께합니다.
           </p>
           <div className="mt-8 space-y-4">
             {PROMISES.map((p) => (
               <div
                 key={p.n}
-                className="border-l-[3px] border-[var(--coral)] bg-[#fffcf7] py-4 pl-5 pr-4"
+                className="rounded-[1.4rem] bg-white px-5 py-4 shadow-[0_10px_28px_rgba(45,42,56,0.05)] ring-1 ring-[var(--line)]"
               >
-                <p className="text-xs font-bold tracking-wide text-[var(--coral)]">
-                  약속 {p.n}
+                <p className="text-xs font-bold tracking-wide text-[var(--coral-deep)]">
+                  마음 {p.n}
                 </p>
                 <h3 className="mt-1 text-lg font-bold text-[var(--navy)]">{p.title}</h3>
                 <p className="mt-1 text-sm text-[var(--muted)]">{p.desc}</p>

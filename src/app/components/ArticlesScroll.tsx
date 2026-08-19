@@ -9,7 +9,7 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
 
   if (!preview.length) {
     return (
-      <section id="articles" className="section bg-[rgba(255,252,247,0.65)]">
+      <section id="articles" className="section bg-white/50">
         <div className="container">
           <p className="section-kicker">Knowledge</p>
           <h2 className="mt-3 text-2xl font-bold text-[var(--navy)] md:text-3xl">
@@ -24,7 +24,7 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
   }
 
   return (
-    <section id="articles" className="section bg-[rgba(255,252,247,0.65)]">
+    <section id="articles" className="section bg-white/50">
       <div className="container">
         <p className="section-kicker">Published Guides</p>
         <h2 className="mt-3 text-2xl font-bold text-[var(--navy)] md:text-3xl">
@@ -43,9 +43,9 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
             <Link
               key={p.slug}
               href={pagePath(p.slug)}
-              className="flex gap-4 bg-[#fffcf7] px-5 py-4 ring-1 ring-[var(--line)] transition hover:border-[var(--sky)] hover:ring-[var(--sky)]"
+              className="flex gap-4 rounded-[1.3rem] bg-white px-5 py-4 ring-1 ring-[var(--line)] transition hover:ring-[var(--sky)]"
             >
-              <span className="w-8 shrink-0 font-[family-name:var(--font-serif)] text-lg font-bold text-[var(--coral)]">
+              <span className="w-8 shrink-0 text-lg font-extrabold text-[var(--coral)]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>

@@ -10,7 +10,7 @@ from typing import Any, Dict
 from project_paths import webdoc_dir
 
 DEFAULT_VM_PATH = ""
-DEFAULT_SITE_URL = "https://funeral.puppytimes.co.kr"
+DEFAULT_SITE_URL = "https://rein.agapet.co.kr"
 
 
 def settings_path() -> str:

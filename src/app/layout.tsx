@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(origin),
     title: {
-      default: `${SITE.name} | 지금 아이가 떠났다면 24시 안내`,
+      default: `${SITE.name} | 마지막 포옹을 위한 반려동물 장례`,
       template: `%s | ${SITE.brand}`,
     },
     description: SITE.description,
@@ -27,20 +27,20 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "ko_KR",
       url: origin,
       siteName: SITE.name,
-      title: `${SITE.name} | 지금 아이가 떠났다면 24시 안내`,
+      title: `${SITE.name} | 마지막 포옹을 위한 반려동물 장례`,
       description: SITE.description,
       images: [
         {
           url: SITE.logo,
           width: 1200,
           height: 630,
-          alt: `${SITE.name} — 지금 아이가 떠났다면 24시 안내`,
+          alt: `${SITE.name} — 마지막 포옹을 위한 반려동물 장례`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${SITE.name} | 지금 아이가 떠났다면 24시 안내`,
+      title: `${SITE.name} | 마지막 포옹을 위한 반려동물 장례`,
       description: SITE.description,
       images: [SITE.logo],
     },
@@ -51,17 +51,17 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     icons: {
       icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+      apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     },
     other: {
-      "msapplication-TileColor": "#355445",
+      "msapplication-TileColor": "#3d4a7a",
       "naver-site-verification": "50323c9e6b08b108c5f780596873f92731d1deb1",
     },
   };
 }
 
 export const viewport: Viewport = {
-  themeColor: "#355445",
+  themeColor: "#3d4a7a",
   width: "device-width",
   initialScale: 1,
 };
@@ -76,17 +76,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <meta name="naver-site-verification" content="50323c9e6b08b108c5f780596873f92731d1deb1" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://image.cattery.co.kr" />
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap"
         />
         <link
           rel="alternate"

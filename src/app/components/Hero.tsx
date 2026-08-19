@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowDown, MessageCircle } from "lucide-react";
+import { Heart, MessageCircle } from "lucide-react";
 import { SITE, CTA_KAKAO } from "@/lib/site";
 import { imageUrl } from "@/lib/images";
 
@@ -18,36 +18,36 @@ export default function Hero() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(42,36,31,0.78)_0%,rgba(53,84,69,0.45)_48%,rgba(42,36,31,0.25)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(61,74,122,0.55)_0%,rgba(45,42,56,0.42)_42%,rgba(201,122,146,0.38)_100%)]" />
       </div>
 
-      <div className="container relative flex min-h-[92svh] flex-col justify-end pb-28 pt-28 md:justify-center md:pb-20 md:pt-24">
-        <div className="animate-rise max-w-xl border-l-[3px] border-[var(--coral)] bg-[rgba(248,244,236,0.94)] px-6 py-8 shadow-[0_20px_50px_rgba(42,36,31,0.22)] backdrop-blur-sm md:px-8 md:py-10">
-          <p className="text-xs font-semibold tracking-[0.16em] text-[var(--coral)]">
+      <div className="container relative flex min-h-[92svh] flex-col items-center justify-center pb-28 pt-24 text-center">
+        <div className="animate-rise max-w-2xl">
+          <p className="inline-flex items-center gap-2 rounded-full bg-white/18 px-4 py-1.5 text-xs font-semibold tracking-[0.16em] text-white backdrop-blur-sm">
             {SITE.farm} · {SITE.taglineEn}
           </p>
-          <h1 className="mt-3 text-3xl font-bold text-[var(--navy)] sm:text-4xl md:text-5xl">
+          <h1 className="mt-6 text-4xl font-extrabold text-white drop-shadow-[0_8px_24px_rgba(45,42,56,0.45)] sm:text-5xl md:text-6xl">
             {SITE.name}
-            <span className="mt-3 block text-[0.48em] font-semibold leading-snug text-[var(--muted)]">
-              지금 아이가 떠났다면,
+            <span className="mt-4 block text-[0.42em] font-semibold leading-snug text-[#fceef2]">
+              마지막 포옹을,
               <br />
-              혼자 결정하지 마세요
+              천천히 함께합니다
             </span>
           </h1>
-          <p className="mt-5 text-sm leading-relaxed text-[var(--muted)] md:text-base">
-            24시 긴급 픽업부터 장례·화장·추모까지. 갑작스러운 이별 앞에서
-            보호자가 바로 해야 할 일을 차분히 안내합니다.
+          <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed text-white/88 md:text-base">
+            인사할 시간을 충분히 드리고, 24시 픽업부터 장례·화장·추모까지
+            따뜻한 마루에서 곁을 지킵니다.
           </p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a href="#process" className="btn-primary">
-              지금 할 일 보기
-              <ArrowDown size={18} />
+              <Heart size={18} />
+              마지막 인사 보기
             </a>
             <a
               href={SITE.kakaoOpenChatUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-[0.4rem] border border-[var(--sky-deep)] px-5 py-3 font-semibold text-[var(--sky-deep)]"
+              className="btn-secondary"
             >
               <MessageCircle size={18} />
               {CTA_KAKAO}

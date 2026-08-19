@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check:deploy-target": "node scripts/ensure-muziga.cjs",
-    "deploy:prod": "node scripts/ensure-muziga.cjs && vercel --prod --yes"
+    "check:deploy-target": "node scripts/ensure-muzi01.cjs",
+    "deploy:prod": "node scripts/ensure-muzi01.cjs && vercel --prod --yes"
   },
   "dependencies": {
     "@google/genai": "^2.17.1",

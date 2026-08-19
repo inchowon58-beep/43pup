@@ -16,7 +16,7 @@ export default function NearbyRegionsSection({
   if (regions.length === 0 || !cityLabel) return null;
 
   return (
-    <section className="mb-12 border border-[var(--line)] bg-[linear-gradient(135deg,rgba(232,239,233,0.55),#fffcf7)] p-6 shadow-[0_8px_24px_rgba(42,36,31,0.04)] sm:p-8">
+    <section className="mb-12 rounded-[1.6rem] bg-[linear-gradient(135deg,rgba(107,123,184,0.12),#fff)] p-6 shadow-[0_8px_24px_rgba(61,74,122,0.06)] ring-1 ring-[var(--line)] sm:p-8">
       <p className="text-sm font-semibold text-[var(--sky-deep)]">근방 지역 (구·동)</p>
       <h2 className="mt-1 text-lg font-extrabold text-[var(--navy)] sm:text-xl">
         {cityLabel} 인근에서 함께 찾는 {keywordSuffix} 지역
@@ -42,12 +42,12 @@ export default function NearbyRegionsSection({
               {item.href ? (
                 <Link
                   href={item.href}
-                  className="flex items-start gap-2 border border-[var(--line)] bg-[#fffcf7] px-4 py-3.5 transition hover:border-[var(--sky)]"
+                  className="flex items-start gap-2 rounded-2xl border border-[var(--line)] bg-white px-4 py-3.5 transition hover:border-[var(--sky)]"
                 >
                   {body}
                 </Link>
               ) : (
-                <div className="flex items-start gap-2 border border-[var(--line)] bg-[#fffcf7] px-4 py-3.5">
+                <div className="flex items-start gap-2 rounded-2xl border border-[var(--line)] bg-white px-4 py-3.5">
                   {body}
                 </div>
               )}

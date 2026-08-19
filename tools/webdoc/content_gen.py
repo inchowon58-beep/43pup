@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 안심강아지장례식장.
+"""문서 본문 생성 (템플릿) — 포옹의마루.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
 장례·화장·추모 상세 페이지를 생성합니다. 이미지는 3장.
 """
@@ -19,9 +19,9 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "안심강아지장례식장"
+BRAND = "포옹의마루"
 FARM = "24시 반려동물 장례"
-SITE_NAME = "안심강아지장례식장"
+SITE_NAME = "포옹의마루"
 PHONE = "0505-300-7779"
 PHONE_TEL = "05053007779"
 LOCATION = "대한민국 전국"
@@ -67,39 +67,39 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
     kw = keyword.strip() or "강아지장례식장"
     heroes = [
-        "전국 24시 반려동물 장례 안내",
-        "장례 · 화장 · 추모 절차 안내",
-        "갑작스러운 이별에도 차분한 안내",
-        "신뢰할 수 있는 반려동물 장례 정보",
+        "픽업·안치·화장·추모 순서를 정리했습니다",
+        "체중·옵션에 따라 달라지는 비용 항목 안내",
+        "아이 몸 두기부터 유골 수습까지",
+        "강아지장례 절차·준비 정보",
     ]
     line2_opts = [
-        "장례 · 화장 · 추모",
-        "24시 긴급 상담",
-        "존중받는 마지막 길",
-        "전국 상담 가능",
+        "절차 · 비용 · 준비",
+        "픽업 · 화장 · 추모",
+        "보호자가 확인할 점",
+        "24시 상담 안내",
     ]
     bar_opts = [
-        "혼자 고민하지 마세요",
-        "전화 한 통으로 차분히 안내합니다",
-        "보호자님의 마음을 최우선으로 합니다",
-        "장례·화장·추모까지 함께합니다",
+        "픽업·안치·화장 순서를 정리했습니다",
+        "포함 항목을 먼저 확인하세요",
+        "지역·체중만 알려 주시면 됩니다",
+        "방문 또는 픽업 일정을 맞출 수 있습니다",
     ]
     intro_h2 = [
-        f"{kw}, 왜 장례 상담이 필요할까요",
-        f"{kw} 알아보기 전 꼭 확인할 점",
-        f"마지막 길을 위한 {kw} 안내",
-        f"{kw}와 {BRAND}의 장례 원칙",
+        f"{kw}를 찾을 때 먼저 알면 좋은 점",
+        f"{kw} 이용 전 아이 몸 두기와 준비",
+        f"{kw}, 보호자가 확인하는 기본 정보",
+        f"{kw} 절차와 준비물 안내",
     ]
 
-    title = f"{kw} | {BRAND} 장례·화장·추모"
+    title = f"{kw} | 절차·비용·준비 안내"
     if len(title) > 60:
-        title = f"{kw} | {FARM} {BRAND}"
+        title = f"{kw} | 강아지장례 안내"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw} 안내 — {BRAND}는 24시 긴급 픽업, 장례·화장·추모를 책임 있게 상담합니다. "
+        f"{kw} 안내 — 아이 몸 두기, 픽업·안치·화장 순서, 비용이 달라지는 항목을 정리했습니다. "
         f"전국 안내. 문의 {PHONE}."
     )
     if areas or stations:
@@ -116,21 +116,21 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "h2": h2_0,
             "paragraphs": [
-                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 신속한 대응과 존중받는 마무리입니다. "
-                f"{BRAND}는 {tone} 24시 긴급 픽업부터 장례·화장·추모까지 한곳에서 안내합니다.",
-                f"갑작스러운 이별 앞에서 혼자 고민하지 않으셔도 됩니다. "
-                f"{BRAND}는 투명한 비용 안내와 차분한 절차 설명으로 보호자님의 마음을 돕습니다.",
-                f"상담은 전화({PHONE})로 가능합니다. 거주 지역·희망 일정·아이 정보를 말씀해 주시면 "
-                f"장례 절차를 차분히 안내드립니다.",
+                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 아이 몸 두기와 상담에 필요한 정보입니다. "
+                f"수건으로 감싸 서늘한 곳에 두고, 지역·체중·희망 시간만 알려 주시면 {tone} 안내받을 수 있습니다.",
+                f"반드시 즉시 화장해야 하는 것은 아닙니다. "
+                f"옮기기 어려우면 픽업을 요청하고, 방문이 가능하면 식장으로 모시는 방식도 있습니다.",
+                f"상담은 전화({PHONE}) 또는 사이트 문의로 가능합니다. 거주 지역·희망 일정·아이 정보를 말씀해 주시면 "
+                f"장례 절차를 안내드립니다.",
             ],
         },
         {
-            "h2": f"{BRAND}가 {kw}에서 지키는 약속",
+            "h2": f"{kw} 비용이 달라지는 이유",
             "paragraphs": [
-                f"24시 긴급 대응, 투명한 견적, 존중받는 장례가 {BRAND}의 기준입니다. "
-                f"보호자님과 반려견 모두에게 품위 있는 마지막 배웅을 약속합니다.",
-                f"상담 범위는 {LOCATION}입니다. 픽업·장례·화장·유골 수습 일정도 함께 조율합니다.",
-                f"{kw}로 찾아오신 분이라면, 비용·절차·준비물을 먼저 확인하신 뒤 "
+                f"강아지장례 비용은 체중, 화장 방식, 유골함·추모 옵션, 픽업 거리·시간에 따라 달라집니다. "
+                f"같은 키워드라도 아이마다 범위가 달라 단가를 단정하지 않습니다.",
+                f"상담 범위는 {LOCATION}입니다. 픽업·장례·화장·유골 수습 일정도 함께 확인할 수 있습니다.",
+                f"{kw}로 찾아오신 분이라면, 포함 항목·소요 시간·준비물을 먼저 확인하신 뒤 "
                 f"전화 상담을 권합니다. 문의 {PHONE}.",
             ],
         },
@@ -138,8 +138,8 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             "h2": f"{kw} FAQ와 다음 단계",
             "paragraphs": [
                 f"{kw} 상담은 홈페이지 문의 또는 {PHONE} 전화로 가능합니다. "
-                f"긴급 픽업·장례·화장·추모 모두 같은 번호로 연결됩니다.",
-                f"{BRAND}는 마지막까지 곁에 있겠습니다. 지금 바로 상담해 주세요.",
+                f"픽업·장례·화장·추모 모두 같은 번호로 연결됩니다.",
+                f"지역과 아이 크기만 알려 주셔도 됩니다. 급하시면 바로, 조금 정리하신 뒤여도 괜찮습니다.",
             ],
         },
     ]
@@ -147,12 +147,12 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "q": f"{kw} 상담은 어떻게 하나요?",
             "a": f"사이트 하단 문의 또는 {PHONE} 전화로 접수합니다. "
-            f"상황·희망 일정을 알려주시면 {BRAND}가 확인 후 안내합니다.",
+            f"상황·희망 일정을 알려주시면 확인 후 안내합니다.",
         },
         {
             "q": f"24시 긴급 픽업이 가능한가요?",
-            "a": f"네. {BRAND}는 24시 긴급 픽업 상담을 지원합니다. "
-            f"거주 지역과 상황을 알려주시면 가장 빠른 방법을 안내드립니다.",
+            "a": f"많은 경우 24시 픽업 상담이 가능합니다. "
+            f"거주 지역과 상황을 알려주시면 이동 가능한 시간을 안내드립니다.",
         },
         {
             "q": f"{kw} 전국에서 이용할 수 있나요?",
@@ -160,8 +160,8 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             f"문의 {PHONE}.",
         },
         {
-            "q": f"{BRAND} 문의 전화번호는?",
-            "a": f"{PHONE}입니다. {BRAND}로 연락 주시면 됩니다.",
+            "q": f"{kw} 문의는 어디로 하나요?",
+            "a": f"{PHONE} 또는 사이트 하단 문의입니다. 지역·체중만 알려 주셔도 됩니다.",
         },
     ]
     now = datetime.utcnow().isoformat() + "Z"
@@ -179,16 +179,16 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "title": title,
         "metaDescription": meta_desc,
         "metaKeywords": meta_keywords,
-        "h1": f"{kw} — {BRAND} 장례·화장·추모",
+        "h1": f"{kw} 안내 — 절차와 준비",
         "heroSubtitle": heroes[idx % len(heroes)],
-        "heroBadge": "24시 긴급 상담",
+        "heroBadge": "절차 안내",
         "heroTitleLine1": kw,
         "heroTitleLine2": line2,
         "heroBar": bar_opts[idx % len(bar_opts)],
         "sections": sections,
         "faqs": faqs,
         "images": image_urls(IMAGE_USE, rng.randint(1, 99999)),
-        "ctaText": f"24시 장례 상담 {PHONE} — {BRAND}",
+        "ctaText": f"{kw} 상담 — 지역·체중만 알려 주세요",
         "nearbyAreas": areas,
         "nearbyStations": stations,
         "regionLabel": region or "",

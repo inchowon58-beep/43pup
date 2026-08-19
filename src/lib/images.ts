@@ -1,9 +1,19 @@
 import { SITE } from "./site";
 
-/** petfuneral 01.webp ~ N.webp */
+/**
+ * 화면 노출 순서. 파일 번호(01~17)를 섞어 히어로·갤러리가 이전과 다른 장면으로 보이게 함.
+ * 값은 1~imageCount 순열이어야 함.
+ */
+const DISPLAY_ORDER = [15, 8, 12, 3, 17, 6, 11, 1, 14, 7, 16, 4, 10, 2, 13, 9, 5] as const;
+
+function fileIndex(logicalIndex: number): number {
+  const n = Math.max(1, Math.min(SITE.imageCount, logicalIndex));
+  return DISPLAY_ORDER[n - 1] ?? n;
+}
+
+/** petfuneral 01.webp ~ N.webp — 논리 순서는 DISPLAY_ORDER */
 export function imageUrl(index: number): string {
-  const n = Math.max(1, Math.min(SITE.imageCount, index));
-  return `${SITE.imageBase}/${String(n).padStart(2, "0")}.webp`;
+  return `${SITE.imageBase}/${String(fileIndex(index)).padStart(2, "0")}.webp`;
 }
 
 function clampImageIndex(num: number): number {
@@ -36,7 +46,7 @@ function mulberry32(seed: number) {
 
 export function pickImages(count: number, seed = 42): string[] {
   const pool = allImageUrls();
-  const rng = mulberry32(seed);
+  const rng = mulberry32(seed ^ 0xa5a5e1b9);
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));

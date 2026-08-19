@@ -61,9 +61,9 @@ export default function ContactForm() {
 
   if (done) {
     return (
-      <section id="contact" className="section bg-[rgba(255,252,247,0.8)]">
+      <section id="contact" className="section bg-white/55">
         <div className="container">
-          <div className="mx-auto max-w-lg border-t-[3px] border-[var(--sky-deep)] bg-[#fffcf7] p-8 text-center ring-1 ring-[var(--line)]">
+          <div className="mx-auto max-w-lg rounded-[1.6rem] bg-white p-8 text-center shadow-[0_16px_40px_rgba(45,42,56,0.06)] ring-1 ring-[var(--line)]">
             <CheckCircle2 className="mx-auto text-[var(--sky)]" size={48} />
             <h2 className="mt-4 text-2xl font-extrabold text-[var(--navy)]">문의가 접수되었습니다</h2>
             <p className="mt-3 text-[var(--muted)]">
@@ -95,7 +95,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="section bg-[rgba(255,252,247,0.8)]">
+    <section id="contact" className="section bg-white/55">
       <div className="container grid gap-10 md:grid-cols-[1fr_1.1fr]">
         <div>
           <p className="section-kicker">CONTACT</p>
@@ -103,7 +103,7 @@ export default function ContactForm() {
             언제든 편하게 연락주세요
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            24시 긴급 장례·화장·추모 상담은 카카오톡 오픈채팅으로 가능합니다.
+            마지막 인사와 장례·화장·추모 상담은 카카오톡 오픈채팅으로 가능합니다.
             {KAKAO_CTA_HINT}
           </p>
           <a
@@ -117,7 +117,7 @@ export default function ContactForm() {
           </a>
         </div>
 
-        <form onSubmit={onSubmit} className="border-t-[3px] border-[var(--coral)] bg-[#fffcf7] p-6 ring-1 ring-[var(--line)] md:p-8">
+        <form onSubmit={onSubmit} className="rounded-[1.6rem] bg-white p-6 shadow-[0_16px_40px_rgba(45,42,56,0.06)] ring-1 ring-[var(--line)] md:p-8">
           <div className="field">
             <label htmlFor="name">성함</label>
             <input
