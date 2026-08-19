@@ -1,10 +1,9 @@
 import Image from "next/image";
 import { Camera, MessageCircle } from "lucide-react";
 import { SITE, CTA_KAKAO } from "@/lib/site";
-import { imageUrl } from "@/lib/images";
 
 export default function Hero() {
-  const heroImage = imageUrl(1);
+  const heroImage = `${SITE.imageBase}/22.webp`;
 
   return (
     <section id="top" className="relative min-h-[92svh] overflow-hidden">
