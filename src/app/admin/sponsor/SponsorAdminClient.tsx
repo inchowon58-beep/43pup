@@ -18,14 +18,14 @@ export default function SponsorAdminClient() {
     phone_number: "",
     link_url: "",
     homepage_url: "",
-    recruiting_notice: "전국 반려동물 장례식장 입점 제휴 · 사이트 임대 모집 중",
+    recruiting_notice: "전국 골든두들 분양 입점 제휴 · 사이트 임대 모집 중",
     rental_price: "30만원",
     highlight_points: [
-      "24시 긴급 픽업 가능",
-      "개별 추모 가능",
+      "분양 중인 아이 사진 공개",
+      "가족형 골든두들",
       "전국 상담 가능",
-      "예약 진행 가능",
-      "화장·추모 안내",
+      "방문·예약 진행 가능",
+      "입양 준비 안내",
     ],
   });
 
@@ -180,7 +180,7 @@ export default function SponsorAdminClient() {
             <p className="text-xs text-[var(--muted)]">
               {isRecruiting
                 ? "제휴·임대 모집 문구가 노출됩니다."
-                : "광고주 장례식장 정보가 노출됩니다."}
+                : "광고주 골든두들 분양 정보가 노출됩니다."}
             </p>
           </div>
           <button
@@ -243,7 +243,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_name"
                 value={form.sponsor_name}
                 onChange={(e) => setForm({ ...form, sponsor_name: e.target.value })}
-                placeholder="예: 오케이독 엔딩장례"
+                placeholder="예: 두들리안 골든두들"
               />
             </div>
             <div className="mt-6">
@@ -260,7 +260,7 @@ export default function SponsorAdminClient() {
                         next[index] = e.target.value;
                         setForm({ ...form, highlight_points: next });
                       }}
-                      placeholder={index === 0 ? "예: 24시 긴급 픽업 가능" : "예: 개별 추모 가능"}
+                      placeholder={index === 0 ? "예: 분양 중인 아이 사진 공개" : "예: 가족형 골든두들"}
                     />
                   </div>
                 ))}

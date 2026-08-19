@@ -11,14 +11,14 @@ export default function FAQ() {
             {SITE.brand}, 자주 묻는 질문
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            엔딩을 준비하시며 궁금하신 점을 모았습니다.
+            골든두들 분양 전에 많이 물어보시는 점입니다.
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl space-y-3">
           {HOME_FAQS.map((f) => (
             <details
               key={f.q}
-              className="border border-[var(--line)] bg-white px-5 py-4"
+              className="rounded-[1.2rem] border border-[var(--line)] bg-white px-5 py-4"
             >
               <summary className="cursor-pointer font-bold text-[var(--navy)]">{f.q}</summary>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">{f.a}</p>

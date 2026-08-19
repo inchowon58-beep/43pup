@@ -5,43 +5,44 @@ import { imageUrl } from "@/lib/images";
 
 const SERVICES = [
   {
-    title: "24시 픽업",
-    desc: "인사할 시간을 드린 뒤, 야간·새벽에도 모시는 길을 안내합니다",
+    title: "가족형 성격",
+    desc: "사람을 따르는 골든두들, 아이·노인과 지내기 좋은 온순함",
     image: imageUrl(5),
-    tag: "픽업",
+    tag: "성격",
   },
   {
-    title: "장례식 진행",
-    desc: "존중받는 장례 절차와 추모 시간 안내",
+    title: "곱슬 코트",
+    desc: "빠지는 털이 비교적 적고, 만지면 부드러운 푸들 믹스 털",
     image: imageUrl(10),
-    tag: "장례",
+    tag: "외모",
   },
   {
-    title: "화장·유골 수습",
-    desc: "화장 후 유골함 전달까지 투명하게 안내",
+    title: "분양 상담",
+    desc: "크기·색·성별을 알려 주시면 지금 만날 수 있는 아이를 안내",
     image: imageUrl(13),
-    tag: "화장",
+    tag: "상담",
   },
   {
-    title: "추모·기념품",
-    desc: "추모 공간, 기념품 옵션 상담",
+    title: "입양 준비",
+    desc: "첫 산책, 사료, 미용 주기까지 집으로 오기 전 체크리스트",
     image: imageUrl(16),
-    tag: "추모",
+    tag: "입양",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="section bg-white/50">
+    <section id="services" className="section bg-white/55">
       <div className="container">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="section-kicker">SERVICES</p>
+            <p className="section-kicker">GOLDEN DOODLE</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              장례·화장·추모 서비스
+              골든두들이 우리 집에 맞는 이유
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              엔딩을 준비하는 장례·화장·추모까지, 전국 어디서나 상담 가능합니다.
+              똑똑하고 사람을 좋아하는 중형견. 사진을 보다 보면 ‘이 아이면 좋겠다’는
+              마음이 먼저 옵니다.
             </p>
           </div>
           <a
@@ -57,7 +58,7 @@ export default function Services() {
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {SERVICES.map((item) => (
-            <article key={item.title} className="group relative overflow-hidden rounded-[0.4rem]">
+            <article key={item.title} className="group relative overflow-hidden rounded-[1.4rem]">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
                   src={item.image}
@@ -67,8 +68,8 @@ export default function Services() {
                   className="object-cover transition duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(42,36,31,0.82)_100%)]" />
-                <span className="absolute left-2 top-2 rounded-[0.3rem] bg-[var(--navy)] px-2 py-0.5 text-[0.65rem] font-bold tracking-wide text-[#c4a35a] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(47,38,28,0.78)_100%)]" />
+                <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">

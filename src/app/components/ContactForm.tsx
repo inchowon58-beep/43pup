@@ -17,15 +17,15 @@ const initial: FormState = {
   name: "",
   phone: "",
   address: "",
-  product: "긴급장례",
+  product: "분양상담",
   quantity: "1",
   memo: "",
 };
 
 const TOPICS = [
-  { id: "긴급장례", label: "24시 긴급 장례 상담" },
-  { id: "화장추모", label: "화장·추모 안내" },
-  { id: "픽업일정", label: "긴급 픽업·일정 문의" },
+  { id: "분양상담", label: "골든두들 분양 상담" },
+  { id: "사진문의", label: "분양 중인 아이 사진 문의" },
+  { id: "방문예약", label: "방문·예약 문의" },
   { id: "기타", label: "기타 문의" },
 ];
 
@@ -63,7 +63,7 @@ export default function ContactForm() {
     return (
       <section id="contact" className="section bg-white/55">
         <div className="container">
-          <div className="mx-auto max-w-lg border border-[var(--line)] bg-white p-8 text-center">
+          <div className="mx-auto max-w-lg rounded-[1.4rem] border border-[var(--line)] bg-white p-8 text-center">
             <CheckCircle2 className="mx-auto text-[var(--sky)]" size={48} />
             <h2 className="mt-4 text-2xl font-extrabold text-[var(--navy)]">문의가 접수되었습니다</h2>
             <p className="mt-3 text-[var(--muted)]">
@@ -103,7 +103,7 @@ export default function ContactForm() {
             언제든 편하게 연락주세요
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            엔딩을 준비하는 장례·화장·추모 상담은 카카오톡 오픈채팅으로 가능합니다.
+            우리 집에 올 골든두들을 고르는 상담은 카카오톡 오픈채팅으로 가능합니다.
             {KAKAO_CTA_HINT}
           </p>
           <a
@@ -117,7 +117,7 @@ export default function ContactForm() {
           </a>
         </div>
 
-        <form onSubmit={onSubmit} className="border border-[var(--line)] bg-white p-6 md:p-8">
+        <form onSubmit={onSubmit} className="rounded-[1.4rem] border border-[var(--line)] bg-white p-6 md:p-8">
           <div className="field">
             <label htmlFor="name">성함</label>
             <input
@@ -168,7 +168,7 @@ export default function ContactForm() {
               rows={4}
               value={form.memo}
               onChange={(e) => setForm({ ...form, memo: e.target.value })}
-              placeholder="아이 정보, 희망 일정, 긴급 여부 등을 적어주세요."
+              placeholder="원하는 크기·성별, 방문 희망일 등을 적어주세요."
             />
           </div>
           {error && <p className="mb-3 text-sm text-red-600">{error}</p>}

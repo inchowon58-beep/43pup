@@ -67,14 +67,14 @@ export default function SponsorStickyFooterBar({
   }
 
   return (
-    <div className={wrapperClass} aria-label="장례 상담">
+    <div className={wrapperClass} aria-label="분양 상담">
       <div className="fixed-cta-inner">
         {(hasPhone || homepageUrl) && (
           <div className={hasPhone && homepageUrl ? "fixed-cta-row" : undefined}>
             {hasPhone && (
               <a href={phoneHref} className="fixed-cta-call w-full justify-center">
                 <PhoneCall size={16} aria-hidden />
-                장례상담
+                분양상담
               </a>
             )}
             {homepageUrl && (

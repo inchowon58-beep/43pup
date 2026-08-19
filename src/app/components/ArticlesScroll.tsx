@@ -14,7 +14,7 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
           <p className="section-kicker">ARCHIVE</p>
           <h2 className="mt-3 text-2xl font-bold text-[var(--navy)] md:text-3xl">
             <Link href="/guide" className="hover:text-[var(--coral)]">
-              지역별 장례 안내
+              지역별 골든두들 안내
             </Link>
           </h2>
           <p className="mt-3 text-[var(--muted)]">발행된 지역 안내 글이 여기에 노출됩니다.</p>
@@ -29,7 +29,7 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
         <p className="section-kicker">ARCHIVE</p>
         <h2 className="mt-3 text-2xl font-bold text-[var(--navy)] md:text-3xl">
           <Link href="/guide" className="hover:text-[var(--coral)]">
-            지역별 장례 안내
+              지역별 골든두들 안내
           </Link>
         </h2>
         <p className="mt-3 text-[var(--muted)]">
@@ -43,7 +43,7 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
             <Link
               key={p.slug}
               href={pagePath(p.slug)}
-              className="flex gap-4 border border-[var(--line)] bg-white px-5 py-4 transition hover:border-[var(--sky)]"
+              className="flex gap-4 rounded-[1.3rem] border border-[var(--line)] bg-white px-5 py-4 transition hover:border-[var(--coral)]"
             >
               <span className="w-8 shrink-0 text-lg font-extrabold text-[var(--coral)]">
                 {String(i + 1).padStart(2, "0")}

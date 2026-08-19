@@ -3,23 +3,23 @@ import { SITE } from "@/lib/site";
 const STEPS = [
   {
     n: "1",
-    title: "엔딩을 열다",
-    desc: "아이를 수건으로 감싸 서늘한 곳에 둡니다. 지역만 알려 주셔도 상담이 시작됩니다.",
+    title: "사진으로 만나기",
+    desc: "두들갤러리에서 분양 중인 골든두들 모습을 먼저 보세요.",
   },
   {
     n: "2",
-    title: "모시고 안치",
-    desc: "밤·새벽에도 픽업을 안내합니다. 조금 더 곁에 있고 싶으시면 그 시간에 맞춥니다.",
+    title: "상담으로 고르기",
+    desc: "원하는 크기·성별·색을 알려 주시면 지금 만날 수 있는 아이를 안내합니다.",
   },
   {
     n: "3",
-    title: "배웅·화장",
-    desc: "비용을 먼저 확인한 뒤, 인사할 시간을 드리고 화장을 진행합니다.",
+    title: "방문·예약",
+    desc: "직접 보고 싶으시면 일정을 맞춰 드립니다. 급하셔도, 천천히여도 됩니다.",
   },
   {
     n: "4",
-    title: "크레딧",
-    desc: "유골함 전달과 추모 안내로 마침표를 찍습니다. 이후에도 다시 물어보셔도 됩니다.",
+    title: "집으로",
+    desc: "첫 사료·산책·미용 포인트를 알려 드리고, 가족이 되는 날을 엽니다.",
   },
 ];
 
@@ -28,12 +28,12 @@ export default function Process() {
     <section id="process" className="section">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">SEQUENCE</p>
+          <p className="section-kicker">ADOPTION</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            엔딩을 준비하는 순서
+            입양은 이렇게 이어집니다
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            한 장면씩 이어 갑니다. {SITE.brand}가 호흡에 맞춰 안내합니다.
+            부담 없이 사진을 보고, 마음이 가면 {SITE.brand}에 물어보세요.
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export default function Process() {
           <div className="pointer-events-none absolute left-[12%] right-[12%] top-7 hidden h-px bg-[var(--line)] lg:block" />
           {STEPS.map((s) => (
             <div key={s.n} className="relative text-center lg:pt-0">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[0.4rem] bg-[var(--navy)] text-xl font-bold text-[#c4a35a]">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--coral)] text-xl font-bold text-white">
                 {s.n}
               </div>
               <h3 className="mt-4 text-lg font-bold text-[var(--navy)]">{s.title}</h3>

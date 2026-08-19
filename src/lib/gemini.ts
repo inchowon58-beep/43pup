@@ -20,54 +20,55 @@ function asParagraphs(value: unknown): string[] {
 }
 
 function buildPrompt(keyword: string): string {
-  return `당신은 반려동물 장례 안내문을 쓰는 작가입니다.
-이 문서는 여러 장례식장에 임대되는 사이트에 실리므로 특정 업체 홍보는 하지 마세요.
+  return `당신은 골든두들 분양 안내문을 쓰는 작가입니다.
+이 문서는 여러 분양처에 임대되는 사이트에 실리므로 특정 업체 홍보는 하지 마세요.
 업체명 '${SITE.brand}'는 남용하지 마세요.
 
 메인 키워드: ${keyword}
-핵심 키워드: 강아지장례식장, 강아지장례, 반려동물장례, 24시장례, 긴급픽업
+핵심 키워드: 골든두들, 골든두들분양, 골든두들입양, 골드두들, 두들분양
 상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
 서비스 범위: ${SITE.areaServed}
 
-독자: ${keyword}를 검색해 마지막 장을 준비하려는 보호자.
-톤: 한 편의 엔딩·크레딧처럼. 사실(절차·비용 요인)은 분명히, 문장은 장면처럼 이어 가세요.
-금지: 가격 단정, 허위, 의료 단정, 타사 비방, '마지막 포옹'·'따뜻한 마루'·백과사전 나열 톤.
+독자: ${keyword}를 검색해 우리 집에 올 골든두들을 고르려는 보호자.
+톤: 따뜻하고 입양하고 싶게. 사실(성격·털·비용 요인)은 분명히, 문장은 사진 옆에서 이야기하듯.
+금지: 가격 단정, 허위, 의료 단정, 타사 비방, 장례·엔딩 톤.
 
 반드시 다룰 내용:
-1) 아이 몸 두기(수건, 서늘한 곳)와 상담에 필요한 정보(지역·체중)
-2) 강아지장례 순서(상담-픽업/방문-안치-배웅-화장-유골·추모)
+1) 골든두들 성격·곱슬 털·가족과 지내기
+2) 입양 순서(사진-상담-방문-집으로)
 3) 비용이 달라지는 항목과 물어볼 점
-4) 문의 방법 — 본문 마지막에만, 짧게
+4) 분양 중인 아이 사진은 메인 갤러리에서 볼 수 있음
+5) 문의 방법 — 본문 마지막에만, 짧게
 
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 한 편의 엔딩을 준비하며'",
-  "metaDescription": "140~158자. '{keyword}', 엔딩 또는 마지막 장, 절차. 카카오톡은 한 번만",
-  "metaKeywords": "{keyword}, 강아지장례식장, 강아지장례, 반려동물장례, 24시장례, 긴급픽업, 강아지죽었을때 등 10~14개",
-  "h1": "'{keyword}'와 '엔딩' 또는 '마지막 장'이 들어간 H1",
-  "heroSubtitle": "한글 한 문장. 엔딩·장면 비유 + 절차 요약",
-  "heroBadge": "엔딩 안내",
-  "heroTitleLine2": "한 편의 엔딩",
-  "heroBar": "픽업·안치·화장·추모를 장면별로 정리했습니다.",
+  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 우리 집에 올 골든두들'",
+  "metaDescription": "140~158자. '{keyword}', 골든두들 분양, 사진. 카카오톡은 한 번만",
+  "metaKeywords": "{keyword}, 골든두들, 골든두들분양, 골든두들입양, 골드두들, 두들분양 등 10~14개",
+  "h1": "'{keyword}'와 '골든두들' 또는 '우리 집'이 들어간 H1",
+  "heroSubtitle": "한글 한 문장. 입양하고 싶은 느낌 + 사진",
+  "heroBadge": "분양 안내",
+  "heroTitleLine2": "우리 집의 두들",
+  "heroBar": "분양 중인 골든두들 사진을 보고 마음을 정해 보세요.",
   "sections": [
-    {"h2": "'{keyword}' 포함, 엔딩을 열기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
-    {"h2": "강아지장례 장면별 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
+    {"h2": "'{keyword}' 포함, 집을 고르기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
+    {"h2": "골든두들 입양 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
     {"h2": "비용이 달라지는 이유·확인할 항목", "paragraphs": ["180자+", "180자+", "160자+"]},
-    {"h2": "다음 장면을 여는 상담", "paragraphs": ["160자+", "140자+"]}
+    {"h2": "사진을 보다가 여는 상담", "paragraphs": ["160자+", "140자+"]}
   ],
   "faqs": [
-    {"q": "강아지가 세상을 떠났을 때 바로 장례를 해야 하나요?", "a": "100자+ 구체 답변"},
-    {"q": "밤이나 새벽에 아이가 떠났을 때도 픽업이 되나요?", "a": "100자+"},
-    {"q": "장례 전까지 아이 몸은 어떻게 두어야 하나요?", "a": "100자+"},
-    {"q": "강아지 장례 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
+    {"q": "골든두들은 어떤 성격인가요?", "a": "100자+ 구체 답변"},
+    {"q": "털이 많이 빠지나요?", "a": "100자+"},
+    {"q": "아파트에서도 키울 수 있나요?", "a": "100자+"},
+    {"q": "골든두들 분양 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
     {"q": "${keyword} 상담은 어떻게 하나요?", "a": "100자+. ${KAKAO_CTA_HINT}"},
-    {"q": "화장 후 유골은 언제 받을 수 있나요?", "a": "80자+"}
+    {"q": "분양 중인 아이는 사진을 볼 수 있나요?", "a": "80자+. 메인 갤러리 안내"}
   ],
-  "ctaText": "{keyword} 엔딩 상담 — 지역·체중만 알려 주세요"
+  "ctaText": "{keyword} 분양 상담 — 지역·희망 조건만 알려 주세요"
 }
 
-AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '강아지장례'를 자연스럽게 반복.`;
+AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '골든두들'을 자연스럽게 반복.`;
 }
 
 export async function generateWithGemini(
@@ -108,23 +109,23 @@ export async function generateWithGemini(
 
   return {
     keyword,
-    title: String(data.title || `${keyword} | 한 편의 엔딩을 준비하며`),
+    title: String(data.title || `${keyword} | 우리 집에 올 골든두들`),
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
-        `${keyword}, 강아지장례식장, 강아지장례, 24시장례, 긴급픽업, 강아지죽었을때`
+        `${keyword}, 골든두들, 골든두들분양, 골든두들입양, 골드두들, 두들분양`
     ),
-    h1: String(data.h1 || `${keyword}, 엔딩을 준비하는 순서`),
+    h1: String(data.h1 || `${keyword}, 우리 집에 올 골든두들`),
     heroSubtitle: String(
-      data.heroSubtitle || "픽업·안치·화장·추모를 엔딩의 장면으로 정리했습니다"
+      data.heroSubtitle || "분양 중인 골든두들 사진을 보고 마음을 정해 보세요"
     ),
-    heroBadge: String(data.heroBadge || "엔딩 안내"),
+    heroBadge: String(data.heroBadge || "분양 안내"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "한 편의 엔딩"),
-    heroBar: String(data.heroBar || "픽업·안치·화장·추모를 장면별로 정리했습니다."),
+    heroTitleLine2: String(data.heroTitleLine2 || "우리 집의 두들"),
+    heroBar: String(data.heroBar || "분양 중인 골든두들 사진을 보고 마음을 정해 보세요."),
     sections,
     faqs,
-    ctaText: String(data.ctaText || `${keyword} 엔딩 상담 — 지역·체중만 알려 주세요`),
+    ctaText: String(data.ctaText || `${keyword} 분양 상담 — 지역·희망 조건만 알려 주세요`),
   };
 }
 
@@ -141,10 +142,10 @@ export function assembleSeoPage(
     metaKeywords: partial.metaKeywords,
     h1: partial.h1,
     heroSubtitle: partial.heroSubtitle,
-    heroBadge: partial.heroBadge || "엔딩 안내",
+    heroBadge: partial.heroBadge || "분양 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "한 편의 엔딩",
-    heroBar: partial.heroBar || "픽업·안치·화장·추모를 장면별로 정리했습니다.",
+    heroTitleLine2: partial.heroTitleLine2 || "우리 집의 두들",
+    heroBar: partial.heroBar || "분양 중인 골든두들 사진을 보고 마음을 정해 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,
     images: pickImages(3, Date.now() % 100000),

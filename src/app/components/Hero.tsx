@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Clapperboard, MessageCircle } from "lucide-react";
+import { Camera, MessageCircle } from "lucide-react";
 import { SITE, CTA_KAKAO } from "@/lib/site";
 import { imageUrl } from "@/lib/images";
 
@@ -11,38 +11,37 @@ export default function Hero() {
       <div className="absolute inset-0 hero-media">
         <Image
           src={heroImage}
-          alt={`${SITE.name} — 반려동물 장례 안내`}
+          alt={`${SITE.name} — 골든두들 분양`}
           fill
           unoptimized
           priority
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(22,20,18,0.35)_0%,rgba(22,20,18,0.55)_48%,rgba(22,20,18,0.88)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(47,38,28,0.62)_0%,rgba(47,38,28,0.28)_48%,rgba(47,38,28,0.08)_100%)]" />
       </div>
 
-      <div className="container relative flex min-h-[92svh] flex-col justify-end pb-28 pt-28 md:pb-24">
+      <div className="container relative flex min-h-[92svh] flex-col justify-end pb-28 pt-28 md:justify-center md:pb-24">
         <div className="animate-rise max-w-xl">
-          <p className="text-xs font-semibold tracking-[0.28em] text-[#c4a35a]">
+          <p className="text-xs font-semibold tracking-[0.22em] text-[#f4d3b0]">
             {SITE.taglineEn}
           </p>
-          <div className="mt-4 h-px w-16 bg-[#c4a35a]" />
-          <h1 className="mt-5 text-4xl font-bold tracking-tight text-[#f3eee6] sm:text-5xl md:text-[3.4rem]">
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-[3.4rem]">
             {SITE.name}
-            <span className="mt-4 block text-[0.42em] font-medium leading-snug tracking-normal text-[#f3eee6]/78">
-              한 편의 엔딩을,
+            <span className="mt-4 block text-[0.42em] font-medium leading-snug tracking-normal text-white/90">
+              우리 집에 올
               <br />
-              함께 준비합니다
+              골든두들을 만나세요
             </span>
           </h1>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-[#f3eee6]/72 md:text-base">
-            이야기의 마지막 장을 서두르지 않습니다. 24시 픽업부터 장례·화장·추모까지
-            엔딩을 차분히 이어 갑니다.
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/82 md:text-base">
+            곱슬 털, 온순한 눈, 아이와 잘 지내는 성격. 분양 중인 골든두들 사진을 먼저
+            보시고, 마음이 가는 아이를 카카오톡으로 물어보세요.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#process" className="btn-primary">
-              <Clapperboard size={18} />
-              엔딩 순서 보기
+            <a href="#gallery" className="btn-primary">
+              <Camera size={18} />
+              분양 사진 보기
             </a>
             <a
               href={SITE.kakaoOpenChatUrl}

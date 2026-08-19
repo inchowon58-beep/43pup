@@ -4,18 +4,18 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "오케이독 엔딩장례 (샘플)",
+  sponsor_name: "두들리안 골든두들 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "https://open.kakao.com/o/sxelLqJi",
   homepage_url: "https://www.naver.com",
   recruiting_notice: "",
   rental_price: "30만원",
   highlight_points: [
-    "24시 긴급 픽업 가능",
-    "개별 추모 가능",
+    "분양 중인 아이 사진 공개",
+    "가족형 골든두들",
     "전국 상담 가능",
-    "예약 진행 가능",
-    "화장·추모 안내",
+    "방문·예약 진행 가능",
+    "입양 준비 안내",
   ],
 };
 
@@ -42,23 +42,23 @@ export function buildSampleSponsors(current: SiteSponsor): {
   };
 }
 
-export const SAMPLE_PAGE_KEYWORD = "강남 강아지장례";
-export const SAMPLE_PAGE_H1 = "강남 강아지장례, 엔딩을 준비하는 순서";
+export const SAMPLE_PAGE_KEYWORD = "강남 골든두들분양";
+export const SAMPLE_PAGE_H1 = "강남 골든두들분양, 우리 집에 올 아이";
 export const SAMPLE_PAGE_SUBTITLE =
-  "픽업·안치·화장·추모를 한 편의 엔딩처럼 장면별로 정리했습니다.";
+  "분양 중인 골든두들 사진을 보고 마음을 정해 보세요.";
 
 export const SAMPLE_SECTIONS = [
   {
-    h2: "강남 강아지장례, 엔딩을 열기 전에",
+    h2: "강남 골든두들분양, 집을 고르기 전에",
     paragraphs: [
-      "마지막 장을 급하게 닫지 않아도 됩니다. 아이를 깨끗한 수건으로 감싸 서늘한 곳에 두고, 지역과 대략적인 크기만 알려 주시면 픽업·안치·화장 가능 시간을 장면별로 안내받을 수 있습니다.",
-      "밤이든 새벽이든 24시 상담이 열리는 경우가 많습니다. 조금 더 곁에 있고 싶다면 그 시간도 엔딩 일정에 맞출 수 있습니다.",
+      "사진을 보다가 눈이 머무는 아이가 있으면 그 마음을 메모해 두세요. 곱슬 털과 온순한 성격의 골든두들을 강남에서도 상담으로 안내받을 수 있습니다.",
+      "원하는 크기·성별만 알려 주시면 지금 만날 수 있는 아이를 안내합니다. 방문이 어려우면 카카오톡으로 사진을 더 받아 보세요.",
     ],
   },
   {
-    h2: "강아지장례 엔딩은 이렇게 이어집니다",
+    h2: "골든두들 입양은 이렇게 이어집니다",
     paragraphs: [
-      "상담 → 픽업 또는 방문 → 안치 → 배웅 → 화장 → 유골 수습은 한 편의 엔딩처럼 이어집니다. 비용은 체중·화장 방식·옵션·픽업 거리에 따라 달라지며, 포함 항목을 먼저 확인한 뒤에 다음 장면을 고르시면 됩니다.",
+      "사진 확인 → 상담 → 방문 또는 추가 사진 → 집으로 맞이하기 순입니다. 비용은 크기·혈통·시기에 따라 달라지며, 포함 항목을 먼저 확인한 뒤에 결정하시면 됩니다.",
     ],
   },
 ] as const;

@@ -1,20 +1,17 @@
-/** 키워드에서 지역명 추출 (예: 수원강아지장례 → 수원) */
+/** 키워드에서 지역명 추출 (예: 수원골든두들분양 → 수원) */
 export const SERVICE_SUFFIXES = [
-  "반려동물장례식장",
-  "강아지장례식장",
-  "애견장례식장",
-  "반려동물장례",
-  "반려동물화장",
-  "강아지장례",
-  "강아지화장",
-  "펫장례",
-  "애견장례",
-  "24시장례",
-  "긴급픽업",
-  "장례식장",
-  "화장",
-  "장례",
-  "추모",
+  "골든두들분양",
+  "골든두들입양",
+  "골드두들분양",
+  "골든두들키우기",
+  "골든두들가격",
+  "골든두들성격",
+  "두들분양",
+  "골든두들",
+  "골드두들",
+  "중형견분양",
+  "반려견입양",
+  "강아지분양",
 ];
 
 const SEOUL_GU = [
@@ -76,13 +73,13 @@ export function extractRegionFromKeyword(keyword: string): string | null {
   return matchRegionPrefix(text) || (text.length >= 2 && text.length <= 8 ? text : null);
 }
 
-/** 키워드에서 SEO 접미사 추출 (예: 수원강아지장례식장 → 강아지장례식장) */
+/** 키워드에서 SEO 접미사 추출 (예: 수원골든두들분양 → 골든두들분양) */
 export function extractKeywordTheme(keyword: string): string {
   const normalized = keyword.replace(/\s+/g, "").trim();
-  if (!normalized) return "강아지장례식장";
+  if (!normalized) return "골든두들분양";
   const sorted = [...SERVICE_SUFFIXES].sort((a, b) => b.length - a.length);
   for (const suffix of sorted) {
     if (suffix.length >= 3 && normalized.includes(suffix)) return suffix;
   }
-  return "강아지장례식장";
+  return "골든두들분양";
 }

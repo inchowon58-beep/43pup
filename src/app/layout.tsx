@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(origin),
     title: {
-      default: `${SITE.name} | 한 편의 엔딩을 위한 반려동물 장례`,
+      default: `${SITE.name} | 우리 집에 올 골든두들 분양`,
       template: `%s | ${SITE.brand}`,
     },
     description: SITE.description,
@@ -27,20 +27,20 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "ko_KR",
       url: origin,
       siteName: SITE.name,
-      title: `${SITE.name} | 한 편의 엔딩을 위한 반려동물 장례`,
+      title: `${SITE.name} | 우리 집에 올 골든두들 분양`,
       description: SITE.description,
       images: [
         {
           url: SITE.logo,
           width: 1200,
           height: 630,
-          alt: `${SITE.name} — 한 편의 엔딩을 위한 반려동물 장례`,
+          alt: `${SITE.name} — 골든두들 분양`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${SITE.name} | 한 편의 엔딩을 위한 반려동물 장례`,
+      title: `${SITE.name} | 우리 집에 올 골든두들 분양`,
       description: SITE.description,
       images: [SITE.logo],
     },
@@ -54,14 +54,14 @@ export async function generateMetadata(): Promise<Metadata> {
       apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     },
     other: {
-      "msapplication-TileColor": "#161412",
-      "naver-site-verification": "0ff5351293a8211daa3b93b0c7d040372b47fd62",
+      "msapplication-TileColor": "#e07a3d",
+      "naver-site-verification": "9fe266c423785cb9d73591ebc9ff5693eda362a2",
     },
   };
 }
 
 export const viewport: Viewport = {
-  themeColor: "#161412",
+  themeColor: "#e07a3d",
   width: "device-width",
   initialScale: 1,
 };
@@ -74,7 +74,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="ko">
       <head>
-        <meta name="naver-site-verification" content="0ff5351293a8211daa3b93b0c7d040372b47fd62" />
+        <meta name="naver-site-verification" content="9fe266c423785cb9d73591ebc9ff5693eda362a2" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://image.cattery.co.kr" />
         <link rel="preconnect" href="https://cdn.sanity.io" />

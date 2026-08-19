@@ -11,7 +11,7 @@ interface Props {
 export default function NearbyRegionsSection({
   cityLabel,
   regions,
-  keywordSuffix = "강아지장례식장",
+  keywordSuffix = "골든두들분양",
 }: Props) {
   if (regions.length === 0 || !cityLabel) return null;
 

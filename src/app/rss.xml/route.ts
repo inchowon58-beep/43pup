@@ -58,7 +58,7 @@ function itemXml(base: string, page: SeoPage): string {
     <guid isPermaLink="true">${escXml(link)}</guid>
     <pubDate>${rfc822(pub)}</pubDate>
     <author>${escXml(SITE.brand)}</author>
-    <category>${escXml(page.keyword || "강아지장례식장")}</category>
+    <category>${escXml(page.keyword || "골든두들분양")}</category>
     <description><![CDATA[${cdata(desc)}]]></description>
     <content:encoded><![CDATA[${cdata(body)}]]></content:encoded>
   </item>`;
@@ -71,16 +71,16 @@ export async function GET(req: Request) {
   if (!pages.length) {
     pages = [
       {
-        slug: "petfuneral-intro",
-        keyword: "강아지장례식장",
-        title: `${SITE.name} | 24시 장례·화장·추모`,
+        slug: "doodle-intro",
+        keyword: "골든두들분양",
+        title: `${SITE.name} | 우리 집에 올 골든두들`,
         metaDescription: SITE.description,
         metaKeywords: SITE.keywords.join(", "),
         h1: `${SITE.name} 안내`,
         heroSubtitle: SITE.taglineEn,
         sections: [
           {
-            h2: "엔딩포유",
+            h2: "두들리안",
             paragraphs: [SITE.description, SITE.tagline],
           },
         ],

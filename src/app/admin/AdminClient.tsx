@@ -68,7 +68,7 @@ export default function AdminClient() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [keyword, setKeyword] = useState("강아지장례식장");
+  const [keyword, setKeyword] = useState("골든두들분양");
   const [mode, setMode] = useState<"gemini" | "template">("template");
   const [apiKey, setApiKey] = useState("");
   const [publishing, setPublishing] = useState(false);
@@ -104,7 +104,7 @@ export default function AdminClient() {
   const [detailOrder, setDetailOrder] = useState<OrderItem | null>(null);
 
   function absolutePageUrl(path: string) {
-    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://rein.cattery.co.kr").replace(
+    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://doodle.cattery.co.kr").replace(
       /\/$/,
       ""
     );
@@ -359,7 +359,7 @@ export default function AdminClient() {
           <p className="text-sm font-bold text-[var(--orange)]">Admin</p>
           <h1 className="mt-2 text-3xl font-extrabold text-[var(--navy)]">관리자 로그인</h1>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            엔딩포유 · 문의·SEO 발행 관리
+            두들리안 · 문의·SEO 발행 관리
           </p>
           <label className="mt-6 block text-sm font-semibold">
             아이디
@@ -462,7 +462,7 @@ export default function AdminClient() {
           <section className="overflow-hidden rounded-2xl border border-[var(--line)] bg-white shadow-[0_12px_32px_rgba(28,36,52,0.05)]">
             <div className="flex flex-wrap items-end justify-between gap-3 border-b border-[var(--line)] px-4 py-4 md:px-5">
               <div>
-                <h2 className="text-xl font-extrabold text-[var(--navy)] md:text-2xl">장례 상담 문의목록</h2>
+                <h2 className="text-xl font-extrabold text-[var(--navy)] md:text-2xl">분양 상담 문의목록</h2>
                 <p className="mt-1 text-sm text-[var(--muted)]">
                   총 {orderTotal}건 · 가독성 있게 한 줄씩 확인하세요
                 </p>
@@ -881,7 +881,7 @@ export default function AdminClient() {
                 className="mt-1 w-full rounded-xl border border-[var(--line)] bg-white px-3 py-2"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                placeholder="예: 강아지장례식장"
+                placeholder="예: 골든두들분양"
                 required
               />
             </label>

@@ -508,5 +508,5 @@ export function slugifyKeyword(keyword: string, salt?: string): string {
     salt ||
     Math.random().toString(36).slice(2, 6) +
       Date.now().toString(36).slice(-4);
-  return `${base || "petfuneral"}-${tail}`;
+  return `${base || "doodle"}-${tail}`;
 }

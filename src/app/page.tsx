@@ -25,8 +25,8 @@ export default async function HomePage() {
       <About />
       <Services />
       <Process />
-      <Reviews />
       <Gallery />
+      <Reviews />
       <FAQ />
       <ArticlesScroll pages={pages} />
       <ContactForm />

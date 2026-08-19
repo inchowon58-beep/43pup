@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eye, MessageCircle } from "lucide-react";
 import type { SiteSponsor } from "@/lib/site-sponsor-shared";
+import DoodleGalleryCta from "@/app/components/DoodleGalleryCta";
 import SponsorMidBox from "@/app/components/SponsorMidBox";
 import SponsorStickyFooterBar from "@/app/components/SponsorStickyFooterBar";
-import { SITE, CTA_RENTAL } from "@/lib/site";
+import { CTA_RENTAL } from "@/lib/site";
 import { imageUrl } from "@/lib/images";
 import {
   SAMPLE_PAGE_H1,
@@ -114,7 +115,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           </Link>
           <span className="mx-2">/</span>
           <Link href="/guide" className="hover:text-[var(--coral)]">
-            지역별 장례 안내
+            지역별 골든두들 안내
           </Link>
           <span className="mx-2">/</span>
           <span>{SAMPLE_PAGE_KEYWORD}</span>
@@ -124,6 +125,8 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
         <p className="mb-8 text-lg font-semibold leading-snug text-[var(--navy)] md:text-xl">
           {SAMPLE_PAGE_H1}
         </p>
+
+        <DoodleGalleryCta />
 
         {SAMPLE_SECTIONS.map((sec, si) => (
           <section key={sec.h2} className="mb-12">
