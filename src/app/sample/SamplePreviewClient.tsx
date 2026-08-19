@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Eye, MessageCircle } from "lucide-react";
 import type { SiteSponsor } from "@/lib/site-sponsor-shared";
 import DoodleGalleryCta from "@/app/components/DoodleGalleryCta";
+import LiveEngineBadge from "@/app/components/LiveEngineBadge";
 import SponsorMidBox from "@/app/components/SponsorMidBox";
 import SponsorStickyFooterBar from "@/app/components/SponsorStickyFooterBar";
 import { CTA_RENTAL } from "@/lib/site";
@@ -33,7 +34,14 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
   return (
     <div className="pb-16 pt-8 md:pt-10">
       <div className="container max-w-3xl">
-        <p className="text-sm font-bold tracking-wide text-[var(--sky)]">입점 샘플 미리보기</p>
+        <p className="rounded-[1.1rem] border border-[var(--coral)] bg-[var(--coral-soft)] px-4 py-3 text-center text-sm font-semibold leading-relaxed text-[var(--coral-deep)] md:text-base">
+          <LiveEngineBadge className="mb-1.5" />
+          <span className="mt-1.5 block">
+            지금 이 시각에도 해당사이트의 웹문서 노출 작업은 진행중에 있습니다. 자리가 차기 전에
+            확인하세요.
+          </span>
+        </p>
+        <p className="mt-6 text-sm font-bold tracking-wide text-[var(--sky)]">입점 샘플 미리보기</p>
         <h1 className="mt-2 text-3xl font-extrabold text-[var(--navy)] md:text-4xl">
           입점 시 이렇게 바뀌어요
         </h1>

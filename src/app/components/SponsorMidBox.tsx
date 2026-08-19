@@ -3,6 +3,7 @@ import { BadgeCheck, Eye, Globe, MessageCircle, PhoneCall } from "lucide-react";
 import type { SiteSponsor } from "@/lib/site-sponsor-shared";
 import { phoneToTel, sponsorKakaoUrl, sponsorHomepageUrl } from "@/lib/site-sponsor-shared";
 import { SITE, CTA_KAKAO } from "@/lib/site";
+import LiveEngineBadge from "@/app/components/LiveEngineBadge";
 
 type Props = { sponsor: SiteSponsor; showPreviewLink?: boolean };
 
@@ -14,7 +15,8 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
   if (sponsor.status === "RECRUITING") {
     return (
       <aside className="my-10 border border-[var(--sky)] bg-[var(--sky-soft)] p-6 text-center md:p-8">
-        <p className="text-lg font-extrabold text-[var(--navy)] md:text-xl">
+        <LiveEngineBadge />
+        <p className="mt-3 text-lg font-extrabold text-[var(--navy)] md:text-xl">
           📢 전국 골든두들 분양 입점 제휴 / 사이트 임대 모집 중
         </p>
         <p className="mt-2 text-sm text-[var(--muted)]">{sponsor.recruiting_notice}</p>
@@ -54,6 +56,19 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
               입점 후 미리보기
             </Link>
           )}
+        </div>
+        <div className="mx-auto mt-6 max-w-xl text-left text-sm leading-relaxed text-[var(--muted)] md:text-[0.95rem]">
+          <p className="font-extrabold text-[var(--navy)]">입점, 서두르실 필요 없습니다.</p>
+          <p className="mt-3">
+            지금 이 순간에도 네이버 상위 노출 엔진은 멈추지 않고 돌아가며, 페이지의 가치는 매일
+            실시간으로 쌓이고 있습니다.
+          </p>
+          <p className="mt-3">
+            노출이 얼마나 터지는지 천천히 눈으로 확인하고, &apos;지금이다&apos; 싶을 때
+            들어오셔도 좋습니다.
+            <br />
+            다만, 누군가 먼저 이 자리를 차지하는 순간, 그 기회는 영영 사라집니다.
+          </p>
         </div>
       </aside>
     );
