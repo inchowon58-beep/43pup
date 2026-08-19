@@ -11,7 +11,7 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
     return (
       <section id="articles" className="section bg-white/50">
         <div className="container">
-          <p className="section-kicker">Knowledge</p>
+          <p className="section-kicker">ARCHIVE</p>
           <h2 className="mt-3 text-2xl font-bold text-[var(--navy)] md:text-3xl">
             <Link href="/guide" className="hover:text-[var(--coral)]">
               지역별 장례 안내
@@ -26,7 +26,7 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
   return (
     <section id="articles" className="section bg-white/50">
       <div className="container">
-        <p className="section-kicker">Published Guides</p>
+        <p className="section-kicker">ARCHIVE</p>
         <h2 className="mt-3 text-2xl font-bold text-[var(--navy)] md:text-3xl">
           <Link href="/guide" className="hover:text-[var(--coral)]">
             지역별 장례 안내
@@ -43,7 +43,7 @@ export default function ArticlesScroll({ pages }: { pages: SeoPageSummary[] }) {
             <Link
               key={p.slug}
               href={pagePath(p.slug)}
-              className="flex gap-4 rounded-[1.3rem] bg-white px-5 py-4 ring-1 ring-[var(--line)] transition hover:ring-[var(--sky)]"
+              className="flex gap-4 border border-[var(--line)] bg-white px-5 py-4 transition hover:border-[var(--sky)]"
             >
               <span className="w-8 shrink-0 text-lg font-extrabold text-[var(--coral)]">
                 {String(i + 1).padStart(2, "0")}

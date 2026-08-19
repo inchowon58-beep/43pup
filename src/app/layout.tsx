@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(origin),
     title: {
-      default: `${SITE.name} | 마지막 포옹을 위한 반려동물 장례`,
+      default: `${SITE.name} | 한 편의 엔딩을 위한 반려동물 장례`,
       template: `%s | ${SITE.brand}`,
     },
     description: SITE.description,
@@ -27,20 +27,20 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "ko_KR",
       url: origin,
       siteName: SITE.name,
-      title: `${SITE.name} | 마지막 포옹을 위한 반려동물 장례`,
+      title: `${SITE.name} | 한 편의 엔딩을 위한 반려동물 장례`,
       description: SITE.description,
       images: [
         {
           url: SITE.logo,
           width: 1200,
           height: 630,
-          alt: `${SITE.name} — 마지막 포옹을 위한 반려동물 장례`,
+          alt: `${SITE.name} — 한 편의 엔딩을 위한 반려동물 장례`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${SITE.name} | 마지막 포옹을 위한 반려동물 장례`,
+      title: `${SITE.name} | 한 편의 엔딩을 위한 반려동물 장례`,
       description: SITE.description,
       images: [SITE.logo],
     },
@@ -54,14 +54,14 @@ export async function generateMetadata(): Promise<Metadata> {
       apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     },
     other: {
-      "msapplication-TileColor": "#3d4a7a",
-      "naver-site-verification": "1671fbffbbd091cbac8be0fe67e79dd4c14f1385",
+      "msapplication-TileColor": "#161412",
+      "naver-site-verification": "0ff5351293a8211daa3b93b0c7d040372b47fd62",
     },
   };
 }
 
 export const viewport: Viewport = {
-  themeColor: "#3d4a7a",
+  themeColor: "#161412",
   width: "device-width",
   initialScale: 1,
 };
@@ -74,7 +74,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="ko">
       <head>
-        <meta name="naver-site-verification" content="1671fbffbbd091cbac8be0fe67e79dd4c14f1385" />
+        <meta name="naver-site-verification" content="0ff5351293a8211daa3b93b0c7d040372b47fd62" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://image.cattery.co.kr" />
         <link rel="preconnect" href="https://cdn.sanity.io" />

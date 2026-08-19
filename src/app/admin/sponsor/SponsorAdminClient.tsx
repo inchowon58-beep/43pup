@@ -243,7 +243,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_name"
                 value={form.sponsor_name}
                 onChange={(e) => setForm({ ...form, sponsor_name: e.target.value })}
-                placeholder="예: 오케이독 포옹장례"
+                placeholder="예: 오케이독 엔딩장례"
               />
             </div>
             <div className="mt-6">

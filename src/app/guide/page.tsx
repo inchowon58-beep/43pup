@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const url = await publicPageUrl("/guide");
   return {
     title: "지역별 장례 안내",
-    description: `${SITE.name} 지역별 강아지 장례 — 절차·비용·준비, 24시 픽업·화장·추모 안내`,
+    description: `${SITE.name} 지역별 강아지 장례 — 한 편의 엔딩을 준비하는 24시 픽업·화장·추모 안내`,
     keywords: [...SITE.keywords, "지역별 강아지장례식장"],
     alternates: { canonical: url },
     openGraph: {
@@ -49,7 +49,7 @@ export default async function GuideIndexPage({ searchParams }: Props) {
         오래된 문서는 검색 유입과 직접 URL 접근을 위해 유지되며, 목록에는 최신 문서 중심으로 노출됩니다.
       </p>
 
-      <ul className="mt-10 divide-y divide-[var(--line)] overflow-hidden rounded-[1.6rem] border border-[var(--line)] bg-white">
+      <ul className="mt-10 divide-y divide-[var(--line)] overflow-hidden rounded-[0.4rem] border border-[var(--line)] bg-white">
         {slice.length === 0 && (
           <li className="px-5 py-8 text-[var(--muted)]">등록된 안내글이 없습니다.</li>
         )}

@@ -41,7 +41,7 @@ export default function Services() {
               장례·화장·추모 서비스
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              마지막 포옹부터 장례·화장·추모까지, 전국 어디서나 상담 가능합니다.
+              엔딩을 준비하는 장례·화장·추모까지, 전국 어디서나 상담 가능합니다.
             </p>
           </div>
           <a
@@ -57,7 +57,7 @@ export default function Services() {
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {SERVICES.map((item) => (
-            <article key={item.title} className="group relative overflow-hidden rounded-[1.5rem]">
+            <article key={item.title} className="group relative overflow-hidden rounded-[0.4rem]">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
                   src={item.image}
@@ -68,7 +68,7 @@ export default function Services() {
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(42,36,31,0.82)_100%)]" />
-                <span className="absolute left-2 top-2 rounded-full bg-[var(--sky-deep)] px-2 py-0.5 text-[0.65rem] font-bold text-white sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
+                <span className="absolute left-2 top-2 rounded-[0.3rem] bg-[var(--navy)] px-2 py-0.5 text-[0.65rem] font-bold tracking-wide text-[#c4a35a] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">

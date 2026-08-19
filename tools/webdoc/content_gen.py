@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 포옹의마루.
+"""문서 본문 생성 (템플릿) — 엔딩포유.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
 장례·화장·추모 상세 페이지를 생성합니다. 이미지는 3장.
 """
@@ -19,9 +19,9 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "포옹의마루"
+BRAND = "엔딩포유"
 FARM = "24시 반려동물 장례"
-SITE_NAME = "포옹의마루"
+SITE_NAME = "엔딩포유"
 PHONE = "0505-300-7779"
 PHONE_TEL = "05053007779"
 LOCATION = "대한민국 전국"
@@ -67,39 +67,40 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
     kw = keyword.strip() or "강아지장례식장"
     heroes = [
-        "픽업·안치·화장·추모 순서를 정리했습니다",
-        "체중·옵션에 따라 달라지는 비용 항목 안내",
-        "아이 몸 두기부터 유골 수습까지",
-        "강아지장례 절차·준비 정보",
+        "픽업·안치·화장·추모를 엔딩의 장면으로 정리했습니다",
+        "마지막 장을 닫기 전, 확인할 점을 먼저 보세요",
+        "아이와의 이야기를 존중하며 엔딩을 이어 갑니다",
+        "한 편의 엔딩을 준비하는 순서",
     ]
     line2_opts = [
-        "절차 · 비용 · 준비",
-        "픽업 · 화장 · 추모",
-        "보호자가 확인할 점",
-        "24시 상담 안내",
+        "한 편의 엔딩",
+        "마지막 장",
+        "장면별 순서",
+        "엔딩 안내",
     ]
     bar_opts = [
-        "픽업·안치·화장 순서를 정리했습니다",
+        "픽업·안치·화장·추모를 장면별로 정리했습니다",
         "포함 항목을 먼저 확인하세요",
         "지역·체중만 알려 주시면 됩니다",
-        "방문 또는 픽업 일정을 맞출 수 있습니다",
+        "다음 장면을 여는 상담입니다",
     ]
     intro_h2 = [
-        f"{kw}를 찾을 때 먼저 알면 좋은 점",
-        f"{kw} 이용 전 아이 몸 두기와 준비",
-        f"{kw}, 보호자가 확인하는 기본 정보",
-        f"{kw} 절차와 준비물 안내",
+        f"{kw}, 엔딩을 열기 전에",
+        f"마지막 장을 닫기 전 {kw}에서 확인할 점",
+        f"{kw}와 함께 보는 이야기의 끝",
+        f"{kw} 장면별 순서",
     ]
 
-    title = f"{kw} | 절차·비용·준비 안내"
+    title = f"{kw} | 한 편의 엔딩을 준비하며"
     if len(title) > 60:
-        title = f"{kw} | 강아지장례 안내"
+        title = f"{kw} | 엔딩 안내"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw} 안내 — 아이 몸 두기, 픽업·안치·화장 순서, 비용이 달라지는 항목을 정리했습니다. "
+        f"{kw}에서 아이와의 마지막 장을 준비하는 순서입니다. "
+        f"몸 두기, 픽업·안치·화장, 비용이 달라지는 항목을 장면별로 정리했습니다. "
         f"전국 안내. 문의 {PHONE}."
     )
     if areas or stations:
@@ -108,7 +109,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     if len(meta_desc) > 160:
         meta_desc = meta_desc[:157] + "..."
 
-    variants = ["차분히", "꼼꼼히", "따뜻하게"]
+    variants = ["차분히", "장면별로", "한 장면씩"]
     tone = variants[idx % len(variants)]
     h2_0 = intro_h2[idx % len(intro_h2)]
 
@@ -179,16 +180,16 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "title": title,
         "metaDescription": meta_desc,
         "metaKeywords": meta_keywords,
-        "h1": f"{kw} 안내 — 절차와 준비",
+        "h1": f"{kw}, 엔딩을 준비하는 순서",
         "heroSubtitle": heroes[idx % len(heroes)],
-        "heroBadge": "절차 안내",
+        "heroBadge": "엔딩 안내",
         "heroTitleLine1": kw,
         "heroTitleLine2": line2,
         "heroBar": bar_opts[idx % len(bar_opts)],
         "sections": sections,
         "faqs": faqs,
         "images": image_urls(IMAGE_USE, rng.randint(1, 99999)),
-        "ctaText": f"{kw} 상담 — 지역·체중만 알려 주세요",
+        "ctaText": f"{kw} 엔딩 상담 — 지역·체중만 알려 주세요",
         "nearbyAreas": areas,
         "nearbyStations": stations,
         "regionLabel": region or "",

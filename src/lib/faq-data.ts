@@ -2,11 +2,11 @@ import { SITE, KAKAO_CTA_HINT } from "./site";
 
 export type FaqItem = { q: string; a: string };
 
-/** 메인·AEO용 자주 묻는 질문 — 마지막 포옹·작별 중심 */
+/** 메인·AEO용 자주 묻는 질문 — 엔딩·마지막 장 중심 */
 export const HOME_FAQS: FaqItem[] = [
   {
     q: "강아지가 세상을 떠났을 때 바로 장례를 해야 하나요?",
-    a: `서두르지 않으셔도 됩니다. 아이와 충분히 안아 주신 뒤, 깨끗한 수건으로 감싸 서늘한 곳에 두세요. ${SITE.name}가 카카오톡으로 픽업·안치·화장 순서를 호흡에 맞춰 안내합니다.`,
+    a: `서두르지 않으셔도 됩니다. 아이를 수건으로 감싸 서늘한 곳에 두신 뒤, 카카오톡으로 지역을 알려 주세요. ${SITE.name}가 픽업·안치·화장 순서를 엔딩처럼 장면별로 안내합니다.`,
   },
   {
     q: "밤이나 새벽에 아이가 떠났을 때도 픽업이 되나요?",
@@ -26,7 +26,7 @@ export const HOME_FAQS: FaqItem[] = [
   },
   {
     q: "상담은 어디로 하면 되나요?",
-    a: `카카오톡 오픈채팅으로 마지막 인사·장례·화장·추모 상담이 가능합니다. ${KAKAO_CTA_HINT}`,
+    a: `카카오톡 오픈채팅으로 엔딩 순서·장례·화장·추모 상담이 가능합니다. ${KAKAO_CTA_HINT}`,
   },
 ];
 
@@ -69,9 +69,9 @@ export function howToJsonLd(pageUrl?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "강아지장례 절차 — 준비부터 유골 수습까지",
+    name: "강아지장례 엔딩을 준비하는 순서",
     description:
-      "아이 몸 두기, 상담에 필요한 정보, 픽업·안치·화장·추모 순서를 정리한 안내.",
+      "아이 몸 두기, 상담 정보, 픽업·안치·화장·추모를 한 편의 엔딩처럼 이어 가는 안내.",
     inLanguage: "ko-KR",
     totalTime: "PT2H",
     url: pageUrl || SITE.siteUrl,
@@ -89,7 +89,7 @@ export function orgJsonLd(url?: string) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: SITE.name,
-    alternateName: [SITE.brand, "포옹의마루 강아지장례"],
+    alternateName: [SITE.brand, "엔딩포유 강아지장례"],
     description: SITE.description,
     url: url || SITE.siteUrl,
     image: SITE.logo,

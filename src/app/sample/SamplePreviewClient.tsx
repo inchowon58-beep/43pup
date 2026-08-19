@@ -42,9 +42,9 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           전환됩니다. 아래는 실제 SEO 페이지와 동일한 UI입니다.
         </p>
 
-        <div className="mt-6 rounded-2xl border border-[var(--line)] bg-white p-4">
+        <div className="mt-6 rounded-[0.4rem] border border-[var(--line)] bg-white p-4">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full bg-[var(--sky-soft)] px-3 py-1 text-sm font-bold text-[var(--sky-deep)]">
+            <span className="rounded-[0.3rem] bg-[var(--sky-soft)] px-3 py-1 text-sm font-bold text-[var(--sky-deep)]">
               임대 비용 {recruiting.rental_price || "30만원"}
             </span>
             <span className="text-sm text-[var(--muted)]">일일 SEO 발행 · 전국 노출 · 어드민 즉시 반영</span>
@@ -56,11 +56,11 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           </p>
         </div>
 
-        <div className="mt-8 flex rounded-2xl border border-[var(--line)] bg-white p-1">
+        <div className="mt-8 flex rounded-[0.4rem] border border-[var(--line)] bg-white p-1">
           <button
             type="button"
             onClick={() => setTab("recruiting")}
-            className={`flex-1 rounded-xl px-4 py-3 text-sm font-bold transition ${
+            className={`flex-1 rounded-[0.3rem] px-4 py-3 text-sm font-bold transition ${
               isRecruiting
                 ? "bg-[var(--sky-soft)] text-[var(--sky-deep)]"
                 : "text-[var(--muted)] hover:text-[var(--navy)]"
@@ -71,7 +71,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           <button
             type="button"
             onClick={() => setTab("active")}
-            className={`flex-1 rounded-xl px-4 py-3 text-sm font-bold transition ${
+            className={`flex-1 rounded-[0.3rem] px-4 py-3 text-sm font-bold transition ${
               !isRecruiting
                 ? "bg-[var(--coral-soft)] text-[var(--coral-deep)]"
                 : "text-[var(--muted)] hover:text-[var(--navy)]"
@@ -138,7 +138,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           </section>
         ))}
 
-        <div className="mt-10 rounded-[1.5rem] border border-dashed border-[var(--line)] bg-white p-6">
+        <div className="mt-10 rounded-[0.4rem] border border-dashed border-[var(--line)] bg-white p-6">
           <p className="text-center text-sm font-bold text-[var(--navy)]">하단 고정 바 미리보기</p>
           <p className="mt-1 text-center text-xs text-[var(--muted)]">
             실제 페이지에서는 화면 하단에 고정됩니다
@@ -150,7 +150,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
       </article>
 
       <div className="container max-w-3xl">
-        <aside className="rounded-[1.6rem] bg-[var(--sky-soft)] p-6 text-center ring-1 ring-[var(--sky)] md:p-8">
+        <aside className="border border-[var(--sky)] bg-[var(--sky-soft)] p-6 text-center md:p-8">
           <p className="text-lg font-extrabold text-[var(--navy)] md:text-xl">
             전국 SEO 문서에 입점하고 싶으신가요?
           </p>

@@ -11,14 +11,14 @@ export default function FAQ() {
             {SITE.brand}, 자주 묻는 질문
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            마지막 인사를 준비하시며 궁금하신 점을 모았습니다.
+            엔딩을 준비하시며 궁금하신 점을 모았습니다.
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl space-y-3">
           {HOME_FAQS.map((f) => (
             <details
               key={f.q}
-              className="rounded-[1.4rem] bg-white px-5 py-4 shadow-[0_8px_24px_rgba(45,42,56,0.04)] ring-1 ring-[var(--line)]"
+              className="border border-[var(--line)] bg-white px-5 py-4"
             >
               <summary className="cursor-pointer font-bold text-[var(--navy)]">{f.q}</summary>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">{f.a}</p>

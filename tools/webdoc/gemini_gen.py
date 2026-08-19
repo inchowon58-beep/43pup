@@ -12,9 +12,9 @@ from google import genai
 
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_keyword_csv, nearby_stations
 
-BRAND = "포옹의마루"
+BRAND = "엔딩포유"
 FARM = "24시 반려동물 장례"
-SITE_NAME = "포옹의마루"
+SITE_NAME = "엔딩포유"
 PHONE = "0505-300-7779"
 LOCATION = "대한민국 전국"
 
@@ -27,14 +27,14 @@ GEMINI_MODELS: List[Dict[str, str]] = [
 
 DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
-DEFAULT_USER_PROMPT = """톤: 정보 가이드. 절차·비용 요인·준비물을 사실 중심으로 쓰세요.
+DEFAULT_USER_PROMPT = """톤: 한 편의 엔딩·크레딧처럼. 사실(절차·비용 요인)은 분명히, 문장은 장면처럼 이어 가세요.
 이 문서는 여러 장례식장에 임대되는 사이트에 실리므로 특정 업체 홍보·브랜드 감성 카피 금지.
 키워드에 지역명이 있으면 그 지역에서 장례를 알아보는 독자 시점으로 쓰세요.
-본문은 백과사전처럼, 광고 카피처럼 쓰지 마세요. '마지막 포옹'·'따뜻한 마루' 슬로건 금지.
+'마지막 포옹'·'따뜻한 마루'·백과사전 나열 톤 금지.
 {keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.
 """
 
-SYSTEM_SEO_RULES = f"""당신은 반려동물 장례 정보 가이드 작성자입니다.
+SYSTEM_SEO_RULES = f"""당신은 반려동물 장례 안내문을 쓰는 작가입니다.
 이 문서는 여러 장례식장에 임대되므로 특정 업체 홍보로 쓰지 마세요.
 업체명 '{BRAND}'는 남용하지 마세요.
 
@@ -43,16 +43,16 @@ SYSTEM_SEO_RULES = f"""당신은 반려동물 장례 정보 가이드 작성자�
 범위: {LOCATION}
 
 [SEO]
-- title 50~60자. 메인 키워드를 앞에 두고 안내·절차·준비 중 하나를 포함. 브랜드명 남용 금지.
-- metaDescription 140~160자. 키워드 + 절차·비용 요인 + 24시 상담. 광고 문장 금지.
+- title 50~60자. 메인 키워드를 앞에 두고 엔딩·마지막 장 중 하나를 포함. 브랜드명 남용 금지.
+- metaDescription 140~160자. 키워드 + 엔딩/마지막 장 + 24시 상담. 광고 문장 금지.
 - metaKeywords 8~12개, 쉼표 구분. 키워드·강아지장례식장·반려동물장례·24시장례 포함.
 - h1에 메인 키워드 포함. title과 완전히 같지 않게.
-- 본문 3개 섹션. 각 h2는 서로 다른 각도(준비/절차/비용·확인 항목).
+- 본문 3개 섹션. 각 h2는 서로 다른 각도(엔딩 준비/장면별 순서/비용·확인 항목).
 - 각 문단 140자 이상. 키워드 과다반복 금지. 자연 반복만.
 
 [OG]
 - og:title = title, og:description = metaDescription 로 쓸 수 있게 완결된 문장.
-- heroSubtitle는 한글 한 문장. 정보 요약.
+- heroSubtitle는 한글 한 문장. 엔딩·장면 비유 + 절차 요약.
 
 [AEO]
 - FAQ 4개. 실제 검색 질문형(어떻게, 가능한가요, 비용, 전화 등).
@@ -223,12 +223,12 @@ def assemble_from_gemini(
         "title": title,
         "metaDescription": meta_desc[:180],
         "metaKeywords": meta_kw,
-        "h1": str(data.get("h1") or f"{kw} — {BRAND} 장례·화장·추모"),
-        "heroSubtitle": str(data.get("heroSubtitle") or "전국 24시 반려동물 장례 안내"),
-        "heroBadge": "24시 긴급 상담",
+        "h1": str(data.get("h1") or f"{kw}, 엔딩을 준비하는 순서"),
+        "heroSubtitle": str(data.get("heroSubtitle") or "픽업·안치·화장·추모를 엔딩의 장면으로 정리했습니다"),
+        "heroBadge": "엔딩 안내",
         "heroTitleLine1": kw,
-        "heroTitleLine2": "장례 · 화장 · 추모",
-        "heroBar": "존중받는 마지막 길 안내",
+        "heroTitleLine2": "한 편의 엔딩",
+        "heroBar": "픽업·안치·화장·추모를 장면별로 정리했습니다.",
         "sections": sections,
         "faqs": faqs,
         "images": image_urls_fn(3, seed),

@@ -1,13 +1,13 @@
-/** 포옹의마루 — 사이트 공통 설정 */
+/** 엔딩포유 — 사이트 공통 설정 */
 
 export const SITE = {
-  name: "포옹의마루",
-  brand: "포옹의마루",
+  name: "엔딩포유",
+  brand: "엔딩포유",
   farm: "24시 반려동물 장례",
-  tagline: "마지막 포옹을, 천천히 함께합니다",
-  taglineEn: "A Warm Farewell · 24h Care",
+  tagline: "한 편의 엔딩을, 함께 준비합니다",
+  taglineEn: "Ending For You · 24h Care",
   description:
-    "포옹의마루는 사랑하는 아이를 떠나보내는 보호자가 충분히 안아 주고 인사할 수 있도록 돕는 반려동물 장례 안내입니다. 24시 픽업부터 장례·화장·추모까지 따뜻한 마루에서 함께합니다.",
+    "엔딩포유는 사랑하는 아이와의 이야기를 존중하며 마지막 장을 준비하는 반려동물 장례 안내입니다. 24시 픽업부터 장례·화장·추모까지 엔딩을 차분히 이어 갑니다.",
   keywords: [
     "강아지장례식장",
     "강아지장례",
@@ -22,14 +22,14 @@ export const SITE = {
     "반려동물추모",
   ],
   kakaoOpenChatUrl: "https://open.kakao.com/o/sxelLqJi",
-  logo: "https://image.cattery.co.kr/petfuneral/15.webp",
+  logo: "https://image.cattery.co.kr/petfuneral/07.webp",
   imageBase: "https://image.cattery.co.kr/petfuneral",
   imageCount: 17,
   location: "대한민국 전국",
   address: "전국 24시 상담 · 카카오톡 오픈채팅",
   areaServed: "대한민국 전국",
-  domain: "rein.agapet.co.kr",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://rein.agapet.co.kr",
+  domain: "rein.cattery.co.kr",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://rein.cattery.co.kr",
   infocsUrl: "https://www.infocs.co.kr/",
 } as const;
 

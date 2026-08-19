@@ -4,7 +4,7 @@ import { SITE } from "./site";
  * 화면 노출 순서. 파일 번호(01~17)를 섞어 히어로·갤러리가 이전과 다른 장면으로 보이게 함.
  * 값은 1~imageCount 순열이어야 함.
  */
-const DISPLAY_ORDER = [15, 8, 12, 3, 17, 6, 11, 1, 14, 7, 16, 4, 10, 2, 13, 9, 5] as const;
+const DISPLAY_ORDER = [12, 3, 15, 8, 1, 17, 6, 10, 14, 5, 2, 16, 9, 4, 11, 7, 13] as const;
 
 function fileIndex(logicalIndex: number): number {
   const n = Math.max(1, Math.min(SITE.imageCount, logicalIndex));
@@ -46,7 +46,7 @@ function mulberry32(seed: number) {
 
 export function pickImages(count: number, seed = 42): string[] {
   const pool = allImageUrls();
-  const rng = mulberry32(seed ^ 0xa5a5e1b9);
+  const rng = mulberry32(seed ^ 0xe4d14f01);
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
@@ -57,11 +57,11 @@ export function pickImages(count: number, seed = 42): string[] {
 
 export function galleryAlt(keywordOrIndex: string | number, index = 1): string {
   const suffixes = [
-    "장례식장 내부",
-    "추모 공간",
-    "화장·장례 안내",
-    "24시 긴급 픽업",
-    "반려동물 장례 절차",
+    "엔딩이 머무는 공간",
+    "마지막 장의 추모실",
+    "화장·장례 장면",
+    "24시 픽업 안내",
+    "반려동물 엔딩 순서",
   ];
   if (typeof keywordOrIndex === "number") {
     const i = keywordOrIndex;

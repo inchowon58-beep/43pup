@@ -16,7 +16,7 @@ export default function NearbyStationsSection({
   if (stations.length === 0 || !cityLabel) return null;
 
   return (
-    <section className="mb-12 rounded-[1.6rem] bg-[linear-gradient(135deg,rgba(232,160,180,0.16),#fff)] p-6 shadow-[0_8px_24px_rgba(201,122,146,0.08)] ring-1 ring-[var(--line)] sm:p-8">
+    <section className="mb-12 border border-[var(--line)] bg-[linear-gradient(135deg,rgba(122,48,64,0.08),#fff)] p-6 sm:p-8">
       <p className="text-sm font-semibold text-[var(--coral-deep)]">인근 지하철역</p>
       <h2 className="mt-1 text-lg font-extrabold text-[var(--navy)] sm:text-xl">
         {cityLabel} 인근 지하철역 {keywordSuffix} 검색
@@ -42,12 +42,12 @@ export default function NearbyStationsSection({
               {item.href ? (
                 <Link
                   href={item.href}
-                  className="flex items-start gap-2 rounded-2xl border border-[var(--line)] bg-white px-4 py-3.5 transition hover:border-[var(--coral)]"
+                  className="flex items-start gap-2 rounded-[0.4rem] border border-[var(--line)] bg-white px-4 py-3.5 transition hover:border-[var(--coral)]"
                 >
                   {body}
                 </Link>
               ) : (
-                <div className="flex items-start gap-2 rounded-2xl border border-[var(--line)] bg-white px-4 py-3.5">
+                <div className="flex items-start gap-2 rounded-[0.4rem] border border-[var(--line)] bg-white px-4 py-3.5">
                   {body}
                 </div>
               )}

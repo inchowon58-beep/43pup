@@ -10,7 +10,7 @@ function siteHost(): string {
   try {
     return new URL(SITE.siteUrl).host;
   } catch {
-    return "rein.agapet.co.kr";
+    return "rein.cattery.co.kr";
   }
 }
 

@@ -84,7 +84,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: ogImage,
           width: 1200,
           height: 1200,
-          alt: `${page.keyword} 절차 안내 — ${SITE.name}`,
+          alt: `${page.keyword} 엔딩 안내 — ${SITE.name}`,
         },
       ],
     },
@@ -176,7 +176,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#3d4a7a_0%,#6b7bb8_38%,#f6f3f8_38%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#161412_0%,#2a241f_38%,#f3eee6_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>
@@ -258,7 +258,7 @@ export default async function GuidePage({ params }: Props) {
         />
 
         {sponsor.status !== "RECRUITING" && (
-          <aside className="mt-10 rounded-[1.6rem] bg-[var(--coral-soft)] p-6 text-center ring-1 ring-[var(--coral)]">
+          <aside className="mt-10 border border-[var(--coral)] bg-[var(--coral-soft)] p-6 text-center">
             <p className="text-xl font-extrabold text-[var(--navy)] md:text-2xl">{page.ctaText}</p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
               <a
@@ -271,7 +271,7 @@ export default async function GuidePage({ params }: Props) {
               </a>
               <Link
                 href="/#contact"
-                className="inline-flex rounded-full border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
+                className="inline-flex rounded-[0.4rem] border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
               >
                 온라인 상담 신청
               </Link>

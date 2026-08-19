@@ -3,13 +3,13 @@ import { SITE } from "@/lib/site";
 const REVIEWS = [
   {
     quote:
-      "아이와 충분히 안아 주고 난 뒤에 상담하니, 마음이 조금 더 따뜻하게 정리됐어요.",
+      "마지막 장을 급하게 닫지 않아도 된다고 하니, 마음이 조금 정리됐어요.",
     name: "김○○ 보호자",
-    course: "마지막 포옹 상담",
+    course: "엔딩 상담",
   },
   {
     quote:
-      "장례 절차와 비용을 미리 설명해 주셔서 마음 편히 마무리할 수 있었어요.",
+      "엔딩을 한 장면씩 설명해주셔서, 마음이 조금 정리된 뒤에 결정할 수 있었어요.",
     name: "이○○ 보호자",
     course: "장례 진행",
   },
@@ -27,7 +27,7 @@ const REVIEWS = [
   },
   {
     quote:
-      "화장 후 유골함 전달까지 꼼꼼히 안내해 주셔서 마음이 놓였습니다.",
+      "크레딧처럼 유골함 전달까지 끝까지 안내해 주셔서 마음이 놓였습니다.",
     name: "정○○ 보호자",
     course: "화장·수습",
   },
@@ -57,7 +57,7 @@ export default function Reviews() {
           {REVIEWS.map((r) => (
             <blockquote
               key={r.name + r.course}
-              className="rounded-[1.5rem] bg-white p-6 shadow-[0_10px_28px_rgba(45,42,56,0.05)] ring-1 ring-[var(--line)]"
+              className="border border-[var(--line)] bg-white p-6"
             >
               <p className="text-3xl leading-none text-[var(--coral)]">“</p>
               <p className="mt-1 text-[var(--ink)] leading-relaxed">{r.quote}</p>
