@@ -55,6 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     other: {
       "msapplication-TileColor": "#355445",
+      "naver-site-verification": "50323c9e6b08b108c5f780596873f92731d1deb1",
     },
   };
 }
@@ -73,6 +74,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="ko">
       <head>
+        <meta name="naver-site-verification" content="50323c9e6b08b108c5f780596873f92731d1deb1" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
