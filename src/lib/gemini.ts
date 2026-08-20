@@ -26,7 +26,7 @@ function buildPrompt(keyword: string): string {
 
 메인 키워드: ${keyword}
 핵심 키워드: 골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, 골든두들성격, 골든두들입양, 골든두들무료분양, 골든두들크기
-상담 연결(마지막에만): 전화 ${SITE.phone}, 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
+상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
 서비스 범위: ${SITE.areaServed}
 
 독자: ${keyword}를 검색해 골든두들분양·버니두들분양을 고르려는 보호자.

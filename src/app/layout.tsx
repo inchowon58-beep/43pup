@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { SITE } from "@/lib/site";
 import { publicOrigin } from "@/lib/public-url";
 import { faqJsonLd, howToJsonLd, orgJsonLd } from "@/lib/faq-data";
+import { getGlobalSponsor } from "@/lib/site-sponsor";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SponsorStickyFooter from "./components/SponsorStickyFooter";
@@ -75,7 +76,12 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const origin = await publicOrigin();
-  const org = orgJsonLd(origin);
+  const sponsor = await getGlobalSponsor();
+  const sponsorPhone =
+    sponsor.status === "ACTIVE" && sponsor.phone_number.trim()
+      ? sponsor.phone_number.trim()
+      : undefined;
+  const org = orgJsonLd(origin, sponsorPhone);
   const faq = faqJsonLd();
   const howTo = howToJsonLd(origin);
   return (

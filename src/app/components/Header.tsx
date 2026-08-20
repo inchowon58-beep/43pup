@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, MessageCircle, Phone, X } from "lucide-react";
+import { Menu, MessageCircle, X } from "lucide-react";
 import { SITE, CTA_KAKAO } from "@/lib/site";
 
 const NAV = [
@@ -58,13 +58,6 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <a
-            href={SITE.phoneTel}
-            className="hidden items-center gap-1.5 px-2 py-2 text-sm font-semibold text-[#c4a574] md:inline-flex"
-          >
-            <Phone size={15} />
-            {SITE.phone}
-          </a>
-          <a
             href={SITE.kakaoOpenChatUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -98,18 +91,10 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href={SITE.phoneTel}
-              className="mt-1 inline-flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-[#c4a574]"
-              onClick={() => setOpen(false)}
-            >
-              <Phone size={16} />
-              {SITE.phone}
-            </a>
-            <a
               href={SITE.kakaoOpenChatUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[0.4rem] bg-[#FEE500] px-3 py-2.5 text-sm font-extrabold text-[#191919]"
+              className="mt-1 inline-flex items-center gap-2 rounded-[0.4rem] bg-[#FEE500] px-3 py-2.5 text-sm font-extrabold text-[#191919]"
               onClick={() => setOpen(false)}
             >
               <MessageCircle size={16} />

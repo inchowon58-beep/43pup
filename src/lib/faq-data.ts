@@ -84,7 +84,7 @@ export function howToJsonLd(pageUrl?: string) {
   };
 }
 
-export function orgJsonLd(url?: string) {
+export function orgJsonLd(url?: string, telephone?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -93,7 +93,7 @@ export function orgJsonLd(url?: string) {
     description: SITE.description,
     url: url || SITE.siteUrl,
     image: SITE.ogImage,
-    telephone: SITE.phone,
+    ...(telephone ? { telephone } : {}),
     openingHours: "Mo-Su 00:00-23:59",
     address: {
       "@type": "PostalAddress",

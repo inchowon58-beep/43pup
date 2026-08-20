@@ -75,7 +75,7 @@ export default function SponsorStickyFooterBar({
             {hasPhone && (
               <a href={phoneHref} className="fixed-cta-call w-full justify-center">
                 <PhoneCall size={16} aria-hidden />
-                분양상담
+                {sponsor.phone_number.trim()}
               </a>
             )}
             {homepageUrl && (
@@ -99,7 +99,7 @@ export default function SponsorStickyFooterBar({
             className="fixed-cta-call w-full justify-center"
           >
             <MessageCircle size={16} aria-hidden />
-            카톡상담
+            카카오톡 상담하기
           </a>
         )}
       </div>

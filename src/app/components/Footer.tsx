@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, MessageCircle, Phone } from "lucide-react";
+import { MapPin, MessageCircle } from "lucide-react";
 import { SITE, CTA_KAKAO } from "@/lib/site";
 
 export default function Footer() {
@@ -15,10 +15,6 @@ export default function Footer() {
         </div>
 
         <div className="space-y-3 text-sm text-white/75">
-          <a href={SITE.phoneTel} className="flex items-center gap-2 hover:text-white">
-            <Phone size={16} className="text-[#c4a574]" />
-            {SITE.phone}
-          </a>
           <a
             href={SITE.kakaoOpenChatUrl}
             target="_blank"
