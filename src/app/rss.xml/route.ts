@@ -58,7 +58,7 @@ function itemXml(base: string, page: SeoPage): string {
     <guid isPermaLink="true">${escXml(link)}</guid>
     <pubDate>${rfc822(pub)}</pubDate>
     <author>${escXml(SITE.brand)}</author>
-    <category>${escXml(page.keyword || "버니두들분양")}</category>
+    <category>${escXml(page.keyword || "골든두들분양")}</category>
     <description><![CDATA[${cdata(desc)}]]></description>
     <content:encoded><![CDATA[${cdata(body)}]]></content:encoded>
   </item>`;
@@ -72,7 +72,7 @@ export async function GET(req: Request) {
     pages = [
       {
         slug: "doodle-intro",
-        keyword: "버니두들분양",
+        keyword: "골든두들분양",
         title: SITE.title,
         metaDescription: SITE.description,
         metaKeywords: SITE.keywords.join(", "),
@@ -80,7 +80,7 @@ export async function GET(req: Request) {
         heroSubtitle: SITE.taglineEn,
         sections: [
           {
-            h2: "두들코리아",
+            h2: "아가두들",
             paragraphs: [SITE.description, SITE.tagline],
           },
         ],

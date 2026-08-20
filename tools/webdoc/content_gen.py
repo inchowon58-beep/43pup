@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 두들코리아.
+"""문서 본문 생성 (템플릿) — 아가두들.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
 골든두들 분양 상세 페이지를 생성합니다. 이미지는 3장.
 """
@@ -19,9 +19,9 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "두들코리아"
-FARM = "버니두들 분양"
-SITE_NAME = "두들코리아"
+BRAND = "아가두들"
+FARM = "골든두들 분양"
+SITE_NAME = "아가두들"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
 IMAGE_BASE = "https://image.cattery.co.kr/doodle"
@@ -30,7 +30,7 @@ IMAGE_USE = 3  # 히어로 1 + 본문 2
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|cloud".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|agadoodle".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -64,12 +64,12 @@ def _page_to_summary(page: Dict[str, Any]) -> Dict[str, str]:
 
 def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
-    kw = keyword.strip() or "버니두들분양"
+    kw = keyword.strip() or "골든두들분양"
     heroes = [
-        "분양 중인 버니두들 사진을 보고 마음을 정해 보세요",
-        "삼색 코트, 듬직한 눈, 가족과 잘 지내는 성격",
+        "분양 중인 골든두들 사진을 보고 마음을 정해 보세요",
+        "포근한 곱슬 코트, 온순한 눈, 가족과 잘 지내는 성격",
         "여기서 입양하면 좋겠다 — 그 느낌이 먼저입니다",
-        "사진을 보다가 고르는 버니두들",
+        "사진을 보다가 고르는 골든두들",
     ]
     line2_opts = [
         "우리 집의 두들",
@@ -78,7 +78,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "분양 사진",
     ]
     bar_opts = [
-        "분양 중인 버니두들 사진을 보고 마음을 정해 보세요",
+        "분양 중인 골든두들 사진을 보고 마음을 정해 보세요",
         "크기·성별만 알려 주시면 됩니다",
         "사진부터 보고 상담을 여세요",
         "카카오톡으로 이어 가는 입양",
@@ -86,19 +86,19 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     intro_h2 = [
         f"{kw}, 집을 고르기 전에",
         f"사진을 보다가 마음이 가는 {kw}",
-        f"{kw}와 함께 보는 버니두들",
+        f"{kw}와 함께 보는 골든두들",
         f"{kw}에서 아이를 만나는 순서",
     ]
 
-    title = f"{kw} | 우리 집에 올 버니두들"
+    title = f"{kw} | 우리 집에 올 골든두들"
     if len(title) > 60:
-        title = f"{kw} | 버니두들 분양"
+        title = f"{kw} | 골든두들 분양"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw}에서 가족과 함께 살 버니두들을 고르는 안내입니다. "
+        f"{kw}에서 가족과 함께 살 골든두들을 고르는 안내입니다. "
         f"성격·털·입양 순서와 분양 중인 아이 사진을 정리했습니다. 카카오톡 상담."
     )
     if areas or stations:
@@ -165,8 +165,8 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     line2 = line2_opts[idx % len(line2_opts)]
     geo_kw = nearby_keyword_csv(kw)
     meta_keywords = (
-        f"{kw}, 버니두들분양, 골든두들분양, 버니두들분양가, 버니두들키우기, "
-        f"버니두들성격, 버니두들입양, 버니두들무료분양, 버니두들크기, 두들코리아"
+        f"{kw}, 골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, "
+        f"골든두들성격, 골든두들입양, 골든두들무료분양, 골든두들크기, 아가두들"
     )
     if geo_kw:
         meta_keywords = f"{meta_keywords}, {geo_kw}"

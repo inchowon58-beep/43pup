@@ -4,11 +4,11 @@ import { SITE, CTA_KAKAO } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--line)] bg-[#0e1a24] py-12 text-[#eef1f4]">
+    <footer className="border-t border-[var(--line)] bg-[#2f5d50] py-12 text-[#fffaf4]">
       <div className="container grid gap-8 md:grid-cols-[1.2fr_1fr]">
         <div>
           <Link href="/" className="inline-block">
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#e8b39a]">{SITE.brandEn}</p>
+            <p className="text-xs font-semibold tracking-[0.2em] text-[#f3c9a3]">{SITE.brandEn}</p>
             <h2 className="mt-1 text-2xl font-bold hover:text-white">{SITE.brand}</h2>
           </Link>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">{SITE.tagline}</p>
@@ -21,11 +21,11 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-white"
           >
-            <MessageCircle size={16} className="text-[#c45c32]" />
+            <MessageCircle size={16} className="text-[#d9895b]" />
             {CTA_KAKAO}
           </a>
           <p className="flex items-start gap-2">
-            <MapPin size={16} className="mt-0.5 shrink-0 text-[#c45c32]" />
+            <MapPin size={16} className="mt-0.5 shrink-0 text-[#d9895b]" />
             {SITE.location} · {SITE.address}
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-3">

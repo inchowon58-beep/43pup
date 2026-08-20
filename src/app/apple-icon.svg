@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="두들코리아">
-  <rect width="180" height="180" rx="48" fill="#0e1a24"/>
-  <circle cx="62" cy="68" r="28" fill="#c45c32"/>
-  <circle cx="118" cy="68" r="28" fill="#c45c32"/>
-  <circle cx="90" cy="102" r="46" fill="#f4eee6"/>
-  <circle cx="74" cy="96" r="7" fill="#0e1a24"/>
-  <circle cx="106" cy="96" r="7" fill="#0e1a24"/>
-  <ellipse cx="90" cy="116" rx="9" ry="6" fill="#c45c32"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="아가두들">
+  <rect width="180" height="180" rx="40" fill="#2f5d50"/>
+  <path d="M62 80c0-17 13-28 28-28s28 11 28 28c0 6-1.7 11-4.5 15 6.8 4.5 11.5 12 11.5 21 0 15-15 26-35 26s-35-11-35-26c0-9 4.7-16.5 11.5-21C63.7 91 62 86 62 80Z" fill="#f3c9a3"/>
+  <circle cx="77" cy="84" r="6" fill="#2f5d50"/>
+  <circle cx="103" cy="84" r="6" fill="#2f5d50"/>
+  <ellipse cx="90" cy="100" rx="7" ry="5" fill="#d9895b"/>
 </svg>

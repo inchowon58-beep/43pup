@@ -10,7 +10,7 @@ from typing import Any, Dict
 from project_paths import webdoc_dir
 
 DEFAULT_VM_PATH = ""
-DEFAULT_SITE_URL = "https://doodlekorea.puppytimes.co.kr"
+DEFAULT_SITE_URL = "https://doodle.agapet.co.kr"
 
 
 def settings_path() -> str:
@@ -25,7 +25,7 @@ def default_settings() -> Dict[str, Any]:
     return {
         "site_url": DEFAULT_SITE_URL,
         "out_dir": os.path.join(webdoc_dir(), "output"),
-        "keywords_text": "버니두들분양\n골든두들분양\n버니두들분양가\n버니두들키우기\n버니두들성격\n버니두들입양\n버니두들무료분양\n버니두들크기",
+        "keywords_text": "골든두들분양\n버니두들분양\n골든두들분양가\n골든두들키우기\n골든두들성격\n골든두들입양\n골든두들무료분양\n골든두들크기",
         "regions_text": "서울\n부산\n대구\n인천\n광주\n대전\n울산\n수원\n성남\n고양",
         "total_target": "500",
         "daily_limit": "30",

@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: SITE.title,
       description:
-        "버니두들분양, 골든두들분양, 버니두들분양가, 버니두들키우기, 버니두들성격, 버니두들입양, 버니두들무료분양, 버니두들크기",
+        "골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, 골든두들성격, 골든두들입양, 골든두들무료분양, 골든두들크기",
       images: [SITE.ogImage],
     },
     robots: {
