@@ -4,6 +4,14 @@ import { FormEvent, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import type { SiteSponsor, SponsorStatus } from "@/lib/site-sponsor-shared";
 
+const HIGHLIGHT_SLOT_COUNT = 5;
+
+function padHighlightPoints(points: string[] | undefined): string[] {
+  const next = (points || []).slice(0, HIGHLIGHT_SLOT_COUNT);
+  while (next.length < HIGHLIGHT_SLOT_COUNT) next.push("");
+  return next;
+}
+
 export default function SponsorAdminClient() {
   const [authed, setAuthed] = useState(false);
   const [checking, setChecking] = useState(true);
@@ -39,7 +47,11 @@ export default function SponsorAdminClient() {
     const data = await res.json();
     if (data.sponsor) {
       const { id: _id, ...rest } = data.sponsor as SiteSponsor;
-      setForm({ ...rest, homepage_url: rest.homepage_url || "" });
+      setForm({
+        ...rest,
+        homepage_url: rest.homepage_url || "",
+        highlight_points: padHighlightPoints(rest.highlight_points),
+      });
     }
     setAuthed(true);
   }, []);
@@ -138,7 +150,7 @@ export default function SponsorAdminClient() {
   }
 
   const isRecruiting = form.status === "RECRUITING";
-  const highlightPoints = (form.highlight_points || []).slice(0, 5);
+  const highlightPoints = padHighlightPoints(form.highlight_points);
 
   return (
     <div className="container min-h-screen py-24">
