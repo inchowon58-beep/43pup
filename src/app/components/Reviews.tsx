@@ -12,7 +12,7 @@ const REVIEWS = [
     course: "분양 상담",
   },
   {
-    quote: "아이와 잘 지낼지 걱정했는데, 골든두들이 먼저 다가오더라고요.",
+    quote: "아이와 잘 지낼지 걱정했는데, 버니두들이 먼저 다가오더라고요.",
     name: "박○○ 보호자",
     course: "가족 입양",
   },
@@ -43,7 +43,7 @@ export default function Reviews() {
             우리 집에 온 뒤의 이야기
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            {SITE.brand}에서 골든두들을 만난 보호자님의 후기입니다.
+            {SITE.brand}에서 버니두들을 만난 보호자님의 후기입니다.
           </p>
         </div>
 

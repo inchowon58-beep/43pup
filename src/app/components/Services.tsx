@@ -5,20 +5,20 @@ import { imageUrl } from "@/lib/images";
 
 const SERVICES = [
   {
-    title: "가족형 성격",
-    desc: "사람을 따르는 골든두들, 아이·노인과 지내기 좋은 온순함",
+    title: "듬직한 성격",
+    desc: "사람을 따르는 버니두들, 아이들과 지내기 좋은 온화함",
     image: imageUrl(5),
     tag: "성격",
   },
   {
-    title: "곱슬 코트",
-    desc: "빠지는 털이 비교적 적고, 만지면 부드러운 푸들 믹스 털",
+    title: "삼색 코트",
+    desc: "존재감 있는 모색과, 그루밍으로 관리하는 푸들 믹스 털",
     image: imageUrl(10),
     tag: "외모",
   },
   {
     title: "분양 상담",
-    desc: "크기·색·성별을 알려 주시면 지금 만날 수 있는 아이를 안내",
+    desc: "크기·모색·성별을 알려 주시면 지금 만날 수 있는 아이를 안내",
     image: imageUrl(13),
     tag: "상담",
   },
@@ -36,12 +36,12 @@ export default function Services() {
       <div className="container">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="section-kicker">GOLDEN DOODLE</p>
+            <p className="section-kicker">BERNEDOODLE</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              골든두들분양, 가정에 맞는 이유
+              버니두들분양, 왜 선택할까요?
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              골든두들성격·골든두들크기·버니두들분양까지 비교해 보실 수 있습니다.
+              버니두들성격·버니두들크기·골든두들분양까지 비교해 보실 수 있습니다.
               사진을 보다 보면 맞는 아이가 먼저 보입니다.
             </p>
           </div>
@@ -68,8 +68,8 @@ export default function Services() {
                   className="object-cover transition duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(47,38,28,0.78)_100%)]" />
-                <span className="absolute left-2 top-2 bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(14,26,36,0.82)_100%)]" />
+                <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">

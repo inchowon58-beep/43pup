@@ -130,7 +130,7 @@ export default async function GuidePage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "지역별 골든두들 안내",
+        name: "지역별 버니두들 안내",
         item: absoluteUrl(origin, "/guide"),
       },
       {
@@ -157,7 +157,7 @@ export default async function GuidePage({ params }: Props) {
     },
     image: images.length ? images : [SITE.logo],
     mainEntityOfPage: pageUrl,
-    about: ["골든두들", "골든두들분양", "골든두들입양", "골드두들", "두들분양", page.keyword],
+    about: ["버니두들", "버니두들분양", "버니두들입양", "골든두들분양", "두들분양", page.keyword],
   };
 
   return (
@@ -179,7 +179,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#1f1a14_0%,#c4a574_38%,#f7f3ea_38%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#0e1a24_0%,#c45c32_38%,#eef1f4_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>
@@ -192,7 +192,7 @@ export default async function GuidePage({ params }: Props) {
           </Link>
           <span className="mx-2">/</span>
           <Link href="/guide" className="hover:text-[var(--coral)]">
-            지역별 골든두들 안내
+            지역별 버니두들 안내
           </Link>
           <span className="mx-2">/</span>
           <span>{page.keyword}</span>

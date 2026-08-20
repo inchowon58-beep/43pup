@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: SITE.title,
       description:
-        "골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, 골든두들성격, 골든두들입양, 골든두들무료분양, 골든두들크기",
+        "버니두들분양, 골든두들분양, 버니두들분양가, 버니두들키우기, 버니두들성격, 버니두들입양, 버니두들무료분양, 버니두들크기",
       images: [SITE.ogImage],
     },
     robots: {
@@ -62,14 +62,14 @@ export async function generateMetadata(): Promise<Metadata> {
       apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     },
     other: {
-      "msapplication-TileColor": "#1f1a14",
-      "naver-site-verification": "6de33407a11e583125fbbb6488310de6e50285ab",
+      "msapplication-TileColor": SITE.themeColor,
+      "naver-site-verification": SITE.naverSiteVerification,
     },
   };
 }
 
 export const viewport: Viewport = {
-  themeColor: "#1f1a14",
+  themeColor: SITE.themeColor,
   width: "device-width",
   initialScale: 1,
 };
@@ -87,7 +87,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="ko">
       <head>
-        <meta name="naver-site-verification" content="6de33407a11e583125fbbb6488310de6e50285ab" />
+        <meta name="naver-site-verification" content={SITE.naverSiteVerification} />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://image.cattery.co.kr" />
         <link rel="preconnect" href="https://cdn.sanity.io" />

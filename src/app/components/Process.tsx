@@ -4,7 +4,7 @@ const STEPS = [
   {
     n: "1",
     title: "사진으로 만나기",
-    desc: "두들갤러리에서 분양 중인 골든두들 모습을 먼저 보세요.",
+    desc: "갤러리에서 분양 중인 버니두들 모습을 먼저 보세요.",
   },
   {
     n: "2",
@@ -41,7 +41,7 @@ export default function Process() {
           <div className="pointer-events-none absolute left-[12%] right-[12%] top-7 hidden h-px bg-[var(--line)] lg:block" />
           {STEPS.map((s) => (
             <div key={s.n} className="relative text-center lg:pt-0">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center bg-[var(--navy)] text-xl font-bold text-[#c4a574]">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--navy)] text-xl font-bold text-[#e8b39a]">
                 {s.n}
               </div>
               <h3 className="mt-4 text-lg font-bold text-[var(--navy)]">{s.title}</h3>

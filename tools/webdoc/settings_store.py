@@ -10,7 +10,7 @@ from typing import Any, Dict
 from project_paths import webdoc_dir
 
 DEFAULT_VM_PATH = ""
-DEFAULT_SITE_URL = "https://rein.cattery.co.kr"
+DEFAULT_SITE_URL = "https://doodlekorea.puppytimes.co.kr"
 
 
 def settings_path() -> str:
@@ -25,7 +25,7 @@ def default_settings() -> Dict[str, Any]:
     return {
         "site_url": DEFAULT_SITE_URL,
         "out_dir": os.path.join(webdoc_dir(), "output"),
-        "keywords_text": "강아지장례식장\n반려동물장례\n강아지화장\n펫장례\n24시장례\n긴급픽업",
+        "keywords_text": "버니두들분양\n골든두들분양\n버니두들분양가\n버니두들키우기\n버니두들성격\n버니두들입양\n버니두들무료분양\n버니두들크기",
         "regions_text": "서울\n부산\n대구\n인천\n광주\n대전\n울산\n수원\n성남\n고양",
         "total_target": "500",
         "daily_limit": "30",
@@ -49,10 +49,10 @@ def default_settings() -> Dict[str, Any]:
         "gemini_api_key": "",
         "gemini_model": "gemini-3.5-flash-lite",
         "gemini_prompt": (
-            "톤: 신뢰감 있는 장례·화장 상담 안내. 과장·허위·보장성 표현 금지.\n"
-            "키워드에 지역명이 있으면 그 지역에서 장례 상담하는 독자 시점으로 쓰세요.\n"
-            "본문은 정보성 가이드처럼, 광고 카피처럼 쓰지 마세요.\n"
-            "{keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.\n"
+            "톤: 따뜻하고 입양하고 싶게. 사실(성격·털·비용 요인)은 분명히, 문장은 사진 옆에서 이야기하듯.\n"
+            "키워드에 지역명이 있으면 그 지역에서 골든두들을 고르는 독자 시점으로 쓰세요.\n"
+            "금지: 가격 단정, 허위, 의료 단정, 타사 비방, 장례·엔딩 톤, 전화번호.\n"
+            "{keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요. 상담은 카카오톡만.\n"
         ),
     }
 

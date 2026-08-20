@@ -11,7 +11,7 @@ export default function Gallery() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="section-kicker">DOODLE GALLERY</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            분양 중인 골든두들 · 버니두들
+            분양 중인 버니두들 · 골든두들
           </h2>
           <p className="mt-3 text-[var(--muted)]">
             {SITE.brand}가 소개하는 아이들입니다. 사진을 보다가 마음에 남는 아이가 있으면

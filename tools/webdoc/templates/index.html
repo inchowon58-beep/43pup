@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>엔딩포유 웹문서생성기</title>
+  <title>두들코리아 웹문서생성기</title>
   <style>
     :root {
-      --bg: #f3eee6;
+      --bg: #f6f1e8;
       --card: #ffffff;
-      --ink: #1c1916;
+      --ink: #0e1a24;
       --muted: #6b645c;
-      --line: rgba(22, 20, 18, 0.1);
-      --accent: #c4a35a;
-      --accent2: #161412;
+      --line: rgba(14, 26, 36, 0.1);
+      --accent: #c45c32;
+      --accent2: #0e1a24;
     }
     * { box-sizing: border-box; }
     body {
@@ -195,11 +195,11 @@
   <div class="wrap">
     <header class="top">
       <div>
-        <h1>엔딩포유 웹문서생성기</h1>
-        <p class="sub">엔딩포유 · 키워드 → SEO 상세페이지 발행 · Blob·블로그 등록</p>
+        <h1>두들코리아 웹문서생성기</h1>
+        <p class="sub">두들코리아 · 키워드 → SEO 상세페이지 발행 · Blob·블로그 등록</p>
       </div>
       <div class="top-actions">
-        <span class="badge">장례·화장·추모 SEO</span>
+        <span class="badge">버니두들 분양 SEO</span>
         <button type="button" class="ghost" id="btn_quit_top">프로그램 종료</button>
       </div>
     </header>
@@ -217,11 +217,11 @@
         <p class="section-title">키워드 조합</p>
         <div class="grid2">
           <div class="field">
-          <label>키워드 (한 줄에 하나) — 예: 강아지장례식장</label>
+          <label>키워드 (한 줄에 하나) — 예: 골든두들분양</label>
           <textarea id="keywords_text"></textarea>
           </div>
           <div class="field">
-          <label>지역 (한 줄에 하나) → 수원강아지장례식장</label>
+          <label>지역 (한 줄에 하나) → 수원골든두들분양</label>
           <textarea id="regions_text"></textarea>
           </div>
         </div>
@@ -413,7 +413,7 @@
       "naver_daily_limit","naver_delay_min","naver_delay_max","gemini_api_key","gemini_model","gemini_prompt"
     ];
     const checks = ["do_indexnow","open_chrome_after","schedule_enabled","auto_naver_register"];
-    const DEFAULT_PROMPT = "톤: 신뢰감 있는 장례·화장 상담 안내. 과장·허위·보장성 표현 금지.\\n키워드에 지역명이 있으면 그 지역에서 장례 상담하는 독자 시점으로 쓰세요.\\n본문은 정보성 가이드처럼, 광고 카피처럼 쓰지 마세요.\\n{keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.\\n";
+    const DEFAULT_PROMPT = "톤: 따뜻하고 입양하고 싶게. 사실(성격·털·비용 요인)은 분명히, 문장은 사진 옆에서 이야기하듯.\\n키워드에 지역명이 있으면 그 지역에서 골든두들을 고르는 독자 시점으로 쓰세요.\\n금지: 가격 단정, 허위, 의료 단정, 타사 비방, 장례·엔딩 톤, 전화번호.\\n{keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요. 상담은 카카오톡만.\\n";
 
     function fillGeminiModels(models, selected) {
       const list = $("gemini_model_list");
