@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
-import { isAuthenticated } from "@/lib/auth";
+import { isAdmin } from "@/lib/auth";
 import { assembleSeoPage, generateWithGemini } from "@/lib/gemini";
 import { generateTemplateContent } from "@/lib/template-content";
 import { savePage, pagePath } from "@/lib/seo-pages";
 import { SITE } from "@/lib/site";
 
 export async function POST(req: Request) {
-  if (!(await isAuthenticated())) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await isAdmin())) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   try {
     const body = await req.json();

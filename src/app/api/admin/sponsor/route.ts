@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
-import { isAuthenticated } from "@/lib/auth";
+import { isAdmin } from "@/lib/auth";
 import {
   GLOBAL_SPONSOR_TAG,
   getGlobalSponsor,
@@ -9,18 +9,18 @@ import {
 } from "@/lib/site-sponsor";
 
 export async function GET() {
-  const authed = await isAuthenticated();
+  const authed = await isAdmin();
   if (!authed) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   const sponsor = await getGlobalSponsor();
   return NextResponse.json({ sponsor });
 }
 
 export async function PUT(req: Request) {
-  const authed = await isAuthenticated();
+  const authed = await isAdmin();
   if (!authed) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   try {

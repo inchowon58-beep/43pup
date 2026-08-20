@@ -63,6 +63,7 @@ function formatInquiryTime(iso: string) {
 
 export default function AdminClient() {
   const [authed, setAuthed] = useState(false);
+  const [role, setRole] = useState<"admin" | "sponsor" | null>(null);
   const [checking, setChecking] = useState(true);
   const [tab, setTab] = useState<"orders" | "publish" | "telegram">("orders");
   const [username, setUsername] = useState("");
@@ -102,6 +103,11 @@ export default function AdminClient() {
   const [telegramMsg, setTelegramMsg] = useState("");
   const [telegramTesting, setTelegramTesting] = useState(false);
   const [detailOrder, setDetailOrder] = useState<OrderItem | null>(null);
+  const [sponsorPassword, setSponsorPassword] = useState("");
+  const [sponsorPwMessage, setSponsorPwMessage] = useState("");
+  const [savingSponsorPw, setSavingSponsorPw] = useState(false);
+
+  const isSponsor = role === "sponsor";
 
   function absolutePageUrl(path: string) {
     const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://doodle.cattery.co.kr").replace(
@@ -161,21 +167,25 @@ export default function AdminClient() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("/api/admin/orders?page=1");
-        if (res.ok) {
-          const data = await res.json();
-          setOrders(data.items || []);
-          setOrderTotal(data.total || 0);
-          setOrderPage(data.page || 1);
-          setOrderTotalPages(data.totalPages || 1);
-          setAuthed(true);
+        const meRes = await fetch("/api/auth/me");
+        if (!meRes.ok) return;
+        const me = await meRes.json();
+        setRole(me.role === "sponsor" ? "sponsor" : "admin");
+        setAuthed(true);
+        await loadOrders(1);
+        if (me.role === "admin") {
           await loadPages(1);
+          const pwRes = await fetch("/api/admin/sponsor-login");
+          if (pwRes.ok) {
+            const pw = await pwRes.json();
+            setSponsorPassword(pw.password || "");
+          }
         }
       } finally {
         setChecking(false);
       }
     })();
-  }, [loadPages]);
+  }, [loadPages, loadOrders]);
 
   async function onLogin(e: FormEvent) {
     e.preventDefault();
@@ -191,12 +201,39 @@ export default function AdminClient() {
       return;
     }
     setAuthed(true);
+    setRole("admin");
     await Promise.all([loadOrders(1), loadPages(1)]);
+    const pwRes = await fetch("/api/admin/sponsor-login");
+    if (pwRes.ok) {
+      const pw = await pwRes.json();
+      setSponsorPassword(pw.password || "");
+    }
   }
 
   async function onLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
     setAuthed(false);
+    setRole(null);
+  }
+
+  async function saveSponsorPassword(e: FormEvent) {
+    e.preventDefault();
+    setSavingSponsorPw(true);
+    setSponsorPwMessage("");
+    try {
+      const res = await fetch("/api/admin/sponsor-login", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: sponsorPassword }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "저장 실패");
+      setSponsorPwMessage("스폰서 로그인 비밀번호가 저장되었습니다.");
+    } catch (err) {
+      setSponsorPwMessage(err instanceof Error ? err.message : "저장 실패");
+    } finally {
+      setSavingSponsorPw(false);
+    }
   }
 
   async function onPublish(e: FormEvent) {
@@ -384,7 +421,10 @@ export default function AdminClient() {
           <button type="submit" className="btn-primary mt-6 w-full">
             로그인
           </button>
-          <Link href="/" className="mt-4 block text-center text-sm text-[var(--muted)]">
+          <Link href="/admin/sponsor-login" className="mt-4 block text-center text-sm text-[var(--muted)] underline">
+            스폰서 로그인
+          </Link>
+          <Link href="/" className="mt-2 block text-center text-sm text-[var(--muted)]">
             ← 사이트로 돌아가기
           </Link>
         </form>
@@ -396,27 +436,48 @@ export default function AdminClient() {
     <div className="container min-h-screen py-28">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm font-bold text-[var(--orange)]">Dashboard</p>
-          <h1 className="text-4xl font-extrabold text-[var(--navy)]">관리자</h1>
+          <p className="text-sm font-bold text-[var(--orange)]">
+            {isSponsor ? "Sponsor" : "Dashboard"}
+          </p>
+          <h1 className="text-4xl font-extrabold text-[var(--navy)]">
+            {isSponsor ? "스폰서" : "관리자"}
+          </h1>
           <p className="mt-2 text-[var(--muted)]">
-            문의 <strong className="text-[var(--ink)]">{orderTotal}</strong>건 · SEO 글{" "}
-            <strong className="text-[var(--ink)]">{total}</strong>건
+            문의 <strong className="text-[var(--ink)]">{orderTotal}</strong>건
+            {!isSponsor && (
+              <>
+                {" "}
+                · SEO 글 <strong className="text-[var(--ink)]">{total}</strong>건
+              </>
+            )}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Link
-            href="/sample"
-            target="_blank"
-            className="btn-secondary !text-[var(--navy)] !border-[var(--line)]"
-          >
-            입점 샘플
-          </Link>
-          <Link
-            href="/admin/sponsor"
-            className="btn-secondary !text-[var(--navy)] !border-[var(--line)]"
-          >
-            스폰서 관리
-          </Link>
+          {isSponsor ? (
+            <span className="btn-secondary pointer-events-none cursor-not-allowed opacity-40 !text-[var(--navy)] !border-[var(--line)]">
+              입점 샘플
+            </span>
+          ) : (
+            <Link
+              href="/sample"
+              target="_blank"
+              className="btn-secondary !text-[var(--navy)] !border-[var(--line)]"
+            >
+              입점 샘플
+            </Link>
+          )}
+          {isSponsor ? (
+            <span className="btn-secondary pointer-events-none cursor-not-allowed opacity-40 !text-[var(--navy)] !border-[var(--line)]">
+              스폰서 관리
+            </span>
+          ) : (
+            <Link
+              href="/admin/sponsor"
+              className="btn-secondary !text-[var(--navy)] !border-[var(--line)]"
+            >
+              스폰서 관리
+            </Link>
+          )}
           <button type="button" onClick={onLogout} className="btn-secondary !text-[var(--navy)] !border-[var(--line)]">
             로그아웃
           </button>
@@ -435,26 +496,73 @@ export default function AdminClient() {
         </button>
         <button
           type="button"
-          onClick={() => setTab("publish")}
+          disabled={isSponsor}
+          onClick={() => {
+            if (isSponsor) return;
+            setTab("publish");
+          }}
           className={`rounded-xl px-4 py-2 text-sm font-bold ${
-            tab === "publish" ? "bg-[var(--orange)] text-white" : "bg-white border border-[var(--line)]"
+            isSponsor
+              ? "cursor-not-allowed border border-[var(--line)] bg-white text-[var(--muted)] opacity-40"
+              : tab === "publish"
+                ? "bg-[var(--orange)] text-white"
+                : "bg-white border border-[var(--line)]"
           }`}
         >
           SEO 발행
         </button>
         <button
           type="button"
+          disabled={isSponsor}
           onClick={() => {
+            if (isSponsor) return;
             setTab("telegram");
             void loadTelegramStatus();
           }}
           className={`rounded-xl px-4 py-2 text-sm font-bold ${
-            tab === "telegram" ? "bg-[var(--orange)] text-white" : "bg-white border border-[var(--line)]"
+            isSponsor
+              ? "cursor-not-allowed border border-[var(--line)] bg-white text-[var(--muted)] opacity-40"
+              : tab === "telegram"
+                ? "bg-[var(--orange)] text-white"
+                : "bg-white border border-[var(--line)]"
           }`}
         >
           텔레그램설정
         </button>
       </div>
+
+      {tab === "orders" && !isSponsor && (
+        <form
+          onSubmit={saveSponsorPassword}
+          className="mt-6 rounded-2xl border border-[var(--line)] bg-white p-4 md:p-5"
+        >
+          <p className="text-sm font-extrabold text-[var(--navy)]">스폰서 로그인 비밀번호</p>
+          <p className="mt-1 text-xs text-[var(--muted)]">
+            아이디는 <strong>sponsor</strong> 입니다. 스폰서는 분양 상담 신청문의만 볼 수 있습니다.
+          </p>
+          <div className="mt-3 flex flex-wrap items-end gap-2">
+            <div className="min-w-[12rem] flex-1">
+              <label htmlFor="sponsor-pw" className="text-xs">
+                비밀번호
+              </label>
+              <input
+                id="sponsor-pw"
+                type="text"
+                value={sponsorPassword}
+                onChange={(e) => setSponsorPassword(e.target.value)}
+                minLength={4}
+                required
+              />
+            </div>
+            <button type="submit" className="btn-primary" disabled={savingSponsorPw}>
+              {savingSponsorPw ? "저장 중…" : "비밀번호 저장"}
+            </button>
+          </div>
+          {sponsorPwMessage && (
+            <p className="mt-2 text-sm text-[var(--sky-deep)]">{sponsorPwMessage}</p>
+          )}
+        </form>
+      )}
 
       {tab === "orders" && (
         <div className="mt-8 space-y-5">
@@ -468,24 +576,28 @@ export default function AdminClient() {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2">
-                <button
-                  type="button"
-                  onClick={toggleSelectAllOrders}
-                  disabled={filteredOrders.length === 0}
-                  className="rounded-lg border border-[var(--line)] px-3 py-1.5 text-xs font-semibold disabled:opacity-40"
-                >
-                  {selectedOrderIds.length === filteredOrders.length && filteredOrders.length > 0
-                    ? "선택 해제"
-                    : "전체 선택"}
-                </button>
-                <button
-                  type="button"
-                  onClick={deleteSelectedOrders}
-                  disabled={!selectedOrderIds.length || deletingOrders}
-                  className="rounded-lg bg-[#dc2626] px-3 py-1.5 text-xs font-bold text-white disabled:opacity-40"
-                >
-                  {deletingOrders ? "삭제 중…" : `선택 삭제 (${selectedOrderIds.length})`}
-                </button>
+                {!isSponsor && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={toggleSelectAllOrders}
+                      disabled={filteredOrders.length === 0}
+                      className="rounded-lg border border-[var(--line)] px-3 py-1.5 text-xs font-semibold disabled:opacity-40"
+                    >
+                      {selectedOrderIds.length === filteredOrders.length && filteredOrders.length > 0
+                        ? "선택 해제"
+                        : "전체 선택"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={deleteSelectedOrders}
+                      disabled={!selectedOrderIds.length || deletingOrders}
+                      className="rounded-lg bg-[#dc2626] px-3 py-1.5 text-xs font-bold text-white disabled:opacity-40"
+                    >
+                      {deletingOrders ? "삭제 중…" : `선택 삭제 (${selectedOrderIds.length})`}
+                    </button>
+                  </>
+                )}
               </div>
             </div>
 
@@ -550,13 +662,15 @@ export default function AdminClient() {
                           }`}
                         >
                           <td className="px-3 py-3 align-middle" onClick={(e) => e.stopPropagation()}>
-                            <input
-                              type="checkbox"
-                              className="h-4 w-4 accent-[var(--coral)]"
-                              checked={selected}
-                              onChange={() => toggleOrderSelect(o.id)}
-                              aria-label={`${o.name} 선택`}
-                            />
+                            {isSponsor ? null : (
+                              <input
+                                type="checkbox"
+                                className="h-4 w-4 accent-[var(--coral)]"
+                                checked={selected}
+                                onChange={() => toggleOrderSelect(o.id)}
+                                aria-label={`${o.name} 선택`}
+                              />
+                            )}
                           </td>
                           <td
                             className="cursor-pointer px-3 py-3 align-middle"
@@ -607,16 +721,22 @@ export default function AdminClient() {
                             {formatInquiryTime(o.createdAt)}
                           </td>
                           <td className="px-3 py-3 align-middle" onClick={(e) => e.stopPropagation()}>
-                            <select
-                              className="w-full min-w-[110px] rounded-lg border border-[var(--line)] bg-white px-2 py-1.5 text-xs font-semibold"
-                              value={o.status}
-                              onChange={(e) => changeOrderStatus(o.id, e.target.value)}
-                            >
-                              <option value="new">답변대기</option>
-                              <option value="contacted">연락완료</option>
-                              <option value="done">답변완료</option>
-                              <option value="cancelled">취소</option>
-                            </select>
+                            {isSponsor ? (
+                              <span className="text-xs font-semibold text-[var(--muted)]">
+                                {STATUS_LABEL[o.status] || o.status}
+                              </span>
+                            ) : (
+                              <select
+                                className="w-full min-w-[110px] rounded-lg border border-[var(--line)] bg-white px-2 py-1.5 text-xs font-semibold"
+                                value={o.status}
+                                onChange={(e) => changeOrderStatus(o.id, e.target.value)}
+                              >
+                                <option value="new">답변대기</option>
+                                <option value="contacted">연락완료</option>
+                                <option value="done">답변완료</option>
+                                <option value="cancelled">취소</option>
+                              </select>
+                            )}
                           </td>
                         </tr>
                       );
@@ -699,21 +819,27 @@ export default function AdminClient() {
                   </div>
 
                   <div className="flex items-center gap-2 pt-1">
-                    <label className="text-xs font-semibold text-[var(--muted)]">상태 변경</label>
-                    <select
-                      className="flex-1 rounded-xl border border-[var(--line)] px-3 py-2 text-sm font-semibold"
-                      value={detailOrder.status}
-                      onChange={async (e) => {
-                        const next = e.target.value;
-                        await changeOrderStatus(detailOrder.id, next);
-                        setDetailOrder({ ...detailOrder, status: next });
-                      }}
-                    >
-                      <option value="new">답변대기</option>
-                      <option value="contacted">연락완료</option>
-                      <option value="done">답변완료</option>
-                      <option value="cancelled">취소</option>
-                    </select>
+                    <label className="text-xs font-semibold text-[var(--muted)]">상태</label>
+                    {isSponsor ? (
+                      <span className="text-sm font-semibold">
+                        {STATUS_LABEL[detailOrder.status] || detailOrder.status}
+                      </span>
+                    ) : (
+                      <select
+                        className="flex-1 rounded-xl border border-[var(--line)] px-3 py-2 text-sm font-semibold"
+                        value={detailOrder.status}
+                        onChange={async (e) => {
+                          const next = e.target.value;
+                          await changeOrderStatus(detailOrder.id, next);
+                          setDetailOrder({ ...detailOrder, status: next });
+                        }}
+                      >
+                        <option value="new">답변대기</option>
+                        <option value="contacted">연락완료</option>
+                        <option value="done">답변완료</option>
+                        <option value="cancelled">취소</option>
+                      </select>
+                    )}
                   </div>
                 </div>
               </div>
@@ -739,7 +865,7 @@ export default function AdminClient() {
         </div>
       )}
 
-      {tab === "telegram" && (
+      {tab === "telegram" && !isSponsor && (
         <div className="mt-8">
           <section className="rounded-2xl border border-[#c5d4ca] bg-[var(--sky-soft)] p-5 md:p-6">
             <div className="flex flex-wrap items-start justify-between gap-4">
@@ -865,7 +991,7 @@ export default function AdminClient() {
         </div>
       )}
 
-      {tab === "publish" && (
+      {tab === "publish" && !isSponsor && (
         <>
           <form
             onSubmit={onPublish}

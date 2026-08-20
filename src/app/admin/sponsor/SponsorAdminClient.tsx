@@ -38,8 +38,18 @@ export default function SponsorAdminClient() {
   });
 
   const loadSponsor = useCallback(async () => {
+    const me = await fetch("/api/auth/me");
+    if (me.status === 401) {
+      setAuthed(false);
+      return;
+    }
+    const session = await me.json().catch(() => ({}));
+    if (session.role === "sponsor") {
+      window.location.replace("/admin");
+      return;
+    }
     const res = await fetch("/api/admin/sponsor");
-    if (res.status === 401) {
+    if (res.status === 401 || res.status === 403) {
       setAuthed(false);
       return;
     }
