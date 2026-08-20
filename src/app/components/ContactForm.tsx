@@ -1,8 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { CheckCircle2, MessageCircle, Send } from "lucide-react";
-import { SITE, CTA_KAKAO, KAKAO_CTA_HINT } from "@/lib/site";
+import { CheckCircle2, MessageCircle, Phone, Send } from "lucide-react";
+import { SITE, CTA_KAKAO, KAKAO_CTA_HINT, KEYWORD_INQUIRY } from "@/lib/site";
 
 type FormState = {
   name: string;
@@ -103,18 +103,26 @@ export default function ContactForm() {
             언제든 편하게 연락주세요
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            우리 집에 올 골든두들을 고르는 상담은 카카오톡 오픈채팅으로 가능합니다.
-            {KAKAO_CTA_HINT}
+            {KEYWORD_INQUIRY}
           </p>
-          <a
-            href={SITE.kakaoOpenChatUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-sky mt-6 inline-flex"
-          >
-            <MessageCircle size={18} />
-            {CTA_KAKAO}
-          </a>
+          <p className="mt-3 text-sm text-[var(--muted)]">
+            전화 {SITE.phone} 또는 카카오톡 오픈채팅으로 상담할 수 있습니다. {KAKAO_CTA_HINT}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href={SITE.phoneTel} className="btn-primary inline-flex">
+              <Phone size={18} />
+              {SITE.phone}
+            </a>
+            <a
+              href={SITE.kakaoOpenChatUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-sky inline-flex"
+            >
+              <MessageCircle size={18} />
+              {CTA_KAKAO}
+            </a>
+          </div>
         </div>
 
         <form onSubmit={onSubmit} className="rounded-[1.4rem] border border-[var(--line)] bg-white p-6 md:p-8">

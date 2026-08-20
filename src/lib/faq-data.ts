@@ -89,10 +89,11 @@ export function orgJsonLd(url?: string) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: SITE.name,
-    alternateName: [SITE.brand, "두들리안 골든두들분양"],
+    alternateName: [SITE.brand, SITE.brandEn, "골든두들분양"],
     description: SITE.description,
     url: url || SITE.siteUrl,
-    image: SITE.logo,
+    image: SITE.ogImage,
+    telephone: SITE.phone,
     openingHours: "Mo-Su 00:00-23:59",
     address: {
       "@type": "PostalAddress",

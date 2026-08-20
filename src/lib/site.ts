@@ -1,37 +1,45 @@
-/** 두들리안 — 골든두들 분양 사이트 공통 설정 */
+/** 메종드두들 — 골든두들·버니두들 분양 사이트 공통 설정 */
 
 export const SITE = {
-  name: "두들리안",
-  brand: "두들리안",
-  farm: "골든두들 분양",
-  tagline: "우리 집에 올 골든두들을, 여기서 만나세요",
-  taglineEn: "Doodlian · Golden Doodle Home",
+  name: "메종드두들",
+  brand: "메종드두들",
+  brandEn: "Maison de Doodle",
+  farm: "골든두들분양",
+  title: "골든두들분양",
+  tagline: "건강하고 온순한 두들 가족을 만나보세요",
+  taglineEn: "Maison de Doodle · Golden & Bernedoodle",
   description:
-    "두들리안은 가족과 함께 살 골든두들을 소개하는 분양 안내입니다. 온순한 성격, 곱슬 털, 아이와 지내기 좋은 골든두들 사진을 보고 카카오톡으로 입양 상담을 이어 가세요.",
+    "골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, 골든두들성격, 골든두들입양, 골든두들무료분양, 골든두들크기 — 메종드두들에서 건강하고 온순한 두들 가족을 만나보세요. 문의 0505-464-1004",
   keywords: [
-    "골든두들",
     "골든두들분양",
-    "골든두들입양",
-    "골드두들",
-    "두들분양",
+    "버니두들분양",
+    "골든두들분양가",
     "골든두들키우기",
     "골든두들성격",
-    "하이포알러지강아지",
-    "중형견분양",
-    "반려견입양",
-    "골든두들가격",
+    "골든두들입양",
+    "골든두들무료분양",
+    "골든두들크기",
+    "메종드두들",
+    "골든두들",
+    "버니두들",
   ],
+  phone: "0505-464-1004",
+  phoneTel: "tel:0505-464-1004",
   kakaoOpenChatUrl: "https://open.kakao.com/o/sxelLqJi",
-  logo: "https://image.cattery.co.kr/doodle/07.webp",
+  logo: "https://image.cattery.co.kr/doodle/16.webp",
+  ogImage: "https://image.cattery.co.kr/doodle/10.webp",
   imageBase: "https://image.cattery.co.kr/doodle",
   imageCount: 40,
   location: "대한민국 전국",
-  address: "전국 분양 상담 · 카카오톡 오픈채팅",
+  address: "전국 분양 상담 · 전화·카카오톡",
   areaServed: "대한민국 전국",
-  domain: "doodle.cattery.co.kr",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://doodle.cattery.co.kr",
+  domain: "doodle.puppytimes.co.kr",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://doodle.puppytimes.co.kr",
   infocsUrl: "https://www.infocs.co.kr/",
 } as const;
+
+export const KEYWORD_INQUIRY =
+  "골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, 골든두들성격, 골든두들입양, 골든두들무료분양, 골든두들크기 — 궁금하신 내용을 편하게 문의해 주세요.";
 
 export const CTA_LABEL = "카카오톡 오픈채팅 상담";
 export const CTA_KAKAO = "카카오톡 상담하기";

@@ -7,7 +7,7 @@ import SamplePreviewClient from "./SamplePreviewClient";
 export const metadata: Metadata = {
   title: "입점 샘플 미리보기",
   description:
-    "두들리안 SEO 페이지 입점 시 중간 카드·하단 고정 바가 어떻게 바뀌는지 미리 확인하세요.",
+    "메종드두들 SEO 페이지 입점 시 중간 카드·하단 고정 바가 어떻게 바뀌는지 미리 확인하세요.",
   robots: {
     index: false,
     follow: false,

@@ -10,7 +10,7 @@ function siteHost(): string {
   try {
     return new URL(SITE.siteUrl).host;
   } catch {
-    return "doodle.cattery.co.kr";
+    return "doodle.puppytimes.co.kr";
   }
 }
 

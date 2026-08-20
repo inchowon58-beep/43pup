@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const url = await publicPageUrl("/guide");
   return {
     title: "지역별 골든두들 안내",
-    description: `${SITE.name} 지역별 골든두들 분양 — 우리 집에 올 아이를 고르는 안내`,
+    description: `${SITE.name} 지역별 골든두들분양 — 골든두들입양 안내`,
     keywords: [...SITE.keywords, "지역별 골든두들분양"],
     alternates: { canonical: url },
     openGraph: {

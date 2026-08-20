@@ -38,11 +38,11 @@ export default function Services() {
           <div>
             <p className="section-kicker">GOLDEN DOODLE</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              골든두들이 우리 집에 맞는 이유
+              골든두들분양, 가정에 맞는 이유
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              똑똑하고 사람을 좋아하는 중형견. 사진을 보다 보면 ‘이 아이면 좋겠다’는
-              마음이 먼저 옵니다.
+              골든두들성격·골든두들크기·버니두들분양까지 비교해 보실 수 있습니다.
+              사진을 보다 보면 맞는 아이가 먼저 보입니다.
             </p>
           </div>
           <a
@@ -69,7 +69,7 @@ export default function Services() {
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(47,38,28,0.78)_100%)]" />
-                <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
+                <span className="absolute left-2 top-2 bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">

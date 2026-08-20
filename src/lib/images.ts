@@ -4,8 +4,8 @@ import { SITE } from "./site";
  * 화면 노출 순서. 파일 번호(01~40)를 섞어 히어로·갤러리가 다르게 보이게 함.
  */
 const DISPLAY_ORDER = [
-  7, 22, 3, 18, 31, 11, 40, 5, 27, 14, 2, 35, 9, 19, 28, 1, 16, 33, 8, 24, 12, 37, 4, 21, 15, 30,
-  6, 26, 13, 38, 10, 23, 17, 34, 29, 39, 20, 32, 25, 36,
+  16, 4, 27, 9, 33, 2, 19, 38, 12, 6, 29, 21, 8, 35, 14, 1, 24, 40, 5, 18, 31, 13, 26, 3, 37, 17,
+  7, 28, 11, 22, 34, 15, 39, 20, 32, 25, 36, 23, 30, 10,
 ] as const;
 
 function fileIndex(logicalIndex: number): number {
@@ -58,11 +58,11 @@ export function pickImages(count: number, seed = 42): string[] {
 
 export function galleryAlt(keywordOrIndex: string | number, index = 1): string {
   const suffixes = [
-    "골든두들 분양 사진",
-    "골든두들 강아지",
-    "곱슬 털 골든두들",
-    "가족과 함께하는 두들",
-    "분양 중인 골든두들",
+    "골든두들분양 사진",
+    "버니두들분양 모습",
+    "골든두들키우기 안내",
+    "골든두들성격",
+    "골든두들입양 사진",
   ];
   if (typeof keywordOrIndex === "number") {
     const i = keywordOrIndex;

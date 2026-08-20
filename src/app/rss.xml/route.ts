@@ -73,14 +73,14 @@ export async function GET(req: Request) {
       {
         slug: "doodle-intro",
         keyword: "골든두들분양",
-        title: `${SITE.name} | 우리 집에 올 골든두들`,
+        title: SITE.title,
         metaDescription: SITE.description,
         metaKeywords: SITE.keywords.join(", "),
         h1: `${SITE.name} 안내`,
         heroSubtitle: SITE.taglineEn,
         sections: [
           {
-            h2: "두들리안",
+            h2: "메종드두들",
             paragraphs: [SITE.description, SITE.tagline],
           },
         ],

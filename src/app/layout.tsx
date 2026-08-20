@@ -13,55 +13,62 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(origin),
     title: {
-      default: `${SITE.name} | 우리 집에 올 골든두들 분양`,
+      default: SITE.title,
       template: `%s | ${SITE.brand}`,
     },
     description: SITE.description,
     keywords: [...SITE.keywords],
-    authors: [{ name: SITE.name }],
-    creator: SITE.name,
-    publisher: SITE.name,
+    authors: [{ name: SITE.brand }],
+    creator: SITE.brand,
+    publisher: SITE.brand,
     alternates: { canonical: origin },
     openGraph: {
       type: "website",
       locale: "ko_KR",
       url: origin,
-      siteName: SITE.name,
-      title: `${SITE.name} | 우리 집에 올 골든두들 분양`,
+      siteName: SITE.title,
+      title: SITE.title,
       description: SITE.description,
       images: [
         {
-          url: SITE.logo,
+          url: SITE.ogImage,
           width: 1200,
           height: 630,
-          alt: `${SITE.name} — 골든두들 분양`,
+          alt: `${SITE.title} ${SITE.brand}`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${SITE.name} | 우리 집에 올 골든두들 분양`,
-      description: SITE.description,
-      images: [SITE.logo],
+      title: SITE.title,
+      description:
+        "골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, 골든두들성격, 골든두들입양, 골든두들무료분양, 골든두들크기",
+      images: [SITE.ogImage],
     },
     robots: {
       index: true,
       follow: true,
-      googleBot: { index: true, follow: true, "max-image-preview": "large" },
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
     icons: {
       icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
       apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     },
     other: {
-      "msapplication-TileColor": "#e07a3d",
-      "naver-site-verification": "9fe266c423785cb9d73591ebc9ff5693eda362a2",
+      "msapplication-TileColor": "#1f1a14",
+      "naver-site-verification": "6de33407a11e583125fbbb6488310de6e50285ab",
     },
   };
 }
 
 export const viewport: Viewport = {
-  themeColor: "#e07a3d",
+  themeColor: "#1f1a14",
   width: "device-width",
   initialScale: 1,
 };
@@ -74,7 +81,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="ko">
       <head>
-        <meta name="naver-site-verification" content="9fe266c423785cb9d73591ebc9ff5693eda362a2" />
+        <meta name="naver-site-verification" content="6de33407a11e583125fbbb6488310de6e50285ab" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://image.cattery.co.kr" />
         <link rel="preconnect" href="https://cdn.sanity.io" />

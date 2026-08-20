@@ -25,32 +25,32 @@ function buildPrompt(keyword: string): string {
 업체명 '${SITE.brand}'는 남용하지 마세요.
 
 메인 키워드: ${keyword}
-핵심 키워드: 골든두들, 골든두들분양, 골든두들입양, 골드두들, 두들분양
-상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
+핵심 키워드: 골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, 골든두들성격, 골든두들입양, 골든두들무료분양, 골든두들크기
+상담 연결(마지막에만): 전화 ${SITE.phone}, 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
 서비스 범위: ${SITE.areaServed}
 
-독자: ${keyword}를 검색해 우리 집에 올 골든두들을 고르려는 보호자.
-톤: 따뜻하고 입양하고 싶게. 사실(성격·털·비용 요인)은 분명히, 문장은 사진 옆에서 이야기하듯.
+독자: ${keyword}를 검색해 골든두들분양·버니두들분양을 고르려는 보호자.
+톤: 안내형. 사실(성격·크기·분양가 요인)은 분명히, 문장은 상담 안내처럼.
 금지: 가격 단정, 허위, 의료 단정, 타사 비방, 장례·엔딩 톤.
 
 반드시 다룰 내용:
-1) 골든두들 성격·곱슬 털·가족과 지내기
+1) 골든두들성격·골든두들크기·골든두들키우기
 2) 입양 순서(사진-상담-방문-집으로)
-3) 비용이 달라지는 항목과 물어볼 점
+3) 골든두들분양가가 달라지는 항목과 골든두들무료분양 주의
 4) 분양 중인 아이 사진은 메인 갤러리에서 볼 수 있음
 5) 문의 방법 — 본문 마지막에만, 짧게
 
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 우리 집에 올 골든두들'",
-  "metaDescription": "140~158자. '{keyword}', 골든두들 분양, 사진. 카카오톡은 한 번만",
-  "metaKeywords": "{keyword}, 골든두들, 골든두들분양, 골든두들입양, 골드두들, 두들분양 등 10~14개",
-  "h1": "'{keyword}'와 '골든두들' 또는 '우리 집'이 들어간 H1",
-  "heroSubtitle": "한글 한 문장. 입양하고 싶은 느낌 + 사진",
+  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 메종드두들 골든두들분양'",
+  "metaDescription": "140~158자. '{keyword}', 골든두들분양, 버니두들분양. 전화는 한 번만",
+  "metaKeywords": "{keyword}, 골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기 등 10~14개",
+  "h1": "'{keyword}'와 '골든두들분양' 또는 '입양'이 들어간 H1",
+  "heroSubtitle": "한글 한 문장. 분양 안내 + 사진",
   "heroBadge": "분양 안내",
-  "heroTitleLine2": "우리 집의 두들",
-  "heroBar": "분양 중인 골든두들 사진을 보고 마음을 정해 보세요.",
+  "heroTitleLine2": "메종드두들",
+  "heroBar": "골든두들분양·버니두들분양 사진을 보고 조건을 정해 보세요.",
   "sections": [
     {"h2": "'{keyword}' 포함, 집을 고르기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
     {"h2": "골든두들 입양 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
@@ -109,20 +109,20 @@ export async function generateWithGemini(
 
   return {
     keyword,
-    title: String(data.title || `${keyword} | 우리 집에 올 골든두들`),
+    title: String(data.title || `${keyword} | 메종드두들 골든두들분양`),
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
         `${keyword}, 골든두들, 골든두들분양, 골든두들입양, 골드두들, 두들분양`
     ),
-    h1: String(data.h1 || `${keyword}, 우리 집에 올 골든두들`),
+    h1: String(data.h1 || `${keyword}, 골든두들분양 안내`),
     heroSubtitle: String(
-      data.heroSubtitle || "분양 중인 골든두들 사진을 보고 마음을 정해 보세요"
+      data.heroSubtitle || "골든두들분양·버니두들분양 사진을 보고 조건을 정해 보세요"
     ),
     heroBadge: String(data.heroBadge || "분양 안내"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "우리 집의 두들"),
-    heroBar: String(data.heroBar || "분양 중인 골든두들 사진을 보고 마음을 정해 보세요."),
+    heroTitleLine2: String(data.heroTitleLine2 || "메종드두들"),
+    heroBar: String(data.heroBar || "골든두들분양·버니두들분양 사진을 보고 조건을 정해 보세요."),
     sections,
     faqs,
     ctaText: String(data.ctaText || `${keyword} 분양 상담 — 지역·희망 조건만 알려 주세요`),
@@ -144,8 +144,8 @@ export function assembleSeoPage(
     heroSubtitle: partial.heroSubtitle,
     heroBadge: partial.heroBadge || "분양 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "우리 집의 두들",
-    heroBar: partial.heroBar || "분양 중인 골든두들 사진을 보고 마음을 정해 보세요.",
+    heroTitleLine2: partial.heroTitleLine2 || "메종드두들",
+    heroBar: partial.heroBar || "골든두들분양·버니두들분양 사진을 보고 조건을 정해 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,
     images: pickImages(3, Date.now() % 100000),

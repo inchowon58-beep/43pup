@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { SITE } from "./site";
 
-/** 끝 슬래시 없는 절대 origin. 예: https://doodle.cattery.co.kr */
+/** 끝 슬래시 없는 절대 origin. 예: https://doodle.puppytimes.co.kr */
 export function stripTrailingSlash(url: string): string {
   return (url || "").trim().replace(/\/+$/, "");
 }
@@ -28,7 +28,7 @@ export async function publicOrigin(): Promise<string> {
   } catch {
     /* 정적 생성 등 headers 없는 경로 */
   }
-  return stripTrailingSlash(SITE.siteUrl) || "https://doodle.cattery.co.kr";
+  return stripTrailingSlash(SITE.siteUrl) || "https://doodle.puppytimes.co.kr";
 }
 
 /** origin + path. 끝 슬래시 없음(홈은 origin만). */

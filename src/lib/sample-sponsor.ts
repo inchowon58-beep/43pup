@@ -4,7 +4,7 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "두들리안 골든두들 (샘플)",
+  sponsor_name: "메종드두들 골든두들 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "https://open.kakao.com/o/sxelLqJi",
   homepage_url: "https://www.naver.com",
@@ -43,9 +43,9 @@ export function buildSampleSponsors(current: SiteSponsor): {
 }
 
 export const SAMPLE_PAGE_KEYWORD = "강남 골든두들분양";
-export const SAMPLE_PAGE_H1 = "강남 골든두들분양, 우리 집에 올 아이";
+export const SAMPLE_PAGE_H1 = "강남 골든두들분양, 메종드두들 안내";
 export const SAMPLE_PAGE_SUBTITLE =
-  "분양 중인 골든두들 사진을 보고 마음을 정해 보세요.";
+  "골든두들분양·버니두들분양 사진을 보고 조건을 정해 보세요.";
 
 export const SAMPLE_SECTIONS = [
   {

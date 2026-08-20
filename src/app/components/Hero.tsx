@@ -1,41 +1,41 @@
 import Image from "next/image";
 import { Camera, MessageCircle } from "lucide-react";
-import { SITE, CTA_KAKAO } from "@/lib/site";
+import { SITE, CTA_KAKAO, KEYWORD_INQUIRY } from "@/lib/site";
+import { imageUrl } from "@/lib/images";
 
 export default function Hero() {
-  const heroImage = `${SITE.imageBase}/22.webp`;
-
   return (
     <section id="top" className="relative min-h-[92svh] overflow-hidden">
       <div className="absolute inset-0 hero-media">
         <Image
-          src={heroImage}
-          alt={`${SITE.name} — 골든두들 분양`}
+          src={imageUrl(1)}
+          alt={`${SITE.name} — 골든두들분양`}
           fill
           unoptimized
           priority
-          className="object-cover"
+          className="object-cover object-[center_30%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(47,38,28,0.62)_0%,rgba(47,38,28,0.28)_48%,rgba(47,38,28,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,26,20,0.28)_0%,rgba(31,26,20,0.18)_40%,rgba(31,26,20,0.78)_100%)]" />
       </div>
 
-      <div className="container relative flex min-h-[92svh] flex-col justify-end pb-28 pt-28 md:justify-center md:pb-24">
-        <div className="animate-rise max-w-xl">
-          <p className="text-xs font-semibold tracking-[0.22em] text-[#f4d3b0]">
+      <div className="container relative flex min-h-[92svh] flex-col justify-end pb-28 pt-28 md:pb-24">
+        <div className="animate-rise max-w-2xl">
+          <p className="text-xs font-semibold tracking-[0.22em] text-[#c4a574]">
             {SITE.taglineEn}
           </p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-[3.4rem]">
-            {SITE.name}
+            {SITE.brand}
             <span className="mt-4 block text-[0.42em] font-medium leading-snug tracking-normal text-white/90">
-              우리 집에 올
-              <br />
-              골든두들을 만나세요
+              골든두들분양 · 버니두들분양
             </span>
           </h1>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/82 md:text-base">
-            곱슬 털, 온순한 눈, 아이와 잘 지내는 성격. 분양 중인 골든두들 사진을 먼저
-            보시고, 마음이 가는 아이를 카카오톡으로 물어보세요.
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/85 md:text-base">
+            {SITE.tagline}. 분양 중인 아이 사진을 먼저 보시고, 전화 또는 카카오톡으로
+            문의해 주세요.
+          </p>
+          <p className="mt-4 max-w-xl text-xs leading-relaxed text-[#e8d9bb] md:text-sm">
+            {KEYWORD_INQUIRY}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#gallery" className="btn-primary">

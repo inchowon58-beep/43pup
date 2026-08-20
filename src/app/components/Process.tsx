@@ -41,7 +41,7 @@ export default function Process() {
           <div className="pointer-events-none absolute left-[12%] right-[12%] top-7 hidden h-px bg-[var(--line)] lg:block" />
           {STEPS.map((s) => (
             <div key={s.n} className="relative text-center lg:pt-0">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--coral)] text-xl font-bold text-white">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center bg-[var(--navy)] text-xl font-bold text-[#c4a574]">
                 {s.n}
               </div>
               <h3 className="mt-4 text-lg font-bold text-[var(--navy)]">{s.title}</h3>

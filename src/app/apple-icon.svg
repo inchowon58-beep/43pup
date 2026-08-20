@@ -1,10 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="????">
-  <rect width="180" height="180" rx="48" fill="#fff7ee"/>
-  <circle cx="90" cy="98" r="46" fill="#e07a3d"/>
-  <circle cx="56" cy="62" r="24" fill="#e07a3d"/>
-  <circle cx="124" cy="62" r="24" fill="#e07a3d"/>
-  <circle cx="74" cy="93" r="7" fill="#fff7ee"/>
-  <circle cx="106" cy="93" r="7" fill="#fff7ee"/>
-  <path d="M78 114c6.5 7.2 17.5 7.2 24 0" fill="none" stroke="#fff7ee" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="142" cy="138" r="12" fill="#4f9ec8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="메종드두들">
+  <rect width="180" height="180" rx="16" fill="#1f1a14"/>
+  <path d="M90 28 141 70V142H39V70L90 28Z" fill="#c4a574"/>
+  <rect x="76" y="96" width="28" height="46" fill="#1f1a14"/>
 </svg>
