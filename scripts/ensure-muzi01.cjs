@@ -1,5 +1,5 @@
 /**
- * 삭제됨 — 쿠니네는 inchowon58-beep/enmaincoon 전용입니다.
+ * 삭제됨 — 큰냥이네는 inchowon58-beep/pupmaincoon 전용입니다.
  */
-console.error("쿠니네는 https://github.com/inchowon58-beep/enmaincoon.git 만 사용하세요.");
+console.error("큰냥이네는 https://github.com/inchowon58-beep/pupmaincoon.git 만 사용하세요.");
 process.exit(1);

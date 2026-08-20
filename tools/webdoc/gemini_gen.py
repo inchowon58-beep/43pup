@@ -12,9 +12,9 @@ from google import genai
 
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_keyword_csv, nearby_stations
 
-BRAND = "쿠니네"
+BRAND = "큰냥이네"
 FARM = "메인쿤 분양"
-SITE_NAME = "쿠니네"
+SITE_NAME = "큰냥이네"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
 
@@ -30,6 +30,7 @@ DEFAULT_MODEL = "gemini-3.5-flash-lite"
 DEFAULT_USER_PROMPT = """톤: 따뜻하고 입양하고 싶게. 사실(성격·털·비용 요인)은 분명히, 문장은 사진 옆에서 이야기하듯.
 이 문서는 여러 분양처에 임대되는 사이트에 실리므로 특정 업체 홍보·브랜드 감성 카피 금지.
 키워드에 지역명이 있으면 그 지역에서 메인쿤을 고르는 독자 시점으로 쓰세요.
+운영 사실: 한국애견연맹 위원장이 운영하고, 고양이심사위원이 관리·상담합니다. 본문에 자연스럽게 넣으세요.
 장례·엔딩 톤 금지. 전화번호 넣지 마세요. 상담은 카카오톡만.
 {keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.
 """
@@ -39,7 +40,7 @@ SYSTEM_SEO_RULES = f"""당신은 메인쿤 분양 안내문을 쓰는 작가입�
 업체명 '{BRAND}'는 남용하지 마세요.
 
 상담: 카카오톡 오픈채팅 ({KAKAO})
-다룰 정보: 메인쿤 크기, 장모·링스 팁, 입양 순서(사진-상담-방문-집으로), 비용이 달라지는 항목
+다룰 정보: 한국애견연맹 위원장 운영, 고양이심사위원 상담, 메인쿤 크기, 장모·링스 팁, 입양 순서, 비용이 달라지는 항목
 범위: {LOCATION}
 
 [SEO]

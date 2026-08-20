@@ -26,30 +26,32 @@ function buildPrompt(keyword: string): string {
 
 메인 키워드: ${keyword}
 핵심 키워드: 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가
+운영 사실: 한국애견연맹 위원장이 운영하고, 고양이심사위원이 관리·상담합니다. 본문에 자연스럽게 한 번씩 넣으세요.
 상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
 서비스 범위: ${SITE.areaServed}
 
-독자: ${keyword}를 검색해 메인쿤분양·대형묘 입양을 고르려는 보호자.
-톤: 안내형. 사실(크기·성격·분양가 요인)은 분명히, 문장은 상담 안내처럼.
+독자: ${keyword}를 검색해 메인쿤분양·심사 기준 상담을 고르려는 보호자.
+톤: 안내형. 사실(크기·성격·분양가 요인)은 분명히, 문장은 심사위원 상담처럼.
 금지: 가격 단정, 허위, 의료 단정, 타사 비방, 장례·엔딩 톤, 전화번호.
 
 반드시 다룰 내용:
-1) 대형묘 크기와 메인쿤성격·키우기(장모 빗질)
-2) 입양 순서(사진-상담-방문-집으로)
-3) 분양가가 달라지는 항목과 무료분양 주의
-4) 분양 중인 아이 사진은 메인 갤러리에서 볼 수 있음
-5) 문의 방법 — 본문 마지막에만, 짧게
+1) 한국애견연맹 위원장 운영·고양이심사위원 상담
+2) 대형묘 크기와 메인쿤성격·키우기(장모 빗질)
+3) 입양 순서(사진-상담-방문-집으로)
+4) 분양가가 달라지는 항목과 무료분양 주의
+5) 분양 중인 아이 사진은 메인 갤러리에서 볼 수 있음
+6) 문의 방법 — 본문 마지막에만, 짧게
 
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 쿠니네 메인쿤분양'",
+  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 큰냥이네 메인쿤분양'",
   "metaDescription": "140~158자. '{keyword}', 메인쿤분양, 메인쿤입양. 전화번호 금지",
   "metaKeywords": "{keyword}, 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격 등 10~14개",
   "h1": "'{keyword}'와 '메인쿤분양' 또는 '입양'이 들어간 H1",
   "heroSubtitle": "한글 한 문장. 분양 안내 + 사진",
   "heroBadge": "분양 안내",
-  "heroTitleLine2": "쿠니네",
+  "heroTitleLine2": "큰냥이네",
   "heroBar": "메인쿤분양 사진을 보고 성격을 정해 보세요.",
   "sections": [
     {"h2": "'{keyword}' 포함, 집을 고르기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
@@ -109,11 +111,11 @@ export async function generateWithGemini(
 
   return {
     keyword,
-    title: String(data.title || `${keyword} | 쿠니네 메인쿤분양`),
+    title: String(data.title || `${keyword} | 큰냥이네 메인쿤분양`),
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
-        `${keyword}, 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 쿠니네`
+        `${keyword}, 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 큰냥이네`
     ),
     h1: String(data.h1 || `${keyword}, 메인쿤분양 안내`),
     heroSubtitle: String(
@@ -121,7 +123,7 @@ export async function generateWithGemini(
     ),
     heroBadge: String(data.heroBadge || "분양 안내"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "쿠니네"),
+    heroTitleLine2: String(data.heroTitleLine2 || "큰냥이네"),
     heroBar: String(data.heroBar || "메인쿤분양 사진을 보고 성격을 정해 보세요."),
     sections,
     faqs,
@@ -144,7 +146,7 @@ export function assembleSeoPage(
     heroSubtitle: partial.heroSubtitle,
     heroBadge: partial.heroBadge || "분양 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "쿠니네",
+    heroTitleLine2: partial.heroTitleLine2 || "큰냥이네",
     heroBar: partial.heroBar || "메인쿤분양 사진을 보고 성격을 정해 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,

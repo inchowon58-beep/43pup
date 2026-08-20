@@ -27,7 +27,7 @@ export const DEFAULT_SPONSOR: SiteSponsor = {
   rental_price: "30만원",
   highlight_points: [
     "분양 중인 아이 사진 공개",
-    "가족형 메인쿤",
+    "심사위원 상담 메인쿤",
     "전국 상담 가능",
     "방문·예약 진행 가능",
     "입양 준비 안내",

@@ -1,11 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="쿠니네">
-  <rect width="64" height="64" rx="18" fill="#1f3a2e"/>
-  <path d="M18 32 L12 8 L31 24 Z" fill="#c4783a"/>
-  <path d="M12 8 L10 2 L17 14" stroke="#e8c9a0" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M46 32 L52 8 L33 24 Z" fill="#c4783a"/>
-  <path d="M52 8 L54 2 L47 14" stroke="#e8c9a0" stroke-width="2.2" stroke-linecap="round"/>
-  <circle cx="32" cy="38" r="15" fill="#f3e6d4"/>
-  <circle cx="26.5" cy="36" r="2.3" fill="#1f3a2e"/>
-  <circle cx="37.5" cy="36" r="2.3" fill="#1f3a2e"/>
-  <ellipse cx="32" cy="42.2" rx="2.4" ry="1.7" fill="#c4783a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="큰냥이네">
+  <rect width="64" height="64" rx="14" fill="#152238"/>
+  <path d="M20 34 L16 6 L32 26 Z" fill="#c9a45c"/>
+  <path d="M44 34 L48 6 L32 26 Z" fill="#c9a45c"/>
+  <circle cx="32" cy="40" r="15" fill="#f4ead4"/>
+  <circle cx="26.5" cy="38" r="2.2" fill="#152238"/>
+  <circle cx="37.5" cy="38" r="2.2" fill="#152238"/>
+  <ellipse cx="32" cy="44" rx="2.2" ry="1.5" fill="#c9a45c"/>
+  <path d="M24 54 Q32 48 40 54 Q32 58 24 54 Z" fill="#c9a45c"/>
 </svg>

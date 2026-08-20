@@ -5,22 +5,22 @@ import { imageUrl } from "@/lib/images";
 
 const SERVICES = [
   {
-    title: "온순한 대형묘",
-    desc: "사람을 따르는 메인쿤, 아이·가족과 지내기 좋은 성격",
+    title: "심사 기준 상담",
+    desc: "고양이심사위원이 체형·코트·성격을 기준으로 아이를 안내",
     image: imageUrl(5),
-    tag: "성격",
+    tag: "상담",
   },
   {
-    title: "링스 팁 장모",
-    desc: "귀 끝 털과 풍성한 코트. 빗질 주기를 지키면 더 고와집니다",
+    title: "쇼 라인 장모",
+    desc: "링스 팁과 풍성한 코트. 빗질 주기까지 입양 전에 설명합니다",
     image: imageUrl(10),
     tag: "외모",
   },
   {
-    title: "분양 상담",
-    desc: "성별·코트·성격을 알려 주시면 지금 만날 수 있는 아이를 안내",
+    title: "연맹 운영",
+    desc: "한국애견연맹 위원장이 운영하는 분양 안내. 관리 기준이 분명합니다",
     image: imageUrl(13),
-    tag: "상담",
+    tag: "운영",
   },
   {
     title: "입양 준비",
@@ -36,12 +36,12 @@ export default function Services() {
       <div className="container">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="section-kicker">FAMILY MAINE COON</p>
+            <p className="section-kicker">FEDERATION · CAT JUDGE</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              메인쿤분양, 집을 고르는 이유
+              메인쿤분양, 심사 시선으로
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              대형묘 크기와 메인쿤성격·키우기까지 비교해 보실 수 있습니다.
+              큰 체구와 코트, 성격을 심사위원 상담으로 비교해 보실 수 있습니다.
               사진을 보다 보면 맞는 아이가 먼저 보입니다.
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function Services() {
                   className="object-cover transition duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(31,58,46,0.82)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(21,34,56,0.84)_100%)]" />
                 <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>

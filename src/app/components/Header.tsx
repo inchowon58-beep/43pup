@@ -19,21 +19,21 @@ function BrandMark() {
   return (
     <Link href="/" className="flex items-center gap-3">
       <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden className="shrink-0">
-        <rect width="36" height="36" rx="10" fill="#c4783a" />
+        <rect width="36" height="36" rx="8" fill="#c9a45c" />
         <text
           x="18"
           y="24"
           textAnchor="middle"
-          fill="#1f3a2e"
-          fontSize="16"
+          fill="#152238"
+          fontSize="13"
           fontWeight="800"
           fontFamily="Pretendard, sans-serif"
         >
-          K
+          큰
         </text>
       </svg>
       <span className="flex flex-col leading-none">
-        <span className="text-[0.62rem] font-medium tracking-[0.22em] text-[#e8c9a0]">
+        <span className="text-[0.62rem] font-medium tracking-[0.22em] text-[#e8d5a3]">
           {SITE.brandEn}
         </span>
         <span className="mt-1 text-[1.08rem] font-bold tracking-tight text-white md:text-[1.2rem]">
@@ -48,15 +48,15 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#1f3a2e] text-white">
-      <div className="h-px bg-[linear-gradient(90deg,transparent,#c4783a,transparent)]" />
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#152238] text-white">
+      <div className="h-px bg-[linear-gradient(90deg,transparent,#c9a45c,transparent)]" />
 
       <div className="container flex h-[3.7rem] items-center justify-between md:h-[4.5rem]">
         <BrandMark />
 
         <nav className="hidden items-center gap-6 text-[0.88rem] font-medium text-white/70 lg:flex">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-[#e8c9a0]">
+            <Link key={item.href} href={item.href} className="hover:text-[#e8d5a3]">
               {item.label}
             </Link>
           ))}
@@ -84,7 +84,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#1f3a2e] px-4 py-3 lg:hidden">
+        <div className="border-t border-white/10 bg-[#152238] px-4 py-3 lg:hidden">
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <Link

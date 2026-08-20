@@ -46,21 +46,21 @@ function clampDesc(text: string, max = 158): string {
 }
 
 const TITLES = [
-  "{kw} | 쿠니네 메인쿤분양",
+  "{kw} | 큰냥이네 메인쿤분양",
   "{kw}, 메인쿤 크기와 키우기 포인트",
   "대형묘 입양까지 함께 보는 {kw}",
 ];
 
 const METAS = [
-  "{kw}에서 메인쿤분양·메인쿤입양을 고르는 안내입니다. 희망 성격·크기·분양가 요인을 정리했습니다. 카카오톡 상담.",
-  "첫 메인쿤 입양 전 확인할 점입니다. {kw} 메인쿤 키우기, 무료분양 광고 주의점, 사진 상담. 단가는 상담에서 안내합니다.",
-  "{kw} 안내 — 대형묘 메인쿤의 성격과 크기를 비교해 보세요. 쿠니네 갤러리에서 아이 사진을 먼저 보세요.",
+  "{kw}에서 메인쿤분양·심사위원 상담을 고르는 안내입니다. 한국애견연맹 위원장이 운영합니다. 카카오톡 상담.",
+  "첫 메인쿤 입양 전 확인할 점입니다. {kw} 키우기, 무료분양 광고 주의점, 심사 기준 상담. 단가는 상담에서 안내합니다.",
+  "{kw} 안내 — 고양이심사위원이 코트·체형을 설명해 드립니다. 큰냥이네 갤러리에서 아이 사진을 먼저 보세요.",
 ];
 
 const H1S = [
-  "{kw}, 메인쿤분양 안내",
-  "{kw}에서 고르는 첫 메인쿤 입양",
-  "집 공간까지 맞춰 보는 {kw}",
+  "심사 기준으로 보는 {kw}",
+  "고양이심사위원과 함께 보는 {kw}",
+  "한국애견연맹 운영 안내 {kw}",
 ];
 
 const HERO_SUB = [
@@ -94,7 +94,7 @@ const NEXT_H2 = [
 ];
 
 export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage {
-  const seed = hash(`${keyword}|${pageIndex}|${SITE.brand}|enmaincoon-v1`);
+  const seed = hash(`${keyword}|${pageIndex}|${SITE.brand}|pupmaincoon-v1`);
   const kw = keyword.trim() || "메인쿤분양";
   const brand = SITE.brand;
   const obj = eulReul(kw);
@@ -110,10 +110,10 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
     {
       h2: fill(pick(INTRO_H2, seed)),
       paragraphs: [
-        `${kw}${obj} 찾는 분들은 대부분 메인쿤분양과 대형묘 입양 중 어떤 체구가 맞는지부터 보고 싶어 합니다. 메인쿤은 사람을 잘 따르는 편이고, 장모 빗질과 넉넉한 공간이 있으면 실내 생활도 가능합니다.`,
+        `${kw}${obj} 찾는 분들은 대부분 심사 기준이 분명한 메인쿤분양을 보고 싶어 합니다. 큰냥이네는 한국애견연맹 위원장이 운영하고, 고양이심사위원이 관리·상담합니다.`,
         `사진을 보다가 눈이 머무는 아이가 있으면 메모해 두세요. 분양 중인 모습은 메인 갤러리에서도 이어서 보실 수 있습니다.`,
         `상담에 필요한 정보는 거주 지역, 희망 성별·코트, 아이와 함께 사는지 여부입니다. 서류가 없어도 ${kw} 안내를 받을 수 있습니다. ${KAKAO_CTA_HINT}`,
-        `이 페이지는 ${kw}에서 첫 메인쿤 입양 전, 크기·키우기·분양가를 정리한 안내입니다. 실제 가능 아이·분양가는 시기에 따라 달라지므로 상담에서 맞춰 보시면 됩니다.`,
+        `이 페이지는 ${kw}에서 첫 메인쿤 입양 전, 운영 주체·키우기·분양가를 정리한 안내입니다. 실제 가능 아이·분양가는 시기에 따라 달라지므로 상담에서 맞춰 보시면 됩니다.`,
       ],
     },
     {
@@ -143,6 +143,10 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
   ];
 
   const faqs = [
+    {
+      q: `누가 운영·상담하나요?`,
+      a: `한국애견연맹 위원장이 운영하고, 고양이심사위원이 관리·상담합니다. ${kw}로 찾으시는 분은 체형·코트 기준을 먼저 안내받을 수 있습니다.`,
+    },
     {
       q: `메인쿤은 어떤 성격인가요?`,
       a: `사람을 잘 따르고 온순한 대형묘입니다. ${kw}로 찾으시는 분들은 아이·가족과 함께 지낼 첫 고양이를 원하는 경우가 많습니다. 개체 차이는 상담에서 안내합니다.`,
@@ -203,14 +207,14 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
     keyword: kw,
     title,
     metaDescription: clampDesc(metaDescription),
-    metaKeywords: `${kw}, 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가, 쿠니네${
+    metaKeywords: `${kw}, 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가, 큰냥이네${
       geoKw ? `, ${geoKw}` : ""
     }`,
     h1,
     heroSubtitle,
     heroBadge: "분양 안내",
     heroTitleLine1: kw,
-    heroTitleLine2: "쿠니네",
+    heroTitleLine2: "큰냥이네",
     heroBar: "메인쿤분양 사진을 보고 성격을 정해 보세요.",
     sections,
     faqs,

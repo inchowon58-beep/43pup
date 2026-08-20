@@ -9,7 +9,7 @@ export default function Gallery() {
     <section id="gallery" className="section">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">MAINE COON GALLERY</p>
+          <p className="section-kicker">SHOW RING GALLERY</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
             분양 중인 메인쿤
           </h2>

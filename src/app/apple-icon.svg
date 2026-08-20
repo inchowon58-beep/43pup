@@ -1,11 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="쿠니네">
-  <rect width="180" height="180" rx="50" fill="#1f3a2e"/>
-  <path d="M50 90 L34 22 L87 68 Z" fill="#c4783a"/>
-  <path d="M34 22 L28 6 L48 40" stroke="#e8c9a0" stroke-width="6" stroke-linecap="round"/>
-  <path d="M130 90 L146 22 L93 68 Z" fill="#c4783a"/>
-  <path d="M146 22 L152 6 L132 40" stroke="#e8c9a0" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="90" cy="108" r="42" fill="#f3e6d4"/>
-  <circle cx="74" cy="102" r="6.4" fill="#1f3a2e"/>
-  <circle cx="106" cy="102" r="6.4" fill="#1f3a2e"/>
-  <ellipse cx="90" cy="120" rx="6.8" ry="4.8" fill="#c4783a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="큰냥이네">
+  <rect width="180" height="180" rx="40" fill="#152238"/>
+  <path d="M56 96 L45 18 L90 74 Z" fill="#c9a45c"/>
+  <path d="M124 96 L135 18 L90 74 Z" fill="#c9a45c"/>
+  <circle cx="90" cy="112" r="42" fill="#f4ead4"/>
+  <circle cx="74" cy="106" r="6.2" fill="#152238"/>
+  <circle cx="106" cy="106" r="6.2" fill="#152238"/>
+  <ellipse cx="90" cy="124" rx="6.2" ry="4.2" fill="#c9a45c"/>
+  <path d="M68 152 Q90 136 112 152 Q90 164 68 152 Z" fill="#c9a45c"/>
 </svg>

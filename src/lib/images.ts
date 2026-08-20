@@ -4,9 +4,9 @@ import { SITE } from "./site";
  * 화면 노출 순서. 파일 번호(01~59)를 섞어 히어로·갤러리가 다르게 보이게 함.
  */
 const DISPLAY_ORDER = [
-  46, 5, 6, 54, 17, 7, 44, 58, 36, 24, 8, 50, 11, 9, 19, 57, 26, 15, 10, 48, 47, 29, 28, 21, 16,
-  22, 40, 34, 32, 12, 4, 1, 2, 51, 35, 55, 45, 53, 20, 41, 31, 39, 52, 37, 27, 33, 14, 38, 18, 30,
-  56, 25, 43, 42, 49, 13, 23, 59, 3,
+  16, 39, 47, 8, 10, 25, 35, 33, 14, 55, 36, 11, 23, 54, 22, 21, 26, 27, 46, 45, 30, 37, 53, 12, 41,
+  29, 34, 28, 13, 57, 4, 5, 48, 17, 49, 24, 31, 32, 19, 3, 20, 18, 38, 15, 7, 50, 59, 6, 56, 43, 1,
+  9, 42, 58, 2, 51, 40, 44, 52,
 ] as const;
 
 function fileIndex(logicalIndex: number): number {
@@ -48,7 +48,7 @@ function mulberry32(seed: number) {
 
 export function pickImages(count: number, seed = 42): string[] {
   const pool = allImageUrls();
-  const rng = mulberry32(seed ^ 0xc0011e59);
+  const rng = mulberry32(seed ^ 0xb16c47e);
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
@@ -60,7 +60,7 @@ export function pickImages(count: number, seed = 42): string[] {
 export function galleryAlt(keywordOrIndex: string | number, index = 1): string {
   const suffixes = [
     "메인쿤분양 사진",
-    "메인쿤입양 모습",
+    "심사위원 상담 메인쿤",
     "대형묘 키우기",
     "메인쿤성격",
     "메인쿤고양이 사진",

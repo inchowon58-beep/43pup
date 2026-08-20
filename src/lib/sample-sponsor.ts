@@ -4,7 +4,7 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "쿠니네 메인쿤 (샘플)",
+  sponsor_name: "큰냥이네 메인쿤 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "https://open.kakao.com/o/sxelLqJi",
   homepage_url: "https://www.naver.com",
@@ -43,7 +43,7 @@ export function buildSampleSponsors(current: SiteSponsor): {
 }
 
 export const SAMPLE_PAGE_KEYWORD = "강남 메인쿤분양";
-export const SAMPLE_PAGE_H1 = "강남 메인쿤분양, 쿠니네 안내";
+export const SAMPLE_PAGE_H1 = "강남 메인쿤분양, 큰냥이네 안내";
 export const SAMPLE_PAGE_SUBTITLE =
   "메인쿤분양 사진을 보고 성격을 정해 보세요.";
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 쿠니네.
+"""문서 본문 생성 (템플릿) — 큰냥이네.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
 메인쿤 분양 상세 페이지를 생성합니다. 이미지는 3장.
 """
@@ -19,9 +19,9 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "쿠니네"
+BRAND = "큰냥이네"
 FARM = "메인쿤 분양"
-SITE_NAME = "쿠니네"
+SITE_NAME = "큰냥이네"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
 IMAGE_BASE = "https://image.cattery.co.kr/maincoon"
@@ -30,7 +30,7 @@ IMAGE_USE = 3  # 히어로 1 + 본문 2
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|enmaincoon".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|pupmaincoon".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -66,14 +66,14 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
     kw = keyword.strip() or "메인쿤분양"
     heroes = [
-        "분양 중인 메인쿤 사진을 보고 성격을 정해 보세요",
-        "링스 팁, 풍성한 장모, 가족과 잘 지내는 성격",
-        "우리 집 첫 메인쿤 — 그 느낌이 먼저입니다",
+        "심사위원 상담으로 메인쿤 사진을 먼저 보세요",
+        "한국애견연맹 위원장이 운영하는 메인쿤분양",
+        "코트·체형을 기준으로 고르는 메인쿤",
         "사진을 보다가 고르는 메인쿤",
     ]
     line2_opts = [
-        "우리 집의 메인쿤",
-        "가족과 함께",
+        "심사위원 상담",
+        "연맹 운영",
         "입양 안내",
         "분양 사진",
     ]
@@ -98,8 +98,8 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw}에서 가족과 함께 살 메인쿤을 고르는 안내입니다. "
-        f"성격·털·입양 순서와 분양 중인 아이 사진을 정리했습니다. 카카오톡 상담."
+        f"{kw}에서 심사위원 상담으로 메인쿤을 고르는 안내입니다. "
+        f"한국애견연맹 위원장이 운영합니다. 카카오톡 상담."
     )
     if areas or stations:
         near_bits = " · ".join((areas[:3] + stations[:3])[:4])
@@ -115,8 +115,8 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "h2": h2_0,
             "paragraphs": [
-                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 ‘우리 집에 올 아이’의 모습입니다. "
-                f"메인쿤은 사람을 잘 따르는 대형묘로, {tone} 첫 고양이로 많이 찾습니다.",
+                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 운영 주체와 아이 모습입니다. "
+                f"큰냥이네는 한국애견연맹 위원장이 운영하고, 고양이심사위원이 {tone} 상담합니다.",
                 f"사진을 보다가 눈이 머무는 아이가 있으면 그 마음을 메모해 두세요. "
                 f"분양 중인 메인쿤 모습은 메인 갤러리에서도 이어서 보실 수 있습니다.",
                 f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 크기·성별, 아이와 함께 사는지 여부입니다. "
@@ -166,7 +166,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     geo_kw = nearby_keyword_csv(kw)
     meta_keywords = (
         f"{kw}, 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, "
-        f"메인쿤성격, 메인쿤크기, 메인쿤분양가, 쿠니네"
+        f"메인쿤성격, 메인쿤크기, 메인쿤분양가, 큰냥이네, 한국애견연맹, 고양이심사위원"
     )
     if geo_kw:
         meta_keywords = f"{meta_keywords}, {geo_kw}"

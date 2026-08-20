@@ -1,15 +1,15 @@
-/** 쿠니네 — 메인쿤분양 사이트 공통 설정 */
+/** 큰냥이네 — 메인쿤분양 사이트 공통 설정 */
 
 export const SITE = {
-  name: "쿠니네",
-  brand: "쿠니네",
-  brandEn: "Kunine",
+  name: "큰냥이네",
+  brand: "큰냥이네",
+  brandEn: "Keunnyangi",
   farm: "메인쿤분양",
   title: "메인쿤분양",
-  tagline: "우리 집 첫 메인쿤을 성격과 크기에 맞춰 안내합니다",
-  taglineEn: "Kunine · 메인쿤분양 쿠니네",
+  tagline: "한국애견연맹 위원장이 운영하고, 고양이심사위원이 관리·상담합니다",
+  taglineEn: "Keunnyangi · 메인쿤분양 큰냥이네",
   description:
-    "메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가 — 쿠니네에서 대형묘 메인쿤을 만나보세요.",
+    "메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가 — 한국애견연맹 위원장이 운영하고 고양이심사위원이 상담하는 큰냥이네에서 만나보세요.",
   keywords: [
     "메인쿤분양",
     "메인쿤입양",
@@ -18,27 +18,29 @@ export const SITE = {
     "메인쿤성격",
     "메인쿤크기",
     "메인쿤분양가",
-    "쿠니네",
+    "큰냥이네",
+    "한국애견연맹",
+    "고양이심사위원",
     "메인쿤고양이",
     "대형묘분양",
   ],
   kakaoOpenChatUrl: "https://open.kakao.com/o/sxelLqJi",
-  logo: "https://image.cattery.co.kr/maincoon/46.webp",
-  ogImage: "https://image.cattery.co.kr/maincoon/46.webp",
+  logo: "https://image.cattery.co.kr/maincoon/16.webp",
+  ogImage: "https://image.cattery.co.kr/maincoon/16.webp",
   imageBase: "https://image.cattery.co.kr/maincoon",
   imageCount: 59,
   location: "대한민국 전국",
   address: "전국 분양 상담 · 카카오톡 오픈채팅",
   areaServed: "대한민국 전국",
-  domain: "maincoon.eanimal.kr",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.eanimal.kr",
+  domain: "maincoon.puppytimes.co.kr",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.puppytimes.co.kr",
   infocsUrl: "https://www.infocs.co.kr/",
-  naverSiteVerification: "44457c221d1f7fb0f08f68f34c71f4f91cecee8a",
-  themeColor: "#1f3a2e",
+  naverSiteVerification: "7c85e2e3f669ad151d528ac2a6856877231a7655",
+  themeColor: "#152238",
 } as const;
 
 export const KEYWORD_INQUIRY =
-  "메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가 — 궁금하신 내용을 편하게 문의해 주세요.";
+  "메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가 — 심사위원 상담으로 편하게 문의해 주세요.";
 
 export const CTA_LABEL = "카카오톡 오픈채팅 상담";
 export const CTA_KAKAO = "카카오톡 상담하기";
