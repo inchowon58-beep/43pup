@@ -9,6 +9,7 @@ import { faqJsonLd, howToJsonLd } from "@/lib/faq-data";
 import GuideHeroThumb from "@/app/components/GuideHeroThumb";
 import SponsorMidBox from "@/app/components/SponsorMidBox";
 import { getGlobalSponsor } from "@/lib/site-sponsor";
+import { sponsorKakaoUrl } from "@/lib/site-sponsor-shared";
 import NearbyRegionsSection from "@/app/components/NearbyRegionsSection";
 import NearbyStationsSection from "@/app/components/NearbyStationsSection";
 import DoodleGalleryCta from "@/app/components/DoodleGalleryCta";
@@ -119,6 +120,7 @@ export default async function GuidePage({ params }: Props) {
     getNearbyStationLinks(region, page.slug),
     getGlobalSponsor(),
   ]);
+  const kakaoUrl = sponsorKakaoUrl(sponsor);
 
   const breadcrumb = {
     "@context": "https://schema.org",
@@ -265,14 +267,16 @@ export default async function GuidePage({ params }: Props) {
           <aside className="mt-10 border border-[var(--coral)] bg-[var(--coral-soft)] p-6 text-center">
             <p className="text-xl font-extrabold text-[var(--navy)] md:text-2xl">{page.ctaText}</p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href={SITE.kakaoOpenChatUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-flex"
-              >
-                {CTA_KAKAO}
-              </a>
+              {kakaoUrl && (
+                <a
+                  href={kakaoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary inline-flex"
+                >
+                  {CTA_KAKAO}
+                </a>
+              )}
               <Link
                 href="/#contact"
                 className="inline-flex rounded-[0.4rem] border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"

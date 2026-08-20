@@ -8,7 +8,8 @@ import LiveEngineBadge from "@/app/components/LiveEngineBadge";
 type Props = { sponsor: SiteSponsor; showPreviewLink?: boolean };
 
 export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props) {
-  const kakaoUrl = sponsorKakaoUrl(sponsor) || SITE.kakaoOpenChatUrl;
+  const kakaoUrl = sponsorKakaoUrl(sponsor);
+  const recruitingKakao = kakaoUrl || SITE.kakaoOpenChatUrl;
   const homepageUrl = sponsorHomepageUrl(sponsor);
   const phoneHref = sponsor.phone_number ? phoneToTel(sponsor.phone_number) : "";
 
@@ -28,7 +29,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
             </a>
           )}
           <a
-            href={kakaoUrl}
+            href={recruitingKakao}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-flex"
@@ -117,15 +118,17 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
               홈페이지
             </a>
           )}
-          <a
-            href={kakaoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary inline-flex"
-          >
-            <MessageCircle size={18} />
-            {CTA_KAKAO}
-          </a>
+          {kakaoUrl && (
+            <a
+              href={kakaoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex"
+            >
+              <MessageCircle size={18} />
+              {CTA_KAKAO}
+            </a>
+          )}
         </div>
       </div>
     </aside>

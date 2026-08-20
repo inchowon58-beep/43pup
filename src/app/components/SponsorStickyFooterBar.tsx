@@ -16,7 +16,8 @@ export default function SponsorStickyFooterBar({
   showPreviewLink = true,
 }: Props) {
   const wrapperClass = variant === "fixed" ? "fixed-cta" : "fixed-cta fixed-cta--inline";
-  const kakaoUrl = sponsorKakaoUrl(sponsor) || SITE.kakaoOpenChatUrl;
+  const kakaoUrl = sponsorKakaoUrl(sponsor);
+  const recruitingKakao = kakaoUrl || SITE.kakaoOpenChatUrl;
   const homepageUrl = sponsorHomepageUrl(sponsor);
   const hasPhone = Boolean(sponsor.phone_number?.trim());
   const phoneHref = hasPhone ? phoneToTel(sponsor.phone_number) : "";
@@ -47,7 +48,7 @@ export default function SponsorStickyFooterBar({
             </div>
           )}
           <a
-            href={kakaoUrl}
+            href={recruitingKakao}
             target="_blank"
             rel="noopener noreferrer"
             className="fixed-cta-call w-full justify-center"
@@ -90,15 +91,17 @@ export default function SponsorStickyFooterBar({
             )}
           </div>
         )}
-        <a
-          href={kakaoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed-cta-call w-full justify-center"
-        >
-          <MessageCircle size={16} aria-hidden />
-          카톡상담
-        </a>
+        {kakaoUrl && (
+          <a
+            href={kakaoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fixed-cta-call w-full justify-center"
+          >
+            <MessageCircle size={16} aria-hidden />
+            카톡상담
+          </a>
+        )}
       </div>
     </div>
   );

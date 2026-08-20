@@ -96,6 +96,14 @@ export default function SponsorAdminClient() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "저장 실패");
+      if (data.sponsor) {
+        const { id: _id, ...rest } = data.sponsor as SiteSponsor;
+        setForm({
+          ...rest,
+          homepage_url: rest.homepage_url || "",
+          highlight_points: padHighlightPoints(rest.highlight_points),
+        });
+      }
       setMessage("저장되었습니다. 전국 모든 페이지에 즉시 반영됩니다.");
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "저장 실패");

@@ -61,12 +61,15 @@ function normalize(raw: Partial<SiteSponsor>): SiteSponsor {
   const rawLink = (raw.link_url || "").trim();
   const rawHome = (raw.homepage_url || "").trim();
   const linkIsKakao = /open\.kakao\.com|kakao\.com/i.test(rawLink);
+  const isActive = raw.status === "ACTIVE";
+  let kakaoLink = linkIsKakao ? rawLink : "";
+  if (isActive && kakaoLink === SITE.kakaoOpenChatUrl) kakaoLink = "";
   return {
     id: 1,
-    status: raw.status === "ACTIVE" ? "ACTIVE" : "RECRUITING",
+    status: isActive ? "ACTIVE" : "RECRUITING",
     sponsor_name: (raw.sponsor_name || "").trim(),
     phone_number: (raw.phone_number || "").trim(),
-    link_url: linkIsKakao ? rawLink : SITE.kakaoOpenChatUrl,
+    link_url: kakaoLink,
     homepage_url: rawHome || (!linkIsKakao && rawLink ? rawLink : ""),
     recruiting_notice:
       (raw.recruiting_notice || DEFAULT_SPONSOR.recruiting_notice).trim(),
