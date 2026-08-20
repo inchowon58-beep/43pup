@@ -4,12 +4,12 @@ const STEPS = [
   {
     n: "1",
     title: "사진으로 만나기",
-    desc: "갤러리에서 분양 중인 미니두들 모습을 먼저 보세요.",
+    desc: "갤러리에서 분양 중인 메인쿤 모습을 먼저 보세요.",
   },
   {
     n: "2",
     title: "상담으로 고르기",
-    desc: "원하는 크기·성별·색을 알려 주시면 지금 만날 수 있는 아이를 안내합니다.",
+    desc: "원하는 성별·코트를 알려 주시면 지금 만날 수 있는 아이를 안내합니다.",
   },
   {
     n: "3",
@@ -19,7 +19,7 @@ const STEPS = [
   {
     n: "4",
     title: "집으로",
-    desc: "첫 사료·산책·미용 포인트를 알려 드리고, 가족이 되는 날을 엽니다.",
+    desc: "첫 식사·모래·브러시 포인트를 알려 드리고, 가족이 되는 날을 엽니다.",
   },
 ];
 
@@ -41,7 +41,7 @@ export default function Process() {
           <div className="pointer-events-none absolute left-[12%] right-[12%] top-7 hidden h-px bg-[var(--line)] lg:block" />
           {STEPS.map((s) => (
             <div key={s.n} className="relative text-center lg:pt-0">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[0.85rem] bg-[var(--navy)] text-xl font-bold text-[#f5d0c5]">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[0.85rem] bg-[var(--navy)] text-xl font-bold text-[#e8c9a0]">
                 {s.n}
               </div>
               <h3 className="mt-4 text-lg font-bold text-[var(--navy)]">{s.title}</h3>

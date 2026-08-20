@@ -11,7 +11,7 @@ export default function FAQ() {
             {SITE.brand}, 자주 묻는 질문
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            미니두들 분양 전에 많이 물어보시는 점입니다.
+            메인쿤 분양 전에 많이 물어보시는 점입니다.
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl space-y-3">

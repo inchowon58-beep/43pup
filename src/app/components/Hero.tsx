@@ -9,31 +9,31 @@ export default function Hero() {
       <div className="absolute inset-0 hero-media">
         <Image
           src={imageUrl(1)}
-          alt={`${SITE.name} — 미니두들분양`}
+          alt={`${SITE.name} — 메인쿤분양`}
           fill
           unoptimized
           priority
           className="object-cover object-[center_32%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(61,47,84,0.42)_0%,rgba(61,47,84,0.16)_38%,rgba(36,28,40,0.84)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,58,46,0.42)_0%,rgba(31,58,46,0.16)_38%,rgba(20,32,26,0.84)_100%)]" />
       </div>
 
       <div className="container relative flex min-h-[92svh] flex-col justify-end pb-28 pt-28 md:pb-24">
         <div className="animate-rise max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.22em] text-[#f5d0c5]">
+          <p className="text-xs font-semibold tracking-[0.22em] text-[#e8c9a0]">
             {SITE.taglineEn}
           </p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-[3.4rem]">
             {SITE.brand}
             <span className="mt-4 block text-[0.42em] font-medium leading-snug tracking-normal text-white/90">
-              미니두들분양 · 골든두들분양
+              메인쿤분양 · 대형묘 입양
             </span>
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/85 md:text-base">
             {SITE.tagline}. 분양 중인 아이 사진을 먼저 보시고, 카카오톡으로 문의해 주세요.
           </p>
-          <p className="mt-4 max-w-xl text-xs leading-relaxed text-[#fbe8e1] md:text-sm">
+          <p className="mt-4 max-w-xl text-xs leading-relaxed text-[#f3e6d4] md:text-sm">
             {KEYWORD_INQUIRY}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">

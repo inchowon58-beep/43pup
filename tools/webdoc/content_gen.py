@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 퍼피두들.
+"""문서 본문 생성 (템플릿) — 쿠니네.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
-미니두들 분양 상세 페이지를 생성합니다. 이미지는 3장.
+메인쿤 분양 상세 페이지를 생성합니다. 이미지는 3장.
 """
 
 from __future__ import annotations
@@ -19,18 +19,18 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "퍼피두들"
-FARM = "미니두들 분양"
-SITE_NAME = "퍼피두들"
+BRAND = "쿠니네"
+FARM = "메인쿤 분양"
+SITE_NAME = "쿠니네"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
-IMAGE_BASE = "https://image.cattery.co.kr/doodle"
-IMAGE_COUNT = 40
+IMAGE_BASE = "https://image.cattery.co.kr/maincoon"
+IMAGE_COUNT = 59
 IMAGE_USE = 3  # 히어로 1 + 본문 2
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|puppydoodle".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|enmaincoon".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -45,7 +45,7 @@ def slugify(keyword: str, idx: int) -> str:
     base = "".join(
         c if c.isalnum() or c in "-_" else "-" for c in keyword.lower().replace(" ", "-")
     )
-    base = base.strip("-")[:36] or "doodle"
+    base = base.strip("-")[:36] or "maincoon"
     tail = f"{idx:02d}{''.join(random.choices(string.ascii_lowercase + string.digits, k=4))}"
     return f"{base}-{tail}"
 
@@ -64,41 +64,41 @@ def _page_to_summary(page: Dict[str, Any]) -> Dict[str, str]:
 
 def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
-    kw = keyword.strip() or "미니두들분양"
+    kw = keyword.strip() or "메인쿤분양"
     heroes = [
-        "분양 중인 미니두들 사진을 보고 크기를 정해 보세요",
-        "작은 체구, 곱슬 코트, 가족과 잘 지내는 성격",
-        "우리 집 첫 두들 — 그 느낌이 먼저입니다",
-        "사진을 보다가 고르는 미니두들",
+        "분양 중인 메인쿤 사진을 보고 성격을 정해 보세요",
+        "링스 팁, 풍성한 장모, 가족과 잘 지내는 성격",
+        "우리 집 첫 메인쿤 — 그 느낌이 먼저입니다",
+        "사진을 보다가 고르는 메인쿤",
     ]
     line2_opts = [
-        "우리 집의 두들",
+        "우리 집의 메인쿤",
         "가족과 함께",
         "입양 안내",
         "분양 사진",
     ]
     bar_opts = [
-        "분양 중인 미니두들 사진을 보고 크기를 정해 보세요",
-        "크기·성별만 알려 주시면 됩니다",
+        "분양 중인 메인쿤 사진을 보고 성격을 정해 보세요",
+        "성별·코트만 알려 주시면 됩니다",
         "사진부터 보고 상담을 여세요",
         "카카오톡으로 이어 가는 입양",
     ]
     intro_h2 = [
         f"{kw}, 집을 고르기 전에",
         f"사진을 보다가 마음이 가는 {kw}",
-        f"{kw}와 함께 보는 미니두들",
+        f"{kw}와 함께 보는 메인쿤",
         f"{kw}에서 아이를 만나는 순서",
     ]
 
-    title = f"{kw} | 우리 집 첫 두들"
+    title = f"{kw} | 우리 집 첫 메인쿤"
     if len(title) > 60:
-        title = f"{kw} | 미니두들 분양"
+        title = f"{kw} | 메인쿤 분양"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw}에서 가족과 함께 살 미니두들을 고르는 안내입니다. "
+        f"{kw}에서 가족과 함께 살 메인쿤을 고르는 안내입니다. "
         f"성격·털·입양 순서와 분양 중인 아이 사진을 정리했습니다. 카카오톡 상담."
     )
     if areas or stations:
@@ -116,9 +116,9 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             "h2": h2_0,
             "paragraphs": [
                 f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 ‘우리 집에 올 아이’의 모습입니다. "
-                f"미니두들은 사람을 잘 따르고 실내 크기에 맞추기 쉬워, {tone} 첫 반려견으로 많이 찾습니다.",
+                f"메인쿤은 사람을 잘 따르는 대형묘로, {tone} 첫 고양이로 많이 찾습니다.",
                 f"사진을 보다가 눈이 머무는 아이가 있으면 그 마음을 메모해 두세요. "
-                f"분양 중인 미니두들 모습은 메인 두들갤러리에서도 이어서 보실 수 있습니다.",
+                f"분양 중인 메인쿤 모습은 메인 갤러리에서도 이어서 보실 수 있습니다.",
                 f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 크기·성별, 아이와 함께 사는지 여부입니다. "
                 f"카카오톡 오픈채팅으로 상담해 주세요.",
             ],
@@ -126,7 +126,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "h2": f"{kw} 비용이 달라지는 이유",
             "paragraphs": [
-                f"미니두들 분양 비용은 크기, 혈통, 시기에 따라 달라집니다. "
+                f"메인쿤 분양 비용은 혈통, 세대, 시기에 따라 달라집니다. "
                 f"같은 키워드라도 아이마다 범위가 달라 단가를 단정하지 않습니다.",
                 f"상담 범위는 {LOCATION}입니다. 지금 만날 수 있는 아이와 포함 항목을 함께 확인할 수 있습니다.",
                 f"{kw}로 찾아오신 분이라면, 사진부터 보신 뒤 카카오톡 상담을 권합니다.",
@@ -137,7 +137,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             "paragraphs": [
                 f"{kw} 상담은 홈페이지 문의 또는 카카오톡 오픈채팅으로 가능합니다. "
                 f"지역과 희망 조건만 알려 주셔도 됩니다.",
-                f"사진을 더 보고 싶으시면 메인 두들갤러리로 이동해 주세요. 마음이 가는 아이가 있으면 바로 물어보시면 됩니다.",
+                f"사진을 더 보고 싶으시면 메인 갤러리로 이동해 주세요. 마음이 가는 아이가 있으면 바로 물어보시면 됩니다.",
             ],
         },
     ]
@@ -148,8 +148,8 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             "지역·희망 크기만 알려 주시면 안내받을 수 있습니다.",
         },
         {
-            "q": "미니두들은 어떤 성격인가요?",
-            "a": "사람을 잘 따르고 온순한 편입니다. 아이·가족과 함께 지낼 반려견을 원하는 경우가 많습니다. "
+            "q": "메인쿤은 어떤 성격인가요?",
+            "a": "사람을 잘 따르고 온순한 대형묘입니다. 아이·가족과 함께 지낼 반려묘를 원하는 경우가 많습니다. "
             "개체 차이는 상담에서 안내합니다.",
         },
         {
@@ -158,15 +158,15 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         },
         {
             "q": "분양 중인 아이는 사진을 볼 수 있나요?",
-            "a": "네. 메인 두들갤러리에서 분양 중인 미니두들 사진을 보실 수 있습니다.",
+            "a": "네. 메인 갤러리에서 분양 중인 메인쿤 사진을 보실 수 있습니다.",
         },
     ]
     now = datetime.utcnow().isoformat() + "Z"
     line2 = line2_opts[idx % len(line2_opts)]
     geo_kw = nearby_keyword_csv(kw)
     meta_keywords = (
-        f"{kw}, 미니두들분양, 골든두들분양, 골든두들분양가, 골든두들키우기, "
-        f"골든두들성격, 골든두들입양, 골든두들크기, 퍼피두들"
+        f"{kw}, 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, "
+        f"메인쿤성격, 메인쿤크기, 메인쿤분양가, 쿠니네"
     )
     if geo_kw:
         meta_keywords = f"{meta_keywords}, {geo_kw}"
@@ -176,7 +176,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "title": title,
         "metaDescription": meta_desc,
         "metaKeywords": meta_keywords,
-        "h1": f"{kw}, 우리 집 첫 두들",
+        "h1": f"{kw}, 우리 집 첫 메인쿤",
         "heroSubtitle": heroes[idx % len(heroes)],
         "heroBadge": "분양 안내",
         "heroTitleLine1": kw,
@@ -204,7 +204,7 @@ def write_html(page: Dict[str, Any], site_url: str) -> str:
         sections += f"<section><h2>{sec['h2']}</h2>{ps}</section>"
         if i < 2 and i + 1 < len(imgs):
             sections += (
-                f'<figure><img src="{imgs[i+1]}" alt="{page["keyword"]} 골든두들 {i+2}" '
+                f'<figure><img src="{imgs[i+1]}" alt="{page["keyword"]} 메인쿤 {i+2}" '
                 f'loading="lazy"/></figure>'
             )
     faqs = "".join(

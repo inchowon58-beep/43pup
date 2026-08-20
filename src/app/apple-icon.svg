@@ -1,9 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="퍼피두들">
-  <rect width="180" height="180" rx="56" fill="#3d2f54"/>
-  <ellipse cx="56" cy="62" rx="20" ry="31" fill="#e07a5f" transform="rotate(-28 56 62)"/>
-  <ellipse cx="124" cy="62" rx="20" ry="31" fill="#e07a5f" transform="rotate(28 124 62)"/>
-  <circle cx="90" cy="96" r="40" fill="#f7e6d8"/>
-  <circle cx="76" cy="90" r="6.2" fill="#3d2f54"/>
-  <circle cx="104" cy="90" r="6.2" fill="#3d2f54"/>
-  <ellipse cx="90" cy="108" rx="7.5" ry="5.2" fill="#e07a5f"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="쿠니네">
+  <rect width="180" height="180" rx="50" fill="#1f3a2e"/>
+  <path d="M50 90 L34 22 L87 68 Z" fill="#c4783a"/>
+  <path d="M34 22 L28 6 L48 40" stroke="#e8c9a0" stroke-width="6" stroke-linecap="round"/>
+  <path d="M130 90 L146 22 L93 68 Z" fill="#c4783a"/>
+  <path d="M146 22 L152 6 L132 40" stroke="#e8c9a0" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="90" cy="108" r="42" fill="#f3e6d4"/>
+  <circle cx="74" cy="102" r="6.4" fill="#1f3a2e"/>
+  <circle cx="106" cy="102" r="6.4" fill="#1f3a2e"/>
+  <ellipse cx="90" cy="120" rx="6.8" ry="4.8" fill="#c4783a"/>
 </svg>

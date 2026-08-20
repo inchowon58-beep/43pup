@@ -5,13 +5,13 @@ import { imageUrl } from "@/lib/images";
 const PROMISES = [
   {
     n: "01",
-    title: "미니두들분양과 골든두들분양",
-    desc: "아파트·주택에 맞는 크기부터. 성격·모질은 상담에서 맞춰 드립니다.",
+    title: "메인쿤분양과 대형묘 입양",
+    desc: "넉넉한 체구와 온순한 성격. 집 공간·생활 패턴에 맞춰 상담해 드립니다.",
   },
   {
     n: "02",
-    title: "골든두들성격과 키우기",
-    desc: "사람을 좋아하는 온순함, 그루밍과 산책 루틴까지 입양 전에 안내합니다.",
+    title: "메인쿤성격과 키우기",
+    desc: "사람을 잘 따르는 대형묘입니다. 장모 빗질·식사 루틴까지 입양 전에 안내합니다.",
   },
   {
     n: "03",
@@ -25,10 +25,10 @@ export default function About() {
     <section id="about" className="section">
       <div className="container grid items-center gap-10 md:grid-cols-2 md:gap-14">
         <div className="relative">
-          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(61,47,84,0.16)] md:aspect-[5/6]">
+          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(31,58,46,0.16)] md:aspect-[5/6]">
             <Image
               src={imageUrl(3)}
-              alt={`${SITE.name} 미니두들분양`}
+              alt={`${SITE.name} 메인쿤분양`}
               fill
               unoptimized
               className="object-cover"
@@ -37,14 +37,14 @@ export default function About() {
           </div>
         </div>
         <div>
-          <p className="section-kicker">PUPPY DOODLE</p>
+          <p className="section-kicker">KUNINE MAINE COON</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            첫 두들을
+            첫 메인쿤을
             <br />
-            집 크기에 맞게 안내합니다
+            집과 성격에 맞게 안내합니다
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            {SITE.brand}는 미니두들분양·골든두들분양을 외모만으로 소개하지 않습니다.
+            {SITE.brand}는 메인쿤분양을 외모만으로 소개하지 않습니다.
             희망 크기, 생활 환경, 함께 지낼 가족까지 맞춰 상담합니다.
           </p>
           <div className="mt-8 space-y-4">

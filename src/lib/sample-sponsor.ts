@@ -4,7 +4,7 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "퍼피두들 미니두들 (샘플)",
+  sponsor_name: "쿠니네 메인쿤 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "https://open.kakao.com/o/sxelLqJi",
   homepage_url: "https://www.naver.com",
@@ -12,7 +12,7 @@ export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   rental_price: "30만원",
   highlight_points: [
     "분양 중인 아이 사진 공개",
-    "가족형 미니두들",
+    "가족형 메인쿤",
     "전국 상담 가능",
     "방문·예약 진행 가능",
     "입양 준비 안내",
@@ -42,23 +42,23 @@ export function buildSampleSponsors(current: SiteSponsor): {
   };
 }
 
-export const SAMPLE_PAGE_KEYWORD = "강남 미니두들분양";
-export const SAMPLE_PAGE_H1 = "강남 미니두들분양, 퍼피두들 안내";
+export const SAMPLE_PAGE_KEYWORD = "강남 메인쿤분양";
+export const SAMPLE_PAGE_H1 = "강남 메인쿤분양, 쿠니네 안내";
 export const SAMPLE_PAGE_SUBTITLE =
-  "미니두들분양·골든두들분양 사진을 보고 크기를 정해 보세요.";
+  "메인쿤분양 사진을 보고 성격을 정해 보세요.";
 
 export const SAMPLE_SECTIONS = [
   {
-    h2: "강남 미니두들분양, 집을 고르기 전에",
+    h2: "강남 메인쿤분양, 집을 고르기 전에",
     paragraphs: [
-      "사진을 보다가 눈이 머무는 아이가 있으면 그 마음을 메모해 두세요. 작은 체구와 곱슬 털의 미니두들을 강남에서도 상담으로 안내받을 수 있습니다.",
-      "원하는 크기·성별만 알려 주시면 지금 만날 수 있는 아이를 안내합니다. 방문이 어려우면 카카오톡으로 사진을 더 받아 보세요.",
+      "사진을 보다가 눈이 머무는 아이가 있으면 그 마음을 메모해 두세요. 온순한 대형묘 메인쿤을 강남에서도 상담으로 안내받을 수 있습니다.",
+      "원하는 성별·코트만 알려 주시면 지금 만날 수 있는 아이를 안내합니다. 방문이 어려우면 카카오톡으로 사진을 더 받아 보세요.",
     ],
   },
   {
-    h2: "미니두들 입양은 이렇게 이어집니다",
+    h2: "메인쿤 입양은 이렇게 이어집니다",
     paragraphs: [
-      "사진 확인 → 상담 → 방문 또는 추가 사진 → 집으로 맞이하기 순입니다. 비용은 크기·혈통·시기에 따라 달라지며, 포함 항목을 먼저 확인한 뒤에 결정하시면 됩니다.",
+      "사진 확인 → 상담 → 방문 또는 추가 사진 → 집으로 맞이하기 순입니다. 비용은 혈통·세대·시기에 따라 달라지며, 포함 항목을 먼저 확인한 뒤에 결정하시면 됩니다.",
     ],
   },
 ] as const;

@@ -1,11 +1,12 @@
 import { SITE } from "./site";
 
 /**
- * 화면 노출 순서. 파일 번호(01~40)를 섞어 히어로·갤러리가 다르게 보이게 함.
+ * 화면 노출 순서. 파일 번호(01~59)를 섞어 히어로·갤러리가 다르게 보이게 함.
  */
 const DISPLAY_ORDER = [
-  12, 27, 4, 18, 35, 9, 23, 2, 30, 15, 38, 7, 21, 1, 33, 16, 40, 6, 28, 11, 36, 19, 3, 25, 13, 32,
-  8, 22, 5, 29, 14, 37, 10, 24, 17, 39, 20, 34, 26, 31,
+  46, 5, 6, 54, 17, 7, 44, 58, 36, 24, 8, 50, 11, 9, 19, 57, 26, 15, 10, 48, 47, 29, 28, 21, 16,
+  22, 40, 34, 32, 12, 4, 1, 2, 51, 35, 55, 45, 53, 20, 41, 31, 39, 52, 37, 27, 33, 14, 38, 18, 30,
+  56, 25, 43, 42, 49, 13, 23, 59, 3,
 ] as const;
 
 function fileIndex(logicalIndex: number): number {
@@ -13,7 +14,7 @@ function fileIndex(logicalIndex: number): number {
   return DISPLAY_ORDER[n - 1] ?? n;
 }
 
-/** doodle 01.webp ~ N.webp — 논리 순서는 DISPLAY_ORDER */
+/** maincoon 01.webp ~ N.webp — 논리 순서는 DISPLAY_ORDER */
 export function imageUrl(index: number): string {
   return `${SITE.imageBase}/${String(fileIndex(index)).padStart(2, "0")}.webp`;
 }
@@ -23,10 +24,10 @@ function clampImageIndex(num: number): number {
   return Math.min(SITE.imageCount, Math.max(1, Math.floor(num)));
 }
 
-/** 구 CDN·잘못된 URL → doodle 01~N 로 맞춤 */
+/** 구 CDN·잘못된 URL → maincoon 01~N 로 맞춤 */
 export function migrateImageUrl(url: string): string {
   return url.replace(
-    /https?:\/\/image\.cattery\.co\.kr\/(?:jejumilgam|dogboho|petfuneral|doodle)\/(?:new)?(\d{1,3})\.webp/gi,
+    /https?:\/\/image\.cattery\.co\.kr\/(?:jejumilgam|dogboho|petfuneral|doodle|maincoon)\/(?:new)?(\d{1,3})\.webp/gi,
     (_m, num: string) =>
       `${SITE.imageBase}/${String(clampImageIndex(Number(num))).padStart(2, "0")}.webp`
   );
@@ -47,7 +48,7 @@ function mulberry32(seed: number) {
 
 export function pickImages(count: number, seed = 42): string[] {
   const pool = allImageUrls();
-  const rng = mulberry32(seed ^ 0x5055d00d);
+  const rng = mulberry32(seed ^ 0xc0011e59);
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
@@ -58,11 +59,11 @@ export function pickImages(count: number, seed = 42): string[] {
 
 export function galleryAlt(keywordOrIndex: string | number, index = 1): string {
   const suffixes = [
-    "미니두들분양 사진",
-    "골든두들분양 모습",
-    "가족형 두들 키우기",
-    "골든두들성격",
-    "미니두들입양 사진",
+    "메인쿤분양 사진",
+    "메인쿤입양 모습",
+    "대형묘 키우기",
+    "메인쿤성격",
+    "메인쿤고양이 사진",
   ];
   if (typeof keywordOrIndex === "number") {
     const i = keywordOrIndex;

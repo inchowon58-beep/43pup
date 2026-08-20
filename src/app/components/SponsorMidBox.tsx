@@ -18,7 +18,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
       <aside className="my-10 border border-[var(--sky)] bg-[var(--sky-soft)] p-6 text-center md:p-8">
         <LiveEngineBadge />
         <p className="mt-3 text-lg font-extrabold text-[var(--navy)] md:text-xl">
-          📢 전국 골든두들 분양 입점 제휴 / 사이트 임대 모집 중
+          📢 전국 메인쿤 분양 입점 제휴 / 사이트 임대 모집 중
         </p>
         <p className="mt-2 text-sm text-[var(--muted)]">{sponsor.recruiting_notice}</p>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
@@ -84,7 +84,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
         인증 확인
       </span>
       <p className="pt-6 text-center text-lg font-extrabold text-[var(--navy)] md:text-xl">
-        📍 검증된 골든두들 분양
+        📍 검증된 메인쿤 분양
       </p>
       <div className="mt-4 flex flex-col items-center gap-3 text-center">
         {sponsor.sponsor_name && (

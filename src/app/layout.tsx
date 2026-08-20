@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: SITE.title,
       description:
-        "미니두들분양, 골든두들분양, 버니두들분양, 골든두들분양가, 골든두들키우기, 골든두들성격, 골든두들입양, 골든두들크기",
+        "메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가",
       images: [SITE.ogImage],
     },
     robots: {

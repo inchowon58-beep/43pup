@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  /* 퍼피두들 — plum kennel / terracotta puppy */
-  --sky: #5c4a7a;
-  --sky-deep: #3d2f54;
-  --sky-soft: #efeaf6;
-  --coral: #e07a5f;
-  --coral-deep: #c45c45;
-  --coral-soft: #fbe8e1;
-  --ink: #241c28;
-  --muted: #6a5f6e;
-  --bg: #faf6f1;
-  --bg-warm: #fffdf9;
-  --line: rgba(36, 28, 40, 0.1);
-  --radius: 1.25rem;
-  --radius-sm: 0.85rem;
-  --radius-lg: 1.75rem;
+  /* 쿠니네 — forest cattery / copper maine coon */
+  --sky: #3d5c4a;
+  --sky-deep: #1f3a2e;
+  --sky-soft: #e8f0ea;
+  --coral: #c4783a;
+  --coral-deep: #a35e28;
+  --coral-soft: #f3e6d4;
+  --ink: #1c241e;
+  --muted: #5e6a62;
+  --bg: #f7f3ea;
+  --bg-warm: #fbf8f1;
+  --line: rgba(28, 36, 30, 0.1);
+  --radius: 1.1rem;
+  --radius-sm: 0.7rem;
+  --radius-lg: 1.55rem;
   --font: "Pretendard", "Noto Sans KR", sans-serif;
-  --navy: #3d2f54;
-  --green: #5c4a7a;
+  --navy: #1f3a2e;
+  --green: #3d5c4a;
   --orange: var(--coral);
   --orange-deep: var(--coral-deep);
   --orange-soft: var(--coral-soft);
@@ -36,7 +36,7 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #efe6dc 100%);
+    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #ebe4d4 100%);
   font-family: var(--font);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -109,13 +109,13 @@ img {
   font-size: 1rem;
   letter-spacing: -0.01em;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 10px 24px rgba(217, 137, 91, 0.28);
+  box-shadow: 0 10px 24px rgba(196, 120, 58, 0.28);
   cursor: pointer;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(217, 137, 91, 0.36);
+  box-shadow: 0 14px 30px rgba(196, 120, 58, 0.36);
 }
 
 .btn-secondary {
@@ -148,7 +148,7 @@ img {
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 700;
-  box-shadow: 0 10px 24px rgba(47, 93, 80, 0.28);
+  box-shadow: 0 10px 24px rgba(31, 58, 46, 0.28);
   cursor: pointer;
   transition: transform 0.25s ease;
 }
