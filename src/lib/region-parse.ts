@@ -1,5 +1,8 @@
 /** 키워드에서 지역명 추출 (예: 수원골든두들분양 → 수원) */
 export const SERVICE_SUFFIXES = [
+  "미니두들분양",
+  "미니두들입양",
+  "미니두들",
   "골든두들분양",
   "골든두들입양",
   "골든두들키우기",
@@ -85,10 +88,10 @@ export function extractRegionFromKeyword(keyword: string): string | null {
 /** 키워드에서 SEO 접미사 추출 (예: 수원골든두들분양 → 골든두들분양) */
 export function extractKeywordTheme(keyword: string): string {
   const normalized = keyword.replace(/\s+/g, "").trim();
-  if (!normalized) return "골든두들분양";
+  if (!normalized) return "미니두들분양";
   const sorted = [...SERVICE_SUFFIXES].sort((a, b) => b.length - a.length);
   for (const suffix of sorted) {
     if (suffix.length >= 3 && normalized.includes(suffix)) return suffix;
   }
-  return "골든두들분양";
+  return "미니두들분양";
 }

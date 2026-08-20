@@ -10,7 +10,7 @@ from typing import Any, Dict
 from project_paths import webdoc_dir
 
 DEFAULT_VM_PATH = ""
-DEFAULT_SITE_URL = "https://doodle.agapet.co.kr"
+DEFAULT_SITE_URL = "https://doodle.puppyshop.co.kr"
 
 
 def settings_path() -> str:
@@ -25,7 +25,7 @@ def default_settings() -> Dict[str, Any]:
     return {
         "site_url": DEFAULT_SITE_URL,
         "out_dir": os.path.join(webdoc_dir(), "output"),
-        "keywords_text": "골든두들분양\n버니두들분양\n골든두들분양가\n골든두들키우기\n골든두들성격\n골든두들입양\n골든두들무료분양\n골든두들크기",
+        "keywords_text": "미니두들분양\n골든두들분양\n버니두들분양\n골든두들분양가\n골든두들키우기\n골든두들성격\n골든두들입양\n골든두들크기",
         "regions_text": "서울\n부산\n대구\n인천\n광주\n대전\n울산\n수원\n성남\n고양",
         "total_target": "500",
         "daily_limit": "30",
@@ -50,7 +50,7 @@ def default_settings() -> Dict[str, Any]:
         "gemini_model": "gemini-3.5-flash-lite",
         "gemini_prompt": (
             "톤: 따뜻하고 입양하고 싶게. 사실(성격·털·비용 요인)은 분명히, 문장은 사진 옆에서 이야기하듯.\n"
-            "키워드에 지역명이 있으면 그 지역에서 골든두들을 고르는 독자 시점으로 쓰세요.\n"
+            "키워드에 지역명이 있으면 그 지역에서 미니두들을 고르는 독자 시점으로 쓰세요.\n"
             "금지: 가격 단정, 허위, 의료 단정, 타사 비방, 장례·엔딩 톤, 전화번호.\n"
             "{keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요. 상담은 카카오톡만.\n"
         ),

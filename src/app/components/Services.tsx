@@ -36,12 +36,12 @@ export default function Services() {
       <div className="container">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="section-kicker">GOLDEN DOODLE</p>
+            <p className="section-kicker">FAMILY DOODLE</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              골든두들분양, 가정에 맞는 이유
+              미니두들분양, 집 크기에 맞는 이유
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              골든두들성격·골든두들크기·버니두들분양까지 비교해 보실 수 있습니다.
+              미니·미디엄 크기와 골든두들성격·버니두들분양까지 비교해 보실 수 있습니다.
               사진을 보다 보면 맞는 아이가 먼저 보입니다.
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function Services() {
                   className="object-cover transition duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(47,93,80,0.82)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(61,47,84,0.82)_100%)]" />
                 <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>

@@ -4,8 +4,8 @@ import { SITE } from "./site";
  * 화면 노출 순서. 파일 번호(01~40)를 섞어 히어로·갤러리가 다르게 보이게 함.
  */
 const DISPLAY_ORDER = [
-  8, 22, 5, 31, 17, 39, 11, 1, 25, 6, 34, 19, 3, 28, 13, 36, 9, 21, 2, 40, 14, 7, 33, 18, 27, 10,
-  35, 23, 4, 29, 16, 12, 38, 20, 32, 15, 26, 37, 24, 30,
+  12, 27, 4, 18, 35, 9, 23, 2, 30, 15, 38, 7, 21, 1, 33, 16, 40, 6, 28, 11, 36, 19, 3, 25, 13, 32,
+  8, 22, 5, 29, 14, 37, 10, 24, 17, 39, 20, 34, 26, 31,
 ] as const;
 
 function fileIndex(logicalIndex: number): number {
@@ -47,7 +47,7 @@ function mulberry32(seed: number) {
 
 export function pickImages(count: number, seed = 42): string[] {
   const pool = allImageUrls();
-  const rng = mulberry32(seed ^ 0xa6ad00d1);
+  const rng = mulberry32(seed ^ 0x5055d00d);
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
@@ -58,11 +58,11 @@ export function pickImages(count: number, seed = 42): string[] {
 
 export function galleryAlt(keywordOrIndex: string | number, index = 1): string {
   const suffixes = [
-    "골든두들분양 사진",
-    "버니두들분양 모습",
-    "골든두들키우기 안내",
+    "미니두들분양 사진",
+    "골든두들분양 모습",
+    "가족형 두들 키우기",
     "골든두들성격",
-    "골든두들입양 사진",
+    "미니두들입양 사진",
   ];
   if (typeof keywordOrIndex === "number") {
     const i = keywordOrIndex;

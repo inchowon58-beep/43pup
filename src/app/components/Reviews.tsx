@@ -43,7 +43,7 @@ export default function Reviews() {
             우리 집에 온 뒤의 이야기
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            {SITE.brand}에서 골든두들을 만난 보호자님의 후기입니다.
+            {SITE.brand}에서 첫 두들을 만난 보호자님의 후기입니다.
           </p>
         </div>
 

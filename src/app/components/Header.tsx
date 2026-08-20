@@ -19,21 +19,21 @@ function BrandMark() {
   return (
     <Link href="/" className="flex items-center gap-3">
       <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden className="shrink-0">
-        <rect width="36" height="36" rx="8" fill="#d9895b" />
+        <rect width="36" height="36" rx="12" fill="#e07a5f" />
         <text
           x="18"
           y="24"
           textAnchor="middle"
-          fill="#2f5d50"
+          fill="#3d2f54"
           fontSize="16"
           fontWeight="800"
           fontFamily="Pretendard, sans-serif"
         >
-          A
+          P
         </text>
       </svg>
       <span className="flex flex-col leading-none">
-        <span className="text-[0.62rem] font-medium tracking-[0.22em] text-[#f3c9a3]">
+        <span className="text-[0.62rem] font-medium tracking-[0.22em] text-[#f5d0c5]">
           {SITE.brandEn}
         </span>
         <span className="mt-1 text-[1.08rem] font-bold tracking-tight text-white md:text-[1.2rem]">
@@ -48,15 +48,15 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#2f5d50] text-white">
-      <div className="h-px bg-[linear-gradient(90deg,transparent,#d9895b,transparent)]" />
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#3d2f54] text-white">
+      <div className="h-px bg-[linear-gradient(90deg,transparent,#e07a5f,transparent)]" />
 
       <div className="container flex h-[3.7rem] items-center justify-between md:h-[4.5rem]">
         <BrandMark />
 
         <nav className="hidden items-center gap-6 text-[0.88rem] font-medium text-white/70 lg:flex">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-[#f3c9a3]">
+            <Link key={item.href} href={item.href} className="hover:text-[#f5d0c5]">
               {item.label}
             </Link>
           ))}
@@ -84,7 +84,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#2f5d50] px-4 py-3 lg:hidden">
+        <div className="border-t border-white/10 bg-[#3d2f54] px-4 py-3 lg:hidden">
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <Link

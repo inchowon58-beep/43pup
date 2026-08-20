@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  /* 아가두들 — sage kennel / apricot puppy */
-  --sky: #4f7d6c;
-  --sky-deep: #2f5d50;
-  --sky-soft: #e7f1ec;
-  --coral: #d9895b;
-  --coral-deep: #b86a3e;
-  --coral-soft: #f8eadf;
-  --ink: #1e2a24;
-  --muted: #5d6b64;
-  --bg: #f7f3ee;
-  --bg-warm: #fffaf4;
-  --line: rgba(30, 42, 36, 0.1);
-  --radius: 0.75rem;
-  --radius-sm: 0.55rem;
-  --radius-lg: 1.1rem;
+  /* 퍼피두들 — plum kennel / terracotta puppy */
+  --sky: #5c4a7a;
+  --sky-deep: #3d2f54;
+  --sky-soft: #efeaf6;
+  --coral: #e07a5f;
+  --coral-deep: #c45c45;
+  --coral-soft: #fbe8e1;
+  --ink: #241c28;
+  --muted: #6a5f6e;
+  --bg: #faf6f1;
+  --bg-warm: #fffdf9;
+  --line: rgba(36, 28, 40, 0.1);
+  --radius: 1.25rem;
+  --radius-sm: 0.85rem;
+  --radius-lg: 1.75rem;
   --font: "Pretendard", "Noto Sans KR", sans-serif;
-  --navy: #2f5d50;
-  --green: #4f7d6c;
+  --navy: #3d2f54;
+  --green: #5c4a7a;
   --orange: var(--coral);
   --orange-deep: var(--coral-deep);
   --orange-soft: var(--coral-soft);
@@ -36,7 +36,7 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #ebe4d8 100%);
+    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #efe6dc 100%);
   font-family: var(--font);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;

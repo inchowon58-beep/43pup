@@ -23,7 +23,7 @@ const initial: FormState = {
 };
 
 const TOPICS = [
-  { id: "분양상담", label: "골든두들 분양 상담" },
+  { id: "분양상담", label: "미니두들 분양 상담" },
   { id: "사진문의", label: "분양 중인 아이 사진 문의" },
   { id: "방문예약", label: "방문·예약 문의" },
   { id: "기타", label: "기타 문의" },
