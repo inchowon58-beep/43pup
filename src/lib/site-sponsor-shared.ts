@@ -12,10 +12,12 @@ export type SiteSponsor = {
   recruiting_notice: string;
   rental_price: string;
   highlight_points: string[];
-  /** 입점 대기 중 웹문서에 노출하는 협회 안내 영상 */
+  /** 입점 대기 중 웹문서 상단·중간 안내 영상 */
   youtube_url: string;
+  youtube_url_2: string;
   /** 입점 후 업체가 등록한 영상 */
   sponsor_youtube_url: string;
+  sponsor_youtube_url_2: string;
   sponsor_youtube_channel: string;
   sponsor_youtube_desc: string;
 };
@@ -39,7 +41,9 @@ export const DEFAULT_SPONSOR: SiteSponsor = {
     "계약 전 체크리스트",
   ],
   youtube_url: "",
+  youtube_url_2: "",
   sponsor_youtube_url: "",
+  sponsor_youtube_url_2: "",
   sponsor_youtube_channel: "",
   sponsor_youtube_desc: "",
 };
@@ -109,9 +113,21 @@ export function youtubeEmbedUrl(id: string): string {
   return `https://www.youtube-nocookie.com/embed/${id}`;
 }
 
-export function sponsorYoutubeUrl(sponsor: SiteSponsor): string {
+function pickYoutubePair(first: string, second: string, slot: 1 | 2): string {
+  const a = (first || "").trim();
+  const b = (second || "").trim();
+  if (slot === 1) return a || b;
+  return b || a;
+}
+
+export function sponsorYoutubeUrl(sponsor: SiteSponsor, slot: 1 | 2 = 1): string {
   if (sponsor.status === "ACTIVE") {
-    return (sponsor.sponsor_youtube_url || sponsor.youtube_url || "").trim();
+    const tenant = pickYoutubePair(
+      sponsor.sponsor_youtube_url,
+      sponsor.sponsor_youtube_url_2,
+      slot
+    );
+    if (tenant) return tenant;
   }
-  return (sponsor.youtube_url || "").trim();
+  return pickYoutubePair(sponsor.youtube_url, sponsor.youtube_url_2, slot);
 }

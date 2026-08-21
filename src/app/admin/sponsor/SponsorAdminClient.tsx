@@ -36,7 +36,9 @@ export default function SponsorAdminClient() {
       "계약 전 체크리스트",
     ],
     youtube_url: "",
+    youtube_url_2: "",
     sponsor_youtube_url: "",
+    sponsor_youtube_url_2: "",
     sponsor_youtube_channel: "",
     sponsor_youtube_desc: "",
   });
@@ -65,7 +67,9 @@ export default function SponsorAdminClient() {
         ...rest,
         homepage_url: rest.homepage_url || "",
         youtube_url: rest.youtube_url || "",
+        youtube_url_2: rest.youtube_url_2 || "",
         sponsor_youtube_url: rest.sponsor_youtube_url || "",
+        sponsor_youtube_url_2: rest.sponsor_youtube_url_2 || "",
         sponsor_youtube_channel: rest.sponsor_youtube_channel || "",
         sponsor_youtube_desc: rest.sponsor_youtube_desc || "",
         highlight_points: padHighlightPoints(rest.highlight_points),
@@ -120,7 +124,9 @@ export default function SponsorAdminClient() {
           ...rest,
           homepage_url: rest.homepage_url || "",
           youtube_url: rest.youtube_url || "",
+          youtube_url_2: rest.youtube_url_2 || "",
           sponsor_youtube_url: rest.sponsor_youtube_url || "",
+          sponsor_youtube_url_2: rest.sponsor_youtube_url_2 || "",
           sponsor_youtube_channel: rest.sponsor_youtube_channel || "",
           sponsor_youtube_desc: rest.sponsor_youtube_desc || "",
           highlight_points: padHighlightPoints(rest.highlight_points),
@@ -278,26 +284,47 @@ export default function SponsorAdminClient() {
         </div>
 
         {isRecruiting ? (
-          <div className="field">
-            <label htmlFor="youtube_url">유튜브 영상 주소</label>
-            <input
-              id="youtube_url"
-              value={form.youtube_url || ""}
-              onChange={(e) => setForm({ ...form, youtube_url: e.target.value })}
-              placeholder="https://www.youtube.com/watch?v=..."
-            />
-            <p className="mt-1 text-xs text-[var(--muted)]">
-              웹문서 상단 박스 왼쪽에 미리보기로 나갑니다. 입점 후에는 입점업체 영상으로 바뀝니다.
-            </p>
-          </div>
+          <>
+            <div className="field">
+              <label htmlFor="youtube_url">유튜브 영상 주소 1 (상단)</label>
+              <input
+                id="youtube_url"
+                value={form.youtube_url || ""}
+                onChange={(e) => setForm({ ...form, youtube_url: e.target.value })}
+                placeholder="https://www.youtube.com/watch?v=..."
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="youtube_url_2">유튜브 영상 주소 2 (본문 중간)</label>
+              <input
+                id="youtube_url_2"
+                value={form.youtube_url_2 || ""}
+                onChange={(e) => setForm({ ...form, youtube_url_2: e.target.value })}
+                placeholder="https://www.youtube.com/watch?v=..."
+              />
+              <p className="mt-1 text-xs text-[var(--muted)]">
+                SEO 페이지 상단·중간에 각각 나갑니다. 하나만 넣으면 두 자리 모두 같은 영상이
+                나갑니다.
+              </p>
+            </div>
+          </>
         ) : (
           <>
             <div className="field">
-              <label htmlFor="sponsor_youtube_url">입점업체 유튜브 영상 주소</label>
+              <label htmlFor="sponsor_youtube_url">입점업체 유튜브 영상 주소 1 (상단)</label>
               <input
                 id="sponsor_youtube_url"
                 value={form.sponsor_youtube_url || ""}
                 onChange={(e) => setForm({ ...form, sponsor_youtube_url: e.target.value })}
+                placeholder="https://www.youtube.com/watch?v=..."
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="sponsor_youtube_url_2">입점업체 유튜브 영상 주소 2 (본문 중간)</label>
+              <input
+                id="sponsor_youtube_url_2"
+                value={form.sponsor_youtube_url_2 || ""}
+                onChange={(e) => setForm({ ...form, sponsor_youtube_url_2: e.target.value })}
                 placeholder="https://www.youtube.com/watch?v=..."
               />
             </div>
@@ -320,7 +347,8 @@ export default function SponsorAdminClient() {
                 placeholder="예: 확인할 항목과 주의사항을 짧게 정리한 안내 영상입니다."
               />
               <p className="mt-1 text-xs text-[var(--muted)]">
-                채널명과 설명이 영상 오른쪽에 함께 나가며, 해당 유튜브를 추천하는 안내로 노출됩니다.
+                하나만 넣으면 두 자리 모두 같은 영상이 나갑니다. 채널명·설명은 영상 오른쪽에
+                함께 노출됩니다.
               </p>
             </div>
           </>

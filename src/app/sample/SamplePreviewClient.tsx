@@ -134,7 +134,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           {SAMPLE_PAGE_H1}
         </p>
 
-        <DoodleGalleryCta sponsor={sponsor} />
+        <DoodleGalleryCta sponsor={sponsor} slot={1} />
 
         {SAMPLE_SECTIONS.map((sec, si) => (
           <section key={sec.h2} className="mb-12">
@@ -146,6 +146,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
               </p>
             ))}
             {si === 0 && <SponsorMidBox sponsor={sponsor} showPreviewLink={false} />}
+            {si === 1 && <DoodleGalleryCta sponsor={sponsor} slot={2} />}
           </section>
         ))}
 

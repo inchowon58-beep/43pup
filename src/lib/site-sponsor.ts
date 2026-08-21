@@ -76,7 +76,9 @@ function normalize(raw: Partial<SiteSponsor>): SiteSponsor {
     rental_price: (raw.rental_price || DEFAULT_SPONSOR.rental_price).trim(),
     highlight_points: points.length ? points : DEFAULT_SPONSOR.highlight_points,
     youtube_url: (raw.youtube_url || "").trim(),
+    youtube_url_2: (raw.youtube_url_2 || "").trim(),
     sponsor_youtube_url: (raw.sponsor_youtube_url || "").trim(),
+    sponsor_youtube_url_2: (raw.sponsor_youtube_url_2 || "").trim(),
     sponsor_youtube_channel: (raw.sponsor_youtube_channel || "").trim(),
     sponsor_youtube_desc: (raw.sponsor_youtube_desc || "").trim(),
   };

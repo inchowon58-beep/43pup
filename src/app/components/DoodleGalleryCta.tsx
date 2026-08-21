@@ -12,11 +12,13 @@ import {
 export default function DoodleGalleryCta({
   className = "",
   sponsor,
+  slot = 1,
 }: {
   className?: string;
   sponsor?: SiteSponsor;
+  slot?: 1 | 2;
 }) {
-  const videoId = sponsor ? youtubeVideoId(sponsorYoutubeUrl(sponsor)) : null;
+  const videoId = sponsor ? youtubeVideoId(sponsorYoutubeUrl(sponsor, slot)) : null;
 
   if (!videoId) {
     return (

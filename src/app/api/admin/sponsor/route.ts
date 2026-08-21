@@ -38,7 +38,9 @@ export async function PUT(req: Request) {
       rental_price: String(body.rental_price || ""),
       highlight_points: Array.isArray(body.highlight_points) ? body.highlight_points : [],
       youtube_url: String(body.youtube_url || ""),
+      youtube_url_2: String(body.youtube_url_2 || ""),
       sponsor_youtube_url: String(body.sponsor_youtube_url || ""),
+      sponsor_youtube_url_2: String(body.sponsor_youtube_url_2 || ""),
       sponsor_youtube_channel: String(body.sponsor_youtube_channel || ""),
       sponsor_youtube_desc: String(body.sponsor_youtube_desc || ""),
     });

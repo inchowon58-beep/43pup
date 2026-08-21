@@ -18,7 +18,9 @@ export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
     "계약 전 체크리스트",
   ],
   youtube_url: "",
+  youtube_url_2: "",
   sponsor_youtube_url: "",
+  sponsor_youtube_url_2: "",
   sponsor_youtube_channel: "한국국제결혼협회 정보안내",
   sponsor_youtube_desc:
     "확인할 항목과 주의사항을 짧게 정리한 안내 영상입니다. 상담 전에 먼저 보시면 좋습니다.",
@@ -44,8 +46,13 @@ export function buildSampleSponsors(current: SiteSponsor): {
       link_url: SAMPLE_ACTIVE_SPONSOR.link_url,
       homepage_url: SAMPLE_ACTIVE_SPONSOR.homepage_url,
       youtube_url: current.youtube_url || "",
+      youtube_url_2: current.youtube_url_2 || "",
       sponsor_youtube_url:
         current.sponsor_youtube_url || current.youtube_url || SAMPLE_ACTIVE_SPONSOR.sponsor_youtube_url,
+      sponsor_youtube_url_2:
+        current.sponsor_youtube_url_2 ||
+        current.youtube_url_2 ||
+        SAMPLE_ACTIVE_SPONSOR.sponsor_youtube_url_2,
       sponsor_youtube_channel:
         current.sponsor_youtube_channel || SAMPLE_ACTIVE_SPONSOR.sponsor_youtube_channel,
       sponsor_youtube_desc:
