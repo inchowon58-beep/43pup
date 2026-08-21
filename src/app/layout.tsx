@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: SITE.title,
       description:
-        "국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 한국국제결혼협회",
+        "국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 글로벌 메이트",
       images: [SITE.ogImage],
     },
     robots: {

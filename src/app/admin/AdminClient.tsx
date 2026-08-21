@@ -110,7 +110,7 @@ export default function AdminClient() {
   const isSponsor = role === "sponsor";
 
   function absolutePageUrl(path: string) {
-    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.globalwedding.co.kr").replace(
+    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://globalmate.dmcmusic.co.kr").replace(
       /\/$/,
       ""
     );
@@ -396,7 +396,7 @@ export default function AdminClient() {
           <p className="text-sm font-bold text-[var(--orange)]">Admin</p>
           <h1 className="mt-2 text-3xl font-extrabold text-[var(--navy)]">관리자 로그인</h1>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            한국국제결혼협회 · 문의·SEO 발행 관리
+            글로벌 메이트 · 문의·SEO 발행 관리
           </p>
           <label className="mt-6 block text-sm font-semibold">
             아이디

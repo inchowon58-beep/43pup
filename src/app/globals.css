@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  /* 한국국제결혼협회 — wine / rose gold */
-  --sky: #7a2d45;
-  --sky-deep: #5c1a2e;
-  --sky-soft: #f6ecef;
-  --coral: #c9a07a;
-  --coral-deep: #a67c52;
-  --coral-soft: #f3e6d6;
-  --ink: #2a1c1f;
-  --muted: #6b575c;
-  --bg: #faf6f2;
-  --bg-warm: #fffaf6;
-  --line: rgba(92, 26, 46, 0.1);
-  --radius: 0.55rem;
-  --radius-sm: 0.35rem;
-  --radius-lg: 0.9rem;
+  /* 글로벌 메이트 — ocean teal / sunset coral */
+  --sky: #1a7a8c;
+  --sky-deep: #0d4a56;
+  --sky-soft: #e8f4f6;
+  --coral: #e07a5f;
+  --coral-deep: #c45c42;
+  --coral-soft: #fdeee8;
+  --ink: #1a2e32;
+  --muted: #5a6d71;
+  --bg: #f4f8f7;
+  --bg-warm: #fff8f4;
+  --line: rgba(13, 74, 86, 0.12);
+  --radius: 0.85rem;
+  --radius-sm: 0.5rem;
+  --radius-lg: 1.15rem;
   --font: "Pretendard", "Noto Sans KR", sans-serif;
-  --navy: #5c1a2e;
-  --green: #7a2d45;
+  --navy: #0d4a56;
+  --green: #1a7a8c;
   --orange: var(--coral);
   --orange-deep: var(--coral-deep);
   --orange-soft: var(--coral-soft);
@@ -36,7 +36,7 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #f0e4dc 100%);
+    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #dceaea 100%);
   font-family: var(--font);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -109,13 +109,13 @@ img {
   font-size: 1rem;
   letter-spacing: -0.01em;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 10px 24px rgba(201, 160, 122, 0.28);
+  box-shadow: 0 10px 24px rgba(224, 122, 95, 0.28);
   cursor: pointer;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(201, 160, 122, 0.36);
+  box-shadow: 0 14px 30px rgba(224, 122, 95, 0.36);
 }
 
 .btn-secondary {
@@ -148,7 +148,7 @@ img {
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 700;
-  box-shadow: 0 10px 24px rgba(92, 26, 46, 0.28);
+  box-shadow: 0 10px 24px rgba(13, 74, 86, 0.28);
   cursor: pointer;
   transition: transform 0.25s ease;
 }
@@ -314,12 +314,12 @@ img {
   font-size: 0.88rem;
   color: #fff;
   background: var(--coral);
-  box-shadow: 0 8px 20px rgba(201, 160, 122, 0.28);
+  box-shadow: 0 8px 20px rgba(224, 122, 95, 0.28);
 }
 
 .fixed-cta-call--alt {
   background: var(--sky);
-  box-shadow: 0 8px 20px rgba(92, 26, 46, 0.3);
+  box-shadow: 0 8px 20px rgba(13, 74, 86, 0.3);
 }
 
 .fixed-cta--inline {

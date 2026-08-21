@@ -80,7 +80,7 @@ export async function GET(req: Request) {
         heroSubtitle: SITE.taglineEn,
         sections: [
           {
-            h2: "한국국제결혼협회",
+            h2: "글로벌 메이트",
             paragraphs: [SITE.description, SITE.tagline],
           },
         ],

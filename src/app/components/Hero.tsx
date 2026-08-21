@@ -16,12 +16,12 @@ export default function Hero() {
           className="object-cover object-[center_28%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(92,26,46,0.5)_0%,rgba(92,26,46,0.18)_38%,rgba(42,18,24,0.88)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,74,86,0.48)_0%,rgba(13,74,86,0.16)_38%,rgba(8,32,38,0.9)_100%)]" />
       </div>
 
       <div className="container relative flex min-h-[92svh] flex-col justify-end pb-28 pt-28 md:pb-24">
         <div className="animate-rise max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.22em] text-[#e8c9a0]">
+          <p className="text-xs font-semibold tracking-[0.22em] text-[#9ee3d8]">
             {SITE.taglineEn}
           </p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-[3.2rem]">
@@ -34,7 +34,7 @@ export default function Hero() {
             {SITE.tagline}. 한 업체를 홍보하지 않습니다. 예비고객이 먼저 알아야 할 주의점과
             확인 항목을 정리합니다.
           </p>
-          <p className="mt-4 max-w-xl text-xs leading-relaxed text-[#f3e6d6] md:text-sm">
+          <p className="mt-4 max-w-xl text-xs leading-relaxed text-[#fdeee8] md:text-sm">
             {KEYWORD_INQUIRY}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">

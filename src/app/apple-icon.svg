@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="한국국제결혼협회">
-  <rect width="180" height="180" rx="40" fill="#5c1a2e"/>
-  <circle cx="70" cy="98" r="38" fill="none" stroke="#e8c9a0" stroke-width="9"/>
-  <circle cx="110" cy="98" r="38" fill="none" stroke="#c9a07a" stroke-width="9"/>
-  <path d="M90 38 L93.4 47.6 L103.6 48.2 L95.6 54.6 L98 64.4 L90 59 L82 64.4 L84.4 54.6 L76.4 48.2 L86.6 47.6 Z" fill="#e8c9a0"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="글로벌 메이트">
+  <rect width="180" height="180" rx="48" fill="#0d4a56"/>
+  <circle cx="68" cy="98" r="38" fill="none" stroke="#7ec8c0" stroke-width="9"/>
+  <circle cx="112" cy="98" r="38" fill="none" stroke="#e07a5f" stroke-width="9"/>
 </svg>

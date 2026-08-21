@@ -51,7 +51,7 @@ function buildPrompt(keyword: string): string {
   "h1": "'{keyword}'와 '업체' 또는 '정보'가 들어간 H1",
   "heroSubtitle": "한글 한 문장. 한 업체 홍보 아님 + 확인 항목",
   "heroBadge": "정보 안내",
-  "heroTitleLine2": "한국국제결혼협회",
+    "heroTitleLine2": "글로벌 메이트",
   "heroBar": "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요.",
   "sections": [
     {"h2": "'{keyword}' 포함, 업체를 보기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
@@ -115,7 +115,7 @@ export async function generateWithGemini(
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
-        `${keyword}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 한국국제결혼협회`
+        `${keyword}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 글로벌 메이트`
     ),
     h1: String(data.h1 || `${keyword}, 업체를 고르기 전에`),
     heroSubtitle: String(
@@ -123,7 +123,7 @@ export async function generateWithGemini(
     ),
     heroBadge: String(data.heroBadge || "정보 안내"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "한국국제결혼협회"),
+    heroTitleLine2: String(data.heroTitleLine2 || "글로벌 메이트"),
     heroBar: String(data.heroBar || "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요."),
     sections,
     faqs,
@@ -146,7 +146,7 @@ export function assembleSeoPage(
     heroSubtitle: partial.heroSubtitle,
     heroBadge: partial.heroBadge || "정보 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "한국국제결혼협회",
+    heroTitleLine2: partial.heroTitleLine2 || "글로벌 메이트",
     heroBar: partial.heroBar || "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,

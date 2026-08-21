@@ -94,7 +94,7 @@ const NEXT_H2 = [
 ];
 
 export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage {
-  const seed = hash(`${keyword}|${pageIndex}|${SITE.brand}|globalwedding-v1`);
+  const seed = hash(`${keyword}|${pageIndex}|${SITE.brand}|dmcwedding-v1`);
   const kw = keyword.trim() || "국제결혼정보";
   const brand = SITE.brand;
   const obj = eulReul(kw);
@@ -198,14 +198,14 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
     keyword: kw,
     title,
     metaDescription: clampDesc(metaDescription),
-    metaKeywords: `${kw}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 국제결혼사기, 국제결혼비용, 한국국제결혼협회${
+    metaKeywords: `${kw}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 국제결혼사기, 국제결혼비용, 글로벌 메이트${
       geoKw ? `, ${geoKw}` : ""
     }`,
     h1,
     heroSubtitle,
     heroBadge: "정보 안내",
     heroTitleLine1: kw,
-    heroTitleLine2: "한국국제결혼협회",
+    heroTitleLine2: "글로벌 메이트",
     heroBar: "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요.",
     sections,
     faqs,
