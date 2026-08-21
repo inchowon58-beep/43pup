@@ -47,6 +47,8 @@ export const CTA_EMERGENCY = "정보 상담";
 export const CTA_MEMORIAL = "안내 사진 보기";
 export const CTA_BUILD = "자동화사이트구축/렌탈문의";
 export const CTA_GALLERY = "국제결혼 안내 사진보기";
+export const CTA_YOUTUBE = "유튜브에서 시청하기";
+export const CTA_YOUTUBE_HEADING = "국제결혼 관련 유튜브 시청하기";
 
 /** 본문·CTA 공통 안내 문구 */
 export const KAKAO_CTA_HINT = "카카오톡 오픈채팅으로 상담해 주세요.";

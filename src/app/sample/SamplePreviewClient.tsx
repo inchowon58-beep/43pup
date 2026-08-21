@@ -134,7 +134,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           {SAMPLE_PAGE_H1}
         </p>
 
-        <DoodleGalleryCta />
+        <DoodleGalleryCta sponsor={sponsor} />
 
         {SAMPLE_SECTIONS.map((sec, si) => (
           <section key={sec.h2} className="mb-12">

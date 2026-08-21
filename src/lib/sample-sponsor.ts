@@ -17,6 +17,11 @@ export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
     "방문·상담 일정 안내",
     "계약 전 체크리스트",
   ],
+  youtube_url: "",
+  sponsor_youtube_url: "",
+  sponsor_youtube_channel: "한국국제결혼협회 정보안내",
+  sponsor_youtube_desc:
+    "확인할 항목과 주의사항을 짧게 정리한 안내 영상입니다. 상담 전에 먼저 보시면 좋습니다.",
 };
 
 /** 관리자 설정(rental_price 등)을 반영한 샘플 스폰서 쌍 */
@@ -38,6 +43,13 @@ export function buildSampleSponsors(current: SiteSponsor): {
           : SAMPLE_ACTIVE_SPONSOR.highlight_points,
       link_url: SAMPLE_ACTIVE_SPONSOR.link_url,
       homepage_url: SAMPLE_ACTIVE_SPONSOR.homepage_url,
+      youtube_url: current.youtube_url || "",
+      sponsor_youtube_url:
+        current.sponsor_youtube_url || current.youtube_url || SAMPLE_ACTIVE_SPONSOR.sponsor_youtube_url,
+      sponsor_youtube_channel:
+        current.sponsor_youtube_channel || SAMPLE_ACTIVE_SPONSOR.sponsor_youtube_channel,
+      sponsor_youtube_desc:
+        current.sponsor_youtube_desc || SAMPLE_ACTIVE_SPONSOR.sponsor_youtube_desc,
     },
   };
 }

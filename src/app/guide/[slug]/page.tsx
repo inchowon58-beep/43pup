@@ -205,7 +205,7 @@ export default async function GuidePage({ params }: Props) {
           {page.h1}
         </p>
 
-        <DoodleGalleryCta />
+        <DoodleGalleryCta sponsor={sponsor} />
 
         {page.sections.map((sec, si) => (
           <section key={sec.h2} className="mb-12">
@@ -230,7 +230,7 @@ export default async function GuidePage({ params }: Props) {
               </figure>
             )}
             {si === 0 && <SponsorMidBox sponsor={sponsor} />}
-            {si === 1 && <DoodleGalleryCta />}
+            {si === 1 && <DoodleGalleryCta sponsor={sponsor} />}
           </section>
         ))}
 

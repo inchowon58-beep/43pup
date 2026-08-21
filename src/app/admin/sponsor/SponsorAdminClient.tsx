@@ -35,6 +35,10 @@ export default function SponsorAdminClient() {
       "방문·상담 일정 안내",
       "계약 전 체크리스트",
     ],
+    youtube_url: "",
+    sponsor_youtube_url: "",
+    sponsor_youtube_channel: "",
+    sponsor_youtube_desc: "",
   });
 
   const loadSponsor = useCallback(async () => {
@@ -60,6 +64,10 @@ export default function SponsorAdminClient() {
       setForm({
         ...rest,
         homepage_url: rest.homepage_url || "",
+        youtube_url: rest.youtube_url || "",
+        sponsor_youtube_url: rest.sponsor_youtube_url || "",
+        sponsor_youtube_channel: rest.sponsor_youtube_channel || "",
+        sponsor_youtube_desc: rest.sponsor_youtube_desc || "",
         highlight_points: padHighlightPoints(rest.highlight_points),
       });
     }
@@ -111,6 +119,10 @@ export default function SponsorAdminClient() {
         setForm({
           ...rest,
           homepage_url: rest.homepage_url || "",
+          youtube_url: rest.youtube_url || "",
+          sponsor_youtube_url: rest.sponsor_youtube_url || "",
+          sponsor_youtube_channel: rest.sponsor_youtube_channel || "",
+          sponsor_youtube_desc: rest.sponsor_youtube_desc || "",
           highlight_points: padHighlightPoints(rest.highlight_points),
         });
       }
@@ -264,6 +276,55 @@ export default function SponsorAdminClient() {
             placeholder="https://www.example.com"
           />
         </div>
+
+        {isRecruiting ? (
+          <div className="field">
+            <label htmlFor="youtube_url">유튜브 영상 주소</label>
+            <input
+              id="youtube_url"
+              value={form.youtube_url || ""}
+              onChange={(e) => setForm({ ...form, youtube_url: e.target.value })}
+              placeholder="https://www.youtube.com/watch?v=..."
+            />
+            <p className="mt-1 text-xs text-[var(--muted)]">
+              웹문서 상단 박스 왼쪽에 미리보기로 나갑니다. 입점 후에는 입점업체 영상으로 바뀝니다.
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="field">
+              <label htmlFor="sponsor_youtube_url">입점업체 유튜브 영상 주소</label>
+              <input
+                id="sponsor_youtube_url"
+                value={form.sponsor_youtube_url || ""}
+                onChange={(e) => setForm({ ...form, sponsor_youtube_url: e.target.value })}
+                placeholder="https://www.youtube.com/watch?v=..."
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="sponsor_youtube_channel">유튜브 채널명</label>
+              <input
+                id="sponsor_youtube_channel"
+                value={form.sponsor_youtube_channel || ""}
+                onChange={(e) => setForm({ ...form, sponsor_youtube_channel: e.target.value })}
+                placeholder="예: 한국국제결혼협회 안내"
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="sponsor_youtube_desc">유튜브 간략 설명</label>
+              <textarea
+                id="sponsor_youtube_desc"
+                rows={3}
+                value={form.sponsor_youtube_desc || ""}
+                onChange={(e) => setForm({ ...form, sponsor_youtube_desc: e.target.value })}
+                placeholder="예: 확인할 항목과 주의사항을 짧게 정리한 안내 영상입니다."
+              />
+              <p className="mt-1 text-xs text-[var(--muted)]">
+                채널명과 설명이 영상 오른쪽에 함께 나가며, 해당 유튜브를 추천하는 안내로 노출됩니다.
+              </p>
+            </div>
+          </>
+        )}
 
         {!isRecruiting && (
           <>
