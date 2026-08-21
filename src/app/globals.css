@@ -157,6 +157,16 @@ img {
   transform: translateY(-2px);
 }
 
+.btn-kakao {
+  background: #fee500;
+  color: #3c1e1e;
+}
+
+.btn-kakao:hover {
+  background: #f5dc00;
+  color: #3c1e1e;
+}
+
 @keyframes rise {
   from {
     opacity: 0;

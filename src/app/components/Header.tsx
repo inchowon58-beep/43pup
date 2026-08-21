@@ -35,8 +35,9 @@ function BrandMark() {
   );
 }
 
-export default function Header() {
+export default function Header({ kakaoHref }: { kakaoHref?: string }) {
   const [open, setOpen] = useState(false);
+  const href = kakaoHref || SITE.kakaoOpenChatUrl;
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#5c1a2e] text-white">
@@ -55,10 +56,10 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <a
-            href={SITE.kakaoOpenChatUrl}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-[0.35rem] bg-[#FEE500] px-3.5 py-2 text-sm font-extrabold text-[#191919] sm:inline-flex"
+            className="btn-kakao hidden items-center gap-1.5 rounded-[0.35rem] px-3.5 py-2 text-sm font-extrabold sm:inline-flex"
           >
             <MessageCircle size={16} />
             {CTA_KAKAO}
@@ -88,10 +89,10 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href={SITE.kakaoOpenChatUrl}
+              href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-1 inline-flex items-center gap-2 rounded-[0.35rem] bg-[#FEE500] px-3 py-2.5 text-sm font-extrabold text-[#191919]"
+              className="btn-kakao mt-1 inline-flex items-center gap-2 rounded-[0.35rem] px-3 py-2.5 text-sm font-extrabold"
               onClick={() => setOpen(false)}
             >
               <MessageCircle size={16} />
