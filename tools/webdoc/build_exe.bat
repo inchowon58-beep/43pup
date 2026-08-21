@@ -9,8 +9,8 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo [2/2] 국제웨딩컨설팅 웹문서생성기 빌드... (--windowed: 검은 콘솔 없음)
-python -m PyInstaller --noconfirm --clean --windowed --name "국제웨딩컨설팅웹문서생성기" ^
+echo [2/2] 국제결혼정보센터 웹문서생성기 빌드... (--windowed: 검은 콘솔 없음)
+python -m PyInstaller --noconfirm --clean --windowed --name "국제결혼정보센터웹문서생성기" ^
   --add-data "indexnow.py;." ^
   --add-data "blob_sync.py;." ^
   --add-data "blob-upload.mjs;." ^
@@ -53,11 +53,11 @@ if errorlevel 1 (
 )
 
 echo.
-echo 완료: dist\국제웨딩컨설팅웹문서생성기\국제웨딩컨설팅웹문서생성기.exe
+echo 완료: dist\국제결혼정보센터웹문서생성기\국제결혼정보센터웹문서생성기.exe
 echo.
 echo 실행 방법:
-echo   1) 국제웨딩컨설팅_웹문서생성기_실행.bat 더블클릭
-echo   2) 또는 dist\국제웨딩컨설팅웹문서생성기\국제웨딩컨설팅웹문서생성기.exe
+echo   1) 국제결혼정보센터_웹문서생성기_실행.bat 더블클릭
+echo   2) 또는 dist\국제결혼정보센터웹문서생성기\국제결혼정보센터웹문서생성기.exe
 echo.
 echo 완전 종료는 화면의 [프로그램 종료] 버튼.
 exit /b 0

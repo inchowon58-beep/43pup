@@ -10,7 +10,7 @@ function siteHost(): string {
   try {
     return new URL(SITE.siteUrl).host;
   } catch {
-    return "globalwedding.purmegarden.co.kr";
+    return "globalwedding.infocs.co.kr";
   }
 }
 

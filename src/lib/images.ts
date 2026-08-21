@@ -3,7 +3,7 @@ import { SITE } from "./site";
 /**
  * 화면 노출 순서. 파일 번호(01~10)를 섞어 히어로·갤러리가 다르게 보이게 함.
  */
-const DISPLAY_ORDER = [2, 7, 4, 9, 1, 6, 10, 3, 8, 5] as const;
+const DISPLAY_ORDER = [5, 10, 3, 8, 1, 6, 9, 4, 7, 2] as const;
 
 function fileIndex(logicalIndex: number): number {
   const len = DISPLAY_ORDER.length;

@@ -4,7 +4,7 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "국제웨딩컨설팅 정보안내 (샘플)",
+  sponsor_name: "국제결혼정보센터 정보안내 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "https://open.kakao.com/o/sxelLqJi",
   homepage_url: "https://www.naver.com",
@@ -21,7 +21,7 @@ export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   youtube_url_2: "",
   sponsor_youtube_url: "",
   sponsor_youtube_url_2: "",
-  sponsor_youtube_channel: "국제웨딩컨설팅 정보안내",
+  sponsor_youtube_channel: "국제결혼정보센터 정보안내",
   sponsor_youtube_desc:
     "확인할 항목과 주의사항을 짧게 정리한 안내 영상입니다. 상담 전에 먼저 보시면 좋습니다.",
 };

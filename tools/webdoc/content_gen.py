@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 국제웨딩컨설팅.
+"""문서 본문 생성 (템플릿) — 국제결혼정보센터.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
 국제결혼정보 상세 페이지를 생성합니다. 이미지는 3장.
 """
@@ -19,9 +19,9 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "국제웨딩컨설팅"
+BRAND = "국제결혼정보센터"
 FARM = "국제결혼정보"
-SITE_NAME = "국제웨딩컨설팅"
+SITE_NAME = "국제결혼정보센터"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
 IMAGE_BASE = "https://image.cattery.co.kr/weding"
@@ -30,7 +30,7 @@ IMAGE_USE = 3  # 히어로 1 + 본문 2
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|pruwedding".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|infowedding".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -116,7 +116,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             "h2": h2_0,
             "paragraphs": [
                 f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 한 업체의 광고가 아니라 피해야 할 공통점입니다. "
-                f"국제웨딩컨설팅은 특정 업체를 전면에 노출하지 않고, {tone} 확인할 항목을 안내합니다.",
+                f"국제결혼정보센터는 특정 업체를 전면에 노출하지 않고, {tone} 확인할 항목을 안내합니다.",
                 f"선금만 요구하거나 계약이 없거나 ‘오늘만 할인’을 반복하는 곳은 보류하세요. "
                 f"안내 사진은 메인 갤러리에서도 이어서 보실 수 있습니다.",
                 f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 국가입니다. "
@@ -166,7 +166,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     geo_kw = nearby_keyword_csv(kw)
     meta_keywords = (
         f"{kw}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, "
-        f"국제결혼사기, 국제결혼비용, 국제웨딩컨설팅"
+        f"국제결혼사기, 국제결혼비용, 국제결혼정보센터"
     )
     if geo_kw:
         meta_keywords = f"{meta_keywords}, {geo_kw}"

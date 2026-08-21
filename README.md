@@ -1,16 +1,16 @@
-# 국제결혼정보 · 국제웨딩컨설팅
+# 국제결혼정보 · 국제결혼정보센터
 
-Next.js 15 기반 **국제웨딩컨설팅** — 믿을 수 있는 국제결혼 업체 정보를 제공하는 안내 사이트입니다. 한 업체를 전면에 노출하지 않습니다.
+Next.js 15 기반 **국제결혼정보센터** — 믿을 수 있는 국제결혼 업체 정보를 제공하는 안내 사이트입니다. 한 업체를 전면에 노출하지 않습니다.
 
 ## 배포 대상 (중요)
 
-**오직 `inchowon58-beep/pruwedding` 저장소와 `globalwedding.purmegarden.co.kr` 로만 배포하세요.**
-기존 `dmcwedding` / `globalwedding` / `pupmaincoon` / `doodle` / `muzi` / `eanimal` / `funeral.git` 프로젝트에는 절대 push·deploy 하지 마세요.
+**오직 `inchowon58-beep/infowedding` 저장소와 `globalwedding.infocs.co.kr` 로만 배포하세요.**
+기존 `pruwedding` / `dmcwedding` / `globalwedding` / `pupmaincoon` / `doodle` / `muzi` / `eanimal` / `funeral.git` 프로젝트에는 절대 push·deploy 하지 마세요.
 
 | 항목 | 허용 | 금지 |
 |------|------|------|
-| GitHub | `inchowon58-beep/pruwedding` | `dmcwedding`, `globalwedding`, `pupmaincoon`, `doodle`, `muzi`, `funeral`, `eanimal` 등 |
-| 도메인 | `globalwedding.purmegarden.co.kr` | `globalmate.dmcmusic.co.kr`, `www.globalwedding.co.kr` 등 |
+| GitHub | `inchowon58-beep/infowedding` | `pruwedding`, `dmcwedding`, `globalwedding`, `pupmaincoon`, `doodle`, `muzi`, `funeral`, `eanimal` 등 |
+| 도메인 | `globalwedding.infocs.co.kr` | `globalwedding.purmegarden.co.kr`, `globalmate.dmcmusic.co.kr`, `www.globalwedding.co.kr` 등 |
 
 ```bash
 npm run check:deploy-target
@@ -28,7 +28,7 @@ npm run dev
 
 `.env.example` 참고:
 
-- `NEXT_PUBLIC_SITE_URL` = `https://globalwedding.purmegarden.co.kr`
+- `NEXT_PUBLIC_SITE_URL` = `https://globalwedding.infocs.co.kr`
 - `BLOB_READ_WRITE_TOKEN` (Vercel Blob — SEO·스폰서 데이터, 사용자가 직접 설정)
 - `ADMIN_JWT_SECRET`
 - `GEMINI_API_KEY` (선택 — AI 발행)

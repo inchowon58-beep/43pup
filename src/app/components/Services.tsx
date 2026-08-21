@@ -68,7 +68,7 @@ export default function Services() {
                   className="object-cover transition duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(44,64,52,0.88)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(26,39,68,0.9)_100%)]" />
                 <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>

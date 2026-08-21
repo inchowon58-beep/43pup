@@ -179,7 +179,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#2c4034_0%,#c4a35a_38%,#f6f3ec_38%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#1a2744_0%,#c47a4a_38%,#f3f5f9_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>

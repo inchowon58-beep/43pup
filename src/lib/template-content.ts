@@ -94,7 +94,7 @@ const NEXT_H2 = [
 ];
 
 export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage {
-  const seed = hash(`${keyword}|${pageIndex}|${SITE.brand}|pruwedding-v1`);
+  const seed = hash(`${keyword}|${pageIndex}|${SITE.brand}|infowedding-v1`);
   const kw = keyword.trim() || "국제결혼정보";
   const brand = SITE.brand;
   const obj = eulReul(kw);
@@ -198,14 +198,14 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
     keyword: kw,
     title,
     metaDescription: clampDesc(metaDescription),
-    metaKeywords: `${kw}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 국제결혼사기, 국제결혼비용, 국제웨딩컨설팅${
+    metaKeywords: `${kw}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 국제결혼사기, 국제결혼비용, 국제결혼정보센터${
       geoKw ? `, ${geoKw}` : ""
     }`,
     h1,
     heroSubtitle,
     heroBadge: "정보 안내",
     heroTitleLine1: kw,
-    heroTitleLine2: "국제웨딩컨설팅",
+    heroTitleLine2: "국제결혼정보센터",
     heroBar: "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요.",
     sections,
     faqs,
