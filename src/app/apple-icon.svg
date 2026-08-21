@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="글로벌 메이트">
-  <rect width="180" height="180" rx="48" fill="#0d4a56"/>
-  <circle cx="68" cy="98" r="38" fill="none" stroke="#7ec8c0" stroke-width="9"/>
-  <circle cx="112" cy="98" r="38" fill="none" stroke="#e07a5f" stroke-width="9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="국제웨딩컨설팅">
+  <rect width="180" height="180" rx="28" fill="#2c4034"/>
+  <circle cx="90" cy="98" r="40" fill="none" stroke="#c4a35a" stroke-width="8"/>
+  <path d="M90 32 C96 50 108 56 90 74 C72 56 84 50 90 32 Z" fill="#e4d7b5"/>
 </svg>

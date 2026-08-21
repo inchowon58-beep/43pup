@@ -12,9 +12,9 @@ from google import genai
 
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_keyword_csv, nearby_stations
 
-BRAND = "글로벌 메이트"
+BRAND = "국제웨딩컨설팅"
 FARM = "국제결혼정보"
-SITE_NAME = "글로벌 메이트"
+SITE_NAME = "국제웨딩컨설팅"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
 
@@ -228,7 +228,7 @@ def assemble_from_gemini(
         "heroSubtitle": str(data.get("heroSubtitle") or "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요"),
         "heroBadge": str(data.get("heroBadge") or "정보 안내"),
         "heroTitleLine1": kw,
-        "heroTitleLine2": str(data.get("heroTitleLine2") or "글로벌 메이트"),
+        "heroTitleLine2": str(data.get("heroTitleLine2") or "국제웨딩컨설팅"),
         "heroBar": str(data.get("heroBar") or "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요."),
         "sections": sections,
         "faqs": faqs,

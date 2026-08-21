@@ -334,7 +334,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_youtube_channel"
                 value={form.sponsor_youtube_channel || ""}
                 onChange={(e) => setForm({ ...form, sponsor_youtube_channel: e.target.value })}
-                placeholder="예: 글로벌 메이트 안내"
+                placeholder="예: 국제웨딩컨설팅 안내"
               />
             </div>
             <div className="field">
@@ -362,7 +362,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_name"
                 value={form.sponsor_name}
                 onChange={(e) => setForm({ ...form, sponsor_name: e.target.value })}
-                placeholder="예: 글로벌 메이트 정보안내"
+                placeholder="예: 국제웨딩컨설팅 정보안내"
               />
             </div>
             <div className="mt-6">

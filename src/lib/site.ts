@@ -1,13 +1,13 @@
-/** 글로벌 메이트 — 국제결혼정보 사이트 공통 설정 */
+/** 국제웨딩컨설팅 — 국제결혼정보 사이트 공통 설정 */
 
 export const SITE = {
-  name: "글로벌 메이트",
-  brand: "글로벌 메이트",
-  brandEn: "Global Mate",
+  name: "국제웨딩컨설팅",
+  brand: "국제웨딩컨설팅",
+  brandEn: "Wedding Consulting",
   farm: "국제결혼정보",
   title: "국제결혼정보",
   tagline: "믿을 수 있는 국제결혼 업체 정보를 제공하는 안내 사이트입니다",
-  taglineEn: "Global Mate · International Marriage Guide",
+  taglineEn: "International Wedding Consulting",
   description:
     "국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항 — 어떤 곳을 믿고, 어떤 곳을 피해야 하는지 예비고객이 먼저 확인할 현실적인 정보를 안내합니다.",
   keywords: [
@@ -19,23 +19,22 @@ export const SITE = {
     "국제결혼사기",
     "국제결혼비용",
     "국제결혼절차",
-    "글로벌메이트",
-    "글로벌 메이트",
+    "국제웨딩컨설팅",
     "국제결혼안내",
   ],
   kakaoOpenChatUrl: "https://open.kakao.com/o/sxelLqJi",
-  logo: "https://image.cattery.co.kr/weding/08.webp",
-  ogImage: "https://image.cattery.co.kr/weding/08.webp",
+  logo: "https://image.cattery.co.kr/weding/02.webp",
+  ogImage: "https://image.cattery.co.kr/weding/02.webp",
   imageBase: "https://image.cattery.co.kr/weding",
   imageCount: 10,
   location: "대한민국 전국",
   address: "전국 국제결혼 정보 상담 · 카카오톡 오픈채팅",
   areaServed: "대한민국 전국",
-  domain: "globalmate.dmcmusic.co.kr",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://globalmate.dmcmusic.co.kr",
+  domain: "globalwedding.purmegarden.co.kr",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://globalwedding.purmegarden.co.kr",
   infocsUrl: "https://www.infocs.co.kr/",
-  naverSiteVerification: "dd83bea1cdaf19c3469929613b945354563be226",
-  themeColor: "#0d4a56",
+  naverSiteVerification: "1c343a436dff0d1754f9d5cc1b1a045405b8e0f1",
+  themeColor: "#2c4034",
 } as const;
 
 export const KEYWORD_INQUIRY =

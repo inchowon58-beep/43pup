@@ -25,7 +25,7 @@ export default function About() {
     <section id="about" className="section">
       <div className="container grid items-center gap-10 md:grid-cols-2 md:gap-14">
         <div className="relative">
-          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(13,74,86,0.16)] md:aspect-[5/6]">
+          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(44,64,52,0.16)] md:aspect-[5/6]">
             <Image
               src={imageUrl(3)}
               alt={`${SITE.name} 국제결혼정보`}

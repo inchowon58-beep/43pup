@@ -89,7 +89,7 @@ export function orgJsonLd(url?: string, telephone?: string) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: SITE.name,
-    alternateName: [SITE.brand, SITE.brandEn, "국제결혼정보", "글로벌 메이트"],
+    alternateName: [SITE.brand, SITE.brandEn, "국제결혼정보", "국제웨딩컨설팅"],
     description: SITE.description,
     url: url || SITE.siteUrl,
     image: SITE.ogImage,

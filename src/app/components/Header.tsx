@@ -19,12 +19,12 @@ function BrandMark() {
   return (
     <Link href="/" className="flex items-center gap-3">
       <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden className="shrink-0">
-        <rect width="36" height="36" rx="11" fill="#1a7a8c" />
-        <circle cx="14" cy="20" r="7.2" fill="none" stroke="#7ec8c0" strokeWidth="2.2" />
-        <circle cx="22" cy="20" r="7.2" fill="none" stroke="#ffe8e0" strokeWidth="2.2" />
+        <rect width="36" height="36" rx="6" fill="#2c4034" />
+        <circle cx="18" cy="20" r="8" fill="none" stroke="#c4a35a" strokeWidth="2" />
+        <path d="M18 8 C19.2 12 21.5 13.2 18 16.5 C14.5 13.2 16.8 12 18 8 Z" fill="#e4d7b5" />
       </svg>
       <span className="flex flex-col leading-none">
-        <span className="text-[0.62rem] font-medium tracking-[0.18em] text-[#9ee3d8]">
+        <span className="text-[0.62rem] font-medium tracking-[0.18em] text-[#e4d7b5]">
           {SITE.brandEn}
         </span>
         <span className="mt-1 text-[1.02rem] font-bold tracking-tight text-white md:text-[1.12rem]">
@@ -40,15 +40,15 @@ export default function Header({ kakaoHref }: { kakaoHref?: string }) {
   const href = kakaoHref || SITE.kakaoOpenChatUrl;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0d4a56] text-white">
-      <div className="h-1 bg-[linear-gradient(90deg,transparent,#e07a5f,#7ec8c0,transparent)]" />
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#2c4034] text-white">
+      <div className="h-px bg-[linear-gradient(90deg,transparent,#c4a35a,transparent)]" />
 
       <div className="container flex h-[3.7rem] items-center justify-between md:h-[4.5rem]">
         <BrandMark />
 
         <nav className="hidden items-center gap-6 text-[0.88rem] font-medium text-white/70 lg:flex">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-[#9ee3d8]">
+            <Link key={item.href} href={item.href} className="hover:text-[#e4d7b5]">
               {item.label}
             </Link>
           ))}
@@ -76,7 +76,7 @@ export default function Header({ kakaoHref }: { kakaoHref?: string }) {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#0d4a56] px-4 py-3 lg:hidden">
+        <div className="border-t border-white/10 bg-[#2c4034] px-4 py-3 lg:hidden">
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <Link
