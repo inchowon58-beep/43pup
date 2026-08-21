@@ -3,23 +3,23 @@ import { SITE } from "@/lib/site";
 const STEPS = [
   {
     n: "1",
-    title: "사진으로 만나기",
-    desc: "갤러리에서 분양 중인 메인쿤 모습을 먼저 보세요.",
+    title: "기본 정보 읽기",
+    desc: "국제결혼 절차·비용 구성·주의 신호를 먼저 정리해 보세요.",
   },
   {
     n: "2",
-    title: "상담으로 고르기",
-    desc: "원하는 성별·코트를 알려 주시면 지금 만날 수 있는 아이를 안내합니다.",
+    title: "피해야 할 곳 걸러 내기",
+    desc: "선금만 재촉하거나 계약이 없는 진행은 보류하는 것이 안전합니다.",
   },
   {
     n: "3",
-    title: "방문·예약",
-    desc: "직접 보고 싶으시면 일정을 맞춰 드립니다. 급하셔도, 천천히여도 됩니다.",
+    title: "업체 정보 확인",
+    desc: "지역·희망 국가를 알려 주시면 확인할 항목과 믿을 수 있는 업체 정보를 안내합니다.",
   },
   {
     n: "4",
-    title: "집으로",
-    desc: "첫 식사·모래·브러시 포인트를 알려 드리고, 가족이 되는 날을 엽니다.",
+    title: "본인이 비교·결정",
+    desc: "협회는 결정을 대신하지 않습니다. 설명된 정보를 기준으로 천천히 고르시면 됩니다.",
   },
 ];
 
@@ -28,12 +28,12 @@ export default function Process() {
     <section id="process" className="section">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">ADOPTION</p>
+          <p className="section-kicker">HOW TO DECIDE</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            입양은 이렇게 이어집니다
+            상담은 이렇게 이어집니다
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            부담 없이 사진을 보고, 마음이 가면 {SITE.brand}에 물어보세요.
+            급하게 계약하지 않아도 됩니다. 확인 목록을 본 뒤 {SITE.brand}에 물어보세요.
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export default function Process() {
           <div className="pointer-events-none absolute left-[12%] right-[12%] top-7 hidden h-px bg-[var(--line)] lg:block" />
           {STEPS.map((s) => (
             <div key={s.n} className="relative text-center lg:pt-0">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[0.85rem] bg-[var(--navy)] text-xl font-bold text-[#e8d5a3]">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[0.45rem] bg-[var(--navy)] text-xl font-bold text-[#e8c9a0]">
                 {s.n}
               </div>
               <h3 className="mt-4 text-lg font-bold text-[var(--navy)]">{s.title}</h3>

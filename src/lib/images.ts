@@ -1,20 +1,17 @@
 import { SITE } from "./site";
 
 /**
- * 화면 노출 순서. 파일 번호(01~59)를 섞어 히어로·갤러리가 다르게 보이게 함.
+ * 화면 노출 순서. 파일 번호(01~10)를 섞어 히어로·갤러리가 다르게 보이게 함.
  */
-const DISPLAY_ORDER = [
-  16, 39, 47, 8, 10, 25, 35, 33, 14, 55, 36, 11, 23, 54, 22, 21, 26, 27, 46, 45, 30, 37, 53, 12, 41,
-  29, 34, 28, 13, 57, 4, 5, 48, 17, 49, 24, 31, 32, 19, 3, 20, 18, 38, 15, 7, 50, 59, 6, 56, 43, 1,
-  9, 42, 58, 2, 51, 40, 44, 52,
-] as const;
+const DISPLAY_ORDER = [4, 9, 1, 7, 2, 10, 5, 8, 3, 6] as const;
 
 function fileIndex(logicalIndex: number): number {
-  const n = Math.max(1, Math.min(SITE.imageCount, logicalIndex));
-  return DISPLAY_ORDER[n - 1] ?? n;
+  const len = DISPLAY_ORDER.length;
+  const n = ((Math.floor(logicalIndex) - 1) % len + len) % len;
+  return DISPLAY_ORDER[n] ?? 1;
 }
 
-/** maincoon 01.webp ~ N.webp — 논리 순서는 DISPLAY_ORDER */
+/** weding 01.webp ~ N.webp — 논리 순서는 DISPLAY_ORDER */
 export function imageUrl(index: number): string {
   return `${SITE.imageBase}/${String(fileIndex(index)).padStart(2, "0")}.webp`;
 }
@@ -24,10 +21,10 @@ function clampImageIndex(num: number): number {
   return Math.min(SITE.imageCount, Math.max(1, Math.floor(num)));
 }
 
-/** 구 CDN·잘못된 URL → maincoon 01~N 로 맞춤 */
+/** 구 CDN·잘못된 URL → weding 01~N 로 맞춤 */
 export function migrateImageUrl(url: string): string {
   return url.replace(
-    /https?:\/\/image\.cattery\.co\.kr\/(?:jejumilgam|dogboho|petfuneral|doodle|maincoon)\/(?:new)?(\d{1,3})\.webp/gi,
+    /https?:\/\/image\.cattery\.co\.kr\/(?:jejumilgam|dogboho|petfuneral|doodle|maincoon|weding)\/(?:new)?(\d{1,3})\.webp/gi,
     (_m, num: string) =>
       `${SITE.imageBase}/${String(clampImageIndex(Number(num))).padStart(2, "0")}.webp`
   );
@@ -48,7 +45,7 @@ function mulberry32(seed: number) {
 
 export function pickImages(count: number, seed = 42): string[] {
   const pool = allImageUrls();
-  const rng = mulberry32(seed ^ 0xb16c47e);
+  const rng = mulberry32(seed ^ 0x47e1d90c);
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
@@ -59,11 +56,11 @@ export function pickImages(count: number, seed = 42): string[] {
 
 export function galleryAlt(keywordOrIndex: string | number, index = 1): string {
   const suffixes = [
-    "메인쿤분양 사진",
-    "심사위원 상담 메인쿤",
-    "대형묘 키우기",
-    "메인쿤성격",
-    "메인쿤고양이 사진",
+    "국제결혼정보 안내",
+    "국제결혼 상담 현장",
+    "예비부부 안내",
+    "국제결혼업체 확인",
+    "국제결혼 주의사항",
   ];
   if (typeof keywordOrIndex === "number") {
     const i = keywordOrIndex;

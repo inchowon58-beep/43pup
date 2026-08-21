@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 큰냥이네.
+"""문서 본문 생성 (템플릿) — 한국국제결혼협회.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
-메인쿤 분양 상세 페이지를 생성합니다. 이미지는 3장.
+국제결혼정보 상세 페이지를 생성합니다. 이미지는 3장.
 """
 
 from __future__ import annotations
@@ -19,18 +19,18 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "큰냥이네"
-FARM = "메인쿤 분양"
-SITE_NAME = "큰냥이네"
+BRAND = "한국국제결혼협회"
+FARM = "국제결혼정보"
+SITE_NAME = "한국국제결혼협회"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
-IMAGE_BASE = "https://image.cattery.co.kr/maincoon"
-IMAGE_COUNT = 59
+IMAGE_BASE = "https://image.cattery.co.kr/weding"
+IMAGE_COUNT = 10
 IMAGE_USE = 3  # 히어로 1 + 본문 2
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|pupmaincoon".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|globalwedding".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -45,7 +45,7 @@ def slugify(keyword: str, idx: int) -> str:
     base = "".join(
         c if c.isalnum() or c in "-_" else "-" for c in keyword.lower().replace(" ", "-")
     )
-    base = base.strip("-")[:36] or "maincoon"
+    base = base.strip("-")[:36] or "wedding"
     tail = f"{idx:02d}{''.join(random.choices(string.ascii_lowercase + string.digits, k=4))}"
     return f"{base}-{tail}"
 
@@ -64,42 +64,42 @@ def _page_to_summary(page: Dict[str, Any]) -> Dict[str, str]:
 
 def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
-    kw = keyword.strip() or "메인쿤분양"
+    kw = keyword.strip() or "국제결혼정보"
     heroes = [
-        "심사위원 상담으로 메인쿤 사진을 먼저 보세요",
-        "한국애견연맹 위원장이 운영하는 메인쿤분양",
-        "코트·체형을 기준으로 고르는 메인쿤",
-        "사진을 보다가 고르는 메인쿤",
+        "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요",
+        "선금·계약·신원 확인이 빠지면 보류하세요",
+        "믿을 수 있는 업체 정보의 기준을 안내합니다",
+        "지역만 알려 주셔도 확인 목록을 드립니다",
     ]
     line2_opts = [
-        "심사위원 상담",
-        "연맹 운영",
-        "입양 안내",
-        "분양 사진",
+        "주의사항 안내",
+        "업체 정보 기준",
+        "확인 목록",
+        "정보 상담",
     ]
     bar_opts = [
-        "분양 중인 메인쿤 사진을 보고 성격을 정해 보세요",
-        "성별·코트만 알려 주시면 됩니다",
-        "사진부터 보고 상담을 여세요",
-        "카카오톡으로 이어 가는 입양",
+        "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요",
+        "오늘만 할인·계약 없는 선금은 보류 신호입니다",
+        "비용이 한 줄이면 항목을 쪼개 물어보세요",
+        "카카오톡으로 이어 가는 정보 상담",
     ]
     intro_h2 = [
-        f"{kw}, 집을 고르기 전에",
-        f"사진을 보다가 마음이 가는 {kw}",
-        f"{kw}와 함께 보는 메인쿤",
-        f"{kw}에서 아이를 만나는 순서",
+        f"{kw}, 업체를 보기 전에",
+        f"피해야 할 곳부터 정리하는 {kw}",
+        f"{kw}에서 믿을 수 있는 업체 정보",
+        f"{kw}, 예비고객이 먼저 겪는 문제",
     ]
 
-    title = f"{kw} | 우리 집 첫 메인쿤"
+    title = f"{kw} | 주의할 업체와 확인 항목"
     if len(title) > 60:
-        title = f"{kw} | 메인쿤 분양"
+        title = f"{kw} | 국제결혼정보"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw}에서 심사위원 상담으로 메인쿤을 고르는 안내입니다. "
-        f"한국애견연맹 위원장이 운영합니다. 카카오톡 상담."
+        f"{kw}에서 어떤 업체를 주의해야 하는지, 믿을 수 있는 업체 정보는 어떻게 보는지 정리합니다. "
+        f"한 업체를 홍보하지 않습니다."
     )
     if areas or stations:
         near_bits = " · ".join((areas[:3] + stations[:3])[:4])
@@ -107,7 +107,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     if len(meta_desc) > 160:
         meta_desc = meta_desc[:157] + "..."
 
-    variants = ["차분히", "사진으로", "천천히"]
+    variants = ["차분히", "항목별로", "천천히"]
     tone = variants[idx % len(variants)]
     h2_0 = intro_h2[idx % len(intro_h2)]
 
@@ -115,21 +115,21 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "h2": h2_0,
             "paragraphs": [
-                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 운영 주체와 아이 모습입니다. "
-                f"큰냥이네는 한국애견연맹 위원장이 운영하고, 고양이심사위원이 {tone} 상담합니다.",
-                f"사진을 보다가 눈이 머무는 아이가 있으면 그 마음을 메모해 두세요. "
-                f"분양 중인 메인쿤 모습은 메인 갤러리에서도 이어서 보실 수 있습니다.",
-                f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 크기·성별, 아이와 함께 사는지 여부입니다. "
+                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 한 업체의 광고가 아니라 피해야 할 공통점입니다. "
+                f"한국국제결혼협회는 특정 업체를 전면에 노출하지 않고, {tone} 확인할 항목을 안내합니다.",
+                f"선금만 요구하거나 계약이 없거나 ‘오늘만 할인’을 반복하는 곳은 보류하세요. "
+                f"안내 사진은 메인 갤러리에서도 이어서 보실 수 있습니다.",
+                f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 국가입니다. "
                 f"카카오톡 오픈채팅으로 상담해 주세요.",
             ],
         },
         {
-            "h2": f"{kw} 비용이 달라지는 이유",
+            "h2": f"{kw}에서 믿을 수 있는 업체 정보의 기준",
             "paragraphs": [
-                f"메인쿤 분양 비용은 혈통, 세대, 시기에 따라 달라집니다. "
-                f"같은 키워드라도 아이마다 범위가 달라 단가를 단정하지 않습니다.",
-                f"상담 범위는 {LOCATION}입니다. 지금 만날 수 있는 아이와 포함 항목을 함께 확인할 수 있습니다.",
-                f"{kw}로 찾아오신 분이라면, 사진부터 보신 뒤 카카오톡 상담을 권합니다.",
+                f"국제결혼 비용은 국가, 프로그램, 포함 범위에 따라 달라집니다. "
+                f"한 줄 견적만 있으면 항공·숙박·통역·서류를 따로 물어보세요. 단가를 단정하지 않습니다.",
+                f"상담 범위는 {LOCATION}입니다. 확인할 항목과 피해야 할 유형을 함께 정리할 수 있습니다.",
+                f"{kw}로 찾아오신 분이라면, 주의사항을 본 뒤 카카오톡 상담을 권합니다.",
             ],
         },
         {
@@ -137,7 +137,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             "paragraphs": [
                 f"{kw} 상담은 홈페이지 문의 또는 카카오톡 오픈채팅으로 가능합니다. "
                 f"지역과 희망 조건만 알려 주셔도 됩니다.",
-                f"사진을 더 보고 싶으시면 메인 갤러리로 이동해 주세요. 마음이 가는 아이가 있으면 바로 물어보시면 됩니다.",
+                f"사진을 더 보고 싶으시면 메인 갤러리로 이동해 주세요. 확인할 항목이 있으면 바로 물어보시면 됩니다.",
             ],
         },
     ]
@@ -145,28 +145,28 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "q": f"{kw} 상담은 어떻게 하나요?",
             "a": "카카오톡 오픈채팅 또는 사이트 하단 문의로 접수합니다. "
-            "지역·희망 크기만 알려 주시면 안내받을 수 있습니다.",
+            "지역·희망 국가만 알려 주시면 확인 목록을 안내받을 수 있습니다.",
         },
         {
-            "q": "메인쿤은 어떤 성격인가요?",
-            "a": "사람을 잘 따르고 온순한 대형묘입니다. 아이·가족과 함께 지낼 반려묘를 원하는 경우가 많습니다. "
-            "개체 차이는 상담에서 안내합니다.",
+            "q": "여기는 특정 업체를 소개하나요?",
+            "a": "아닙니다. 한 국제결혼업체를 전면에 노출하지 않습니다. "
+            "주의 신호와 믿을 수 있는 업체 정보의 기준을 안내합니다.",
         },
         {
             "q": f"{kw} 전국에서 이용할 수 있나요?",
-            "a": "전국 상담이 가능합니다. 방문이 어려우면 카카오톡으로 사진을 더 받아 보실 수 있습니다.",
+            "a": "전국 상담이 가능합니다. 방문이 어려우면 카카오톡으로 확인 항목을 받아 보실 수 있습니다.",
         },
         {
-            "q": "분양 중인 아이는 사진을 볼 수 있나요?",
-            "a": "네. 메인 갤러리에서 분양 중인 메인쿤 사진을 보실 수 있습니다.",
+            "q": "어떤 업체를 피해야 하나요?",
+            "a": "계약 없이 선금만 요구하거나, 오늘만 할인을 반복하거나, 신원 확인을 미루는 곳은 보류하세요.",
         },
     ]
     now = datetime.utcnow().isoformat() + "Z"
     line2 = line2_opts[idx % len(line2_opts)]
     geo_kw = nearby_keyword_csv(kw)
     meta_keywords = (
-        f"{kw}, 메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, "
-        f"메인쿤성격, 메인쿤크기, 메인쿤분양가, 큰냥이네, 한국애견연맹, 고양이심사위원"
+        f"{kw}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, "
+        f"국제결혼사기, 국제결혼비용, 한국국제결혼협회"
     )
     if geo_kw:
         meta_keywords = f"{meta_keywords}, {geo_kw}"
@@ -176,16 +176,16 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "title": title,
         "metaDescription": meta_desc,
         "metaKeywords": meta_keywords,
-        "h1": f"{kw}, 우리 집 첫 메인쿤",
+        "h1": f"{kw}, 업체를 고르기 전에",
         "heroSubtitle": heroes[idx % len(heroes)],
-        "heroBadge": "분양 안내",
+        "heroBadge": "정보 안내",
         "heroTitleLine1": kw,
         "heroTitleLine2": line2,
         "heroBar": bar_opts[idx % len(bar_opts)],
         "sections": sections,
         "faqs": faqs,
         "images": image_urls(IMAGE_USE, rng.randint(1, 99999)),
-        "ctaText": f"{kw} 분양 상담 — 지역·희망 조건만 알려 주세요",
+        "ctaText": f"{kw} 정보 상담 — 지역·희망 국가만 알려 주세요",
         "nearbyAreas": areas,
         "nearbyStations": stations,
         "regionLabel": region or "",
@@ -204,7 +204,7 @@ def write_html(page: Dict[str, Any], site_url: str) -> str:
         sections += f"<section><h2>{sec['h2']}</h2>{ps}</section>"
         if i < 2 and i + 1 < len(imgs):
             sections += (
-                f'<figure><img src="{imgs[i+1]}" alt="{page["keyword"]} 메인쿤 {i+2}" '
+                f'<figure><img src="{imgs[i+1]}" alt="{page["keyword"]} 국제결혼정보 {i+2}" '
                 f'loading="lazy"/></figure>'
             )
     faqs = "".join(

@@ -5,18 +5,18 @@ import { imageUrl } from "@/lib/images";
 const PROMISES = [
   {
     n: "01",
-    title: "한국애견연맹 위원장 운영",
-    desc: "연맹 위원장이 운영하는 분양처입니다. 혈통과 관리 기준을 먼저 맞춰 안내합니다.",
+    title: "한 업체를 팔지 않습니다",
+    desc: "특정 국제결혼업체를 전면에 내세우지 않습니다. 비교할 수 있는 확인 항목과 주의 신호를 먼저 안내합니다.",
   },
   {
     n: "02",
-    title: "고양이심사위원 상담",
-    desc: "코트·체형·성격을 심사 시선으로 설명합니다. 첫 대형묘라도 기준이 분명합니다.",
+    title: "피해야 할 곳의 공통점",
+    desc: "과도한 선금, 계약서 없는 진행, ‘오늘만 할인’, 통역·체류 절차를 얼버무리는 곳은 한 번 더 걸러 보세요.",
   },
   {
     n: "03",
-    title: "사진은 먼저 열어 둡니다",
-    desc: "분양 중인 아이 모습을 갤러리에서 먼저 보세요. 상담은 그다음입니다.",
+    title: "믿을 수 있는 업체 정보",
+    desc: "등록·상담 방식·비용 구성이 설명되는 곳인지가 핵심입니다. 협회는 그 기준을 정리해 드립니다.",
   },
 ];
 
@@ -25,10 +25,10 @@ export default function About() {
     <section id="about" className="section">
       <div className="container grid items-center gap-10 md:grid-cols-2 md:gap-14">
         <div className="relative">
-          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(21,34,56,0.16)] md:aspect-[5/6]">
+          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(92,26,46,0.16)] md:aspect-[5/6]">
             <Image
               src={imageUrl(3)}
-              alt={`${SITE.name} 메인쿤분양`}
+              alt={`${SITE.name} 국제결혼정보`}
               fill
               unoptimized
               className="object-cover"
@@ -37,15 +37,16 @@ export default function About() {
           </div>
         </div>
         <div>
-          <p className="section-kicker">KEUNNYANGI · JUDGE COUNSEL</p>
+          <p className="section-kicker">ASSOCIATION · TRUST GUIDE</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            심사 기준으로
+            국제결혼,
             <br />
-            메인쿤을 안내합니다
+            먼저 확인할 것들
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            {SITE.brand}는 한국애견연맹 위원장이 운영하고, 고양이심사위원이 관리·상담합니다.
-            외모만이 아니라 체형·코트·성격을 맞춰 안내합니다.
+            {SITE.brand}는 국제결혼 예비고객이 실제 부딪히는 문제를 정리하는 정보
+            사이트입니다. 비용을 숨기거나 급하게 결정하도록 몰아가는 곳은 피하고, 설명이
+            분명한 업체 정보를 기준으로 상담합니다.
           </p>
           <div className="mt-8 space-y-4">
             {PROMISES.map((p) => (

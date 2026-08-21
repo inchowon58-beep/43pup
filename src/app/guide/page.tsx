@@ -9,13 +9,13 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
   const url = await publicPageUrl("/guide");
   return {
-    title: "지역별 메인쿤 안내",
-    description: `${SITE.name} 지역별 메인쿤분양 — 메인쿤입양 안내`,
-    keywords: [...SITE.keywords, "지역별 메인쿤분양"],
+    title: "지역별 국제결혼 안내",
+    description: `${SITE.name} 지역별 국제결혼정보 — 업체 주의사항 안내`,
+    keywords: [...SITE.keywords, "지역별 국제결혼정보"],
     alternates: { canonical: url },
     openGraph: {
-      title: `지역별 메인쿤 안내 | ${SITE.name}`,
-      description: `${SITE.name} 메인쿤 분양 지역 가이드`,
+      title: `지역별 국제결혼 안내 | ${SITE.name}`,
+      description: `${SITE.name} 국제결혼정보 지역 가이드`,
       url,
       images: [{ url: SITE.logo, alt: SITE.name }],
     },
@@ -40,10 +40,10 @@ export default async function GuideIndexPage({ searchParams }: Props) {
     <div className="container min-h-screen py-28">
       <p className="section-kicker">Archive</p>
       <h1 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-        지역별 메인쿤 안내
+        지역별 국제결혼 안내
       </h1>
       <p className="mt-3 max-w-xl text-[var(--muted)]">
-        최신 {Math.min(total, PUBLIC_PAGE_LIMIT)}건 · 메인쿤 분양 지역 가이드
+        최신 {Math.min(total, PUBLIC_PAGE_LIMIT)}건 · 국제결혼정보 지역 가이드
       </p>
       <p className="mt-2 text-sm text-[var(--muted)]">
         오래된 문서는 검색 유입과 직접 URL 접근을 위해 유지되며, 목록에는 최신 문서 중심으로 노출됩니다.

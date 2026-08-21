@@ -69,7 +69,7 @@ export default function AdminClient() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [keyword, setKeyword] = useState("메인쿤분양");
+  const [keyword, setKeyword] = useState("국제결혼정보");
   const [mode, setMode] = useState<"gemini" | "template">("template");
   const [apiKey, setApiKey] = useState("");
   const [publishing, setPublishing] = useState(false);
@@ -110,7 +110,7 @@ export default function AdminClient() {
   const isSponsor = role === "sponsor";
 
   function absolutePageUrl(path: string) {
-    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.puppytimes.co.kr").replace(
+    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.globalwedding.co.kr").replace(
       /\/$/,
       ""
     );
@@ -396,7 +396,7 @@ export default function AdminClient() {
           <p className="text-sm font-bold text-[var(--orange)]">Admin</p>
           <h1 className="mt-2 text-3xl font-extrabold text-[var(--navy)]">관리자 로그인</h1>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            큰냥이네 · 문의·SEO 발행 관리
+            한국국제결혼협회 · 문의·SEO 발행 관리
           </p>
           <label className="mt-6 block text-sm font-semibold">
             아이디
@@ -538,7 +538,7 @@ export default function AdminClient() {
         >
           <p className="text-sm font-extrabold text-[var(--navy)]">스폰서 로그인 비밀번호</p>
           <p className="mt-1 text-xs text-[var(--muted)]">
-            아이디는 <strong>sponsor</strong> 입니다. 스폰서는 분양 상담 신청문의만 볼 수 있습니다.
+            아이디는 <strong>sponsor</strong> 입니다. 스폰서는 상담 신청문의만 볼 수 있습니다.
           </p>
           <div className="mt-3 flex flex-wrap items-end gap-2">
             <div className="min-w-[12rem] flex-1">
@@ -570,7 +570,7 @@ export default function AdminClient() {
           <section className="overflow-hidden rounded-2xl border border-[var(--line)] bg-white shadow-[0_12px_32px_rgba(28,36,52,0.05)]">
             <div className="flex flex-wrap items-end justify-between gap-3 border-b border-[var(--line)] px-4 py-4 md:px-5">
               <div>
-                <h2 className="text-xl font-extrabold text-[var(--navy)] md:text-2xl">분양 상담 문의목록</h2>
+                <h2 className="text-xl font-extrabold text-[var(--navy)] md:text-2xl">상담 문의목록</h2>
                 <p className="mt-1 text-sm text-[var(--muted)]">
                   총 {orderTotal}건 · 가독성 있게 한 줄씩 확인하세요
                 </p>
@@ -1007,7 +1007,7 @@ export default function AdminClient() {
                 className="mt-1 w-full rounded-xl border border-[var(--line)] bg-white px-3 py-2"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                placeholder="예: 메인쿤분양"
+                placeholder="예: 부천국제결혼정보"
                 required
               />
             </label>

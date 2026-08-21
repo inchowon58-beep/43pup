@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>큰냥이네 웹문서생성기</title>
+  <title>한국국제결혼협회 웹문서생성기</title>
   <style>
     :root {
       --bg: #f7f3ea;
@@ -195,8 +195,8 @@
   <div class="wrap">
     <header class="top">
       <div>
-        <h1>큰냥이네 웹문서생성기</h1>
-        <p class="sub">큰냥이네 · 키워드 → SEO 상세페이지 발행 · Blob·블로그 등록</p>
+        <h1>한국국제결혼협회 웹문서생성기</h1>
+        <p class="sub">한국국제결혼협회 · 키워드 → SEO 상세페이지 발행 · Blob·블로그 등록</p>
       </div>
       <div class="top-actions">
         <span class="badge">심사위원 상담 SEO</span>
@@ -217,11 +217,11 @@
         <p class="section-title">키워드 조합</p>
         <div class="grid2">
           <div class="field">
-          <label>키워드 (한 줄에 하나) — 예: 메인쿤분양</label>
+          <label>키워드 (한 줄에 하나) — 예: 국제결혼정보</label>
           <textarea id="keywords_text"></textarea>
           </div>
           <div class="field">
-          <label>지역 (한 줄에 하나) → 수원메인쿤분양</label>
+          <label>지역 (한 줄에 하나) → 부천국제결혼정보</label>
           <textarea id="regions_text"></textarea>
           </div>
         </div>
@@ -413,7 +413,7 @@
       "naver_daily_limit","naver_delay_min","naver_delay_max","gemini_api_key","gemini_model","gemini_prompt"
     ];
     const checks = ["do_indexnow","open_chrome_after","schedule_enabled","auto_naver_register"];
-    const DEFAULT_PROMPT = "톤: 따뜻하고 입양하고 싶게. 사실(크기·털·비용 요인)은 분명히, 문장은 사진 옆에서 이야기하듯.\\n키워드에 지역명이 있으면 그 지역에서 메인쿤을 고르는 독자 시점으로 쓰세요.\\n금지: 가격 단정, 허위, 의료 단정, 타사 비방, 장례·엔딩 톤, 전화번호.\\n{keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요. 상담은 카카오톡만.\\n";
+    const DEFAULT_PROMPT = "톤: 현실적 안내. 사실(주의 신호·확인 항목)은 분명히.\\n키워드에 지역명이 있으면 그 지역에서 업체를 고르기 전 독자 시점으로 쓰세요.\\n한 업체를 홍보하지 마세요. 금지: 가격 단정, 허위, 특정 업체 실명 비방, 전화번호.\\n{keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요. 상담은 카카오톡만.\\n";
 
     function fillGeminiModels(models, selected) {
       const list = $("gemini_model_list");

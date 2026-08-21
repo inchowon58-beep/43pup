@@ -23,14 +23,14 @@ export const DEFAULT_SPONSOR: SiteSponsor = {
   phone_number: "",
   link_url: SITE.kakaoOpenChatUrl,
   homepage_url: "",
-  recruiting_notice: "전국 메인쿤 분양 입점 제휴 · 사이트 임대 모집 중",
+  recruiting_notice: "전국 국제결혼정보 입점 제휴 · 사이트 임대 모집 중",
   rental_price: "30만원",
   highlight_points: [
-    "분양 중인 아이 사진 공개",
-    "심사위원 상담 메인쿤",
+    "확인할 업체 항목 공개",
+    "주의사항 안내",
     "전국 상담 가능",
-    "방문·예약 진행 가능",
-    "입양 준비 안내",
+    "방문·상담 일정 안내",
+    "계약 전 체크리스트",
   ],
 };
 

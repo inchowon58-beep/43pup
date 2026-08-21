@@ -123,7 +123,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           </Link>
           <span className="mx-2">/</span>
           <Link href="/guide" className="hover:text-[var(--coral)]">
-            지역별 메인쿤 안내
+            지역별 국제결혼 안내
           </Link>
           <span className="mx-2">/</span>
           <span>{SAMPLE_PAGE_KEYWORD}</span>

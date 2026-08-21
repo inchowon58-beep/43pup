@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: SITE.title,
       description:
-        "메인쿤분양, 메인쿤입양, 메인쿤키우기, 메인쿤가격, 메인쿤성격, 메인쿤크기, 메인쿤분양가, 한국애견연맹, 고양이심사위원",
+        "국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 한국국제결혼협회",
       images: [SITE.ogImage],
     },
     robots: {

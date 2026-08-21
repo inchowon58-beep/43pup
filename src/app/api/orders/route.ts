@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const name = String(body.name || "").trim();
     const phone = String(body.phone || "").trim();
     const address = String(body.address || "").trim() || "미입력";
-    const product = String(body.product || "분양상담").trim();
+    const product = String(body.product || "정보상담").trim();
     const quantity = String(body.quantity || "1").trim();
     const memo = String(body.memo || "").trim();
 

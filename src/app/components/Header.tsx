@@ -7,8 +7,8 @@ import { SITE, CTA_KAKAO } from "@/lib/site";
 
 const NAV = [
   { href: "/#about", label: "소개" },
-  { href: "/#services", label: "왜 메인쿤" },
-  { href: "/#process", label: "입양 과정" },
+  { href: "/#services", label: "주의사항" },
+  { href: "/#process", label: "상담 과정" },
   { href: "/#gallery", label: "갤러리" },
   { href: "/#reviews", label: "후기" },
   { href: "/guide", label: "지역안내" },
@@ -19,24 +19,15 @@ function BrandMark() {
   return (
     <Link href="/" className="flex items-center gap-3">
       <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden className="shrink-0">
-        <rect width="36" height="36" rx="8" fill="#c9a45c" />
-        <text
-          x="18"
-          y="24"
-          textAnchor="middle"
-          fill="#152238"
-          fontSize="13"
-          fontWeight="800"
-          fontFamily="Pretendard, sans-serif"
-        >
-          큰
-        </text>
+        <rect width="36" height="36" rx="8" fill="#c9a07a" />
+        <circle cx="14" cy="20" r="7.2" fill="none" stroke="#5c1a2e" strokeWidth="2.2" />
+        <circle cx="22" cy="20" r="7.2" fill="none" stroke="#5c1a2e" strokeWidth="2.2" />
       </svg>
       <span className="flex flex-col leading-none">
-        <span className="text-[0.62rem] font-medium tracking-[0.22em] text-[#e8d5a3]">
+        <span className="text-[0.62rem] font-medium tracking-[0.18em] text-[#e8c9a0]">
           {SITE.brandEn}
         </span>
-        <span className="mt-1 text-[1.08rem] font-bold tracking-tight text-white md:text-[1.2rem]">
+        <span className="mt-1 text-[1.02rem] font-bold tracking-tight text-white md:text-[1.12rem]">
           {SITE.brand}
         </span>
       </span>
@@ -48,15 +39,15 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#152238] text-white">
-      <div className="h-px bg-[linear-gradient(90deg,transparent,#c9a45c,transparent)]" />
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#5c1a2e] text-white">
+      <div className="h-px bg-[linear-gradient(90deg,transparent,#c9a07a,transparent)]" />
 
       <div className="container flex h-[3.7rem] items-center justify-between md:h-[4.5rem]">
         <BrandMark />
 
         <nav className="hidden items-center gap-6 text-[0.88rem] font-medium text-white/70 lg:flex">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-[#e8d5a3]">
+            <Link key={item.href} href={item.href} className="hover:text-[#e8c9a0]">
               {item.label}
             </Link>
           ))}
@@ -67,7 +58,7 @@ export default function Header() {
             href={SITE.kakaoOpenChatUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-[0.55rem] bg-[#FEE500] px-3.5 py-2 text-sm font-extrabold text-[#191919] sm:inline-flex"
+            className="hidden items-center gap-1.5 rounded-[0.35rem] bg-[#FEE500] px-3.5 py-2 text-sm font-extrabold text-[#191919] sm:inline-flex"
           >
             <MessageCircle size={16} />
             {CTA_KAKAO}
@@ -84,13 +75,13 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#152238] px-4 py-3 lg:hidden">
+        <div className="border-t border-white/10 bg-[#5c1a2e] px-4 py-3 lg:hidden">
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-[0.55rem] px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/8"
+                className="rounded-[0.35rem] px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/8"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -100,7 +91,7 @@ export default function Header() {
               href={SITE.kakaoOpenChatUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-1 inline-flex items-center gap-2 rounded-[0.55rem] bg-[#FEE500] px-3 py-2.5 text-sm font-extrabold text-[#191919]"
+              className="mt-1 inline-flex items-center gap-2 rounded-[0.35rem] bg-[#FEE500] px-3 py-2.5 text-sm font-extrabold text-[#191919]"
               onClick={() => setOpen(false)}
             >
               <MessageCircle size={16} />

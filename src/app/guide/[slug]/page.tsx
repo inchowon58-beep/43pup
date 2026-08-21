@@ -79,14 +79,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: page.createdAt,
       modifiedTime: page.updatedAt,
       authors: [SITE.name],
-      section: "메인쿤 분양 안내",
+      section: "국제결혼정보 안내",
       tags: keywords.slice(0, 8),
       images: [
         {
           url: ogImage,
           width: 1200,
           height: 1200,
-          alt: `${page.keyword} 메인쿤 분양 — ${SITE.name}`,
+          alt: `${page.keyword} 국제결혼정보 — ${SITE.name}`,
         },
       ],
     },
@@ -130,7 +130,7 @@ export default async function GuidePage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "지역별 메인쿤 안내",
+        name: "지역별 국제결혼 안내",
         item: absoluteUrl(origin, "/guide"),
       },
       {
@@ -157,7 +157,7 @@ export default async function GuidePage({ params }: Props) {
     },
     image: images.length ? images : [SITE.logo],
     mainEntityOfPage: pageUrl,
-    about: ["메인쿤", "메인쿤분양", "메인쿤입양", "메인쿤키우기", "대형묘분양", page.keyword],
+    about: ["국제결혼", "국제결혼정보", "국제결혼상담", "국제결혼업체", "국제결혼주의사항", page.keyword],
   };
 
   return (
@@ -179,7 +179,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#152238_0%,#c9a45c_38%,#f6f4ee_38%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#5c1a2e_0%,#c9a07a_38%,#faf6f2_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>
@@ -192,7 +192,7 @@ export default async function GuidePage({ params }: Props) {
           </Link>
           <span className="mx-2">/</span>
           <Link href="/guide" className="hover:text-[var(--coral)]">
-            지역별 메인쿤 안내
+            지역별 국제결혼 안내
           </Link>
           <span className="mx-2">/</span>
           <span>{page.keyword}</span>

@@ -17,15 +17,15 @@ const initial: FormState = {
   name: "",
   phone: "",
   address: "",
-  product: "분양상담",
+  product: "정보상담",
   quantity: "1",
   memo: "",
 };
 
 const TOPICS = [
-  { id: "분양상담", label: "메인쿤 분양 상담" },
-  { id: "사진문의", label: "분양 중인 아이 사진 문의" },
-  { id: "방문예약", label: "방문·예약 문의" },
+  { id: "정보상담", label: "국제결혼 정보 상담" },
+  { id: "주의사항", label: "업체 주의사항 문의" },
+  { id: "방문예약", label: "방문·상담 일정" },
   { id: "기타", label: "기타 문의" },
 ];
 

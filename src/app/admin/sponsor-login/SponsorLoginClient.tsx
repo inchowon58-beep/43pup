@@ -39,7 +39,7 @@ export default function SponsorLoginClient() {
         <p className="text-sm font-bold text-[var(--sky)]">Sponsor</p>
         <h1 className="mt-2 text-2xl font-extrabold text-[var(--navy)]">스폰서 로그인</h1>
         <p className="mt-2 text-sm text-[var(--muted)]">
-          분양 상담 신청문의 내역만 확인할 수 있습니다.
+          상담 신청문의 내역만 확인할 수 있습니다.
         </p>
         <div className="field mt-6">
           <label htmlFor="username">아이디</label>

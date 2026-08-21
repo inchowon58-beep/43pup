@@ -12,9 +12,9 @@ from google import genai
 
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_keyword_csv, nearby_stations
 
-BRAND = "큰냥이네"
-FARM = "메인쿤 분양"
-SITE_NAME = "큰냥이네"
+BRAND = "한국국제결혼협회"
+FARM = "국제결혼정보"
+SITE_NAME = "한국국제결혼협회"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
 
@@ -27,41 +27,40 @@ GEMINI_MODELS: List[Dict[str, str]] = [
 
 DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
-DEFAULT_USER_PROMPT = """톤: 따뜻하고 입양하고 싶게. 사실(성격·털·비용 요인)은 분명히, 문장은 사진 옆에서 이야기하듯.
-이 문서는 여러 분양처에 임대되는 사이트에 실리므로 특정 업체 홍보·브랜드 감성 카피 금지.
-키워드에 지역명이 있으면 그 지역에서 메인쿤을 고르는 독자 시점으로 쓰세요.
-운영 사실: 한국애견연맹 위원장이 운영하고, 고양이심사위원이 관리·상담합니다. 본문에 자연스럽게 넣으세요.
-장례·엔딩 톤 금지. 전화번호 넣지 마세요. 상담은 카카오톡만.
+DEFAULT_USER_PROMPT = """톤: 현실적이고 안내형. 사실(주의 신호·확인 항목)은 분명히.
+이 문서는 여러 곳에 임대되는 정보 사이트에 실리므로 특정 국제결혼업체 홍보·실명 비방 금지.
+키워드에 지역명이 있으면 그 지역에서 업체를 고르기 전 독자 시점으로 쓰세요.
+포지션: 한 업체를 노출하지 않음. 믿을 수 있는 업체 정보의 기준, 피해야 할 곳(선금·계약 없음·오늘만 할인).
+전화번호 넣지 마세요. 상담은 카카오톡만.
 {keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.
 """
 
-SYSTEM_SEO_RULES = f"""당신은 메인쿤 분양 안내문을 쓰는 작가입니다.
-이 문서는 여러 분양처에 임대되므로 특정 업체 홍보로 쓰지 마세요.
-업체명 '{BRAND}'는 남용하지 마세요.
+SYSTEM_SEO_RULES = f"""당신은 국제결혼 정보를 안내하는 작가입니다.
+이 문서는 여러 곳에 임대되므로 특정 업체 홍보로 쓰지 마세요.
+업체명 '{BRAND}'는 남용하지 마세요. 한 상호를 추천하지 마세요.
 
 상담: 카카오톡 오픈채팅 ({KAKAO})
-다룰 정보: 한국애견연맹 위원장 운영, 고양이심사위원 상담, 메인쿤 크기, 장모·링스 팁, 입양 순서, 비용이 달라지는 항목
+다룰 정보: 피해야 할 업체 공통점, 믿을 수 있는 업체 정보의 기준, 확인 순서, 한 줄 견적을 쪼개는 질문
 범위: {LOCATION}
 
 [SEO]
-- title 50~60자. 메인 키워드를 앞에 두고 메인쿤·우리 집 중 하나를 포함. 브랜드명 남용 금지.
-- metaDescription 140~160자. 키워드 + 메인쿤 분양 + 사진. 카카오톡은 한 번만. 광고 문장 금지.
-- metaKeywords 8~12개, 쉼표 구분. 키워드·메인쿤·메인쿤분양·메인쿤입양 포함.
+- title 50~60자. 메인 키워드를 앞에 두고 주의·업체 정보 중 하나를 포함. 브랜드명 남용 금지.
+- metaDescription 140~160자. 키워드 + 국제결혼정보 + 주의사항. 카카오톡은 한 번만. 광고 문장 금지.
+- metaKeywords 8~12개, 쉼표 구분. 키워드·국제결혼·국제결혼정보·국제결혼업체 포함.
 - h1에 메인 키워드 포함. title과 완전히 같지 않게.
-- 본문 3개 섹션. 각 h2는 서로 다른 각도(집을 고르기 전/입양 순서/비용·확인 항목).
+- 본문 3개 섹션. 각 h2는 서로 다른 각도(업체를 보기 전/피해야 할 곳/믿을 정보 기준).
 - 각 문단 140자 이상. 키워드 과다반복 금지. 자연 반복만.
 
 [OG]
 - og:title = title, og:description = metaDescription 로 쓸 수 있게 완결된 문장.
-- heroSubtitle는 한글 한 문장. 입양하고 싶은 느낌 + 사진.
+- heroSubtitle는 한글 한 문장. 한 업체 홍보 아님 + 확인 항목.
 
 [AEO]
-- FAQ 4개. 실제 검색 질문형(성격, 털, 비용, 상담 등).
+- FAQ 4개. 실제 검색 질문형(특정 업체 소개 여부, 피해야 할 곳, 비용, 상담 등).
 - 답변은 80자 이상, 한 질문에 한 주제. 첫 문장에서 바로 답. 가격 단정 금지.
 
 [금지]
-- 가격 단정, 치료 보장, 의료 진단, 타사 비방, 허위 후기.
-- 장례·엔딩 톤.
+- 가격 단정, 특정 업체 실명 비방, 허위 후기.
 - 전화번호·0505 등 연락처 숫자.
 - JSON 이외 설명·마크다운 금지.
 
@@ -122,7 +121,7 @@ def generate_gemini_json(
     key = (api_key or "").strip()
     if not key:
         raise ValueError("제미나이 API 키가 없습니다.")
-    kw = (keyword or "").strip() or "메인쿤분양"
+    kw = (keyword or "").strip() or "국제결혼정보"
     extra = (user_prompt or "").replace("{keyword}", kw).strip()
     user_text = f"메인 키워드: {kw}\n"
     if extra:
@@ -180,18 +179,18 @@ def assemble_from_gemini(
 ) -> Dict[str, Any]:
     from datetime import datetime
 
-    kw = (keyword or "").strip() or "메인쿤분양"
+    kw = (keyword or "").strip() or "국제결혼정보"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     geo_kw = nearby_keyword_csv(kw)
 
-    title = str(data.get("title") or f"{kw} | 우리 집에 올 메인쿤")[:80]
+    title = str(data.get("title") or f"{kw} | 주의할 업체와 확인 항목")[:80]
     meta_desc = str(data.get("metaDescription") or "")
     if not meta_desc:
         meta_desc = (
-            f"{kw} 안내 — {BRAND}에서 메인쿤 분양 사진을 보고 카카오톡으로 상담하세요."
+            f"{kw} 안내 — 한 업체를 홍보하지 않습니다. 확인할 항목을 보고 카카오톡으로 상담하세요."
         )
     if areas or stations:
         near_bits = " · ".join((areas[:3] + stations[:3])[:4])
@@ -225,16 +224,16 @@ def assemble_from_gemini(
         "title": title,
         "metaDescription": meta_desc[:180],
         "metaKeywords": meta_kw,
-        "h1": str(data.get("h1") or f"{kw}, 우리 집에 올 메인쿤"),
-        "heroSubtitle": str(data.get("heroSubtitle") or "분양 중인 메인쿤 사진을 보고 마음을 정해 보세요"),
-        "heroBadge": str(data.get("heroBadge") or "분양 안내"),
+        "h1": str(data.get("h1") or f"{kw}, 업체를 고르기 전에"),
+        "heroSubtitle": str(data.get("heroSubtitle") or "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요"),
+        "heroBadge": str(data.get("heroBadge") or "정보 안내"),
         "heroTitleLine1": kw,
-        "heroTitleLine2": str(data.get("heroTitleLine2") or "우리 집의 메인쿤"),
-        "heroBar": str(data.get("heroBar") or "분양 중인 메인쿤 사진을 보고 마음을 정해 보세요."),
+        "heroTitleLine2": str(data.get("heroTitleLine2") or "한국국제결혼협회"),
+        "heroBar": str(data.get("heroBar") or "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요."),
         "sections": sections,
         "faqs": faqs,
         "images": image_urls_fn(3, seed),
-        "ctaText": str(data.get("ctaText") or f"{kw} 분양 상담 — 지역·희망 조건만 알려 주세요"),
+        "ctaText": str(data.get("ctaText") or f"{kw} 정보 상담 — 지역·희망 국가만 알려 주세요"),
         "nearbyAreas": areas,
         "nearbyStations": stations,
         "regionLabel": region or "",

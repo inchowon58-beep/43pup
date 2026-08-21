@@ -1,19 +1,14 @@
-/** 키워드에서 지역명 추출 (예: 수원메인쿤분양 → 수원) */
+/** 키워드에서 지역명 추출 (예: 부천국제결혼정보 → 부천) */
 export const SERVICE_SUFFIXES = [
-  "메인쿤분양",
-  "메인쿤입양",
-  "메인쿤키우기",
-  "메인쿤가격",
-  "메인쿤성격",
-  "메인쿤크기",
-  "메인쿤분양가",
-  "메인쿤고양이",
-  "대형묘분양",
-  "대형묘입양",
-  "메인쿤",
-  "고양이분양",
-  "반려묘입양",
-  "반려묘분양",
+  "국제결혼정보",
+  "국제결혼상담",
+  "국제결혼업체",
+  "국제결혼주의사항",
+  "국제결혼사기",
+  "국제결혼비용",
+  "국제결혼절차",
+  "국제결혼안내",
+  "국제결혼",
 ];
 
 const SEOUL_GU = [
@@ -75,13 +70,13 @@ export function extractRegionFromKeyword(keyword: string): string | null {
   return matchRegionPrefix(text) || (text.length >= 2 && text.length <= 8 ? text : null);
 }
 
-/** 키워드에서 SEO 접미사 추출 (예: 수원메인쿤분양 → 메인쿤분양) */
+/** 키워드에서 SEO 접미사 추출 (예: 부천국제결혼정보 → 국제결혼정보) */
 export function extractKeywordTheme(keyword: string): string {
   const normalized = keyword.replace(/\s+/g, "").trim();
-  if (!normalized) return "메인쿤분양";
+  if (!normalized) return "국제결혼정보";
   const sorted = [...SERVICE_SUFFIXES].sort((a, b) => b.length - a.length);
   for (const suffix of sorted) {
     if (suffix.length >= 3 && normalized.includes(suffix)) return suffix;
   }
-  return "메인쿤분양";
+  return "국제결혼정보";
 }

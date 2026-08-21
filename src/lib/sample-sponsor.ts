@@ -4,18 +4,18 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "큰냥이네 메인쿤 (샘플)",
+  sponsor_name: "한국국제결혼협회 정보안내 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "https://open.kakao.com/o/sxelLqJi",
   homepage_url: "https://www.naver.com",
   recruiting_notice: "",
   rental_price: "30만원",
   highlight_points: [
-    "분양 중인 아이 사진 공개",
-    "가족형 메인쿤",
+    "확인할 업체 항목 공개",
+    "주의사항 안내",
     "전국 상담 가능",
-    "방문·예약 진행 가능",
-    "입양 준비 안내",
+    "방문·상담 일정 안내",
+    "계약 전 체크리스트",
   ],
 };
 
@@ -42,23 +42,23 @@ export function buildSampleSponsors(current: SiteSponsor): {
   };
 }
 
-export const SAMPLE_PAGE_KEYWORD = "강남 메인쿤분양";
-export const SAMPLE_PAGE_H1 = "강남 메인쿤분양, 큰냥이네 안내";
+export const SAMPLE_PAGE_KEYWORD = "부천국제결혼정보";
+export const SAMPLE_PAGE_H1 = "부천국제결혼정보, 업체를 고르기 전에";
 export const SAMPLE_PAGE_SUBTITLE =
-  "메인쿤분양 사진을 보고 성격을 정해 보세요.";
+  "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요.";
 
 export const SAMPLE_SECTIONS = [
   {
-    h2: "강남 메인쿤분양, 집을 고르기 전에",
+    h2: "부천국제결혼정보, 업체를 보기 전에",
     paragraphs: [
-      "사진을 보다가 눈이 머무는 아이가 있으면 그 마음을 메모해 두세요. 온순한 대형묘 메인쿤을 강남에서도 상담으로 안내받을 수 있습니다.",
-      "원하는 성별·코트만 알려 주시면 지금 만날 수 있는 아이를 안내합니다. 방문이 어려우면 카카오톡으로 사진을 더 받아 보세요.",
+      "부천에서 국제결혼정보를 찾을 때 흔한 문제는 선금만 요구하거나 계약이 없는 진행입니다. 한 업체를 홍보하지 않고, 믿을 수 있는 업체 정보의 기준을 안내합니다.",
+      "지역과 희망 국가만 알려 주시면 확인할 항목을 정리해 드립니다. 방문이 어려우면 카카오톡으로 목록을 받아 보세요.",
     ],
   },
   {
-    h2: "메인쿤 입양은 이렇게 이어집니다",
+    h2: "피해야 할 곳과 확인 순서",
     paragraphs: [
-      "사진 확인 → 상담 → 방문 또는 추가 사진 → 집으로 맞이하기 순입니다. 비용은 혈통·세대·시기에 따라 달라지며, 포함 항목을 먼저 확인한 뒤에 결정하시면 됩니다.",
+      "오늘만 할인, 신원 확인 지연, 한 줄 견적은 보류 신호입니다. 비용은 국가·포함 범위에 따라 달라지며, 항목을 먼저 확인한 뒤에 결정하시면 됩니다.",
     ],
   },
 ] as const;

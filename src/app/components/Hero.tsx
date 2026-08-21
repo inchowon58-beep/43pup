@@ -9,37 +9,38 @@ export default function Hero() {
       <div className="absolute inset-0 hero-media">
         <Image
           src={imageUrl(1)}
-          alt={`${SITE.name} — 메인쿤분양`}
+          alt={`${SITE.name} — 국제결혼정보`}
           fill
           unoptimized
           priority
-          className="object-cover object-[center_32%]"
+          className="object-cover object-[center_28%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(21,34,56,0.46)_0%,rgba(21,34,56,0.16)_38%,rgba(12,18,30,0.86)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(92,26,46,0.5)_0%,rgba(92,26,46,0.18)_38%,rgba(42,18,24,0.88)_100%)]" />
       </div>
 
       <div className="container relative flex min-h-[92svh] flex-col justify-end pb-28 pt-28 md:pb-24">
         <div className="animate-rise max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.22em] text-[#e8d5a3]">
+          <p className="text-xs font-semibold tracking-[0.22em] text-[#e8c9a0]">
             {SITE.taglineEn}
           </p>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-[3.4rem]">
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-[3.2rem]">
             {SITE.brand}
             <span className="mt-4 block text-[0.42em] font-medium leading-snug tracking-normal text-white/90">
-              메인쿤분양 · 심사위원 상담
+              국제결혼정보 · 믿을 수 있는 업체 안내
             </span>
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/85 md:text-base">
-            {SITE.tagline}. 분양 중인 아이 사진을 먼저 보시고, 카카오톡으로 문의해 주세요.
+            {SITE.tagline}. 한 업체를 홍보하지 않습니다. 예비고객이 먼저 알아야 할 주의점과
+            확인 항목을 정리합니다.
           </p>
-          <p className="mt-4 max-w-xl text-xs leading-relaxed text-[#f4ead4] md:text-sm">
+          <p className="mt-4 max-w-xl text-xs leading-relaxed text-[#f3e6d6] md:text-sm">
             {KEYWORD_INQUIRY}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#gallery" className="btn-primary">
+            <a href="#services" className="btn-primary">
               <Camera size={18} />
-              분양 사진 보기
+              주의사항 보기
             </a>
             <a
               href={SITE.kakaoOpenChatUrl}

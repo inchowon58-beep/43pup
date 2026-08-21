@@ -1,10 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="큰냥이네">
-  <rect width="180" height="180" rx="40" fill="#152238"/>
-  <path d="M56 96 L45 18 L90 74 Z" fill="#c9a45c"/>
-  <path d="M124 96 L135 18 L90 74 Z" fill="#c9a45c"/>
-  <circle cx="90" cy="112" r="42" fill="#f4ead4"/>
-  <circle cx="74" cy="106" r="6.2" fill="#152238"/>
-  <circle cx="106" cy="106" r="6.2" fill="#152238"/>
-  <ellipse cx="90" cy="124" rx="6.2" ry="4.2" fill="#c9a45c"/>
-  <path d="M68 152 Q90 136 112 152 Q90 164 68 152 Z" fill="#c9a45c"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="한국국제결혼협회">
+  <rect width="180" height="180" rx="40" fill="#5c1a2e"/>
+  <circle cx="70" cy="98" r="38" fill="none" stroke="#e8c9a0" stroke-width="9"/>
+  <circle cx="110" cy="98" r="38" fill="none" stroke="#c9a07a" stroke-width="9"/>
+  <path d="M90 38 L93.4 47.6 L103.6 48.2 L95.6 54.6 L98 64.4 L90 59 L82 64.4 L84.4 54.6 L76.4 48.2 L86.6 47.6 Z" fill="#e8c9a0"/>
 </svg>

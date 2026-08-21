@@ -68,7 +68,7 @@ export default function SponsorStickyFooterBar({
   }
 
   return (
-    <div className={wrapperClass} aria-label="분양 상담">
+    <div className={wrapperClass} aria-label="정보 상담">
       <div className="fixed-cta-inner">
         {(hasPhone || homepageUrl) && (
           <div className={hasPhone && homepageUrl ? "fixed-cta-row" : undefined}>

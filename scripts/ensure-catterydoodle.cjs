@@ -1,18 +1,18 @@
 /**
- * 큰냥이네 (inchowon58-beep/pupmaincoon / maincoon.puppytimes.co.kr) 전용 배포 가드
- * 기존 enmaincoon·puppydoodle·agadoodle·doodlekorea·doodle 저장소와 섞이지 않도록 합니다.
+ * 한국국제결혼협회 (inchowon58-beep/globalwedding / www.globalwedding.co.kr) 전용 배포 가드
+ * 기존 pupmaincoon·enmaincoon·두들·muzi 저장소와 섞이지 않도록 합니다.
  */
 const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const ALLOWED_REMOTE = /github\.com[:/]+inchowon58-beep\/pupmaincoon(\.git)?$/i;
+const ALLOWED_REMOTE = /github\.com[:/]+inchowon58-beep\/globalwedding(\.git)?$/i;
 const BLOCKED_REMOTE =
-  /enmaincoon|puppydoodle|agadoodle|doodlekorea|catterydoodle|muzi02|muzi01|muziga|inchowon58-beep\/eanimal(\.git)?$|inchowon58-beep\/funeral(\.git)?$|inchowon58-beep\/doodle(\.git)?$|cloudshelter|jejumilgam|dogboho|구름이네/i;
+  /pupmaincoon|enmaincoon|puppydoodle|agadoodle|doodlekorea|catterydoodle|muzi02|muzi01|muziga|inchowon58-beep\/eanimal(\.git)?$|inchowon58-beep\/funeral(\.git)?$|inchowon58-beep\/doodle(\.git)?$|cloudshelter|jejumilgam|dogboho|구름이네/i;
 
 function fail(msg) {
-  console.error("이 프로젝트는 pupmaincoon (큰냥이네 / maincoon.puppytimes.co.kr) 전용입니다.");
-  console.error("기존 enmaincoon / puppydoodle / agadoodle / doodlekorea / doodle / catterydoodle / muzi / eanimal / funeral.git 에는 절대 push/deploy 하지 마세요.\n");
+  console.error("이 프로젝트는 globalwedding (한국국제결혼협회 / www.globalwedding.co.kr) 전용입니다.");
+  console.error("기존 pupmaincoon / enmaincoon / puppydoodle / doodle / catterydoodle / muzi / eanimal / funeral.git 에는 절대 push/deploy 하지 마세요.\n");
   console.error(msg);
   process.exit(1);
 }
@@ -30,13 +30,13 @@ function readVercelProject() {
 const vercel = readVercelProject();
 if (
   vercel?.projectName &&
-  /^(enmaincoon|puppydoodle|eanimal|muziga|muzi01|muzi02|catterydoodle|doodle|doodlekorea|agadoodle)$/i.test(
+  /^(pupmaincoon|enmaincoon|puppydoodle|eanimal|muziga|muzi01|muzi02|catterydoodle|doodle|doodlekorea|agadoodle)$/i.test(
     vercel.projectName
   )
 ) {
   fail(
     `Vercel 연결이 기존 '${vercel.projectName}' 입니다. 이전 프로젝트는 사용하지 않습니다.\n` +
-      `maincoon.puppytimes.co.kr / inchowon58-beep/pupmaincoon 전용으로 다시 연결하세요.`
+      `www.globalwedding.co.kr / inchowon58-beep/globalwedding 전용으로 다시 연결하세요.`
   );
 }
 
@@ -44,7 +44,7 @@ let remote = "";
 try {
   remote = execSync("git remote get-url origin", { encoding: "utf8" }).trim();
 } catch {
-  fail("git origin이 없습니다. https://github.com/inchowon58-beep/pupmaincoon.git 로 설정하세요.");
+  fail("git origin이 없습니다. https://github.com/inchowon58-beep/globalwedding.git 로 설정하세요.");
 }
 
 if (BLOCKED_REMOTE.test(remote)) {
@@ -52,8 +52,8 @@ if (BLOCKED_REMOTE.test(remote)) {
 }
 if (!ALLOWED_REMOTE.test(remote)) {
   fail(
-    `git origin은 https://github.com/inchowon58-beep/pupmaincoon.git 이어야 합니다.\n  현재: ${remote}`
+    `git origin은 https://github.com/inchowon58-beep/globalwedding.git 이어야 합니다.\n  현재: ${remote}`
   );
 }
 
-console.log("✅ 배포 대상 확인: 큰냥이네 (pupmaincoon / maincoon.puppytimes.co.kr)");
+console.log("✅ 배포 대상 확인: 한국국제결혼협회 (globalwedding / www.globalwedding.co.kr)");
