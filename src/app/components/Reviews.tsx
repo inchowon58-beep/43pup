@@ -2,33 +2,33 @@ import { SITE } from "@/lib/site";
 
 const REVIEWS = [
   {
-    quote: "선금부터 달라는 곳이 많아서 막막했는데, 계약서·환불 조항을 먼저 보라고 해서 한 곳을 걸렀어요.",
-    name: "김○○ 예비신랑",
-    course: "업체 주의사항",
+    quote: "헤어라인 선을 먼저 그려 보고 시술해서, 제가 원하던 밀도와 가까웠습니다.",
+    name: "김○○ 고객",
+    course: "두피문신 시술",
   },
   {
-    quote: "특정 업체 광고가 아니라 확인할 항목이 적혀 있어서, 상담할 때 질문이 생겼습니다.",
-    name: "이○○ 예비신부",
-    course: "정보 상담",
+    quote: "교육 과정이 어떻게 돌아가는지부터 설명해 주셔서, 아카데미 상담이 수월했습니다.",
+    name: "이○○ 수강생",
+    course: "두피문신 교육",
   },
   {
-    quote: "‘오늘만 할인’이 반복되면 피하라고 한 문장이 실제로 도움이 됐습니다.",
-    name: "박○○ 보호자",
-    course: "사기 주의",
+    quote: "위생과 사후관리를 항목으로 알려 줘서, 시술 전후가 덜 막막했습니다.",
+    name: "박○○ 고객",
+    course: "사후관리",
   },
   {
-    quote: "지역만 말했는데, 그 지역에서 흔한 과장 광고 유형을 먼저 알려 주셨어요.",
-    name: "최○○ 예비신랑",
-    course: "지역 안내",
+    quote: "정수리 밀도만 보완하고 싶었는데, 범위를 먼저 정해 주셔서 과하지 않았습니다.",
+    name: "최○○ 고객",
+    course: "디자인 상담",
   },
   {
-    quote: "비용이 한 줄로만 나온 견적은 쪼개서 물어보라고 해서, 숨은 항목을 찾았습니다.",
-    name: "정○○ 예비신부",
-    course: "비용 확인",
+    quote: "본점 시술과 평택 교육 일정을 나눠 안내해 줘서 선택이 분명했습니다.",
+    name: "정○○ 수강생",
+    course: "아카데미 상담",
   },
   {
-    quote: "오픈채팅으로 확인 목록을 받고, 서두르지 말라는 말이 제일 안심됐습니다.",
-    name: "한○○ 예비신랑",
+    quote: "오픈채팅으로 사진 자리와 상담 시간을 바로 잡아 주셔서 편했습니다.",
+    name: "한○○ 고객",
     course: "오픈채팅 상담",
   },
 ];
@@ -40,10 +40,10 @@ export default function Reviews() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="section-kicker">REVIEWS</p>
           <h2 className="mt-3 text-3xl font-extrabold text-[var(--navy)] md:text-4xl">
-            정보를 먼저 본 뒤의 이야기
+            시술·교육을 다녀간 이야기
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            {SITE.brand}에서 확인 항목을 받은 예비고객의 후기입니다.
+            {SITE.brand}에서 두피문신 시술과 아카데미를 상담한 분의 후기입니다.
           </p>
         </div>
 

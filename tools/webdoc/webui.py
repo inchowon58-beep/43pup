@@ -7,11 +7,11 @@ import os
 import socket
 import threading
 import time
-import webbrowser
 from pathlib import Path
 
 from flask import Flask, jsonify, render_template, request
 
+from chrome_ui import close_ui, open_ui
 from project_paths import webdoc_dir
 from runtime import RUNTIME
 
@@ -128,6 +128,7 @@ def api_admin_lock():
 def api_quit():
     """UI에서 완전 종료 (스케줄 포함)."""
     RUNTIME.request_quit()
+    close_ui()
 
     def _die() -> None:
         time.sleep(0.4)
@@ -149,7 +150,7 @@ def find_free_port(prefer: int = 17865) -> int:
 
 
 def run_browser_ui(port: int) -> None:
-    """일반 브라우저 새 창으로 UI 열기 (Chrome --app 아님)."""
+    """별도 Chrome 창으로 UI 열기. 종료 시 그 창만 닫는다."""
     url = f"http://127.0.0.1:{port}/"
 
     def serve() -> None:
@@ -162,16 +163,12 @@ def run_browser_ui(port: int) -> None:
                 break
         time.sleep(0.1)
 
-    # new=1 → 가능하면 새 창, new=2 → 새 탭
-    try:
-        webbrowser.open(url, new=1)
-    except Exception:
-        webbrowser.open(url)
+    open_ui(url)
 
-    # 브라우저를 닫아도 백엔드는 유지 — [프로그램 종료] 로만 끝냄
     while not RUNTIME.quit_requested:
         time.sleep(0.4)
 
+    close_ui()
     RUNTIME.shutdown()
     os._exit(0)
 

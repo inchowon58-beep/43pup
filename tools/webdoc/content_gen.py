@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 국제결혼정보센터.
+"""문서 본문 생성 (템플릿) — 필릭스스칼프.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
-국제결혼정보 상세 페이지를 생성합니다. 이미지는 3장.
+두피문신 상세 페이지를 생성합니다. 이미지는 3장(준비 전 placeholder).
 """
 
 from __future__ import annotations
@@ -19,24 +19,29 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "국제결혼정보센터"
-FARM = "국제결혼정보"
-SITE_NAME = "국제결혼정보센터"
+BRAND = "필릭스스칼프"
+FARM = "두피문신"
+SITE_NAME = "두피문신 필릭스스칼프"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
-IMAGE_BASE = "https://image.cattery.co.kr/weding"
+IMAGE_BASE = ""
 IMAGE_COUNT = 10
 IMAGE_USE = 3  # 히어로 1 + 본문 2
+DISPLAY_ORDER = [6, 1, 9, 3, 8, 2, 10, 5, 7, 4]
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|infowedding".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|smpinfo".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
 def image_urls(count: int, seed: int) -> List[str]:
     rng = random.Random(seed)
-    pool = [f"{IMAGE_BASE}/{i:02d}.webp" for i in range(1, IMAGE_COUNT + 1)]
+    if not IMAGE_BASE:
+        pool = [f"placeholder:{i}" for i in DISPLAY_ORDER]
+        rng.shuffle(pool)
+        return pool[:count]
+    pool = [f"{IMAGE_BASE}/{i:02d}.webp" for i in DISPLAY_ORDER]
     rng.shuffle(pool)
     return pool[:count]
 
@@ -45,7 +50,7 @@ def slugify(keyword: str, idx: int) -> str:
     base = "".join(
         c if c.isalnum() or c in "-_" else "-" for c in keyword.lower().replace(" ", "-")
     )
-    base = base.strip("-")[:36] or "wedding"
+    base = base.strip("-")[:36] or "smp"
     tail = f"{idx:02d}{''.join(random.choices(string.ascii_lowercase + string.digits, k=4))}"
     return f"{base}-{tail}"
 
@@ -64,42 +69,42 @@ def _page_to_summary(page: Dict[str, Any]) -> Dict[str, str]:
 
 def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
-    kw = keyword.strip() or "국제결혼정보"
+    kw = keyword.strip() or "두피문신"
     heroes = [
-        "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요",
-        "선금·계약·신원 확인이 빠지면 보류하세요",
-        "믿을 수 있는 업체 정보의 기준을 안내합니다",
-        "지역만 알려 주셔도 확인 목록을 드립니다",
+        "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요",
+        "헤어라인·정수리·밀도, 범위를 정한 뒤 진행합니다",
+        "두피문신 시술과 아카데미 과정을 안내합니다",
+        "지역만 알려 주셔도 상담 일정을 안내합니다",
     ]
     line2_opts = [
-        "주의사항 안내",
-        "업체 정보 기준",
-        "확인 목록",
-        "정보 상담",
+        "시술 안내",
+        "교육 과정",
+        "디자인 상담",
+        "사후관리",
     ]
     bar_opts = [
-        "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요",
-        "오늘만 할인·계약 없는 선금은 보류 신호입니다",
-        "비용이 한 줄이면 항목을 쪼개 물어보세요",
-        "카카오톡으로 이어 가는 정보 상담",
+        "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요",
+        "헤어라인·정수리·밀도, 범위를 정한 뒤 진행합니다",
+        "비용이 한 줄이면 부위·횟수를 쪼개 물어보세요",
+        "카카오톡으로 이어 가는 시술·교육 상담",
     ]
     intro_h2 = [
-        f"{kw}, 업체를 보기 전에",
-        f"피해야 할 곳부터 정리하는 {kw}",
-        f"{kw}에서 믿을 수 있는 업체 정보",
-        f"{kw}, 예비고객이 먼저 겪는 문제",
+        f"{kw}, 시술을 보기 전에",
+        f"디자인부터 정리하는 {kw}",
+        f"{kw}에서 두피문신 시술·교육",
+        f"{kw}, 시술과 교육을 함께",
     ]
 
-    title = f"{kw} | 주의할 업체와 확인 항목"
+    title = f"{kw} | 두피문신 시술·교육 안내"
     if len(title) > 60:
-        title = f"{kw} | 국제결혼정보"
+        title = f"{kw} | 두피문신"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw}에서 어떤 업체를 주의해야 하는지, 믿을 수 있는 업체 정보는 어떻게 보는지 정리합니다. "
-        f"한 업체를 홍보하지 않습니다."
+        f"{kw} 두피문신 시술과 교육을 필릭스스칼프에서 안내합니다. "
+        f"디자인 상담 후 일정과 과정을 확인하세요."
     )
     if areas or stations:
         near_bits = " · ".join((areas[:3] + stations[:3])[:4])
@@ -115,28 +120,28 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "h2": h2_0,
             "paragraphs": [
-                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 한 업체의 광고가 아니라 피해야 할 공통점입니다. "
-                f"국제결혼정보센터는 특정 업체를 전면에 노출하지 않고, {tone} 확인할 항목을 안내합니다.",
-                f"선금만 요구하거나 계약이 없거나 ‘오늘만 할인’을 반복하는 곳은 보류하세요. "
-                f"안내 사진은 메인 갤러리에서도 이어서 보실 수 있습니다.",
-                f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 국가입니다. "
+                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 시술 부위와 교육 과정입니다. "
+                f"필릭스스칼프는 두피문신 시술과 아카데미를 함께 운영하며, {tone} 일정을 안내합니다.",
+                f"헤어라인·정수리·밀도 중 어디를 볼지 정한 뒤 횟수를 안내합니다. "
+                f"시술·교육 사진은 메인 갤러리에서도 이어서 보실 수 있습니다.",
+                f"상담에 필요한 정보는 단순합니다. 거주 지역, 시술 부위 또는 교육 과정입니다. "
                 f"카카오톡 오픈채팅으로 상담해 주세요.",
             ],
         },
         {
-            "h2": f"{kw}에서 믿을 수 있는 업체 정보의 기준",
+            "h2": f"{kw}에서 시술·교육의 기준",
             "paragraphs": [
-                f"국제결혼 비용은 국가, 프로그램, 포함 범위에 따라 달라집니다. "
-                f"한 줄 견적만 있으면 항공·숙박·통역·서류를 따로 물어보세요. 단가를 단정하지 않습니다.",
-                f"상담 범위는 {LOCATION}입니다. 확인할 항목과 피해야 할 유형을 함께 정리할 수 있습니다.",
-                f"{kw}로 찾아오신 분이라면, 주의사항을 본 뒤 카카오톡 상담을 권합니다.",
+                f"두피문신 비용은 부위, 밀도, 횟수에 따라 달라집니다. "
+                f"한 줄 견적만 있으면 범위를 따로 물어보세요. 단가를 단정하지 않습니다.",
+                f"상담 범위는 {LOCATION}입니다. 본점 시술과 아카데미 과정을 함께 정리할 수 있습니다.",
+                f"{kw}로 찾아오신 분이라면, 디자인을 본 뒤 카카오톡 상담을 권합니다.",
             ],
         },
         {
             "h2": f"{kw} FAQ와 다음 단계",
             "paragraphs": [
                 f"{kw} 상담은 홈페이지 문의 또는 카카오톡 오픈채팅으로 가능합니다. "
-                f"지역과 희망 조건만 알려 주셔도 됩니다.",
+                f"지역과 시술 부위, 또는 교육 과정만 알려 주셔도 됩니다.",
                 f"사진을 더 보고 싶으시면 메인 갤러리로 이동해 주세요. 확인할 항목이 있으면 바로 물어보시면 됩니다.",
             ],
         },
@@ -145,28 +150,27 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "q": f"{kw} 상담은 어떻게 하나요?",
             "a": "카카오톡 오픈채팅 또는 사이트 하단 문의로 접수합니다. "
-            "지역·희망 국가만 알려 주시면 확인 목록을 안내받을 수 있습니다.",
+            "지역·시술 부위 또는 교육 과정만 알려 주시면 일정을 안내받을 수 있습니다.",
         },
         {
-            "q": "여기는 특정 업체를 소개하나요?",
-            "a": "아닙니다. 한 국제결혼업체를 전면에 노출하지 않습니다. "
-            "주의 신호와 믿을 수 있는 업체 정보의 기준을 안내합니다.",
+            "q": "여기는 어떤 곳인가요?",
+            "a": "필릭스스칼프는 두피문신 시술과 교육을 함께 하는 스튜디오입니다. "
+            "디자인 상담과 아카데미 과정을 안내합니다.",
         },
         {
             "q": f"{kw} 전국에서 이용할 수 있나요?",
-            "a": "전국 상담이 가능합니다. 방문이 어려우면 카카오톡으로 확인 항목을 받아 보실 수 있습니다.",
+            "a": "전국 상담이 가능합니다. 방문이 어려우면 카카오톡으로 일정을 받아 보실 수 있습니다.",
         },
         {
-            "q": "어떤 업체를 피해야 하나요?",
-            "a": "계약 없이 선금만 요구하거나, 오늘만 할인을 반복하거나, 신원 확인을 미루는 곳은 보류하세요.",
+            "q": "두피문신 교육도 하나요?",
+            "a": "합니다. 아카데미 본점·평택점에서 SMP 기술·디자인·위생을 교육합니다.",
         },
     ]
     now = datetime.utcnow().isoformat() + "Z"
     line2 = line2_opts[idx % len(line2_opts)]
     geo_kw = nearby_keyword_csv(kw)
     meta_keywords = (
-        f"{kw}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, "
-        f"국제결혼사기, 국제결혼비용, 국제결혼정보센터"
+        f"{kw}, 두피문신, SMP, 두피문신교육, 두피문신시술, 스칼프문신, 필릭스스칼프"
     )
     if geo_kw:
         meta_keywords = f"{meta_keywords}, {geo_kw}"
@@ -176,16 +180,16 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "title": title,
         "metaDescription": meta_desc,
         "metaKeywords": meta_keywords,
-        "h1": f"{kw}, 업체를 고르기 전에",
+        "h1": f"{kw}, 시술 전에 디자인을 먼저",
         "heroSubtitle": heroes[idx % len(heroes)],
-        "heroBadge": "정보 안내",
+        "heroBadge": "시술 · 교육",
         "heroTitleLine1": kw,
         "heroTitleLine2": line2,
         "heroBar": bar_opts[idx % len(bar_opts)],
         "sections": sections,
         "faqs": faqs,
         "images": image_urls(IMAGE_USE, rng.randint(1, 99999)),
-        "ctaText": f"{kw} 정보 상담 — 지역·희망 국가만 알려 주세요",
+        "ctaText": f"{kw} 상담 — 시술 부위 또는 교육 과정만 알려 주세요",
         "nearbyAreas": areas,
         "nearbyStations": stations,
         "regionLabel": region or "",
@@ -204,7 +208,7 @@ def write_html(page: Dict[str, Any], site_url: str) -> str:
         sections += f"<section><h2>{sec['h2']}</h2>{ps}</section>"
         if i < 2 and i + 1 < len(imgs):
             sections += (
-                f'<figure><img src="{imgs[i+1]}" alt="{page["keyword"]} 국제결혼정보 {i+2}" '
+                f'<figure><img src="{imgs[i+1]}" alt="{page["keyword"]} 두피문신 {i+2}" '
                 f'loading="lazy"/></figure>'
             )
     faqs = "".join(

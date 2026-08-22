@@ -4,7 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SITE, CTA_KAKAO } from "@/lib/site";
 import { listPageSummaries, readPage } from "@/lib/seo-pages";
-import { galleryAlt } from "@/lib/images";
+import { galleryAlt, isRealImage, placeholderIndexFrom } from "@/lib/images";
+import ImageSlot from "@/app/components/ImageSlot";
 import { faqJsonLd, howToJsonLd } from "@/lib/faq-data";
 import GuideHeroThumb from "@/app/components/GuideHeroThumb";
 import SponsorMidBox from "@/app/components/SponsorMidBox";
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!page) return { title: "페이지 없음" };
   const origin = await publicOrigin();
   const url = absoluteUrl(origin, `/guide/${encodeURIComponent(page.slug)}`);
-  const ogImage = page.images[0] || SITE.logo;
+  const ogImage = page.images.find((u) => isRealImage(u)) || SITE.ogImage || SITE.logo;
   const region = regionFromPageKeyword(page.keyword);
   const theme = extractKeywordTheme(page.keyword);
   const areas = getSubRegionNames(region, 5);
@@ -79,22 +80,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: page.createdAt,
       modifiedTime: page.updatedAt,
       authors: [SITE.name],
-      section: "국제결혼정보 안내",
+      section: "두피문신 안내",
       tags: keywords.slice(0, 8),
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 1200,
-          alt: `${page.keyword} 국제결혼정보 — ${SITE.name}`,
-        },
-      ],
+      ...(ogImage
+        ? {
+            images: [
+              {
+                url: ogImage,
+                width: 1200,
+                height: 1200,
+                alt: `${page.keyword} 두피문신 — ${SITE.name}`,
+              },
+            ],
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle,
       description,
-      images: [ogImage],
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
     robots: {
       index: true,
@@ -130,7 +135,7 @@ export default async function GuidePage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "지역별 국제결혼 안내",
+        name: "지역별 두피문신 안내",
         item: absoluteUrl(origin, "/guide"),
       },
       {
@@ -153,11 +158,15 @@ export default async function GuidePage({ params }: Props) {
     publisher: {
       "@type": "Organization",
       name: SITE.name,
-      logo: { "@type": "ImageObject", url: SITE.logo },
+      ...(SITE.logo ? { logo: { "@type": "ImageObject", url: SITE.logo } } : {}),
     },
-    image: images.length ? images : [SITE.logo],
+    ...(images.filter(isRealImage).length
+      ? { image: images.filter(isRealImage) }
+      : SITE.logo
+        ? { image: [SITE.logo] }
+        : {}),
     mainEntityOfPage: pageUrl,
-    about: ["국제결혼", "국제결혼정보", "국제결혼상담", "국제결혼업체", "국제결혼주의사항", page.keyword],
+    about: ["두피문신", "SMP", "두피문신교육", "두피문신시술", "필릭스스칼프", page.keyword],
   };
 
   return (
@@ -179,7 +188,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#1a2744_0%,#c47a4a_38%,#f3f5f9_38%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#2a201c_0%,#c45c4a_38%,#f6f1eb_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>
@@ -192,7 +201,7 @@ export default async function GuidePage({ params }: Props) {
           </Link>
           <span className="mx-2">/</span>
           <Link href="/guide" className="hover:text-[var(--coral)]">
-            지역별 국제결혼 안내
+            지역별 두피문신 안내
           </Link>
           <span className="mx-2">/</span>
           <span>{page.keyword}</span>
@@ -217,16 +226,24 @@ export default async function GuidePage({ params }: Props) {
               </p>
             ))}
             {si < 2 && images[si + 1] && (
-              <figure className="my-7 overflow-hidden rounded-[1.4rem] border border-[var(--line)]">
-                <Image
-                  src={images[si + 1]}
-                  alt={galleryAlt(page.keyword, si + 2)}
-                  width={1000}
-                  height={640}
-                  unoptimized
-                  className="aspect-[16/10] w-full object-cover"
-                  loading="lazy"
-                />
+              <figure className="relative my-7 aspect-[16/10] overflow-hidden rounded-[1.4rem] border border-[var(--line)]">
+                {isRealImage(images[si + 1]) ? (
+                  <Image
+                    src={images[si + 1]}
+                    alt={galleryAlt(page.keyword, si + 2)}
+                    width={1000}
+                    height={640}
+                    unoptimized
+                    className="aspect-[16/10] w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <ImageSlot
+                    index={placeholderIndexFrom(images[si + 1])}
+                    fill
+                    label={galleryAlt(page.keyword, si + 2)}
+                  />
+                )}
               </figure>
             )}
             {si === 0 && <SponsorMidBox sponsor={sponsor} />}

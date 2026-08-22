@@ -25,9 +25,9 @@ export default function DoodleGalleryCta({
       <div
         className={`my-8 rounded-[var(--radius-lg)] border border-[var(--coral)] bg-[var(--coral-soft)] p-5 text-center md:p-6 ${className}`}
       >
-        <p className="text-sm font-semibold text-[var(--coral-deep)]">확인할 항목을 먼저</p>
+        <p className="text-sm font-semibold text-[var(--coral-deep)]">시술·교육 사진</p>
         <p className="mt-1 text-lg font-extrabold text-[var(--navy)]">
-          한 업체를 고르기 전에, 주의사항을 보세요
+          두피문신 시술·교육 사진을 먼저 보세요
         </p>
         <Link href="/#gallery" className="btn-primary mt-4 inline-flex">
           <Camera size={18} />
@@ -47,7 +47,7 @@ export default function DoodleGalleryCta({
       className={`my-8 rounded-[var(--radius-lg)] border border-[var(--coral)] bg-[var(--coral-soft)] p-4 md:p-5 ${className}`}
     >
       <div className="grid items-center gap-5 md:grid-cols-[minmax(0,17.5rem)_1fr]">
-        <div className="relative aspect-video overflow-hidden rounded-[0.2rem] bg-[#12182a] shadow-[0_10px_24px_rgba(26,39,68,0.18)]">
+        <div className="relative aspect-video overflow-hidden rounded-[0.2rem] bg-[#1f1714] shadow-[0_10px_24px_rgba(42,32,28,0.18)]">
           <iframe
             src={youtubeEmbedUrl(videoId)}
             title={isActive && channel ? `${channel} 유튜브 영상` : CTA_YOUTUBE_HEADING}
@@ -57,7 +57,7 @@ export default function DoodleGalleryCta({
           />
         </div>
         <div className="text-left">
-          <p className="text-sm font-semibold text-[var(--coral-deep)]">확인할 항목을 먼저</p>
+          <p className="text-sm font-semibold text-[var(--coral-deep)]">시술·교육 안내</p>
           <p className="mt-1 text-lg font-extrabold text-[var(--navy)]">{CTA_YOUTUBE_HEADING}</p>
           {isActive ? (
             <>

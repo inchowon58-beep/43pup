@@ -1,14 +1,15 @@
-/** 키워드에서 지역명 추출 (예: 부천국제결혼정보 → 부천) */
+/** 키워드에서 지역명 추출 (예: 부천두피문신 → 부천) */
 export const SERVICE_SUFFIXES = [
-  "국제결혼정보",
-  "국제결혼상담",
-  "국제결혼업체",
-  "국제결혼주의사항",
-  "국제결혼사기",
-  "국제결혼비용",
-  "국제결혼절차",
-  "국제결혼안내",
-  "국제결혼",
+  "두피문신교육",
+  "두피문신시술",
+  "두피문신학원",
+  "두피문신상담",
+  "두피문신후기",
+  "스칼프문신",
+  "두피문신",
+  "SMP학원",
+  "SMP교육",
+  "SMP",
 ];
 
 const SEOUL_GU = [
@@ -70,13 +71,13 @@ export function extractRegionFromKeyword(keyword: string): string | null {
   return matchRegionPrefix(text) || (text.length >= 2 && text.length <= 8 ? text : null);
 }
 
-/** 키워드에서 SEO 접미사 추출 (예: 부천국제결혼정보 → 국제결혼정보) */
+/** 키워드에서 SEO 접미사 추출 (예: 부천두피문신 → 두피문신) */
 export function extractKeywordTheme(keyword: string): string {
   const normalized = keyword.replace(/\s+/g, "").trim();
-  if (!normalized) return "국제결혼정보";
+  if (!normalized) return "두피문신";
   const sorted = [...SERVICE_SUFFIXES].sort((a, b) => b.length - a.length);
   for (const suffix of sorted) {
     if (suffix.length >= 3 && normalized.includes(suffix)) return suffix;
   }
-  return "국제결혼정보";
+  return "두피문신";
 }

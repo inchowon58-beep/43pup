@@ -17,14 +17,14 @@ const initial: FormState = {
   name: "",
   phone: "",
   address: "",
-  product: "정보상담",
+  product: "시술상담",
   quantity: "1",
   memo: "",
 };
 
 const TOPICS = [
-  { id: "정보상담", label: "국제결혼 정보 상담" },
-  { id: "주의사항", label: "업체 주의사항 문의" },
+  { id: "시술상담", label: "두피문신 시술 상담" },
+  { id: "교육상담", label: "두피문신 교육 문의" },
   { id: "방문예약", label: "방문·상담 일정" },
   { id: "기타", label: "기타 문의" },
 ];
@@ -170,7 +170,7 @@ export default function ContactForm() {
               rows={4}
               value={form.memo}
               onChange={(e) => setForm({ ...form, memo: e.target.value })}
-              placeholder="원하는 크기·성별, 방문 희망일 등을 적어주세요."
+              placeholder="시술 부위, 교육 과정, 방문 희망일 등을 적어주세요."
             />
           </div>
           {error && <p className="mb-3 text-sm text-red-600">{error}</p>}

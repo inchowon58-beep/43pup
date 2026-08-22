@@ -538,6 +538,12 @@ class WebdocRuntime:
         self.quit_requested = True
         self.stop_requested = True
         self.log("프로그램 종료 요청…")
+        try:
+            from chrome_ui import close_ui
+
+            close_ui()
+        except Exception:
+            pass
         self.shutdown()
 
     def shutdown(self) -> None:

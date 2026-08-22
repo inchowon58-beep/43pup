@@ -6,15 +6,16 @@ from __future__ import annotations
 from typing import List, Optional
 
 SERVICE_SUFFIXES = [
-    "국제결혼정보",
-    "국제결혼상담",
-    "국제결혼업체",
-    "국제결혼주의사항",
-    "국제결혼사기",
-    "국제결혼비용",
-    "국제결혼절차",
-    "국제결혼안내",
-    "국제결혼",
+    "두피문신교육",
+    "두피문신시술",
+    "두피문신학원",
+    "두피문신상담",
+    "두피문신후기",
+    "스칼프문신",
+    "두피문신",
+    "SMP학원",
+    "SMP교육",
+    "SMP",
 ]
 
 SUB_REGION_MAP = {
@@ -112,7 +113,7 @@ def extract_theme(keyword: str) -> str:
     for suffix in sorted(SERVICE_SUFFIXES, key=len, reverse=True):
         if len(suffix) >= 3 and suffix in normalized:
             return suffix
-    return "국제결혼정보"
+    return "두피문신"
 
 
 def nearby_areas(region: Optional[str], limit: int = 5) -> List[str]:

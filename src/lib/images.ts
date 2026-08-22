@@ -1,9 +1,9 @@
 import { SITE } from "./site";
 
 /**
- * 화면 노출 순서. 파일 번호(01~10)를 섞어 히어로·갤러리가 다르게 보이게 함.
+ * 화면 노출 순서. 이미지 주소가 들어오면 이 순서로 히어로·갤러리에 씀.
  */
-const DISPLAY_ORDER = [5, 10, 3, 8, 1, 6, 9, 4, 7, 2] as const;
+const DISPLAY_ORDER = [6, 1, 9, 3, 8, 2, 10, 5, 7, 4] as const;
 
 function fileIndex(logicalIndex: number): number {
   const len = DISPLAY_ORDER.length;
@@ -11,9 +11,22 @@ function fileIndex(logicalIndex: number): number {
   return DISPLAY_ORDER[n] ?? 1;
 }
 
-/** weding 01.webp ~ N.webp — 논리 순서는 DISPLAY_ORDER */
 export function imageUrl(index: number): string {
+  if (!SITE.imageBase) return `placeholder:${fileIndex(index)}`;
   return `${SITE.imageBase}/${String(fileIndex(index)).padStart(2, "0")}.webp`;
+}
+
+export function isRealImage(url: string): boolean {
+  return /^https?:\/\//i.test(url || "");
+}
+
+export function placeholderIndexFrom(urlOrIndex: string | number): number {
+  if (typeof urlOrIndex === "number") return fileIndex(urlOrIndex);
+  const m = String(urlOrIndex).match(/placeholder:(\d+)/i);
+  if (m) return Number(m[1]);
+  const file = String(urlOrIndex).match(/(\d{1,3})\.webp/i);
+  if (file) return Number(file[1]);
+  return 1;
 }
 
 function clampImageIndex(num: number): number {
@@ -21,8 +34,13 @@ function clampImageIndex(num: number): number {
   return Math.min(SITE.imageCount, Math.max(1, Math.floor(num)));
 }
 
-/** 구 CDN·잘못된 URL → weding 01~N 로 맞춤 */
 export function migrateImageUrl(url: string): string {
+  if (!url) return imageUrl(1);
+  if (!SITE.imageBase) {
+    const file = url.match(/(\d{1,3})\.webp/i);
+    if (file) return `placeholder:${clampImageIndex(Number(file[1]))}`;
+    return url.startsWith("placeholder:") ? url : imageUrl(1);
+  }
   return url.replace(
     /https?:\/\/image\.cattery\.co\.kr\/(?:jejumilgam|dogboho|petfuneral|doodle|maincoon|weding)\/(?:new)?(\d{1,3})\.webp/gi,
     (_m, num: string) =>
@@ -56,11 +74,11 @@ export function pickImages(count: number, seed = 42): string[] {
 
 export function galleryAlt(keywordOrIndex: string | number, index = 1): string {
   const suffixes = [
-    "국제결혼정보 안내",
-    "국제결혼 상담 현장",
-    "예비부부 안내",
-    "국제결혼업체 확인",
-    "국제결혼 주의사항",
+    "두피문신 시술",
+    "SMP 디자인",
+    "두피문신 교육",
+    "상담 안내",
+    "사후관리",
   ];
   if (typeof keywordOrIndex === "number") {
     const i = keywordOrIndex;

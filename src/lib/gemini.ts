@@ -20,57 +20,57 @@ function asParagraphs(value: unknown): string[] {
 }
 
 function buildPrompt(keyword: string): string {
-  return `당신은 국제결혼 정보를 안내하는 작가입니다.
-이 문서는 여러 곳에 임대되는 정보 사이트에 실리므로 특정 국제결혼업체를 홍보하지 마세요.
-업체명 '${SITE.brand}'는 남용하지 마세요. 한 상호를 추천·비방하지 마세요.
+  return `당신은 두피문신(SMP) 시술과 교육을 안내하는 작가입니다.
+이 문서는 필릭스스칼프 사이트에 실리므로 다른 업체 실명 비방은 하지 마세요.
+업체명 '${SITE.brand}'는 남용하지 마세요.
 
 메인 키워드: ${keyword}
-핵심 키워드: 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 국제결혼사기, 국제결혼비용
-포지션: 믿을 수 있는 업체 정보를 제공하는 안내. 예비고객이 피해야 할 곳의 공통점(선금만 요구, 계약 없음, 오늘만 할인, 신원 확인 지연)을 분명히.
+핵심 키워드: 두피문신, SMP, 두피문신교육, 두피문신시술, 스칼프문신, 필릭스스칼프
+포지션: 두피문신 시술 스튜디오이자 아카데미. 디자인 상담, 위생, 사후관리, 교육 과정을 분명히.
 상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
 서비스 범위: ${SITE.areaServed}
 
-독자: ${keyword}를 검색해 어느 업체를 주의해야 하는지, 어떤 정보를 믿어야 하는지 보려는 예비고객.
-톤: 현실적 안내. 공포 조장 금지. 사실(확인 항목)은 분명히.
-금지: 가격 단정, 허위, 특정 업체 실명 비방, 전화번호, 한 업체 추천.
+독자: ${keyword}를 검색해 시술 또는 교육을 알아보는 분.
+톤: 차분한 안내. 과장·가격 단정 금지. 사실(상담 항목)은 분명히.
+금지: 가격 단정, 허위, 특정 타 업체 실명 비방, 전화번호.
 
 반드시 다룰 내용:
-1) 한 업체를 노출하지 않음. 믿을 수 있는 업체 정보의 기준
-2) 피해야 할 곳: 선금·계약·과장 광고
-3) 확인 순서(주의사항-목록-비교-계약 전 재확인)
+1) 시술과 교육을 함께 운영
+2) 디자인 상담(헤어라인·정수리·밀도)
+3) 상담 순서(디자인-범위-일정-사후관리)
 4) 비용이 한 줄로만 나올 때 물어볼 항목
-5) 안내 사진은 메인 갤러리
+5) 사진은 메인 갤러리
 6) 문의 방법 — 본문 마지막에만, 짧게
 
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 주의할 업체와 확인 항목'",
-  "metaDescription": "140~158자. '{keyword}', 국제결혼정보, 주의사항. 전화번호 금지",
-  "metaKeywords": "{keyword}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항 등 10~14개",
-  "h1": "'{keyword}'와 '업체' 또는 '정보'가 들어간 H1",
-  "heroSubtitle": "한글 한 문장. 한 업체 홍보 아님 + 확인 항목",
-  "heroBadge": "정보 안내",
-    "heroTitleLine2": "국제결혼정보센터",
-  "heroBar": "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요.",
+  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 두피문신 시술·교육 안내'",
+  "metaDescription": "140~158자. '{keyword}', 두피문신, 교육. 전화번호 금지",
+  "metaKeywords": "{keyword}, 두피문신, SMP, 두피문신교육, 필릭스스칼프 등 10~14개",
+  "h1": "'{keyword}'와 '시술' 또는 '교육'이 들어간 H1",
+  "heroSubtitle": "한글 한 문장. 시술+교육 + 디자인 상담",
+  "heroBadge": "시술 · 교육",
+    "heroTitleLine2": "필릭스스칼프",
+  "heroBar": "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요.",
   "sections": [
-    {"h2": "'{keyword}' 포함, 업체를 보기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
-    {"h2": "피해야 할 곳과 확인 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
-    {"h2": "믿을 수 있는 업체 정보의 기준", "paragraphs": ["180자+", "180자+", "160자+"]},
+    {"h2": "'{keyword}' 포함, 시술을 보기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
+    {"h2": "디자인 상담과 진행 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
+    {"h2": "시술·교육의 기준", "paragraphs": ["180자+", "180자+", "160자+"]},
     {"h2": "상담을 여는 방법", "paragraphs": ["160자+", "140자+"]}
   ],
   "faqs": [
-    {"q": "여기는 특정 업체를 소개하나요?", "a": "100자+. 한 업체 미노출"},
-    {"q": "어떤 업체를 피해야 하나요?", "a": "100자+"},
-    {"q": "믿을 수 있는 업체 정보는 무엇인가요?", "a": "100자+"},
-    {"q": "국제결혼 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
+    {"q": "여기는 어떤 곳인가요?", "a": "100자+. 시술+교육"},
+    {"q": "두피문신 시술은 어떻게 진행되나요?", "a": "100자+"},
+    {"q": "두피문신 교육도 하나요?", "a": "100자+"},
+    {"q": "시술 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
     {"q": "${keyword} 상담은 어떻게 하나요?", "a": "100자+. ${KAKAO_CTA_HINT}"},
-    {"q": "안내 사진은 어디서 보나요?", "a": "80자+. 메인 갤러리 안내"}
+    {"q": "사진은 어디서 보나요?", "a": "80자+. 메인 갤러리 안내"}
   ],
-  "ctaText": "{keyword} 정보 상담 — 지역·희망 국가만 알려 주세요"
+  "ctaText": "{keyword} 상담 — 시술 부위 또는 교육 과정만 알려 주세요"
 }
 
-AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '국제결혼'을 자연스럽게 반복.`;
+AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '두피문신'을 자연스럽게 반복.`;
 }
 
 export async function generateWithGemini(
@@ -111,23 +111,23 @@ export async function generateWithGemini(
 
   return {
     keyword,
-    title: String(data.title || `${keyword} | 주의할 업체와 확인 항목`),
+    title: String(data.title || `${keyword} | 두피문신 시술·교육 안내`),
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
-        `${keyword}, 국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼정보센터`
+        `${keyword}, 두피문신, SMP, 두피문신교육, 필릭스스칼프`
     ),
-    h1: String(data.h1 || `${keyword}, 업체를 고르기 전에`),
+    h1: String(data.h1 || `${keyword}, 시술 전에 디자인을 먼저`),
     heroSubtitle: String(
-      data.heroSubtitle || "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요"
+      data.heroSubtitle || "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요"
     ),
-    heroBadge: String(data.heroBadge || "정보 안내"),
+    heroBadge: String(data.heroBadge || "시술 · 교육"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "국제결혼정보센터"),
-    heroBar: String(data.heroBar || "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요."),
+    heroTitleLine2: String(data.heroTitleLine2 || "필릭스스칼프"),
+    heroBar: String(data.heroBar || "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요."),
     sections,
     faqs,
-    ctaText: String(data.ctaText || `${keyword} 정보 상담 — 지역·희망 국가만 알려 주세요`),
+    ctaText: String(data.ctaText || `${keyword} 상담 — 시술 부위 또는 교육 과정만 알려 주세요`),
   };
 }
 
@@ -144,10 +144,10 @@ export function assembleSeoPage(
     metaKeywords: partial.metaKeywords,
     h1: partial.h1,
     heroSubtitle: partial.heroSubtitle,
-    heroBadge: partial.heroBadge || "정보 안내",
+    heroBadge: partial.heroBadge || "시술 · 교육",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "국제결혼정보센터",
-    heroBar: partial.heroBar || "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요.",
+    heroTitleLine2: partial.heroTitleLine2 || "필릭스스칼프",
+    heroBar: partial.heroBar || "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,
     images: pickImages(3, Date.now() % 100000),

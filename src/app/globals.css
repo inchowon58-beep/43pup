@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  /* 국제결혼정보센터 — midnight navy / copper */
-  --sky: #3d5a8a;
-  --sky-deep: #1a2744;
-  --sky-soft: #eef2f8;
-  --coral: #c47a4a;
-  --coral-deep: #a05e34;
-  --coral-soft: #f6ebe3;
-  --ink: #1c2433;
-  --muted: #5a6578;
-  --bg: #f3f5f9;
-  --bg-warm: #faf7f4;
-  --line: rgba(26, 39, 68, 0.12);
-  --radius: 0.15rem;
-  --radius-sm: 0.08rem;
-  --radius-lg: 0.35rem;
+  /* 필릭스스칼프 — espresso / clay */
+  --sky: #8a6a58;
+  --sky-deep: #2a201c;
+  --sky-soft: #f4ebe4;
+  --coral: #c45c4a;
+  --coral-deep: #9e4336;
+  --coral-soft: #f6e4df;
+  --ink: #1f1714;
+  --muted: #6f625a;
+  --bg: #f6f1eb;
+  --bg-warm: #faf6f2;
+  --line: rgba(42, 32, 28, 0.12);
+  --radius: 0.2rem;
+  --radius-sm: 0.1rem;
+  --radius-lg: 0.45rem;
   --font: "Pretendard", "Noto Sans KR", sans-serif;
-  --navy: #1a2744;
-  --green: #3d5a8a;
+  --navy: #2a201c;
+  --green: #8a6a58;
   --orange: var(--coral);
   --orange-deep: var(--coral-deep);
   --orange-soft: var(--coral-soft);
@@ -36,7 +36,7 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #d4dbe8 100%);
+    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #e4d8ce 100%);
   font-family: var(--font);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -109,13 +109,13 @@ img {
   font-size: 1rem;
   letter-spacing: -0.01em;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 10px 24px rgba(196, 122, 74, 0.28);
+  box-shadow: 0 10px 24px rgba(196, 92, 74), 0.28);
   cursor: pointer;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(196, 122, 74, 0.36);
+  box-shadow: 0 14px 30px rgba(196, 92, 74), 0.36);
 }
 
 .btn-secondary {
@@ -148,7 +148,7 @@ img {
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 700;
-  box-shadow: 0 10px 24px rgba(26, 39, 68, 0.28);
+  box-shadow: 0 10px 24px rgba(42, 32, 28), 0.28);
   cursor: pointer;
   transition: transform 0.25s ease;
 }
@@ -314,12 +314,12 @@ img {
   font-size: 0.88rem;
   color: #fff;
   background: var(--coral);
-  box-shadow: 0 8px 20px rgba(196, 122, 74, 0.28);
+  box-shadow: 0 8px 20px rgba(196, 92, 74), 0.28);
 }
 
 .fixed-cta-call--alt {
   background: var(--sky);
-  box-shadow: 0 8px 20px rgba(26, 39, 68, 0.3);
+  box-shadow: 0 8px 20px rgba(42, 32, 28), 0.3);
 }
 
 .fixed-cta--inline {

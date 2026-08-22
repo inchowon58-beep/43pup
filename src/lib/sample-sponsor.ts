@@ -4,26 +4,26 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "국제결혼정보센터 정보안내 (샘플)",
+  sponsor_name: "필릭스스칼프 시술안내 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "https://open.kakao.com/o/sxelLqJi",
   homepage_url: "https://www.naver.com",
   recruiting_notice: "",
   rental_price: "30만원",
   highlight_points: [
-    "확인할 업체 항목 공개",
-    "주의사항 안내",
-    "전국 상담 가능",
+    "두피문신 시술 상담",
+    "디자인 상담",
+    "두피문신 교육",
     "방문·상담 일정 안내",
-    "계약 전 체크리스트",
+    "사후관리 안내",
   ],
   youtube_url: "",
   youtube_url_2: "",
   sponsor_youtube_url: "",
   sponsor_youtube_url_2: "",
-  sponsor_youtube_channel: "국제결혼정보센터 정보안내",
+  sponsor_youtube_channel: "필릭스스칼프 시술안내",
   sponsor_youtube_desc:
-    "확인할 항목과 주의사항을 짧게 정리한 안내 영상입니다. 상담 전에 먼저 보시면 좋습니다.",
+    "두피문신 시술과 교육 과정을 짧게 정리한 안내 영상입니다. 상담 전에 먼저 보시면 좋습니다.",
 };
 
 /** 관리자 설정(rental_price 등)을 반영한 샘플 스폰서 쌍 */
@@ -61,23 +61,23 @@ export function buildSampleSponsors(current: SiteSponsor): {
   };
 }
 
-export const SAMPLE_PAGE_KEYWORD = "부천국제결혼정보";
-export const SAMPLE_PAGE_H1 = "부천국제결혼정보, 업체를 고르기 전에";
+export const SAMPLE_PAGE_KEYWORD = "부천두피문신";
+export const SAMPLE_PAGE_H1 = "부천두피문신, 시술 전에 디자인을 먼저";
 export const SAMPLE_PAGE_SUBTITLE =
-  "한 업체를 팔지 않습니다. 확인할 항목을 먼저 보세요.";
+  "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요.";
 
 export const SAMPLE_SECTIONS = [
   {
-    h2: "부천국제결혼정보, 업체를 보기 전에",
+    h2: "부천두피문신, 시술을 보기 전에",
     paragraphs: [
-      "부천에서 국제결혼정보를 찾을 때 흔한 문제는 선금만 요구하거나 계약이 없는 진행입니다. 한 업체를 홍보하지 않고, 믿을 수 있는 업체 정보의 기준을 안내합니다.",
-      "지역과 희망 국가만 알려 주시면 확인할 항목을 정리해 드립니다. 방문이 어려우면 카카오톡으로 목록을 받아 보세요.",
+      "부천에서 두피문신을 찾을 때 흔한 질문은 헤어라인 선과 밀도입니다. 필릭스스칼프는 시술과 교육을 함께 안내합니다.",
+      "시술 부위나 교육 과정만 알려 주시면 일정을 정리해 드립니다. 방문이 어려우면 카카오톡으로 먼저 물어보세요.",
     ],
   },
   {
-    h2: "피해야 할 곳과 확인 순서",
+    h2: "디자인 상담과 진행 순서",
     paragraphs: [
-      "오늘만 할인, 신원 확인 지연, 한 줄 견적은 보류 신호입니다. 비용은 국가·포함 범위에 따라 달라지며, 항목을 먼저 확인한 뒤에 결정하시면 됩니다.",
+      "디자인 상담 후 범위와 횟수를 정합니다. 비용은 부위·횟수에 따라 달라지며, 상담에서 맞춰 보시면 됩니다.",
     ],
   },
 ] as const;

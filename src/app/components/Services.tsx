@@ -1,32 +1,31 @@
-import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { SITE, CTA_KAKAO } from "@/lib/site";
-import { imageUrl } from "@/lib/images";
+import ImageSlot from "./ImageSlot";
 
 const SERVICES = [
   {
-    title: "피해야 할 업체",
-    desc: "선금만 요구하고 계약·환불이 불분명한 곳. 상대 신원 확인을 미루는 곳",
-    image: imageUrl(5),
-    tag: "주의",
+    title: "두피문신 시술",
+    desc: "헤어라인·정수리·밀도 보완 등 두피 상태에 맞춰 SMP를 진행합니다",
+    slot: 5,
+    tag: "시술",
   },
   {
-    title: "믿을 곳의 기준",
-    desc: "상담 기록이 남고, 비용 항목이 나뉘며, 통역·체류 절차를 단계별로 설명하는 곳",
-    image: imageUrl(2),
-    tag: "기준",
+    title: "디자인 상담",
+    desc: "얼굴형과 기존 모발을 보고 선을 정한 뒤 시술 범위와 일정을 안내합니다",
+    slot: 2,
+    tag: "상담",
   },
   {
-    title: "예비고객이 묻는 것",
-    desc: "만남 횟수, 중개자 없이 대화할 시간, 위약금, 사후 지원 범위를 미리 적어 두세요",
-    image: imageUrl(7),
-    tag: "질문",
+    title: "두피문신 교육",
+    desc: "아카데미에서 SMP 기술·디자인·위생을 교육합니다. 본점·평택점 과정을 안내합니다",
+    slot: 7,
+    tag: "교육",
   },
   {
-    title: "정보 상담",
-    desc: "지역·희망 국가만 알려 주시면 확인해야 할 항목을 정리해 드립니다",
-    image: imageUrl(9),
-    tag: "안내",
+    title: "사후관리",
+    desc: "시술 후 관리 방법과 재방문 일정을 정리해 드립니다",
+    slot: 9,
+    tag: "관리",
   },
 ];
 
@@ -36,13 +35,13 @@ export default function Services() {
       <div className="container">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="section-kicker">WHAT TO CHECK</p>
+            <p className="section-kicker">SMP · EDUCATION</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              어떤 곳을 믿고, 어떤 곳을 피할까요
+              시술과 교육을 함께 안내합니다
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              국제결혼은 만남 전에 이미 갈림길이 있습니다. 광고 문구보다 계약·신원·절차가
-              설명되는지를 먼저 보세요. 협회는 그 확인 목록을 제공합니다.
+              두피문신 시술, 디자인 상담, 아카데미 교육. 확인하고 싶은 항목을 말씀해 주시면
+              일정을 안내합니다.
             </p>
           </div>
           <a
@@ -58,17 +57,10 @@ export default function Services() {
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {SERVICES.map((item) => (
-            <article key={item.title} className="group relative overflow-hidden rounded-[0.9rem]">
+            <article key={item.title} className="group relative overflow-hidden rounded-[0.45rem]">
               <div className="relative aspect-[3/4] overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={`${item.title} — ${SITE.name}`}
-                  fill
-                  unoptimized
-                  className="object-cover transition duration-700 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 50vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(26,39,68,0.9)_100%)]" />
+                <ImageSlot index={item.slot} fill label={item.title} />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(42,32,28,0.9)_100%)]" />
                 <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>

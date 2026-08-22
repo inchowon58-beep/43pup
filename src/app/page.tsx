@@ -2,6 +2,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Services from "./components/Services";
 import Process from "./components/Process";
+import Director from "./components/Director";
 import Reviews from "./components/Reviews";
 import Gallery from "./components/Gallery";
 import FAQ from "./components/FAQ";
@@ -25,6 +26,7 @@ export default async function HomePage() {
       <About />
       <Services />
       <Process />
+      <Director />
       <Gallery />
       <Reviews />
       <FAQ />

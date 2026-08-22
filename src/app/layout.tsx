@@ -31,21 +31,24 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: SITE.title,
       title: SITE.title,
       description: SITE.description,
-      images: [
-        {
-          url: SITE.ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${SITE.title} ${SITE.brand}`,
-        },
-      ],
+      ...(SITE.ogImage
+        ? {
+            images: [
+              {
+                url: SITE.ogImage,
+                width: 1200,
+                height: 630,
+                alt: `${SITE.title} ${SITE.brand}`,
+              },
+            ],
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: SITE.title,
-      description:
-        "국제결혼정보, 국제결혼상담, 국제결혼업체, 국제결혼주의사항, 국제결혼정보센터",
-      images: [SITE.ogImage],
+      description: SITE.description,
+      ...(SITE.ogImage ? { images: [SITE.ogImage] } : {}),
     },
     robots: {
       index: true,
@@ -91,7 +94,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <meta name="naver-site-verification" content={SITE.naverSiteVerification} />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-        <link rel="preconnect" href="https://image.cattery.co.kr" />
+        {SITE.imageBase ? <link rel="preconnect" href={new URL(SITE.imageBase).origin} /> : null}
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link
           rel="stylesheet"

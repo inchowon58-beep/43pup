@@ -58,7 +58,7 @@ function itemXml(base: string, page: SeoPage): string {
     <guid isPermaLink="true">${escXml(link)}</guid>
     <pubDate>${rfc822(pub)}</pubDate>
     <author>${escXml(SITE.brand)}</author>
-    <category>${escXml(page.keyword || "국제결혼정보")}</category>
+    <category>${escXml(page.keyword || "두피문신")}</category>
     <description><![CDATA[${cdata(desc)}]]></description>
     <content:encoded><![CDATA[${cdata(body)}]]></content:encoded>
   </item>`;
@@ -71,8 +71,8 @@ export async function GET(req: Request) {
   if (!pages.length) {
     pages = [
       {
-        slug: "wedding-intro",
-        keyword: "국제결혼정보",
+        slug: "smp-intro",
+        keyword: "두피문신",
         title: SITE.title,
         metaDescription: SITE.description,
         metaKeywords: SITE.keywords.join(", "),
@@ -80,7 +80,7 @@ export async function GET(req: Request) {
         heroSubtitle: SITE.taglineEn,
         sections: [
           {
-            h2: "국제결혼정보센터",
+            h2: "필릭스스칼프",
             paragraphs: [SITE.description, SITE.tagline],
           },
         ],
