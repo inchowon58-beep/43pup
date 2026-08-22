@@ -3,7 +3,7 @@
 import { createContext, useContext } from "react";
 import { SITE } from "@/lib/site";
 
-const KakaoHrefContext = createContext(SITE.kakaoOpenChatUrl);
+const KakaoHrefContext = createContext<string>(SITE.kakaoOpenChatUrl);
 
 export function KakaoHrefProvider({
   href,
