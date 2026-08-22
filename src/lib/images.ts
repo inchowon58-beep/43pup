@@ -4,14 +4,14 @@ import { SITE } from "./site";
 export const FEATURE_FILES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const;
 
 /** 시술·교육 사진 상단 두 장 */
-export const GALLERY_FEATURED = [1, 2] as const;
+export const GALLERY_FEATURED = [77, 78] as const;
 
 /** 시술 갤러리 본문 12장 (12번부터) */
 export const GALLERY_GRID = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] as const;
 
 function clampFile(num: number): number {
   if (!Number.isFinite(num) || num < 1) return 1;
-  return Math.min(SITE.imageCount, Math.max(1, Math.floor(num)));
+  return Math.floor(num);
 }
 
 export function fileUrl(fileNo: number): string {
@@ -61,7 +61,8 @@ export function allImageUrls(): string[] {
 
 function seoPool(): string[] {
   const start = 12;
-  return Array.from({ length: Math.max(0, SITE.imageCount - start + 1) }, (_, i) =>
+  const end = Math.min(31, SITE.imageCount);
+  return Array.from({ length: Math.max(0, end - start + 1) }, (_, i) =>
     fileUrl(start + i)
   );
 }
