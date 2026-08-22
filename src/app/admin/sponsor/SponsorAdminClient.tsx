@@ -421,7 +421,11 @@ export default function SponsorAdminClient() {
           </p>
         )}
 
-        <button type="submit" className="btn-primary mt-6 w-full" disabled={saving}>
+        <button
+          type="submit"
+          className="btn-primary mt-6 w-full bg-[var(--coral)] py-3.5 text-white"
+          disabled={saving}
+        >
           {saving ? "저장 중…" : "저장 · 전국 일괄 반영"}
         </button>
       </form>

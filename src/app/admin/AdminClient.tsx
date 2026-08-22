@@ -554,7 +554,11 @@ export default function AdminClient() {
                 required
               />
             </div>
-            <button type="submit" className="btn-primary" disabled={savingSponsorPw}>
+            <button
+              type="submit"
+              className="btn-primary shrink-0 bg-[var(--coral)] px-5 py-3 text-white"
+              disabled={savingSponsorPw}
+            >
               {savingSponsorPw ? "저장 중…" : "비밀번호 저장"}
             </button>
           </div>
