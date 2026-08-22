@@ -65,10 +65,6 @@ export default function DoodleGalleryCta({
                 <p className="mt-2 text-base font-bold text-[var(--sky-deep)]">{channel}</p>
               )}
               {desc && <p className="mt-1.5 text-sm leading-relaxed text-[var(--muted)]">{desc}</p>}
-              <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                입점업체가 등록한 유튜브입니다. 상담 전에 채널 소개와 영상을 먼저 보시면 확인할
-                항목을 파악하기 쉽습니다.
-              </p>
             </>
           ) : (
             <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
