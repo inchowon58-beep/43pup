@@ -3,7 +3,7 @@
 export const SITE = {
   name: "두피문신 필릭스스칼프",
   brand: "필릭스스칼프",
-  brandEn: "FELIX SCALP",
+  brandEn: "FELIX SKALP",
   farm: "두피문신",
   title: "두피문신",
   tagline: "두피문신(SMP) 시술과 교육을 함께하는 필릭스스칼프입니다",
