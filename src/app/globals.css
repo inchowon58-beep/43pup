@@ -333,8 +333,9 @@ img {
   pointer-events: auto;
 }
 
-body:has(.sample-page-root) {
-  padding-bottom: 0;
+body:has(.sample-page-root),
+body:has(.admin-page-root) {
+  padding-bottom: 2rem;
 }
 
 .fixed-cta-build {

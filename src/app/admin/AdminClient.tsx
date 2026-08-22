@@ -433,7 +433,7 @@ export default function AdminClient() {
   }
 
   return (
-    <div className="container min-h-screen py-28">
+    <div className="admin-page-root container min-h-screen py-28 pb-16">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-sm font-bold text-[var(--orange)]">

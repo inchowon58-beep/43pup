@@ -189,7 +189,7 @@ export default function SponsorAdminClient() {
   const highlightPoints = padHighlightPoints(form.highlight_points);
 
   return (
-    <div className="container min-h-screen py-24">
+    <div className="admin-page-root container min-h-screen py-24 pb-16">
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-sm font-bold text-[var(--sky)]">Global Sponsor</p>
@@ -219,7 +219,7 @@ export default function SponsorAdminClient() {
         </div>
       </div>
 
-      <form onSubmit={onSave} className="soft-card mx-auto max-w-xl p-6 md:p-8">
+      <form onSubmit={onSave} className="soft-card mx-auto max-w-xl overflow-visible p-6 md:p-8">
         <div className="flex items-center justify-between gap-4 rounded-2xl bg-[var(--sky-soft)] p-4">
           <div>
             <p className="font-bold text-[var(--navy)]">
@@ -423,7 +423,7 @@ export default function SponsorAdminClient() {
 
         <button
           type="submit"
-          className="btn-primary mt-6 w-full bg-[var(--coral)] py-3.5 text-white"
+          className="btn-primary mt-8 w-full bg-[var(--coral)] py-4 text-base font-extrabold text-white shadow-[0_8px_20px_rgba(196,92,74,0.28)]"
           disabled={saving}
         >
           {saving ? "저장 중…" : "저장 · 전국 일괄 반영"}
