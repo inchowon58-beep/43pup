@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { MapPin, MessageCircle } from "lucide-react";
 import { SITE, CTA_KAKAO } from "@/lib/site";
+import { useKakaoHref } from "./KakaoHrefProvider";
 
 export default function Footer() {
+  const kakaoHref = useKakaoHref();
   return (
     <footer className="border-t border-[var(--line)] bg-[#2a201c] py-12 text-[#f6f1eb]">
       <div className="container grid gap-8 md:grid-cols-[1.2fr_1fr]">
@@ -16,7 +20,7 @@ export default function Footer() {
 
         <div className="space-y-3 text-sm text-white/75">
           <a
-            href={SITE.kakaoOpenChatUrl}
+            href={kakaoHref}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-white"

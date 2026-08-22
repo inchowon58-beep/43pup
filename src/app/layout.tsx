@@ -3,11 +3,12 @@ import { SITE } from "@/lib/site";
 import { publicOrigin } from "@/lib/public-url";
 import { faqJsonLd, howToJsonLd, orgJsonLd } from "@/lib/faq-data";
 import { getGlobalSponsor } from "@/lib/site-sponsor";
-import { sponsorKakaoUrl } from "@/lib/site-sponsor-shared";
+import { publicKakaoUrl } from "@/lib/site-sponsor-shared";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SponsorStickyFooter from "./components/SponsorStickyFooter";
 import SponsorFooterGate from "./components/SponsorFooterGate";
+import { KakaoHrefProvider } from "./components/KakaoHrefProvider";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -81,7 +82,7 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const origin = await publicOrigin();
   const sponsor = await getGlobalSponsor();
-  const kakaoHref = sponsorKakaoUrl(sponsor) || SITE.kakaoOpenChatUrl;
+  const kakaoHref = publicKakaoUrl(sponsor);
   const sponsorPhone =
     sponsor.status === "ACTIVE" && sponsor.phone_number.trim()
       ? sponsor.phone_number.trim()
@@ -126,12 +127,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body>
-        <Header kakaoHref={kakaoHref} />
-        <main>{children}</main>
-        <Footer />
-        <SponsorFooterGate>
-          <SponsorStickyFooter />
-        </SponsorFooterGate>
+        <KakaoHrefProvider href={kakaoHref}>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <SponsorFooterGate>
+            <SponsorStickyFooter />
+          </SponsorFooterGate>
+        </KakaoHrefProvider>
       </body>
     </html>
   );

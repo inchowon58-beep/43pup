@@ -1,6 +1,9 @@
+"use client";
+
 import { MessageCircle } from "lucide-react";
-import { SITE, CTA_KAKAO } from "@/lib/site";
+import { CTA_KAKAO } from "@/lib/site";
 import ImageSlot from "./ImageSlot";
+import { useKakaoHref } from "./KakaoHrefProvider";
 
 const SERVICES = [
   {
@@ -30,6 +33,7 @@ const SERVICES = [
 ];
 
 export default function Services() {
+  const kakaoHref = useKakaoHref();
   return (
     <section id="services" className="section bg-white/55">
       <div className="container">
@@ -45,7 +49,7 @@ export default function Services() {
             </p>
           </div>
           <a
-            href={SITE.kakaoOpenChatUrl}
+            href={kakaoHref}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-sky shrink-0 inline-flex items-center gap-2"

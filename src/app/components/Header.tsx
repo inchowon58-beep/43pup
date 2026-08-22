@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, MessageCircle, X } from "lucide-react";
 import { SITE, CTA_KAKAO } from "@/lib/site";
+import { useKakaoHref } from "./KakaoHrefProvider";
 
 const NAV = [
   { href: "/#about", label: "소개" },
@@ -40,9 +41,9 @@ function BrandMark() {
   );
 }
 
-export default function Header({ kakaoHref }: { kakaoHref?: string }) {
+export default function Header() {
   const [open, setOpen] = useState(false);
-  const href = kakaoHref || SITE.kakaoOpenChatUrl;
+  const href = useKakaoHref();
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#2a201c] text-white">

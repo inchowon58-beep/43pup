@@ -2,7 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { CheckCircle2, MessageCircle, Send } from "lucide-react";
-import { SITE, CTA_KAKAO, KAKAO_CTA_HINT, KEYWORD_INQUIRY } from "@/lib/site";
+import { CTA_KAKAO, KAKAO_CTA_HINT, KEYWORD_INQUIRY } from "@/lib/site";
+import { useKakaoHref } from "./KakaoHrefProvider";
 
 type FormState = {
   name: string;
@@ -30,6 +31,7 @@ const TOPICS = [
 ];
 
 export default function ContactForm() {
+  const kakaoHref = useKakaoHref();
   const [form, setForm] = useState<FormState>(initial);
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -70,7 +72,7 @@ export default function ContactForm() {
               확인 후 빠르게 연락드리겠습니다. 급하신 경우 카카오톡 오픈채팅으로도 문의해 주세요.
             </p>
             <a
-              href={SITE.kakaoOpenChatUrl}
+              href={kakaoHref}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary mt-6 inline-flex"
@@ -109,7 +111,7 @@ export default function ContactForm() {
             {KAKAO_CTA_HINT}
           </p>
           <a
-            href={SITE.kakaoOpenChatUrl}
+            href={kakaoHref}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-sky mt-6 inline-flex"

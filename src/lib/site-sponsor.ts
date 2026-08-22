@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import { get, put } from "@vercel/blob";
 import { unstable_cache } from "next/cache";
-import { SITE } from "./site";
 import {
   DEFAULT_SPONSOR,
   GLOBAL_SPONSOR_TAG,
@@ -62,8 +61,7 @@ function normalize(raw: Partial<SiteSponsor>): SiteSponsor {
   const rawHome = (raw.homepage_url || "").trim();
   const linkIsKakao = /open\.kakao\.com|kakao\.com/i.test(rawLink);
   const isActive = raw.status === "ACTIVE";
-  let kakaoLink = linkIsKakao ? rawLink : "";
-  if (isActive && kakaoLink === SITE.kakaoOpenChatUrl) kakaoLink = "";
+  const kakaoLink = linkIsKakao ? rawLink : "";
   return {
     id: 1,
     status: isActive ? "ACTIVE" : "RECRUITING",

@@ -63,6 +63,14 @@ export function sponsorKakaoUrl(sponsor: SiteSponsor): string {
   return "";
 }
 
+/** 임대완료면 업체 카톡, 모집 중이면 기본 사이트 임대 카톡 */
+export function publicKakaoUrl(sponsor: SiteSponsor): string {
+  if (sponsor.status === "ACTIVE") {
+    return sponsorKakaoUrl(sponsor) || SITE.kakaoOpenChatUrl;
+  }
+  return SITE.kakaoOpenChatUrl;
+}
+
 export function sponsorHomepageUrl(sponsor: SiteSponsor): string {
   const home = (sponsor.homepage_url || "").trim();
   if (home) return home;

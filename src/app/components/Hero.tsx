@@ -1,8 +1,12 @@
+"use client";
+
 import { MessageCircle, Scissors } from "lucide-react";
 import { SITE, CTA_KAKAO, KEYWORD_INQUIRY } from "@/lib/site";
 import ImageSlot from "./ImageSlot";
+import { useKakaoHref } from "./KakaoHrefProvider";
 
 export default function Hero() {
+  const kakaoHref = useKakaoHref();
   return (
     <section id="top" className="relative min-h-[92svh] overflow-hidden">
       <div className="absolute inset-0 hero-media">
@@ -33,7 +37,7 @@ export default function Hero() {
               시술·교육 보기
             </a>
             <a
-              href={SITE.kakaoOpenChatUrl}
+              href={kakaoHref}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"

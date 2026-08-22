@@ -10,7 +10,7 @@ import { faqJsonLd, howToJsonLd } from "@/lib/faq-data";
 import GuideHeroThumb from "@/app/components/GuideHeroThumb";
 import SponsorMidBox from "@/app/components/SponsorMidBox";
 import { getGlobalSponsor } from "@/lib/site-sponsor";
-import { sponsorKakaoUrl } from "@/lib/site-sponsor-shared";
+import { publicKakaoUrl } from "@/lib/site-sponsor-shared";
 import NearbyRegionsSection from "@/app/components/NearbyRegionsSection";
 import NearbyStationsSection from "@/app/components/NearbyStationsSection";
 import DoodleGalleryCta from "@/app/components/DoodleGalleryCta";
@@ -125,7 +125,7 @@ export default async function GuidePage({ params }: Props) {
     getNearbyStationLinks(region, page.slug),
     getGlobalSponsor(),
   ]);
-  const kakaoUrl = sponsorKakaoUrl(sponsor);
+  const kakaoUrl = publicKakaoUrl(sponsor);
 
   const breadcrumb = {
     "@context": "https://schema.org",
