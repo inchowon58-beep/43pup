@@ -1,19 +1,28 @@
 import { SITE } from "./site";
 
-/**
- * 화면 노출 순서. 이미지 주소가 들어오면 이 순서로 히어로·갤러리에 씀.
- */
-const DISPLAY_ORDER = [6, 1, 9, 3, 8, 2, 10, 5, 7, 4] as const;
+/** 히어로·소개·시술 카드 · 갤러리 상단 2장 */
+export const FEATURE_FILES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const;
 
-function fileIndex(logicalIndex: number): number {
-  const len = DISPLAY_ORDER.length;
-  const n = ((Math.floor(logicalIndex) - 1) % len + len) % len;
-  return DISPLAY_ORDER[n] ?? 1;
+/** 시술·교육 사진 상단 두 장 */
+export const GALLERY_FEATURED = [1, 2] as const;
+
+/** 시술 갤러리 본문 12장 (12번부터) */
+export const GALLERY_GRID = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] as const;
+
+function clampFile(num: number): number {
+  if (!Number.isFinite(num) || num < 1) return 1;
+  return Math.min(SITE.imageCount, Math.max(1, Math.floor(num)));
 }
 
+export function fileUrl(fileNo: number): string {
+  const n = clampFile(fileNo);
+  if (!SITE.imageBase) return `placeholder:${n}`;
+  return `${SITE.imageBase}/${String(n).padStart(2, "0")}.webp`;
+}
+
+/** 논리 번호 → 실제 파일. 1~11은 그대로, 12부터는 갤러리·SEO 풀 */
 export function imageUrl(index: number): string {
-  if (!SITE.imageBase) return `placeholder:${fileIndex(index)}`;
-  return `${SITE.imageBase}/${String(fileIndex(index)).padStart(2, "0")}.webp`;
+  return fileUrl(index);
 }
 
 export function isRealImage(url: string): boolean {
@@ -21,35 +30,40 @@ export function isRealImage(url: string): boolean {
 }
 
 export function placeholderIndexFrom(urlOrIndex: string | number): number {
-  if (typeof urlOrIndex === "number") return fileIndex(urlOrIndex);
+  if (typeof urlOrIndex === "number") return clampFile(urlOrIndex);
   const m = String(urlOrIndex).match(/placeholder:(\d+)/i);
-  if (m) return Number(m[1]);
+  if (m) return clampFile(Number(m[1]));
   const file = String(urlOrIndex).match(/(\d{1,3})\.webp/i);
-  if (file) return Number(file[1]);
+  if (file) return clampFile(Number(file[1]));
   return 1;
 }
 
-function clampImageIndex(num: number): number {
-  if (!Number.isFinite(num) || num < 1) return 1;
-  return Math.min(SITE.imageCount, Math.max(1, Math.floor(num)));
-}
-
 export function migrateImageUrl(url: string): string {
-  if (!url) return imageUrl(1);
+  if (!url) return fileUrl(12);
   if (!SITE.imageBase) {
     const file = url.match(/(\d{1,3})\.webp/i);
-    if (file) return `placeholder:${clampImageIndex(Number(file[1]))}`;
-    return url.startsWith("placeholder:") ? url : imageUrl(1);
+    if (file) return `placeholder:${clampFile(Number(file[1]))}`;
+    return url.startsWith("placeholder:") ? url : fileUrl(12);
   }
-  return url.replace(
-    /https?:\/\/image\.cattery\.co\.kr\/(?:jejumilgam|dogboho|petfuneral|doodle|maincoon|weding)\/(?:new)?(\d{1,3})\.webp/gi,
-    (_m, num: string) =>
-      `${SITE.imageBase}/${String(clampImageIndex(Number(num))).padStart(2, "0")}.webp`
+  const mapped = url.replace(
+    /https?:\/\/image\.cattery\.co\.kr\/(?:jejumilgam|dogboho|petfuneral|doodle|maincoon|weding|smp)\/(?:new)?(\d{1,3})\.webp/gi,
+    (_m, num: string) => fileUrl(Number(num))
   );
+  if (mapped.startsWith("placeholder:")) {
+    return fileUrl(placeholderIndexFrom(mapped));
+  }
+  return mapped;
 }
 
 export function allImageUrls(): string[] {
-  return Array.from({ length: SITE.imageCount }, (_, i) => imageUrl(i + 1));
+  return Array.from({ length: SITE.imageCount }, (_, i) => fileUrl(i + 1));
+}
+
+function seoPool(): string[] {
+  const start = 12;
+  return Array.from({ length: Math.max(0, SITE.imageCount - start + 1) }, (_, i) =>
+    fileUrl(start + i)
+  );
 }
 
 function mulberry32(seed: number) {
@@ -61,8 +75,9 @@ function mulberry32(seed: number) {
   };
 }
 
+/** SEO·가이드 페이지는 12번부터 마지막까지 */
 export function pickImages(count: number, seed = 42): string[] {
-  const pool = allImageUrls();
+  const pool = seoPool();
   const rng = mulberry32(seed ^ 0x47e1d90c);
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {

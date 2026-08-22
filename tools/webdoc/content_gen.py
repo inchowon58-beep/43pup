@@ -24,10 +24,11 @@ FARM = "두피문신"
 SITE_NAME = "두피문신 필릭스스칼프"
 KAKAO = "https://open.kakao.com/o/sxelLqJi"
 LOCATION = "대한민국 전국"
-IMAGE_BASE = ""
-IMAGE_COUNT = 10
+IMAGE_BASE = "https://image.cattery.co.kr/smp"
+IMAGE_COUNT = 31
 IMAGE_USE = 3  # 히어로 1 + 본문 2
-DISPLAY_ORDER = [6, 1, 9, 3, 8, 2, 10, 5, 7, 4]
+# SEO 본문은 12번부터 마지막까지
+DISPLAY_ORDER = list(range(12, IMAGE_COUNT + 1))
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
@@ -37,10 +38,6 @@ def _rng(keyword: str, idx: int) -> random.Random:
 
 def image_urls(count: int, seed: int) -> List[str]:
     rng = random.Random(seed)
-    if not IMAGE_BASE:
-        pool = [f"placeholder:{i}" for i in DISPLAY_ORDER]
-        rng.shuffle(pool)
-        return pool[:count]
     pool = [f"{IMAGE_BASE}/{i:02d}.webp" for i in DISPLAY_ORDER]
     rng.shuffle(pool)
     return pool[:count]

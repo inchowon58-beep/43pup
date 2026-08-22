@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section id="top" className="relative min-h-[92svh] overflow-hidden">
       <div className="absolute inset-0 hero-media">
-        <ImageSlot index={1} fill label={`${SITE.name} 두피문신`} />
+        <ImageSlot index={6} fill priority label={`${SITE.name} 두피문신`} />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(42,32,28,0.42)_0%,rgba(42,32,28,0.16)_38%,rgba(31,23,20,0.92)_100%)]" />
       </div>
 

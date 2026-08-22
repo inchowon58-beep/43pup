@@ -25,7 +25,7 @@ export default function About() {
       <div className="container grid items-center gap-10 md:grid-cols-2 md:gap-14">
         <div className="relative">
           <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(42,32,28,0.16)] md:aspect-[5/6]">
-            <ImageSlot index={3} fill label={`${SITE.name} 소개`} />
+            <ImageSlot index={8} fill label={`${SITE.name} 소개`} />
           </div>
         </div>
         <div>

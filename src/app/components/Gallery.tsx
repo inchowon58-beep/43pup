@@ -1,8 +1,6 @@
 import { SITE } from "@/lib/site";
 import ImageSlot from "./ImageSlot";
-import { galleryAlt } from "@/lib/images";
-
-const INDICES = Array.from({ length: 10 }, (_, i) => i + 1);
+import { GALLERY_FEATURED, GALLERY_GRID, galleryAlt } from "@/lib/images";
 
 export default function Gallery() {
   return (
@@ -14,19 +12,25 @@ export default function Gallery() {
             시술·교육 사진
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            {SITE.brand} 시술·교육 사진 자리입니다. 이미지는 준비되는 대로 넣습니다.
-            확인이 필요하시면 카카오톡으로 문의해 주세요.
+            {SITE.brand} 두피문신 시술·교육 사진입니다. 확인이 필요하시면 카카오톡으로
+            문의해 주세요.
           </p>
         </div>
         <div className="mt-10 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 md:gap-3">
-          {INDICES.map((i, idx) => (
+          {GALLERY_FEATURED.map((fileNo) => (
             <div
-              key={i}
-              className={`relative overflow-hidden rounded-[0.45rem] ${
-                idx < 2 ? "aspect-[4/3] sm:col-span-1 md:col-span-2 md:aspect-[16/10]" : "aspect-square"
-              }`}
+              key={`feat-${fileNo}`}
+              className="relative aspect-[4/3] overflow-hidden rounded-[0.45rem] sm:col-span-1 md:col-span-2 md:aspect-[16/10]"
             >
-              <ImageSlot index={i} fill label={galleryAlt(i)} />
+              <ImageSlot index={fileNo} fill label={galleryAlt(fileNo)} />
+            </div>
+          ))}
+          {GALLERY_GRID.map((fileNo) => (
+            <div
+              key={`grid-${fileNo}`}
+              className="relative aspect-square overflow-hidden rounded-[0.45rem]"
+            >
+              <ImageSlot index={fileNo} fill label={galleryAlt(fileNo)} />
             </div>
           ))}
         </div>
