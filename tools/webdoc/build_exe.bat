@@ -9,8 +9,8 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo [2/2] 더제이쿤 웹문서생성기 빌드... (--windowed: 검은 콘솔 없음)
-python -m PyInstaller --noconfirm --clean --windowed --name "더제이쿤웹문서생성기" ^
+echo [2/2] 메인가드너 웹문서생성기 빌드... (--windowed: 검은 콘솔 없음)
+python -m PyInstaller --noconfirm --clean --windowed --name "메인가드너웹문서생성기" ^
   --add-data "indexnow.py;." ^
   --add-data "blob_sync.py;." ^
   --add-data "blob-upload.mjs;." ^
@@ -55,11 +55,11 @@ if errorlevel 1 (
 )
 
 echo.
-echo 완료: dist\더제이쿤웹문서생성기\더제이쿤웹문서생성기.exe
+echo 완료: dist\메인가드너웹문서생성기\메인가드너웹문서생성기.exe
 echo.
 echo 실행 방법:
-echo   1) 더제이쿤_웹문서생성기_실행.bat 더블클릭
-echo   2) 또는 dist\더제이쿤웹문서생성기\더제이쿤웹문서생성기.exe
+echo   1) 메인가드너_웹문서생성기_실행.bat 더블클릭
+echo   2) 또는 dist\메인가드너웹문서생성기\메인가드너웹문서생성기.exe
 echo.
 echo 완전 종료는 화면의 [프로그램 종료] 버튼.
 exit /b 0

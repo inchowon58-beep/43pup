@@ -32,7 +32,7 @@ const GROUPS = [
       "분양가는 혈통·성별·털색·시기에 따라 폭이 있습니다",
       "화면에는 단가를 박지 않고, 상담에서 포함 항목부터 맞춥니다",
       "무료분양만 강조되는 곳은 건강·서류를 따로 확인하세요",
-      "더제이쿤에서는 사진·집 환경·예산을 맞춰 본 뒤 안내합니다",
+      "메인가드너에서는 사진·집 환경·예산을 맞춰 본 뒤 안내합니다",
     ],
   },
 ];
@@ -42,12 +42,12 @@ export default function Director() {
     <section id="director" className="section bg-white/55">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">CHECKLIST</p>
+          <p className="section-kicker">BEFORE YOU PLANT</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            들이기 전 체크리스트
+            들이기 전에 알아 두면 좋은 점
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            크기와 털, 기질, 분양가를 항목으로 모아 두었습니다. 입양 전 스펙 확인용입니다.
+            크기와 털, 기질, 분양가를 정원 노트처럼 모아 두었습니다. 입양 전 확인용입니다.
           </p>
         </div>
 
@@ -55,15 +55,15 @@ export default function Director() {
           {GROUPS.map((g) => (
             <div
               key={g.title}
-              className="border border-[var(--line)] bg-white px-5 py-5"
+              className="rounded-[var(--radius)] border border-[var(--line)] bg-white px-5 py-5"
             >
-              <h3 className="text-xs font-extrabold tracking-[0.16em] text-[var(--coral-deep)]">
+              <h3 className="text-sm font-bold tracking-[0.12em] text-[var(--coral-deep)]">
                 {g.title}
               </h3>
               <ul className="mt-3 space-y-2">
                 {g.items.map((item) => (
                   <li key={item} className="flex gap-2 text-sm leading-relaxed text-[var(--ink)]">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[var(--coral)]" />
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--coral)]" />
                     {item}
                   </li>
                 ))}

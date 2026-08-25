@@ -5,8 +5,8 @@ export type FaqItem = { q: string; a: string };
 /** 메인·AEO용 자주 묻는 질문 — 메인쿤분양 */
 export const HOME_FAQS: FaqItem[] = [
   {
-    q: "더제이쿤은 어떤 곳인가요?",
-    a: "메인쿤분양을 스펙 기준으로 안내하는 곳입니다. 특징·크기·성격·분양가를 정리하고, 아이들 얼굴을 라인업에서 먼저 보여 드립니다. 가정에 맞는 아이는 상담에서 맞춰 드립니다.",
+    q: "메인가드너는 어떤 곳인가요?",
+    a: "메인쿤분양을 키우는 자리 기준으로 안내하는 곳입니다. 특징·크기·성격·분양가를 정리하고, 아이들 얼굴을 정원에서 먼저 보여 드립니다. 가정에 맞는 아이는 상담에서 맞춰 드립니다.",
   },
   {
     q: "메인쿤은 어떤 성격인가요?",
@@ -70,7 +70,7 @@ export function howToJsonLd(pageUrl?: string) {
     "@context": "https://schema.org",
     "@type": "HowTo",
     name: "메인쿤분양을 진행하는 순서",
-    description: "사진, 상담, 방문, 키우기 안내까지 더제이쿤 메인쿤분양.",
+    description: "사진, 상담, 방문, 키우기 안내까지 메인가드너 메인쿤분양.",
     inLanguage: "ko-KR",
     totalTime: "PT2H",
     url: pageUrl || SITE.siteUrl,
@@ -89,7 +89,7 @@ export function orgJsonLd(url?: string, telephone?: string) {
     "@context": "https://schema.org",
     "@type": "PetStore",
     name: SITE.name,
-    alternateName: [SITE.brand, SITE.brandEn, "메인쿤분양", "더제이쿤"],
+    alternateName: [SITE.brand, SITE.brandEn, "메인쿤분양", "메인가드너"],
     description: SITE.description,
     url: url || SITE.siteUrl,
     ...(SITE.ogImage ? { image: SITE.ogImage } : {}),

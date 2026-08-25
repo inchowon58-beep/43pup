@@ -16,7 +16,7 @@ export default function NearbyRegionsSection({
   if (regions.length === 0 || !cityLabel) return null;
 
   return (
-    <section className="mb-12 border border-[var(--line)] bg-[linear-gradient(135deg,rgba(196,163,90,0.12),#fff)] p-6 sm:p-8">
+    <section className="mb-12 border border-[var(--line)] bg-[linear-gradient(135deg,rgba(196,122,74,0.12),#fff)] p-6 sm:p-8">
       <p className="text-sm font-semibold text-[var(--sky-deep)]">근방 지역 (구·동)</p>
       <h2 className="mt-1 text-lg font-extrabold text-[var(--navy)] sm:text-xl">
         {cityLabel} 인근에서 함께 찾는 {keywordSuffix} 지역

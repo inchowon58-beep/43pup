@@ -1,16 +1,16 @@
-# 메인쿤분양 · 더제이쿤
+# 메인쿤분양 · 메인가드너
 
-Next.js 15 기반 **메인쿤분양 더제이쿤** — 메인쿤 특징·크기·분양가·성격을 스펙 기준으로 안내하는 사이트입니다.
+Next.js 15 기반 **메인쿤분양 메인가드너** — 메인쿤 특징·크기·분양가·성격을 키우는 자리 기준으로 안내하는 사이트입니다.
 
 ## 배포 대상 (중요)
 
-**오직 `inchowon58-beep/maincoonpshop` 저장소와 `maincoon.puppyshop.co.kr` 로만 배포하세요.**
-기존 `maincooninfo` / `maincoondmc` / `maincoonag` / `smpinfo` / `infowedding` / `pruwedding` / `dmcwedding` / `globalwedding` / `pupmaincoon` / `doodle` / `muzi` / `eanimal` / `funeral.git` 프로젝트에는 절대 push·deploy 하지 마세요.
+**오직 `inchowon58-beep/mainyou` 저장소와 `maincoon.yourdogzone.co.kr` 로만 배포하세요.**
+기존 `maincoonpshop` / `maincooninfo` / `maincoondmc` / `maincoonag` / `smpinfo` / `infowedding` / `pruwedding` / `dmcwedding` / `globalwedding` / `pupmaincoon` / `doodle` / `muzi` / `eanimal` / `funeral.git` 프로젝트에는 절대 push·deploy 하지 마세요.
 
 | 항목 | 허용 | 금지 |
 |------|------|------|
-| GitHub | `inchowon58-beep/maincoonpshop` | `maincooninfo`, `maincoondmc`, `maincoonag`, `smpinfo`, `infowedding`, `pruwedding`, `dmcwedding`, `globalwedding`, `pupmaincoon`, `doodle`, `muzi`, `funeral`, `eanimal` 등 |
-| 도메인 | `maincoon.puppyshop.co.kr` | `maincoon.infocs.co.kr`, `maincoon.dmcmusic.co.kr`, `maincoon.agapet.co.kr` 등 이전 브랜드 도메인 |
+| GitHub | `inchowon58-beep/mainyou` | `maincoonpshop`, `maincooninfo`, `maincoondmc`, `maincoonag`, `smpinfo`, `infowedding`, `pruwedding`, `dmcwedding`, `globalwedding`, `pupmaincoon`, `doodle`, `muzi`, `funeral`, `eanimal` 등 |
+| 도메인 | `maincoon.yourdogzone.co.kr` | `maincoon.puppyshop.co.kr`, `maincoon.infocs.co.kr`, `maincoon.dmcmusic.co.kr` 등 이전 브랜드 도메인 |
 
 ```bash
 npm run check:deploy-target
@@ -28,7 +28,7 @@ npm run dev
 
 `.env.example` 참고:
 
-- `NEXT_PUBLIC_SITE_URL` = `https://maincoon.puppyshop.co.kr`
+- `NEXT_PUBLIC_SITE_URL` = `https://maincoon.yourdogzone.co.kr`
 - `BLOB_READ_WRITE_TOKEN` (Vercel Blob — SEO·스폰서 데이터, 사용자가 직접 설정)
 - `ADMIN_JWT_SECRET`
 - `GEMINI_API_KEY` (선택 — AI 발행)
