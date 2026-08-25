@@ -59,9 +59,7 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
             <span className="text-sm text-[var(--muted)]">일일 SEO 발행 · 전국 노출 · 어드민 즉시 반영</span>
           </div>
           <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-            고객이 사이트 <strong className="text-[var(--navy)]">문의하기</strong>로 접수하면{" "}
-            <strong className="text-[var(--navy)]">텔레그램으로 즉시 알림</strong>이 전송됩니다.
-            입점 업체는 놓치는 문의 없이 바로 상담을 시작할 수 있습니다.
+            입점 후 카카오톡 URL을 등록하면 고객이 바로 상담을 시작할 수 있습니다.
           </p>
         </div>
 
@@ -169,15 +167,17 @@ export default function SamplePreviewClient({ recruiting, active, inquiryUrl }: 
           <p className="mt-2 text-sm text-[var(--muted)]">
             임대 비용 {recruiting.rental_price || "30만원"} · 카카오톡으로 제휴 문의
           </p>
-          <a
-            href={inquiryUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary mt-5 inline-flex"
-          >
-            <MessageCircle size={18} />
-            {CTA_RENTAL} · {recruiting.rental_price || "30만원"}
-          </a>
+          {inquiryUrl ? (
+            <a
+              href={inquiryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary mt-5 inline-flex"
+            >
+              <MessageCircle size={18} />
+              {CTA_RENTAL} · {recruiting.rental_price || "30만원"}
+            </a>
+          ) : null}
         </aside>
       </div>
     </div>

@@ -7,7 +7,6 @@ import Reviews from "./components/Reviews";
 import Gallery from "./components/Gallery";
 import FAQ from "./components/FAQ";
 import ArticlesScroll from "./components/ArticlesScroll";
-import ContactForm from "./components/ContactForm";
 import { listPublicPageSummaries } from "@/lib/seo-pages";
 
 export const dynamic = "force-dynamic";
@@ -31,7 +30,6 @@ export default async function HomePage() {
       <Reviews />
       <FAQ />
       <ArticlesScroll pages={pages} />
-      <ContactForm />
     </>
   );
 }

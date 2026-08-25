@@ -14,7 +14,6 @@ const NAV = [
   { href: "/#gallery", label: "갤러리" },
   { href: "/#reviews", label: "후기" },
   { href: "/guide", label: "지역안내" },
-  { href: "/#contact", label: "문의" },
 ];
 
 function BrandMark() {

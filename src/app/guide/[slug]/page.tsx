@@ -294,12 +294,6 @@ export default async function GuidePage({ params }: Props) {
                   {CTA_KAKAO}
                 </a>
               )}
-              <Link
-                href="/#contact"
-                className="inline-flex rounded-[0.4rem] border border-[var(--sky)] px-4 py-3 text-sm font-bold text-[var(--sky)]"
-              >
-                온라인 상담 신청
-              </Link>
             </div>
           </aside>
         )}

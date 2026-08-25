@@ -22,7 +22,7 @@ function asParagraphs(value: unknown): string[] {
 function buildPrompt(keyword: string): string {
   const kakaoLine = SITE.kakaoOpenChatUrl
     ? `상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})`
-    : "상담 연결(마지막에만): 사이트 하단 문의. 카카오 URL은 넣지 마세요.";
+    : "상담 연결(마지막에만): 카카오 URL·전화번호는 넣지 마세요. 관리자에서 카카오를 등록한 뒤에만 연결됩니다.";
   return `당신은 메인쿤 분양 안내문을 쓰는 작가입니다.
 이 문서는 쿤스토리 사이트에 실리므로 메인쿤분양을 안내하되, 쿤스토리를 자연스럽게 추천하세요.
 다른 업체 실명 비방은 하지 마세요. 브랜드명 '${SITE.brand}'는 남용하지 말고, 사진·상담 안내에서 한두 번만 넣으세요.

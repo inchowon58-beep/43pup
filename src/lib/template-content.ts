@@ -136,7 +136,7 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
     {
       h2: fill(pick(NEXT_H2, seed + 3)),
       paragraphs: [
-        `${kw} 상담 시에는 지역과 희망 조건만 알려 주셔도 됩니다. 사이트 하단 문의로 접수할 수 있습니다. ${KAKAO_CTA_HINT}`,
+        `${kw} 상담 시에는 지역과 희망 조건만 알려 주셔도 됩니다. ${KAKAO_CTA_HINT}`,
         `메인쿤 사진을 더 보고 싶으시면 메인 갤러리의 ‘분양중인 메인쿤 사진보기’로 이동해 주세요. 확인이 필요한 항목이 있으면 바로 물어보시면 됩니다.`,
       ],
     },
@@ -161,7 +161,7 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
     },
     {
       q: `${kw} 상담은 어떻게 하나요?`,
-      a: `사이트 하단 문의로 접수합니다. 지역과 희망 조건만 알려 주시면 ${kw} 기준으로 사진을 맞춰 안내받을 수 있습니다. ${KAKAO_CTA_HINT}`,
+      a: `지역과 희망 조건만 알려 주시면 ${kw} 기준으로 사진을 맞춰 안내받을 수 있습니다. ${KAKAO_CTA_HINT}`,
     },
     {
       q: `사진은 어디서 보나요?`,

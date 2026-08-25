@@ -27,7 +27,7 @@ export default function Hero() {
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/85 md:text-base">
             {SITE.tagline} 아이들 사진을 먼저 보시고,{" "}
-            {kakaoHref ? "카카오톡으로 문의해 주세요." : "문의 양식으로 남겨 주세요."}
+            {kakaoHref ? "카카오톡으로 문의해 주세요." : "사진을 먼저 보신 뒤 상담해 주세요."}
           </p>
           <p className="mt-4 max-w-xl text-xs leading-relaxed text-[#f6edd8] md:text-sm">
             {KEYWORD_INQUIRY}
