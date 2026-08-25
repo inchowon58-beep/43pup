@@ -1,5 +1,5 @@
 /**
- * 삭제됨 — 메인스테이는 inchowon58-beep/maincoondmc 전용입니다.
+ * 삭제됨 — 쿤하우스는 inchowon58-beep/maincooninfo 전용입니다.
  */
-console.error("메인스테이는 https://github.com/inchowon58-beep/maincoondmc.git 만 사용하세요.");
+console.error("쿤하우스는 https://github.com/inchowon58-beep/maincooninfo.git 만 사용하세요.");
 process.exit(1);

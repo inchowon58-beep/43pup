@@ -2,16 +2,16 @@ import Image from "next/image";
 import { fileUrl, isRealImage } from "@/lib/images";
 
 const PLACEHOLDER_COLORS = [
-  "#1e2433",
-  "#c45c38",
-  "#4a6d8c",
-  "#2d3648",
-  "#f0e6d8",
-  "#3d4a5c",
-  "#9a4428",
-  "#6a635c",
-  "#f6e6dc",
-  "#141820",
+  "#4a2c32",
+  "#8b4557",
+  "#6a7a5c",
+  "#c4a574",
+  "#f4eadc",
+  "#3a2428",
+  "#6b3342",
+  "#6e655e",
+  "#f3e6e9",
+  "#2a221f",
 ] as const;
 
 export function placeholderColor(index: number): string {

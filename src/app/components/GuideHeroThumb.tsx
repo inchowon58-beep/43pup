@@ -14,11 +14,11 @@ export default function GuideHeroThumb({ page, imageSrc }: Props) {
   const line1 = page.heroTitleLine1 || page.keyword;
   const line2 = page.heroTitleLine2 || SITE.brand;
   const bar =
-    page.heroBar || page.heroSubtitle || "집에서 키울 때의 크기·성격·분양가를 먼저 맞춰 보세요";
+    page.heroBar || page.heroSubtitle || "한집에 들이기 전 크기·기질·분양가를 먼저 열어 보세요";
   const real = isRealImage(imageSrc);
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[720px] overflow-hidden rounded-[0.2rem] shadow-[0_18px_44px_rgba(30,36,51,0.22)] ring-1 ring-[#c45c38]/35">
+    <div className="relative mx-auto aspect-square w-full max-w-[720px] overflow-hidden rounded-[var(--radius)] shadow-[0_18px_44px_rgba(74,44,50,0.22)] ring-1 ring-[#8b4557]/35">
       {real ? (
         <Image
           src={imageSrc}
@@ -32,10 +32,10 @@ export default function GuideHeroThumb({ page, imageSrc }: Props) {
       ) : (
         <ImageSlot index={placeholderIndexFrom(imageSrc || 1)} fill label={galleryAlt(page.keyword, 1)} />
       )}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,36,51,0.12)_0%,rgba(18,22,32,0.62)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(74,44,50,0.12)_0%,rgba(42,34,31,0.62)_100%)]" />
 
       <div className="absolute inset-0 flex flex-col items-start justify-end px-7 pb-8 text-left md:px-10 md:pb-10">
-        <span className="rounded-[0.12rem] bg-white/92 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.12em] text-[var(--coral-deep)] md:text-xs">
+        <span className="rounded-full bg-white/92 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.12em] text-[var(--coral-deep)] md:text-xs">
           {badge}
         </span>
 

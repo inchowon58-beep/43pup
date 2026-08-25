@@ -20,16 +20,16 @@ function BrandMark() {
   return (
     <Link href="/" className="flex items-center gap-3">
       <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden className="shrink-0">
-        <rect width="36" height="36" rx="4" fill="#1e2433" />
-        <ellipse cx="18" cy="21" rx="9" ry="7" fill="#c45c38" />
-        <ellipse cx="12" cy="12" rx="3.2" ry="5.2" fill="#f0e6d8" />
-        <ellipse cx="24" cy="12" rx="3.2" ry="5.2" fill="#f0e6d8" />
-        <circle cx="14.5" cy="20" r="1.3" fill="#1e2433" />
-        <circle cx="21.5" cy="20" r="1.3" fill="#1e2433" />
-        <ellipse cx="18" cy="23.4" rx="1.4" ry="1" fill="#4a6d8c" />
+        <rect width="36" height="36" rx="10" fill="#4a2c32" />
+        <ellipse cx="18" cy="21" rx="9" ry="7" fill="#c4a574" />
+        <ellipse cx="12" cy="12" rx="3.2" ry="5.2" fill="#f4eadc" />
+        <ellipse cx="24" cy="12" rx="3.2" ry="5.2" fill="#f4eadc" />
+        <circle cx="14.5" cy="20" r="1.3" fill="#4a2c32" />
+        <circle cx="21.5" cy="20" r="1.3" fill="#4a2c32" />
+        <ellipse cx="18" cy="23.4" rx="1.4" ry="1" fill="#6a7a5c" />
       </svg>
       <span className="flex flex-col leading-none">
-        <span className="text-[0.62rem] font-medium tracking-[0.18em] text-[#f0e6d8]">
+        <span className="text-[0.62rem] font-medium tracking-[0.18em] text-[#f4eadc]">
           {SITE.brandEn}
         </span>
         <span className="mt-1 text-[1.02rem] font-bold tracking-tight text-white md:text-[1.12rem]">
@@ -45,15 +45,15 @@ export default function Header() {
   const href = useKakaoHref();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#1e2433] text-white">
-      <div className="h-[3px] bg-[linear-gradient(90deg,#1e2433,#c45c38,#4a6d8c,#1e2433)]" />
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#4a2c32] text-white">
+      <div className="h-[3px] bg-[linear-gradient(90deg,#4a2c32,#8b4557,#c4a574,#6a7a5c,#4a2c32)]" />
 
       <div className="container flex h-[3.7rem] items-center justify-between md:h-[4.5rem]">
         <BrandMark />
 
         <nav className="hidden items-center gap-6 text-[0.88rem] font-medium text-white/70 lg:flex">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-[#f0e6d8]">
+            <Link key={item.href} href={item.href} className="hover:text-[#f4eadc]">
               {item.label}
             </Link>
           ))}
@@ -65,7 +65,7 @@ export default function Header() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-kakao hidden items-center gap-1.5 rounded-[0.45rem] px-3.5 py-2 text-sm font-extrabold sm:inline-flex"
+              className="btn-kakao hidden items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-extrabold sm:inline-flex"
             >
               <MessageCircle size={16} />
               {CTA_KAKAO}
@@ -83,13 +83,13 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#1e2433] px-4 py-3 lg:hidden">
+        <div className="border-t border-white/10 bg-[#4a2c32] px-4 py-3 lg:hidden">
           <nav className="flex flex-col gap-1">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-[0.45rem] px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/8"
+                className="rounded-[var(--radius)] px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/8"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -100,7 +100,7 @@ export default function Header() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-kakao mt-1 inline-flex items-center gap-2 rounded-[0.45rem] px-3 py-2.5 text-sm font-extrabold"
+                className="btn-kakao mt-1 inline-flex items-center gap-2 rounded-full px-3 py-2.5 text-sm font-extrabold"
                 onClick={() => setOpen(false)}
               >
                 <MessageCircle size={16} />

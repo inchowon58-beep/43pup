@@ -2,33 +2,33 @@ import { SITE } from "@/lib/site";
 
 const REVIEWS = [
   {
-    quote: "성체 무게를 먼저 들어서, 소파와 복도가 충분한지부터 가늠할 수 있었습니다.",
-    name: "윤○○ 보호자",
+    quote: "성체가 되면 얼마나 커지는지부터 들어서, 거실 자리를 미리 비워 둘 수 있었습니다.",
+    name: "한○○ 보호자",
     course: "메인쿤크기",
   },
   {
-    quote: "온순하다는 한 줄이 아니라, 그 아이가 사람 곁에 어떻게 있는지를 설명해 주셨습니다.",
-    name: "조○○ 보호자",
+    quote: "온순하다는 말 대신, 그 아이가 저녁에 사람 옆에 어떻게 있는지를 들려 주셨습니다.",
+    name: "임○○ 보호자",
     course: "메인쿤성격",
   },
   {
-    quote: "분양가가 갈리는 이유를 항목으로 들어서, 싼 곳과 무엇이 다른지 비교가 됐습니다.",
-    name: "서○○ 보호자",
+    quote: "분양가가 갈리는 항목을 표처럼 들어서, 싼 곳과 무엇이 다른지 비교가 됐습니다.",
+    name: "오○○ 보호자",
     course: "메인쿤분양가",
   },
   {
-    quote: "빗질과 사료량을 입양 전에 받아서, 대형묘가 덜 막막했습니다.",
-    name: "배○○ 보호자",
+    quote: "빗질 주기와 사료량을 입양 전에 받아서, 대형묘가 덜 막막했습니다.",
+    name: "강○○ 보호자",
     course: "메인쿤키우기",
   },
   {
-    quote: "갤러리에서 고른 털색을 바로 맞춰 주셔서, 상담이 짧았습니다.",
-    name: "문○○ 보호자",
+    quote: "사진첩에서 고른 털색을 바로 맞춰 주셔서, 상담이 짧았습니다.",
+    name: "노○○ 보호자",
     course: "분양 상담",
   },
   {
     quote: "초등학생과 함께 사는지부터 물어봐 주셔서, 집 분위기에 맞는 아이를 안내받았습니다.",
-    name: "신○○ 보호자",
+    name: "유○○ 보호자",
     course: "입양 상담",
   },
 ];
@@ -38,9 +38,9 @@ export default function Reviews() {
     <section id="reviews" className="section bg-white/55">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">VOICES</p>
+          <p className="section-kicker">FROM THE HOUSE</p>
           <h2 className="mt-3 text-3xl font-extrabold text-[var(--navy)] md:text-4xl">
-            집을 정한 뒤의 말
+            문을 연 뒤의 말
           </h2>
           <p className="mt-3 text-[var(--muted)]">
             {SITE.brand}에서 메인쿤분양을 상담한 분의 이야기입니다.
@@ -51,7 +51,7 @@ export default function Reviews() {
           {REVIEWS.map((r) => (
             <blockquote
               key={r.name + r.course}
-              className="rounded-[0.45rem] border border-[var(--line)] bg-white p-6"
+              className="rounded-[var(--radius)] border border-[var(--line)] bg-white p-6"
             >
               <p className="text-3xl leading-none text-[var(--coral)]">“</p>
               <p className="mt-1 leading-relaxed text-[var(--ink)]">{r.quote}</p>

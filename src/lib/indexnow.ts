@@ -10,7 +10,7 @@ function siteHost(): string {
   try {
     return new URL(SITE.siteUrl).host;
   } catch {
-    return "maincoon.dmcmusic.co.kr";
+    return "maincoon.infocs.co.kr";
   }
 }
 

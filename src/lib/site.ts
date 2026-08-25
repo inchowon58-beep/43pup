@@ -1,15 +1,15 @@
-/** 메인쿤분양 메인스테이 — 메인쿤 분양 사이트 공통 설정 */
+/** 메인쿤분양 쿤하우스 — 메인쿤 분양 사이트 공통 설정 */
 
 export const SITE = {
-  name: "메인쿤분양 메인스테이",
-  brand: "메인스테이",
-  brandEn: "MAIN STAY",
+  name: "메인쿤분양 쿤하우스",
+  brand: "쿤하우스",
+  brandEn: "COON HOUSE",
   farm: "메인쿤분양",
-  title: "메인쿤분양 메인스테이",
-  tagline: "큰 몸집과 느긋한 성품을 집 생활에 맞춰 풀어 드리는 메인스테이입니다",
-  taglineEn: "Maine Coon · Main Stay",
+  title: "메인쿤분양 쿤하우스",
+  tagline: "큰 고양이를 한집에 들이기 전에, 크기와 기질부터 열어 드리는 쿤하우스입니다",
+  taglineEn: "Maine Coon · Coon House",
   description:
-    "메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기 — 메인스테이에서 아이 사진과 생활 포인트를 보고 상담하세요. 분양가는 혈통·성별에 따라 안내합니다.",
+    "메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기 — 쿤하우스에서 아이 사진과 함께 살기 포인트를 보고 상담하세요. 분양가는 혈통·성별에 따라 안내합니다.",
   keywords: [
     "메인쿤분양",
     "메인쿤분양가",
@@ -19,26 +19,26 @@ export const SITE = {
     "메인쿤입양",
     "메인쿤무료분양",
     "메인쿤특징",
-    "메인스테이",
+    "쿤하우스",
     "메인쿤",
   ],
   kakaoOpenChatUrl: "",
-  logo: "https://image.cattery.co.kr/maincoon/15.webp",
-  ogImage: "https://image.cattery.co.kr/maincoon/15.webp",
+  logo: "https://image.cattery.co.kr/maincoon/21.webp",
+  ogImage: "https://image.cattery.co.kr/maincoon/21.webp",
   imageBase: "https://image.cattery.co.kr/maincoon",
   imageCount: 40,
   location: "대한민국 전국",
   address: "전국 분양 상담 · 관리자에서 등록한 카카오톡",
   areaServed: "대한민국 전국",
-  domain: "maincoon.dmcmusic.co.kr",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.dmcmusic.co.kr",
+  domain: "maincoon.infocs.co.kr",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.infocs.co.kr",
   infocsUrl: "https://www.infocs.co.kr/",
-  naverSiteVerification: "3f957b2486711af3905f5a71c43b01d07aa2aab5",
-  themeColor: "#1e2433",
+  naverSiteVerification: "a3af4ea1427aa1c2d70e79290c57f4e0cc360b68",
+  themeColor: "#4a2c32",
 } as const;
 
 export const KEYWORD_INQUIRY =
-  "메인쿤분양 · 분양가 · 크기 · 성격 · 키우기 — 지금 볼 수 있는 아이부터 맞춰 안내합니다.";
+  "메인쿤분양 · 분양가 · 크기 · 성격 · 키우기 — 한집에 맞을지부터 맞춰 안내합니다.";
 
 export const CTA_LABEL = "카카오톡 오픈채팅 상담";
 export const CTA_KAKAO = "카카오톡 상담하기";

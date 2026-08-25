@@ -4,7 +4,7 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "메인스테이 분양안내 (샘플)",
+  sponsor_name: "쿤하우스 분양안내 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "",
   homepage_url: "https://www.naver.com",
@@ -21,7 +21,7 @@ export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   youtube_url_2: "",
   sponsor_youtube_url: "",
   sponsor_youtube_url_2: "",
-  sponsor_youtube_channel: "메인스테이 분양안내",
+  sponsor_youtube_channel: "쿤하우스 분양안내",
   sponsor_youtube_desc:
     "메인쿤 특징과 분양 상담 과정을 짧게 정리한 안내 영상입니다. 상담 전에 먼저 보시면 좋습니다.",
 };
@@ -70,7 +70,7 @@ export const SAMPLE_SECTIONS = [
   {
     h2: "수원메인쿤분양, 상담을 보기 전에",
     paragraphs: [
-      "수원에서 메인쿤분양을 찾을 때 흔한 질문은 크기와 분양가입니다. 메인스테이는 품종 특징과 입양 준비를 함께 안내합니다.",
+      "수원에서 메인쿤분양을 찾을 때 흔한 질문은 크기와 분양가입니다. 쿤하우스는 품종 특징과 한집에 들이기 전 준비를 함께 안내합니다.",
       "원하시는 성별·일정만 알려 주시면 상담을 정리해 드립니다. 방문이 어려우면 문의로 먼저 물어보세요.",
     ],
   },

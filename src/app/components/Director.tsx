@@ -23,7 +23,7 @@ const GROUPS = [
       "사람 곁에 머물고, 낮고 깊은 소리로 말하듯 웁니다",
       "아이·다른 반려동물과 지내는 개체가 많습니다",
       "놀이와 사람 시간이 있으면 실내에서도 잘 지냅니다",
-      "개체 차는 있어, 지금 만날 아이 기질을 상담에서 풀어 드립니다",
+      "개체 차는 있어, 지금 만날 아이 기질을 상담에서 열어 드립니다",
     ],
   },
   {
@@ -32,7 +32,7 @@ const GROUPS = [
       "분양가는 혈통·성별·털색·시기에 따라 폭이 있습니다",
       "화면에는 단가를 박지 않고, 상담에서 포함 항목부터 맞춥니다",
       "무료분양만 강조되는 곳은 건강·서류를 따로 확인하세요",
-      "메인스테이에서는 사진·집 환경·예산을 맞춰 본 뒤 안내합니다",
+      "쿤하우스에서는 사진·집 환경·예산을 맞춰 본 뒤 안내합니다",
     ],
   },
 ];
@@ -42,12 +42,12 @@ export default function Director() {
     <section id="director" className="section bg-white/55">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">BEFORE YOU DECIDE</p>
+          <p className="section-kicker">INSIDE THE HOUSE</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            들이기 전에 알아 두면 좋은 점
+            들이기 전에 열어 두는 점
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            크기와 털, 기질, 분양가를 한곳에 모아 두었습니다. 입양 전 체크용으로 보시면 됩니다.
+            크기와 털, 기질, 분양가를 방마다 모아 두었습니다. 입양 전 체크용으로 보시면 됩니다.
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export default function Director() {
           {GROUPS.map((g) => (
             <div
               key={g.title}
-              className="border border-[var(--line)] bg-white px-5 py-5"
+              className="rounded-[var(--radius)] border border-[var(--line)] bg-white px-5 py-5"
             >
               <h3 className="text-sm font-bold tracking-[0.12em] text-[var(--coral-deep)]">
                 {g.title}

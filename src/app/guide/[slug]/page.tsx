@@ -166,7 +166,7 @@ export default async function GuidePage({ params }: Props) {
         ? { image: [SITE.logo] }
         : {}),
     mainEntityOfPage: pageUrl,
-    about: ["메인쿤분양", "메인쿤크기", "메인쿤성격", "메인쿤분양가", "메인스테이", page.keyword],
+    about: ["메인쿤분양", "메인쿤크기", "메인쿤성격", "메인쿤분양가", "쿤하우스", page.keyword],
   };
 
   return (
@@ -188,7 +188,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#1e2433_0%,#c45c38_38%,#f2ebe3_38%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#4a2c32_0%,#8b4557_38%,#f7f2e9_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>

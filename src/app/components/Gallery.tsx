@@ -7,19 +7,20 @@ export default function Gallery() {
     <section id="gallery" className="section">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">GALLERY</p>
+          <p className="section-kicker">PHOTO ALBUM</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
             분양 중인 메인쿤
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            {SITE.brand}에서 지금 만날 수 있는 아이들입니다. 얼굴이 남는 아이가 있으면 이어서 물어보시면 됩니다.
+            {SITE.brand} 사진첩에서 지금 만날 수 있는 아이들입니다. 얼굴이 남는 아이가 있으면 이어서
+            물어보시면 됩니다.
           </p>
         </div>
         <div className="mt-10 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 md:gap-3">
           {GALLERY_FEATURED.map((fileNo) => (
             <div
               key={`feat-${fileNo}`}
-              className="relative aspect-[4/3] overflow-hidden rounded-[0.45rem] sm:col-span-1 md:col-span-2 md:aspect-[16/10]"
+              className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)] sm:col-span-1 md:col-span-2 md:aspect-[16/10]"
             >
               <ImageSlot index={fileNo} fill label={galleryAlt(fileNo)} />
             </div>
@@ -27,7 +28,7 @@ export default function Gallery() {
           {GALLERY_GRID.map((fileNo) => (
             <div
               key={`grid-${fileNo}`}
-              className="relative aspect-square overflow-hidden rounded-[0.45rem]"
+              className="relative aspect-square overflow-hidden rounded-[var(--radius)]"
             >
               <ImageSlot index={fileNo} fill label={galleryAlt(fileNo)} />
             </div>

@@ -5,8 +5,8 @@ export type FaqItem = { q: string; a: string };
 /** 메인·AEO용 자주 묻는 질문 — 메인쿤분양 */
 export const HOME_FAQS: FaqItem[] = [
   {
-    q: "메인스테이는 어떤 곳인가요?",
-    a: "메인쿤분양을 집 생활 기준으로 풀어 드리는 곳입니다. 특징·크기·성격·분양가를 정리하고, 아이들 얼굴을 갤러리에서 먼저 보여 드립니다. 가정에 맞는 아이는 상담에서 맞춰 드립니다.",
+    q: "쿤하우스는 어떤 곳인가요?",
+    a: "메인쿤분양을 한집 기준으로 안내하는 곳입니다. 특징·크기·성격·분양가를 정리하고, 아이들 얼굴을 사진첩에서 먼저 보여 드립니다. 가정에 맞는 아이는 상담에서 맞춰 드립니다.",
   },
   {
     q: "메인쿤은 어떤 성격인가요?",
@@ -70,7 +70,7 @@ export function howToJsonLd(pageUrl?: string) {
     "@context": "https://schema.org",
     "@type": "HowTo",
     name: "메인쿤분양을 진행하는 순서",
-    description: "사진, 상담, 방문, 키우기 안내까지 메인스테이 메인쿤분양.",
+    description: "사진, 상담, 방문, 키우기 안내까지 쿤하우스 메인쿤분양.",
     inLanguage: "ko-KR",
     totalTime: "PT2H",
     url: pageUrl || SITE.siteUrl,
@@ -89,7 +89,7 @@ export function orgJsonLd(url?: string, telephone?: string) {
     "@context": "https://schema.org",
     "@type": "PetStore",
     name: SITE.name,
-    alternateName: [SITE.brand, SITE.brandEn, "메인쿤분양", "메인스테이"],
+    alternateName: [SITE.brand, SITE.brandEn, "메인쿤분양", "쿤하우스"],
     description: SITE.description,
     url: url || SITE.siteUrl,
     ...(SITE.ogImage ? { image: SITE.ogImage } : {}),

@@ -2,10 +2,10 @@
 chcp 65001 >nul
 cd /d "%~dp0"
 
-set "EXE=%~dp0dist\메인스테이웹문서생성기\메인스테이웹문서생성기.exe"
+set "EXE=%~dp0dist\쿤하우스웹문서생성기\쿤하우스웹문서생성기.exe"
 
 if exist "%EXE%" (
-  echo 메인스테이 웹문서생성기 실행 중...
+  echo 쿤하우스 웹문서생성기 실행 중...
   start "" "%EXE%"
   exit /b 0
 )
@@ -22,7 +22,7 @@ if exist "%EXE%" (
   start "" "%EXE%"
 ) else (
   echo 빌드는 됐지만 exe 경로를 찾지 못했습니다.
-  echo 폴더: %~dp0dist\메인스테이웹문서생성기\
+  echo 폴더: %~dp0dist\쿤하우스웹문서생성기\
   pause
 )
 exit /b 0
