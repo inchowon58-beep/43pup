@@ -1,13 +1,13 @@
 import { SITE } from "./site";
 
 /** 히어로·소개·특징 카드 */
-export const FEATURE_FILES = [32, 3, 7, 16, 25, 38, 15, 39] as const;
+export const FEATURE_FILES = [18, 9, 5, 14, 22, 33, 11, 36] as const;
 
 /** 갤러리 상단 큰 사진 두 장 — 순서 변경 */
-export const GALLERY_FEATURED = [10, 29] as const;
+export const GALLERY_FEATURED = [2, 27] as const;
 
 /** 갤러리 본문 12장 */
-export const GALLERY_GRID = [4, 12, 15, 21, 24, 26, 30, 31, 34, 37, 39, 1] as const;
+export const GALLERY_GRID = [6, 8, 11, 13, 17, 19, 20, 23, 28, 35, 36, 40] as const;
 
 function clampFile(num: number): number {
   if (!Number.isFinite(num) || num < 1) return 1;

@@ -7,13 +7,13 @@ export default function Gallery() {
     <section id="gallery" className="section">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">THE GARDEN</p>
+          <p className="section-kicker">ON THE FLOOR</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
             분양 중인 메인쿤
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            {SITE.brand} 정원에서 지금 만날 수 있는 아이들입니다. 얼굴이 남는 아이가 있으면 이어서
-            물어보시면 됩니다.
+            {SITE.brand}에 지금 진열된 아이들입니다. 얼굴이 남는 아이가 있으면 이어서 물어보시면
+            됩니다.
           </p>
         </div>
         <div className="mt-10 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 md:gap-3">

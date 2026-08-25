@@ -32,7 +32,7 @@ DISPLAY_ORDER = list(range(12, IMAGE_COUNT + 1))
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|mainyou".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|maincoonmar".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -68,7 +68,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
     kw = keyword.strip() or "메인쿤분양"
     heroes = [
-        "키우는 자리의 크기·기질·분양가를 먼저 맞춰 보세요",
+        "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요",
         "성체 크기와 기질을 본 뒤 상담합니다",
         "메인쿤분양 사진과 키우기 하루를 함께 드립니다",
         "지역만 알려 주셔도 상담 일정을 안내합니다",
@@ -118,7 +118,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             "h2": h2_0,
             "paragraphs": [
                 f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 ‘우리 집에 큰 고양이가 맞나’입니다. "
-                f"메인가드너는 메인쿤분양을 키우는 자리에 {tone} 맞춰 드립니다.",
+                f"메인가드너는 메인쿤분양을 진열된 얼굴에 {tone} 맞춰 드립니다.",
                 f"수컷은 성체 6~12kg, 암컷은 4~8kg 전후의 대형묘로 2~4년에 걸쳐 자랍니다. "
                 f"분양 중인 아이 사진은 메인 갤러리에서도 이어서 보실 수 있습니다.",
                 f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 성별·크기입니다. "
@@ -150,7 +150,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         },
         {
             "q": "여기는 어떤 곳인가요?",
-            "a": "메인가드너는 메인쿤분양을 키우는 자리 기준으로 안내하는 곳입니다. "
+            "a": "메인가드너는 메인쿤분양을 진열된 얼굴 기준으로 안내하는 곳입니다. "
             "특징·크기·성격·분양가를 정리하고 아이들 얼굴을 먼저 보여 드립니다.",
         },
         {
@@ -176,7 +176,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "title": title,
         "metaDescription": meta_desc,
         "metaKeywords": meta_keywords,
-        "h1": f"{kw}, 자리를 가꾸기 전에",
+        "h1": f"{kw}, 골라 보기 전에",
         "heroSubtitle": heroes[idx % len(heroes)],
         "heroBadge": "분양 안내",
         "heroTitleLine1": kw,

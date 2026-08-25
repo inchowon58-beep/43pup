@@ -1,7 +1,7 @@
 import { inferParentRegionFromSubArea, normalizeCityKey } from "./sub-region-map";
 
 /**
- * 시·군·구 기준 인근 지하철역 (yourdogzone 스타일 SEO 블록용)
+ * 시·군·구 기준 인근 지하철역 (marketstore 스타일 SEO 블록용)
  */
 export const SUBWAY_MAP: Record<string, string[]> = {
   수원: ["수원역", "영통역", "광교역", "매탄권선역", "망포역"],

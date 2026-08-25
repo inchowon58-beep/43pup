@@ -7,7 +7,7 @@ interface Props {
   keywordSuffix?: string;
 }
 
-/** 인근 지하철역 — yourdogzone 스타일 SEO 키워드 카드 */
+/** 인근 지하철역 — marketstore 스타일 SEO 키워드 카드 */
 export default function NearbyStationsSection({
   cityLabel,
   stations,
@@ -16,7 +16,7 @@ export default function NearbyStationsSection({
   if (stations.length === 0 || !cityLabel) return null;
 
   return (
-    <section className="mb-12 border border-[var(--line)] bg-[linear-gradient(135deg,rgba(61,90,69,0.08),#fff)] p-6 sm:p-8">
+    <section className="mb-12 border border-[var(--line)] bg-[linear-gradient(135deg,rgba(36,48,86,0.08),#fff)] p-6 sm:p-8">
       <p className="text-sm font-semibold text-[var(--coral-deep)]">인근 지하철역</p>
       <h2 className="mt-1 text-lg font-extrabold text-[var(--navy)] sm:text-xl">
         {cityLabel} 인근 지하철역 {keywordSuffix} 검색

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""근방 구·동 · 인근 지하철역 맵 (yourdogzone / Next.js 가이드와 동일 용도)."""
+"""근방 구·동 · 인근 지하철역 맵 (marketstore / Next.js 가이드와 동일 용도)."""
 
 from __future__ import annotations
 

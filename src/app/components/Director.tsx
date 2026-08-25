@@ -42,12 +42,12 @@ export default function Director() {
     <section id="director" className="section bg-white/55">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">BEFORE YOU PLANT</p>
+          <p className="section-kicker">BEFORE YOU PICK</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            들이기 전에 알아 두면 좋은 점
+            고르기 전에 알아 두면 좋은 점
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            크기와 털, 기질, 분양가를 정원 노트처럼 모아 두었습니다. 입양 전 확인용입니다.
+            크기와 털, 기질, 분양가를 진열 카드처럼 모아 두었습니다. 입양 전 확인용입니다.
           </p>
         </div>
 

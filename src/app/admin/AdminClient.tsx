@@ -42,7 +42,7 @@ export default function AdminClient() {
   const isSponsor = role === "sponsor";
 
   function absolutePageUrl(path: string) {
-    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.yourdogzone.co.kr").replace(
+    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.marketstore.co.kr").replace(
       /\/$/,
       ""
     );

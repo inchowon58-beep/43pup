@@ -3,12 +3,12 @@ import { SITE } from "@/lib/site";
 const STEPS = [
   {
     n: "01",
-    title: "정원을 둘러본다",
+    title: "진열을 둘러본다",
     desc: "갤러리에서 분양 중인 메인쿤을 봅니다. 남는 얼굴이 있으면 적어 두세요.",
   },
   {
     n: "02",
-    title: "자리를 이야기한다",
+    title: "조건을 이야기한다",
     desc: "공간·아이 유무·희망 성별을 알려 주시면, 지금 만날 수 있는 아이를 골라 드립니다.",
   },
   {
@@ -18,7 +18,7 @@ const STEPS = [
   },
   {
     n: "04",
-    title: "함께 자라기 시작한다",
+    title: "집으로 모신다",
     desc: "첫 사료·빗질·화장실만 짚어 드린 뒤 집으로 모십니다.",
   },
 ];
@@ -28,12 +28,12 @@ export default function Process() {
     <section id="process" className="section">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">HOW WE GROW</p>
+          <p className="section-kicker">HOW TO CHOOSE</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            입양은 이렇게 심어 갑니다
+            입양은 이렇게 골라 갑니다
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            사진부터 보고, 자리가 맞으면 {SITE.brand}에 물어보시면 됩니다.
+            사진부터 보고, 조건이 맞으면 {SITE.brand}에 물어보시면 됩니다.
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export default function Process() {
           <div className="pointer-events-none absolute left-[12%] right-[12%] top-7 hidden h-px bg-[var(--line)] lg:block" />
           {STEPS.map((s) => (
             <div key={s.n} className="relative text-center lg:pt-0">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--navy)] text-lg font-bold text-[#f6eadf]">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--navy)] text-lg font-bold text-[#f4ead0]">
                 {s.n}
               </div>
               <h3 className="mt-4 text-lg font-bold text-[var(--navy)]">{s.title}</h3>

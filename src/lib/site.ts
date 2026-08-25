@@ -6,10 +6,10 @@ export const SITE = {
   brandEn: "MAIN GARDNER",
   farm: "메인쿤분양",
   title: "메인쿤분양 메인가드너",
-  tagline: "큰 고양이를 천천히 키우는 자리를 가꿔 드리는 메인가드너입니다",
+  tagline: "큰 고양이를 골라 보기 쉽게 진열해 드리는 메인가드너입니다",
   taglineEn: "Maine Coon · Main Gardner",
   description:
-    "메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기 — 메인가드너에서 아이 사진과 키우기 자리를 보고 상담하세요. 분양가는 혈통·성별에 따라 안내합니다.",
+    "메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기 — 메인가드너에서 진열된 아이 사진과 분양 조건을 보고 상담하세요. 분양가는 혈통·성별에 따라 안내합니다.",
   keywords: [
     "메인쿤분양",
     "메인쿤분양가",
@@ -23,22 +23,22 @@ export const SITE = {
     "메인쿤",
   ],
   kakaoOpenChatUrl: "",
-  logo: "https://image.cattery.co.kr/maincoon/32.webp",
-  ogImage: "https://image.cattery.co.kr/maincoon/32.webp",
+  logo: "https://image.cattery.co.kr/maincoon/18.webp",
+  ogImage: "https://image.cattery.co.kr/maincoon/18.webp",
   imageBase: "https://image.cattery.co.kr/maincoon",
   imageCount: 40,
   location: "대한민국 전국",
   address: "전국 분양 상담 · 관리자에서 등록한 카카오톡",
   areaServed: "대한민국 전국",
-  domain: "maincoon.yourdogzone.co.kr",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.yourdogzone.co.kr",
+  domain: "maincoon.marketstore.co.kr",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.marketstore.co.kr",
   infocsUrl: "https://www.infocs.co.kr/",
-  naverSiteVerification: "ffe3619dcbd2c77e2d54244ba83a52af0256d69e",
-  themeColor: "#3d5a45",
+  naverSiteVerification: "cece4bd4b46fc8b1cec51cc220dfc8b51d01b88e",
+  themeColor: "#243056",
 } as const;
 
 export const KEYWORD_INQUIRY =
-  "메인쿤분양 · 분양가 · 크기 · 성격 · 키우기 — 자리를 가꾸는 일부터 안내합니다.";
+  "메인쿤분양 · 분양가 · 크기 · 성격 · 키우기 — 진열된 얼굴부터 맞춰 드립니다.";
 
 export const CTA_LABEL = "카카오톡 오픈채팅 상담";
 export const CTA_KAKAO = "카카오톡 상담하기";

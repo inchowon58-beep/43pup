@@ -33,7 +33,7 @@ ${kakaoLine}
 서비스 범위: ${SITE.areaServed}
 
 독자: ${keyword}를 검색해 메인쿤분양을 고르려는 보호자.
-톤: 안내형. 사실(성격·크기·분양가 요인)은 분명히, 문장은 상담 안내처럼.
+톤: 안내형. 사실(성격·크기·분양가 요인)은 분명히, 문장은 진열된 얼굴을 고르는 상담처럼.
 금지: 가격 단정, 허위, 의료 단정, 타사 비방, 전화번호.
 
 반드시 다룰 내용:
@@ -53,7 +53,7 @@ ${kakaoLine}
   "heroSubtitle": "한글 한 문장. 분양 안내 + 사진",
   "heroBadge": "분양 안내",
   "heroTitleLine2": "메인가드너",
-  "heroBar": "키우는 자리의 크기·기질·분양가를 먼저 맞춰 보세요.",
+  "heroBar": "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요.",
   "sections": [
     {"h2": "'{keyword}' 포함, 집을 고르기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
     {"h2": "메인쿤 입양 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
@@ -120,12 +120,12 @@ export async function generateWithGemini(
     ),
     h1: String(data.h1 || `${keyword}, 메인쿤분양 안내`),
     heroSubtitle: String(
-      data.heroSubtitle || "키우는 자리의 크기·기질·분양가를 먼저 맞춰 보세요"
+      data.heroSubtitle || "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요"
     ),
     heroBadge: String(data.heroBadge || "분양 안내"),
     heroTitleLine1: keyword,
     heroTitleLine2: String(data.heroTitleLine2 || "메인가드너"),
-    heroBar: String(data.heroBar || "키우는 자리의 크기·기질·분양가를 먼저 맞춰 보세요."),
+    heroBar: String(data.heroBar || "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요."),
     sections,
     faqs,
     ctaText: String(data.ctaText || `${keyword} 상담 — 지역·희망 조건만 알려 주세요`),
@@ -148,7 +148,7 @@ export function assembleSeoPage(
     heroBadge: partial.heroBadge || "분양 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
     heroTitleLine2: partial.heroTitleLine2 || "메인가드너",
-    heroBar: partial.heroBar || "키우는 자리의 크기·기질·분양가를 먼저 맞춰 보세요.",
+    heroBar: partial.heroBar || "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,
     images: pickImages(3, Date.now() % 100000),
