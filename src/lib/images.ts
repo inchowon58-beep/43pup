@@ -1,13 +1,13 @@
 import { SITE } from "./site";
 
-/** 히어로·소개·시술 카드 · 갤러리 상단 2장 */
-export const FEATURE_FILES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const;
+/** 히어로·소개·특징 카드 */
+export const FEATURE_FILES = [8, 2, 5, 10, 16, 22, 28, 34] as const;
 
-/** 시술·교육 사진 상단 두 장 */
-export const GALLERY_FEATURED = [77, 78] as const;
+/** 갤러리 상단 큰 사진 두 장 — 순서 변경 */
+export const GALLERY_FEATURED = [4, 14] as const;
 
-/** 시술 갤러리 본문 12장 (12번부터) */
-export const GALLERY_GRID = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] as const;
+/** 갤러리 본문 12장 */
+export const GALLERY_GRID = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] as const;
 
 function clampFile(num: number): number {
   if (!Number.isFinite(num) || num < 1) return 1;
@@ -20,7 +20,6 @@ export function fileUrl(fileNo: number): string {
   return `${SITE.imageBase}/${String(n).padStart(2, "0")}.webp`;
 }
 
-/** 논리 번호 → 실제 파일. 1~11은 그대로, 12부터는 갤러리·SEO 풀 */
 export function imageUrl(index: number): string {
   return fileUrl(index);
 }
@@ -61,7 +60,7 @@ export function allImageUrls(): string[] {
 
 function seoPool(): string[] {
   const start = 12;
-  const end = Math.min(31, SITE.imageCount);
+  const end = Math.min(40, SITE.imageCount);
   return Array.from({ length: Math.max(0, end - start + 1) }, (_, i) =>
     fileUrl(start + i)
   );
@@ -90,11 +89,11 @@ export function pickImages(count: number, seed = 42): string[] {
 
 export function galleryAlt(keywordOrIndex: string | number, index = 1): string {
   const suffixes = [
-    "두피문신 시술",
-    "SMP 디자인",
-    "두피문신 교육",
-    "상담 안내",
-    "사후관리",
+    "메인쿤분양",
+    "메인쿤 특징",
+    "메인쿤크기",
+    "메인쿤성격",
+    "메인쿤키우기",
   ];
   if (typeof keywordOrIndex === "number") {
     const i = keywordOrIndex;

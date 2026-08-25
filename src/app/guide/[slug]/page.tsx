@@ -80,7 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: page.createdAt,
       modifiedTime: page.updatedAt,
       authors: [SITE.name],
-      section: "두피문신 안내",
+      section: "메인쿤분양 안내",
       tags: keywords.slice(0, 8),
       ...(ogImage
         ? {
@@ -89,7 +89,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 url: ogImage,
                 width: 1200,
                 height: 1200,
-                alt: `${page.keyword} 두피문신 — ${SITE.name}`,
+                alt: `${page.keyword} 메인쿤분양 — ${SITE.name}`,
               },
             ],
           }
@@ -135,7 +135,7 @@ export default async function GuidePage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "지역별 두피문신 안내",
+        name: "지역별 메인쿤분양 안내",
         item: absoluteUrl(origin, "/guide"),
       },
       {
@@ -166,7 +166,7 @@ export default async function GuidePage({ params }: Props) {
         ? { image: [SITE.logo] }
         : {}),
     mainEntityOfPage: pageUrl,
-    about: ["두피문신", "SMP", "두피문신교육", "두피문신시술", "필릭스스칼프", page.keyword],
+    about: ["메인쿤분양", "메인쿤크기", "메인쿤성격", "메인쿤분양가", "쿤스토리", page.keyword],
   };
 
   return (
@@ -188,7 +188,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#2a201c_0%,#c45c4a_38%,#f6f1eb_38%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#1a2e24_0%,#c9a15b_38%,#f4efe6_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>
@@ -201,7 +201,7 @@ export default async function GuidePage({ params }: Props) {
           </Link>
           <span className="mx-2">/</span>
           <Link href="/guide" className="hover:text-[var(--coral)]">
-            지역별 두피문신 안내
+            지역별 메인쿤분양 안내
           </Link>
           <span className="mx-2">/</span>
           <span>{page.keyword}</span>

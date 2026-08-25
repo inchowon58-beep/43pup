@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>필릭스스칼프 웹문서생성기</title>
+  <title>쿤스토리 웹문서생성기</title>
   <style>
     :root {
-      --bg: #f6f1eb;
+      --bg: #f4efe6;
       --card: #ffffff;
-      --ink: #1f1714;
-      --muted: #6f625a;
-      --line: rgba(42, 32, 28, 0.12);
-      --accent: #c45c4a;
-      --accent2: #2a201c;
+      --ink: #1c241e;
+      --muted: #5e6b62;
+      --line: rgba(26, 46, 36, 0.12);
+      --accent: #c9a15b;
+      --accent2: #1a2e24;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: "Segoe UI", "Malgun Gothic", sans-serif;
-      background: linear-gradient(160deg, #faf6f2, #f6f1eb 50%, #e4d8ce);
+      background: linear-gradient(160deg, #faf6ee, #f4efe6 50%, #e4eadc);
       color: var(--ink);
       min-height: 100vh;
     }
@@ -195,8 +195,8 @@
   <div class="wrap">
     <header class="top">
       <div>
-        <h1>필릭스스칼프 웹문서생성기</h1>
-        <p class="sub">두피문신 필릭스스칼프 · 키워드 → SEO 상세페이지 발행 · Blob·블로그 등록</p>
+        <h1>쿤스토리 웹문서생성기</h1>
+        <p class="sub">메인쿤분양 쿤스토리 · 키워드 → SEO 상세페이지 발행 · Blob·블로그 등록</p>
       </div>
       <div class="top-actions">
         <span class="badge">심사위원 상담 SEO</span>
@@ -217,11 +217,11 @@
         <p class="section-title">키워드 조합</p>
         <div class="grid2">
           <div class="field">
-          <label>키워드 (한 줄에 하나) — 예: 두피문신</label>
+          <label>키워드 (한 줄에 하나) — 예: 메인쿤분양</label>
           <textarea id="keywords_text"></textarea>
           </div>
           <div class="field">
-          <label>지역 (한 줄에 하나) → 부천두피문신</label>
+          <label>지역 (한 줄에 하나) → 수원메인쿤분양</label>
           <textarea id="regions_text"></textarea>
           </div>
         </div>
@@ -316,7 +316,7 @@
         <label class="check"><input type="checkbox" id="schedule_enabled" /> 매일 자동 발행 (프로그램이 실행 중일 때)</label>
         <div class="field tight" style="max-width:220px">
           <label>시작 시각 (HH:MM)</label>
-          <input id="schedule_time" style="max-width:160px" />
+          <input id="schedule_time" type="time" step="60" style="max-width:160px" />
         </div>
       </div>
       <div class="status" id="schedule_status">스케줄: 꺼짐</div>
@@ -450,12 +450,22 @@
       });
     });
 
+    function toHhmm(v) {
+      const t = String(v || "").trim().replace("：", ":");
+      const m = t.match(/^(\d{1,2}):(\d{1,2})/);
+      if (!m) return "";
+      const h = Number(m[1]), min = Number(m[2]);
+      if (h > 23 || min > 59) return "";
+      return String(h).padStart(2, "0") + ":" + String(min).padStart(2, "0");
+    }
+
     function collectSettings() {
       const data = {};
       fields.forEach((k) => {
         const el = $(k);
         if (el) data[k] = el.value;
       });
+      if (data.schedule_time != null) data.schedule_time = toHhmm(data.schedule_time);
       checks.forEach((k) => {
         const el = $(k);
         if (el) data[k] = !!el.checked;
@@ -469,7 +479,8 @@
       if (!s) return;
       fields.forEach((k) => {
         const el = $(k);
-        if (el && s[k] != null) el.value = s[k];
+        if (!el || s[k] == null) return;
+        el.value = k === "schedule_time" ? (toHhmm(s[k]) || s[k]) : s[k];
       });
       checks.forEach((k) => {
         const el = $(k);
@@ -602,15 +613,20 @@
       renderState(st, { applyForm: false });
     };
     $("btn_sched_apply").onclick = async () => {
+      const time = toHhmm($("schedule_time").value);
+      if ($("schedule_enabled").checked && !time) {
+        alert("시작 시각을 HH:MM 형식으로 넣으세요. 예: 09:00");
+        return;
+      }
       await api("/api/settings", { method: "POST", body: JSON.stringify(collectSettings()) });
       await api("/api/schedule", {
         method: "POST",
         body: JSON.stringify({
           enabled: $("schedule_enabled").checked,
-          time: $("schedule_time").value,
+          time,
         }),
       });
-      await refresh({ applyForm: false });
+      await refresh({ applyForm: true });
       alert("스케줄을 적용했습니다.");
     };
 

@@ -4,18 +4,18 @@ import ImageSlot from "./ImageSlot";
 const PROMISES = [
   {
     n: "01",
-    title: "시술과 교육을 함께",
-    desc: "필릭스스칼프는 두피문신 시술과 아카데미 교육을 함께 운영합니다. 현장 기준으로 디자인과 위생을 안내합니다.",
+    title: "메인쿤분양, 가정에 맞게",
+    desc: "쿤스토리는 메인쿤 특징·크기·성격을 먼저 맞춰 드립니다. 사진만 보고 고르지 않아도 됩니다.",
   },
   {
     n: "02",
-    title: "디자인 상담을 먼저",
-    desc: "밀도·헤어라인·기존 모발 상태를 보고 시술 범위를 정합니다. 급하게 결정하지 않아도 됩니다.",
+    title: "크기와 키우기까지",
+    desc: "대형묘라 공간·빗질·사료량이 다릅니다. 입양 전에 생활 패턴을 듣고 안내합니다.",
   },
   {
     n: "03",
-    title: "위생·인증을 기준으로",
-    desc: "보건·위생 교육과 SMP 기술 인증을 이수한 원장이 본점·아카데미를 운영합니다.",
+    title: "사진은 갤러리에",
+    desc: "분양 중인 아이 모습을 먼저 보세요. 상담은 그다음입니다.",
   },
 ];
 
@@ -24,20 +24,20 @@ export default function About() {
     <section id="about" className="section">
       <div className="container grid items-center gap-10 md:grid-cols-2 md:gap-14">
         <div className="relative">
-          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(42,32,28,0.16)] md:aspect-[5/6]">
-            <ImageSlot index={77} fill label={`${SITE.name} 소개`} />
+          <div className="rounded-media relative aspect-[4/5] overflow-hidden shadow-[0_22px_50px_rgba(26,46,36,0.16)] md:aspect-[5/6]">
+            <ImageSlot index={2} fill label={`${SITE.name} 소개`} />
           </div>
         </div>
         <div>
-          <p className="section-kicker">STUDIO · ACADEMY</p>
+          <p className="section-kicker">COON STORY</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-            두피문신,
+            메인쿤분양,
             <br />
-            시술과 교육
+            쿤스토리가 안내합니다
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            {SITE.brand}는 두피문신(SMP) 전문 스튜디오이자 아카데미입니다. 본점 시술과
-            교육 과정을 함께 안내합니다.
+            {SITE.brand}는 메인쿤분양을 외모만으로 소개하지 않습니다. 메인쿤크기, 메인쿤성격,
+            키우기까지 맞춰 상담합니다.
           </p>
           <div className="mt-8 space-y-4">
             {PROMISES.map((p) => (

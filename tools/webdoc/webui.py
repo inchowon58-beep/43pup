@@ -95,7 +95,7 @@ def api_schedule():
     try:
         RUNTIME.set_schedule_enabled(
             bool(data.get("enabled")),
-            str(data.get("time") or "09:00"),
+            str(data.get("time") or ""),
         )
         return jsonify(RUNTIME.snapshot())
     except Exception as e:
@@ -150,7 +150,7 @@ def find_free_port(prefer: int = 17865) -> int:
 
 
 def run_browser_ui(port: int) -> None:
-    """별도 Chrome 창으로 UI 열기. 종료 시 그 창만 닫는다."""
+    """일반 브라우저 새 창으로 UI 열기."""
     url = f"http://127.0.0.1:{port}/"
 
     def serve() -> None:

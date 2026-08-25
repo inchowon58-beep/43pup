@@ -1,15 +1,14 @@
-/** 키워드에서 지역명 추출 (예: 부천두피문신 → 부천) */
+/** 키워드에서 지역명 추출 (예: 수원메인쿤분양 → 수원) */
 export const SERVICE_SUFFIXES = [
-  "두피문신교육",
-  "두피문신시술",
-  "두피문신학원",
-  "두피문신상담",
-  "두피문신후기",
-  "스칼프문신",
-  "두피문신",
-  "SMP학원",
-  "SMP교육",
-  "SMP",
+  "메인쿤무료분양",
+  "메인쿤분양가",
+  "메인쿤키우기",
+  "메인쿤성격",
+  "메인쿤크기",
+  "메인쿤특징",
+  "메인쿤입양",
+  "메인쿤분양",
+  "메인쿤",
 ];
 
 const SEOUL_GU = [
@@ -71,13 +70,13 @@ export function extractRegionFromKeyword(keyword: string): string | null {
   return matchRegionPrefix(text) || (text.length >= 2 && text.length <= 8 ? text : null);
 }
 
-/** 키워드에서 SEO 접미사 추출 (예: 부천두피문신 → 두피문신) */
+/** 키워드에서 SEO 접미사 추출 (예: 수원메인쿤분양 → 메인쿤분양) */
 export function extractKeywordTheme(keyword: string): string {
   const normalized = keyword.replace(/\s+/g, "").trim();
-  if (!normalized) return "두피문신";
+  if (!normalized) return "메인쿤분양";
   const sorted = [...SERVICE_SUFFIXES].sort((a, b) => b.length - a.length);
   for (const suffix of sorted) {
     if (suffix.length >= 3 && normalized.includes(suffix)) return suffix;
   }
-  return "두피문신";
+  return "메인쿤분양";
 }

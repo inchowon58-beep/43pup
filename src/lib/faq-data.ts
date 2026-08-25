@@ -2,54 +2,54 @@ import { SITE, KAKAO_CTA_HINT } from "./site";
 
 export type FaqItem = { q: string; a: string };
 
-/** 메인·AEO용 자주 묻는 질문 — 두피문신 */
+/** 메인·AEO용 자주 묻는 질문 — 메인쿤분양 */
 export const HOME_FAQS: FaqItem[] = [
   {
-    q: "필릭스스칼프는 어떤 곳인가요?",
-    a: "두피문신(SMP) 시술과 아카데미 교육을 함께 운영하는 스튜디오입니다. 본점 시술과 교육 과정을 상담에서 안내합니다.",
+    q: "쿤스토리는 어떤 곳인가요?",
+    a: "메인쿤분양을 안내하는 곳입니다. 메인쿤 특징·크기·성격·분양가를 정리하고, 아이들 사진을 먼저 보여 드립니다. 가정 환경에 맞는 아이를 상담에서 맞춰 드립니다.",
   },
   {
-    q: "두피문신 시술은 어떻게 진행되나요?",
-    a: "두피 상태와 원하는 선을 보고 범위를 정한 뒤 시술합니다. 헤어라인·정수리·밀도 보완 등 부위에 따라 횟수가 달라질 수 있습니다.",
+    q: "메인쿤은 어떤 성격인가요?",
+    a: "사람을 잘 따르고 낮고 깊은 목소리로 대화하듯 웁니다. 아이·다른 반려동물과 지내는 개체가 많습니다. 개체 차는 있어, 지금 만날 수 있는 아이 성격을 상담에서 안내합니다.",
   },
   {
-    q: "두피문신 교육도 하나요?",
-    a: "합니다. 필릭스스칼프 아카데미 본점·평택점에서 SMP 기술·디자인·위생을 교육합니다. 커리큘럼과 일정은 상담에서 안내합니다.",
+    q: "메인쿤 크기는 어느 정도인가요?",
+    a: "수컷 성체 6~12kg, 암컷 4~8kg 전후의 대형묘입니다. 2~4년에 걸쳐 천천히 자라므로, 성체 크기를 기준으로 공간을 보시면 됩니다.",
   },
   {
-    q: "시술 비용은 얼마인가요?",
-    a: "부위·밀도·횟수에 따라 달라집니다. 한 줄로 단정하지 않고, 상담에서 범위를 본 뒤 안내합니다.",
+    q: "메인쿤 분양가는 얼마인가요?",
+    a: "혈통·성별·털색·시기에 따라 달라집니다. 단가를 페이지에 단정하지 않고, 상담에서 범위와 포함 항목을 먼저 설명합니다.",
   },
   {
-    q: "시술 후 관리는 어떻게 하나요?",
-    a: "세안·자외선·재방문 일정을 정리해 드립니다. 시술 직후 주의사항은 상담과 안내문에서 함께 받으실 수 있습니다.",
+    q: "분양 중인 아이는 사진을 볼 수 있나요?",
+    a: "네. 메인 갤러리에서 분양 중인 메인쿤 사진을 보실 수 있습니다. 마음에 남는 아이가 있으면 문의해 주세요.",
   },
   {
     q: "상담은 어떻게 하나요?",
-    a: `시술 부위나 교육 과정만 알려 주셔도 됩니다. 카카오톡 오픈채팅 또는 사이트 하단 문의로 접수합니다. ${KAKAO_CTA_HINT}`,
+    a: `사이트 하단 문의로 접수할 수 있습니다. 관리자에서 카카오톡을 등록한 뒤에는 오픈채팅으로도 이어집니다. ${KAKAO_CTA_HINT}`,
   },
 ];
 
 export const EMERGENCY_HOWTO_STEPS = [
   {
-    name: "두피 상태와 원하는 선을 정리합니다",
-    text: "헤어라인·정수리·밀도 중 어디를 보고 싶은지 메모해 두면 상담이 빨라집니다.",
+    name: "분양 사진을 먼저 봅니다",
+    text: "갤러리에서 메인쿤 모습을 확인합니다. 마음에 남는 아이가 있으면 메모해 두세요.",
   },
   {
-    name: "디자인 상담을 받습니다",
-    text: "얼굴형과 기존 모발을 보고 시술 범위와 횟수를 정합니다.",
+    name: "원하는 조건을 알려 줍니다",
+    text: "지역, 희망 크기·성별, 아이와 함께 사는지 여부를 알려 주면 지금 만날 수 있는 아이를 안내받을 수 있습니다.",
   },
   {
-    name: "시술 또는 교육 일정을 잡습니다",
-    text: "본점 시술과 아카데미 과정 중 필요한 쪽을 선택합니다.",
+    name: "상담으로 일정을 맞춥니다",
+    text: "문의 양식 또는 등록된 카카오톡으로 질문을 이어 가면 방문·예약 가능 시간을 맞출 수 있습니다.",
   },
   {
-    name: "사후관리를 따릅니다",
-    text: "세안·자외선·재방문 일정을 안내받은 대로 진행합니다.",
+    name: "아이를 만나고 결정합니다",
+    text: "직접 보거나 추가 사진을 받은 뒤 입양 여부를 결정합니다. 서두르지 않아도 됩니다.",
   },
   {
-    name: "궁금한 점은 다시 묻습니다",
-    text: "카카오톡 오픈채팅으로 시술·교육 일정을 이어서 안내받을 수 있습니다.",
+    name: "키우기 안내를 받습니다",
+    text: "첫 사료·빗질·화장실 포인트를 안내받은 뒤 집으로 모십니다.",
   },
 ] as const;
 
@@ -69,9 +69,8 @@ export function howToJsonLd(pageUrl?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "두피문신 상담을 진행하는 순서",
-    description:
-      "디자인 상담, 시술 또는 교육 일정, 사후관리까지 필릭스스칼프 안내.",
+    name: "메인쿤분양을 진행하는 순서",
+    description: "사진, 상담, 방문, 키우기 안내까지 쿤스토리 메인쿤분양.",
     inLanguage: "ko-KR",
     totalTime: "PT2H",
     url: pageUrl || SITE.siteUrl,
@@ -85,11 +84,12 @@ export function howToJsonLd(pageUrl?: string) {
 }
 
 export function orgJsonLd(url?: string, telephone?: string) {
+  const sameAs = [SITE.kakaoOpenChatUrl].filter(Boolean);
   return {
     "@context": "https://schema.org",
-    "@type": "BeautySalon",
+    "@type": "PetStore",
     name: SITE.name,
-    alternateName: [SITE.brand, SITE.brandEn, "두피문신", "필릭스스칼프"],
+    alternateName: [SITE.brand, SITE.brandEn, "메인쿤분양", "쿤스토리"],
     description: SITE.description,
     url: url || SITE.siteUrl,
     ...(SITE.ogImage ? { image: SITE.ogImage } : {}),
@@ -101,8 +101,8 @@ export function orgJsonLd(url?: string, telephone?: string) {
       streetAddress: SITE.address,
     },
     areaServed: SITE.areaServed,
-    priceRange: "두피문신 시술 · 교육 상담",
+    priceRange: "메인쿤분양 상담",
     keywords: SITE.keywords.join(", "),
-    sameAs: [SITE.kakaoOpenChatUrl],
+    ...(sameAs.length ? { sameAs } : {}),
   };
 }

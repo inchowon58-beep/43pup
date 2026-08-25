@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""IndexNow 제출 — 필릭스스칼프 로컬/서버 공통 키."""
+"""IndexNow 제출 — 쿤스토리 로컬/서버 공통 키."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ except ImportError:  # pragma: no cover
 INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow"
 # Next public/{key}.txt 와 동일
 DEFAULT_KEY = "b7e4d9c2a1f8563048e7b6c5d4a39281"
-DEFAULT_HOST = "smp.infocs.co.kr"
+DEFAULT_HOST = "maincoon.agapet.co.kr"
 
 
 def get_indexnow_key() -> str:

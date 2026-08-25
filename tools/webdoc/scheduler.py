@@ -29,6 +29,16 @@ def format_hhmm(hour: int, minute: int) -> str:
     return f"{hour:02d}:{minute:02d}"
 
 
+def normalize_hhmm(value: str, fallback: str = "") -> str:
+    parsed = parse_hhmm(value)
+    if parsed:
+        return format_hhmm(*parsed)
+    parsed = parse_hhmm(fallback)
+    if parsed:
+        return format_hhmm(*parsed)
+    return ""
+
+
 def next_run_datetime(
     hour: int,
     minute: int,

@@ -29,16 +29,16 @@ export const DEFAULT_SPONSOR: SiteSponsor = {
   status: "RECRUITING",
   sponsor_name: "",
   phone_number: "",
-  link_url: SITE.kakaoOpenChatUrl,
+  link_url: "",
   homepage_url: "",
-  recruiting_notice: "전국 두피문신 입점 제휴 · 사이트 임대 모집 중",
+  recruiting_notice: "전국 메인쿤분양 입점 제휴 · 사이트 임대 모집 중",
   rental_price: "30만원",
   highlight_points: [
-    "두피문신 시술 상담",
-    "디자인 상담",
-    "두피문신 교육",
-    "방문·상담 일정 안내",
-    "사후관리 안내",
+    "메인쿤분양 상담",
+    "메인쿤크기·성격 안내",
+    "메인쿤분양가 안내",
+    "방문·상담 일정",
+    "입양 후 키우기 안내",
   ],
   youtube_url: "",
   youtube_url_2: "",
@@ -50,7 +50,7 @@ export const DEFAULT_SPONSOR: SiteSponsor = {
 
 export function phoneToTel(_phone: string): string {
   const digits = _phone.replace(/\D/g, "");
-  return digits ? `tel:${digits}` : SITE.kakaoOpenChatUrl;
+  return digits ? `tel:${digits}` : "";
 }
 
 export function isKakaoLink(url: string) {
@@ -63,12 +63,9 @@ export function sponsorKakaoUrl(sponsor: SiteSponsor): string {
   return "";
 }
 
-/** 임대완료면 업체 카톡, 모집 중이면 기본 사이트 임대 카톡 */
+/** 관리자에서 등록한 카카오만 사용. 비어 있으면 연결하지 않음. */
 export function publicKakaoUrl(sponsor: SiteSponsor): string {
-  if (sponsor.status === "ACTIVE") {
-    return sponsorKakaoUrl(sponsor) || SITE.kakaoOpenChatUrl;
-  }
-  return SITE.kakaoOpenChatUrl;
+  return sponsorKakaoUrl(sponsor);
 }
 
 export function sponsorHomepageUrl(sponsor: SiteSponsor): string {

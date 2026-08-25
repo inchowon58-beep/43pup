@@ -2,34 +2,34 @@ import { SITE } from "@/lib/site";
 
 const REVIEWS = [
   {
-    quote: "헤어라인 선을 먼저 그려 보고 시술해서, 제가 원하던 밀도와 가까웠습니다.",
-    name: "김○○ 고객",
-    course: "두피문신 시술",
+    quote: "메인쿤크기를 미리 안내받아, 집 공간과 맞는지부터 결정할 수 있었습니다.",
+    name: "김○○ 보호자",
+    course: "메인쿤크기",
   },
   {
-    quote: "교육 과정이 어떻게 돌아가는지부터 설명해 주셔서, 아카데미 상담이 수월했습니다.",
-    name: "이○○ 수강생",
-    course: "두피문신 교육",
+    quote: "성격이 온순하다는 말만 듣지 않고, 지금 만날 아이 성격을 구체적으로 알려 주셨습니다.",
+    name: "이○○ 보호자",
+    course: "메인쿤성격",
   },
   {
-    quote: "위생과 사후관리를 항목으로 알려 줘서, 시술 전후가 덜 막막했습니다.",
-    name: "박○○ 고객",
-    course: "사후관리",
+    quote: "분양가가 왜 달라지는지 항목으로 설명해 주셔서, 무료분양 광고와 비교가 됐습니다.",
+    name: "박○○ 보호자",
+    course: "메인쿤분양가",
   },
   {
-    quote: "정수리 밀도만 보완하고 싶었는데, 범위를 먼저 정해 주셔서 과하지 않았습니다.",
-    name: "최○○ 고객",
-    course: "디자인 상담",
+    quote: "빗질 주기와 사료량을 입양 전에 받아서, 대형묘 키우기가 덜 막막했습니다.",
+    name: "최○○ 보호자",
+    course: "메인쿤키우기",
   },
   {
-    quote: "본점 시술과 평택 교육 일정을 나눠 안내해 줘서 선택이 분명했습니다.",
-    name: "정○○ 수강생",
-    course: "아카데미 상담",
+    quote: "갤러리 사진을 보고 상담하니, 원하는 털색을 바로 맞춰 주셨습니다.",
+    name: "정○○ 보호자",
+    course: "분양 상담",
   },
   {
-    quote: "오픈채팅으로 사진 자리와 상담 시간을 바로 잡아 주셔서 편했습니다.",
-    name: "한○○ 고객",
-    course: "오픈채팅 상담",
+    quote: "아이와 함께 사는지부터 물어봐 주셔서, 가정에 맞는 아이를 안내받았습니다.",
+    name: "한○○ 보호자",
+    course: "입양 상담",
   },
 ];
 
@@ -40,10 +40,10 @@ export default function Reviews() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="section-kicker">REVIEWS</p>
           <h2 className="mt-3 text-3xl font-extrabold text-[var(--navy)] md:text-4xl">
-            시술·교육을 다녀간 이야기
+            분양을 다녀간 이야기
           </h2>
           <p className="mt-3 text-[var(--muted)]">
-            {SITE.brand}에서 두피문신 시술과 아카데미를 상담한 분의 후기입니다.
+            {SITE.brand}에서 메인쿤분양을 상담한 분의 후기입니다.
           </p>
         </div>
 

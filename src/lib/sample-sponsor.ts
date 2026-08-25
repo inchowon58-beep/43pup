@@ -4,26 +4,26 @@ import type { SiteSponsor } from "./site-sponsor-shared";
 export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   id: 1,
   status: "ACTIVE",
-  sponsor_name: "필릭스스칼프 시술안내 (샘플)",
+  sponsor_name: "쿤스토리 분양안내 (샘플)",
   phone_number: "010-1234-5678",
   link_url: "https://open.kakao.com/o/sxelLqJi",
   homepage_url: "https://www.naver.com",
   recruiting_notice: "",
   rental_price: "30만원",
   highlight_points: [
-    "두피문신 시술 상담",
-    "디자인 상담",
-    "두피문신 교육",
-    "방문·상담 일정 안내",
-    "사후관리 안내",
+    "메인쿤분양 상담",
+    "메인쿤크기·성격 안내",
+    "메인쿤분양가 안내",
+    "방문·상담 일정",
+    "입양 후 키우기 안내",
   ],
   youtube_url: "",
   youtube_url_2: "",
   sponsor_youtube_url: "",
   sponsor_youtube_url_2: "",
-  sponsor_youtube_channel: "필릭스스칼프 시술안내",
+  sponsor_youtube_channel: "쿤스토리 분양안내",
   sponsor_youtube_desc:
-    "두피문신 시술과 교육 과정을 짧게 정리한 안내 영상입니다. 상담 전에 먼저 보시면 좋습니다.",
+    "메인쿤 특징과 분양 상담 과정을 짧게 정리한 안내 영상입니다. 상담 전에 먼저 보시면 좋습니다.",
 };
 
 /** 관리자 설정(rental_price 등)을 반영한 샘플 스폰서 쌍 */
@@ -61,23 +61,23 @@ export function buildSampleSponsors(current: SiteSponsor): {
   };
 }
 
-export const SAMPLE_PAGE_KEYWORD = "부천두피문신";
-export const SAMPLE_PAGE_H1 = "부천두피문신, 시술 전에 디자인을 먼저";
+export const SAMPLE_PAGE_KEYWORD = "수원메인쿤분양";
+export const SAMPLE_PAGE_H1 = "수원메인쿤분양, 크기와 성격을 먼저";
 export const SAMPLE_PAGE_SUBTITLE =
-  "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요.";
+  "메인쿤분양 상담을 안내합니다. 특징과 키우기를 먼저 보세요.";
 
 export const SAMPLE_SECTIONS = [
   {
-    h2: "부천두피문신, 시술을 보기 전에",
+    h2: "수원메인쿤분양, 상담을 보기 전에",
     paragraphs: [
-      "부천에서 두피문신을 찾을 때 흔한 질문은 헤어라인 선과 밀도입니다. 필릭스스칼프는 시술과 교육을 함께 안내합니다.",
-      "시술 부위나 교육 과정만 알려 주시면 일정을 정리해 드립니다. 방문이 어려우면 카카오톡으로 먼저 물어보세요.",
+      "수원에서 메인쿤분양을 찾을 때 흔한 질문은 크기와 분양가입니다. 쿤스토리는 품종 특징과 입양 준비를 함께 안내합니다.",
+      "원하시는 성별·일정만 알려 주시면 상담을 정리해 드립니다. 방문이 어려우면 문의로 먼저 물어보세요.",
     ],
   },
   {
-    h2: "디자인 상담과 진행 순서",
+    h2: "분양 상담과 진행 순서",
     paragraphs: [
-      "디자인 상담 후 범위와 횟수를 정합니다. 비용은 부위·횟수에 따라 달라지며, 상담에서 맞춰 보시면 됩니다.",
+      "상담은 메인쿤 특징, 성체 크기, 분양가 안내, 입양 후 키우기 순으로 진행합니다. 비용은 혈통·성별에 따라 달라지며, 상담에서 맞춰 보시면 됩니다.",
     ],
   },
 ] as const;

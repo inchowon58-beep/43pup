@@ -26,7 +26,7 @@ export default function SponsorAdminClient() {
     phone_number: "",
     link_url: "",
     homepage_url: "",
-    recruiting_notice: "전국 두피문신 입점 제휴 · 사이트 임대 모집 중",
+    recruiting_notice: "전국 메인쿤분양 입점 제휴 · 사이트 임대 모집 중",
     rental_price: "30만원",
     highlight_points: [
       "확인할 업체 항목 공개",
@@ -228,7 +228,7 @@ export default function SponsorAdminClient() {
             <p className="text-xs text-[var(--muted)]">
               {isRecruiting
                 ? "제휴·임대 모집 문구가 노출됩니다."
-                : "광고주 두피문신 시술·교육 제휴가 노출됩니다."}
+                : "광고주 메인쿤분양 제휴가 노출됩니다."}
             </p>
           </div>
           <button
@@ -272,6 +272,9 @@ export default function SponsorAdminClient() {
             onChange={(e) => setForm({ ...form, link_url: e.target.value })}
             placeholder="https://open.kakao.com/o/..."
           />
+          <p className="mt-2 text-xs text-[var(--muted)]">
+            비워 두면 사이트에 카카오 버튼이 나오지 않습니다. 제휴(입점 전)는 기본 카톡, 입점 후에는 업체 카톡을 넣으세요.
+          </p>
         </div>
         <div className="field">
           <label htmlFor="homepage_url">홈페이지 URL</label>
@@ -334,7 +337,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_youtube_channel"
                 value={form.sponsor_youtube_channel || ""}
                 onChange={(e) => setForm({ ...form, sponsor_youtube_channel: e.target.value })}
-                placeholder="예: 필릭스스칼프 안내"
+                placeholder="예: 쿤스토리 안내"
               />
             </div>
             <div className="field">
@@ -362,7 +365,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_name"
                 value={form.sponsor_name}
                 onChange={(e) => setForm({ ...form, sponsor_name: e.target.value })}
-                placeholder="예: 필릭스스칼프 시술안내"
+                placeholder="예: 쿤스토리 분양안내"
               />
             </div>
             <div className="mt-6">

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 필릭스스칼프.
+"""문서 본문 생성 (템플릿) — 쿤스토리.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
-두피문신 상세 페이지를 생성합니다. 이미지는 3장(준비 전 placeholder).
+메인쿤분양 상세 페이지를 생성합니다. 이미지는 3장.
 """
 
 from __future__ import annotations
@@ -19,20 +19,20 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "필릭스스칼프"
-FARM = "두피문신"
-SITE_NAME = "두피문신 필릭스스칼프"
-KAKAO = "https://open.kakao.com/o/sxelLqJi"
+BRAND = "쿤스토리"
+FARM = "메인쿤분양"
+SITE_NAME = "메인쿤분양 쿤스토리"
+KAKAO = ""  # 관리자에서 등록한 뒤에만 사이트에 연결. 문서 HTML에는 넣지 않음.
 LOCATION = "대한민국 전국"
-IMAGE_BASE = "https://image.cattery.co.kr/smp"
-IMAGE_COUNT = 31
+IMAGE_BASE = "https://image.cattery.co.kr/maincoon"
+IMAGE_COUNT = 40
 IMAGE_USE = 3  # 히어로 1 + 본문 2
 # SEO 본문은 12번부터 마지막까지
 DISPLAY_ORDER = list(range(12, IMAGE_COUNT + 1))
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|smpinfo".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|maincoonag".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -47,7 +47,7 @@ def slugify(keyword: str, idx: int) -> str:
     base = "".join(
         c if c.isalnum() or c in "-_" else "-" for c in keyword.lower().replace(" ", "-")
     )
-    base = base.strip("-")[:36] or "smp"
+    base = base.strip("-")[:36] or "maincoon"
     tail = f"{idx:02d}{''.join(random.choices(string.ascii_lowercase + string.digits, k=4))}"
     return f"{base}-{tail}"
 
@@ -66,42 +66,42 @@ def _page_to_summary(page: Dict[str, Any]) -> Dict[str, str]:
 
 def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
-    kw = keyword.strip() or "두피문신"
+    kw = keyword.strip() or "메인쿤분양"
     heroes = [
-        "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요",
-        "헤어라인·정수리·밀도, 범위를 정한 뒤 진행합니다",
-        "두피문신 시술과 아카데미 과정을 안내합니다",
+        "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요",
+        "성체 크기와 성격을 먼저 본 뒤 상담합니다",
+        "메인쿤분양 사진과 키우기 안내를 함께 드립니다",
         "지역만 알려 주셔도 상담 일정을 안내합니다",
     ]
     line2_opts = [
-        "시술 안내",
-        "교육 과정",
-        "디자인 상담",
-        "사후관리",
+        "쿤스토리",
+        "분양 안내",
+        "크기·성격",
+        "키우기",
     ]
     bar_opts = [
-        "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요",
-        "헤어라인·정수리·밀도, 범위를 정한 뒤 진행합니다",
-        "비용이 한 줄이면 부위·횟수를 쪼개 물어보세요",
-        "카카오톡으로 이어 가는 시술·교육 상담",
+        "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요",
+        "성체 크기와 성격을 먼저 본 뒤 상담합니다",
+        "분양가가 한 줄이면 혈통·성별을 쪼개 물어보세요",
+        "사진을 본 뒤 문의로 이어 가는 메인쿤분양 상담",
     ]
     intro_h2 = [
-        f"{kw}, 시술을 보기 전에",
-        f"디자인부터 정리하는 {kw}",
-        f"{kw}에서 두피문신 시술·교육",
-        f"{kw}, 시술과 교육을 함께",
+        f"{kw}, 집을 고르기 전에",
+        f"크기와 성격부터 정리하는 {kw}",
+        f"{kw}에서 메인쿤분양 안내",
+        f"{kw}, 특징과 키우기를 함께",
     ]
 
-    title = f"{kw} | 두피문신 시술·교육 안내"
+    title = f"{kw} | 쿤스토리 메인쿤분양"
     if len(title) > 60:
-        title = f"{kw} | 두피문신"
+        title = f"{kw} | 메인쿤분양"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw} 두피문신 시술과 교육을 필릭스스칼프에서 안내합니다. "
-        f"디자인 상담 후 일정과 과정을 확인하세요."
+        f"{kw} 메인쿤분양을 쿤스토리에서 안내합니다. "
+        f"메인쿤 특징·크기·분양가를 본 뒤 일정과 과정을 확인하세요."
     )
     if areas or stations:
         near_bits = " · ".join((areas[:3] + stations[:3])[:4])
@@ -117,28 +117,28 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         {
             "h2": h2_0,
             "paragraphs": [
-                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 시술 부위와 교육 과정입니다. "
-                f"필릭스스칼프는 두피문신 시술과 아카데미를 함께 운영하며, {tone} 일정을 안내합니다.",
-                f"헤어라인·정수리·밀도 중 어디를 볼지 정한 뒤 횟수를 안내합니다. "
-                f"시술·교육 사진은 메인 갤러리에서도 이어서 보실 수 있습니다.",
-                f"상담에 필요한 정보는 단순합니다. 거주 지역, 시술 부위 또는 교육 과정입니다. "
-                f"카카오톡 오픈채팅으로 상담해 주세요.",
+                f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 메인쿤 특징과 성체 크기입니다. "
+                f"쿤스토리는 메인쿤분양을 안내하며, {tone} 일정과 사진을 보여 드립니다.",
+                f"수컷은 성체 6~12kg, 암컷은 4~8kg 전후의 대형묘로 2~4년에 걸쳐 자랍니다. "
+                f"분양 중인 아이 사진은 메인 갤러리에서도 이어서 보실 수 있습니다.",
+                f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 성별·크기입니다. "
+                f"사이트 하단 문의로 남겨 주세요.",
             ],
         },
         {
-            "h2": f"{kw}에서 시술·교육의 기준",
+            "h2": f"{kw}에서 분양가와 확인할 항목",
             "paragraphs": [
-                f"두피문신 비용은 부위, 밀도, 횟수에 따라 달라집니다. "
-                f"한 줄 견적만 있으면 범위를 따로 물어보세요. 단가를 단정하지 않습니다.",
-                f"상담 범위는 {LOCATION}입니다. 본점 시술과 아카데미 과정을 함께 정리할 수 있습니다.",
-                f"{kw}로 찾아오신 분이라면, 디자인을 본 뒤 카카오톡 상담을 권합니다.",
+                f"메인쿤분양가는 혈통, 성별, 털색, 시기에 따라 달라집니다. "
+                f"한 줄 견적만 있으면 포함 항목을 따로 물어보세요. 단가를 단정하지 않습니다.",
+                f"상담 범위는 {LOCATION}입니다. 성격·키우기·입양 순서를 함께 정리할 수 있습니다.",
+                f"{kw}로 찾아오신 분이라면, 사진을 본 뒤 쿤스토리 문의를 권합니다.",
             ],
         },
         {
             "h2": f"{kw} FAQ와 다음 단계",
             "paragraphs": [
-                f"{kw} 상담은 홈페이지 문의 또는 카카오톡 오픈채팅으로 가능합니다. "
-                f"지역과 시술 부위, 또는 교육 과정만 알려 주셔도 됩니다.",
+                f"{kw} 상담은 홈페이지 문의로 가능합니다. "
+                f"지역과 희망 성별, 함께 지낼 가족만 알려 주셔도 됩니다.",
                 f"사진을 더 보고 싶으시면 메인 갤러리로 이동해 주세요. 확인할 항목이 있으면 바로 물어보시면 됩니다.",
             ],
         },
@@ -146,28 +146,28 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     faqs = [
         {
             "q": f"{kw} 상담은 어떻게 하나요?",
-            "a": "카카오톡 오픈채팅 또는 사이트 하단 문의로 접수합니다. "
-            "지역·시술 부위 또는 교육 과정만 알려 주시면 일정을 안내받을 수 있습니다.",
+            "a": "사이트 하단 문의로 접수합니다. "
+            "지역·희망 성별 또는 크기만 알려 주시면 일정을 안내받을 수 있습니다.",
         },
         {
             "q": "여기는 어떤 곳인가요?",
-            "a": "필릭스스칼프는 두피문신 시술과 교육을 함께 하는 스튜디오입니다. "
-            "디자인 상담과 아카데미 과정을 안내합니다.",
+            "a": "쿤스토리는 메인쿤분양을 안내하는 곳입니다. "
+            "메인쿤 특징·크기·성격·분양가를 정리하고 아이들 사진을 먼저 보여 드립니다.",
         },
         {
             "q": f"{kw} 전국에서 이용할 수 있나요?",
-            "a": "전국 상담이 가능합니다. 방문이 어려우면 카카오톡으로 일정을 받아 보실 수 있습니다.",
+            "a": "전국 상담이 가능합니다. 방문이 어려우면 문의로 일정을 받아 보실 수 있습니다.",
         },
         {
-            "q": "두피문신 교육도 하나요?",
-            "a": "합니다. 아카데미 본점·평택점에서 SMP 기술·디자인·위생을 교육합니다.",
+            "q": "메인쿤 크기는 어느 정도인가요?",
+            "a": "대형묘로, 수컷 성체 6~12kg·암컷 4~8kg 전후입니다. 천천히 자라므로 성체 크기를 기준으로 공간을 보시면 됩니다.",
         },
     ]
     now = datetime.utcnow().isoformat() + "Z"
     line2 = line2_opts[idx % len(line2_opts)]
     geo_kw = nearby_keyword_csv(kw)
     meta_keywords = (
-        f"{kw}, 두피문신, SMP, 두피문신교육, 두피문신시술, 스칼프문신, 필릭스스칼프"
+        f"{kw}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 쿤스토리"
     )
     if geo_kw:
         meta_keywords = f"{meta_keywords}, {geo_kw}"
@@ -177,16 +177,16 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "title": title,
         "metaDescription": meta_desc,
         "metaKeywords": meta_keywords,
-        "h1": f"{kw}, 시술 전에 디자인을 먼저",
+        "h1": f"{kw}, 크기와 성격을 먼저",
         "heroSubtitle": heroes[idx % len(heroes)],
-        "heroBadge": "시술 · 교육",
+        "heroBadge": "분양 안내",
         "heroTitleLine1": kw,
         "heroTitleLine2": line2,
         "heroBar": bar_opts[idx % len(bar_opts)],
         "sections": sections,
         "faqs": faqs,
         "images": image_urls(IMAGE_USE, rng.randint(1, 99999)),
-        "ctaText": f"{kw} 상담 — 시술 부위 또는 교육 과정만 알려 주세요",
+        "ctaText": f"{kw} 상담 — 지역·희망 조건만 알려 주세요",
         "nearbyAreas": areas,
         "nearbyStations": stations,
         "regionLabel": region or "",
@@ -205,7 +205,7 @@ def write_html(page: Dict[str, Any], site_url: str) -> str:
         sections += f"<section><h2>{sec['h2']}</h2>{ps}</section>"
         if i < 2 and i + 1 < len(imgs):
             sections += (
-                f'<figure><img src="{imgs[i+1]}" alt="{page["keyword"]} 두피문신 {i+2}" '
+                f'<figure><img src="{imgs[i+1]}" alt="{page["keyword"]} 메인쿤분양 {i+2}" '
                 f'loading="lazy"/></figure>'
             )
     faqs = "".join(
@@ -214,6 +214,12 @@ def write_html(page: Dict[str, Any], site_url: str) -> str:
     nearby = nearby_html_blocks(page.get("keyword") or "", page.get("regionLabel") or None)
     url = f"{site_url.rstrip('/')}/guide/{page['slug']}"
     og = hero or ""
+    kakao_href = (KAKAO or "").strip()
+    cta_html = (
+        f'<p><a href="{kakao_href}">{page["ctaText"]}</a></p>'
+        if kakao_href
+        else f"<p>{page['ctaText']}</p>"
+    )
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -240,7 +246,7 @@ def write_html(page: Dict[str, Any], site_url: str) -> str:
 {sections}
 <section><h2>자주 묻는 질문</h2>{faqs}</section>
 {nearby}
-<p><a href="{KAKAO}">{page['ctaText']}</a></p>
+{cta_html}
 </article>
 </body>
 </html>"""

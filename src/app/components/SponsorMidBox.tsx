@@ -9,7 +9,7 @@ type Props = { sponsor: SiteSponsor; showPreviewLink?: boolean };
 
 export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props) {
   const kakaoUrl = sponsorKakaoUrl(sponsor);
-  const recruitingKakao = kakaoUrl || SITE.kakaoOpenChatUrl;
+  const recruitingKakao = kakaoUrl;
   const homepageUrl = sponsorHomepageUrl(sponsor);
   const phoneHref = sponsor.phone_number ? phoneToTel(sponsor.phone_number) : "";
 
@@ -18,7 +18,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
       <aside className="my-10 border border-[var(--sky)] bg-[var(--sky-soft)] p-6 text-center md:p-8">
         <LiveEngineBadge />
         <p className="mt-3 text-lg font-extrabold text-[var(--navy)] md:text-xl">
-          📢 전국 두피문신 입점 제휴 / 사이트 임대 모집 중
+          📢 전국 메인쿤분양 입점 제휴 / 사이트 임대 모집 중
         </p>
         <p className="mt-2 text-sm text-[var(--muted)]">{sponsor.recruiting_notice}</p>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
@@ -28,6 +28,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
               전화 제휴문의
             </a>
           )}
+          {recruitingKakao ? (
           <a
             href={recruitingKakao}
             target="_blank"
@@ -37,6 +38,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
             <MessageCircle size={18} />
             카카오톡 제휴 문의하기 {sponsor.rental_price ? `· 비용 ${sponsor.rental_price}` : ""}
           </a>
+          ) : null}
           {homepageUrl && (
             <a
               href={homepageUrl}
@@ -84,7 +86,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
         인증 확인
       </span>
       <p className="pt-6 text-center text-lg font-extrabold text-[var(--navy)] md:text-xl">
-        📍 두피문신 시술·교육 제휴
+        📍 메인쿤분양 제휴
       </p>
       <div className="mt-4 flex flex-col items-center gap-3 text-center">
         {sponsor.sponsor_name && (

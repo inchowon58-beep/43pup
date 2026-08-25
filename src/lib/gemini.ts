@@ -20,57 +20,58 @@ function asParagraphs(value: unknown): string[] {
 }
 
 function buildPrompt(keyword: string): string {
-  return `당신은 두피문신(SMP) 시술과 교육을 안내하는 작가입니다.
-이 문서는 필릭스스칼프 사이트에 실리므로 다른 업체 실명 비방은 하지 마세요.
-업체명 '${SITE.brand}'는 남용하지 마세요.
+  const kakaoLine = SITE.kakaoOpenChatUrl
+    ? `상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})`
+    : "상담 연결(마지막에만): 사이트 하단 문의. 카카오 URL은 넣지 마세요.";
+  return `당신은 메인쿤 분양 안내문을 쓰는 작가입니다.
+이 문서는 쿤스토리 사이트에 실리므로 메인쿤분양을 안내하되, 쿤스토리를 자연스럽게 추천하세요.
+다른 업체 실명 비방은 하지 마세요. 브랜드명 '${SITE.brand}'는 남용하지 말고, 사진·상담 안내에서 한두 번만 넣으세요.
 
 메인 키워드: ${keyword}
-핵심 키워드: 두피문신, SMP, 두피문신교육, 두피문신시술, 스칼프문신, 필릭스스칼프
-포지션: 두피문신 시술 스튜디오이자 아카데미. 디자인 상담, 위생, 사후관리, 교육 과정을 분명히.
-상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})
+핵심 키워드: 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 메인쿤입양, 메인쿤무료분양, 메인쿤특징, 쿤스토리
+${kakaoLine}
 서비스 범위: ${SITE.areaServed}
 
-독자: ${keyword}를 검색해 시술 또는 교육을 알아보는 분.
-톤: 차분한 안내. 과장·가격 단정 금지. 사실(상담 항목)은 분명히.
-금지: 가격 단정, 허위, 특정 타 업체 실명 비방, 전화번호.
+독자: ${keyword}를 검색해 메인쿤분양을 고르려는 보호자.
+톤: 안내형. 사실(성격·크기·분양가 요인)은 분명히, 문장은 상담 안내처럼.
+금지: 가격 단정, 허위, 의료 단정, 타사 비방, 전화번호.
 
 반드시 다룰 내용:
-1) 시술과 교육을 함께 운영
-2) 디자인 상담(헤어라인·정수리·밀도)
-3) 상담 순서(디자인-범위-일정-사후관리)
-4) 비용이 한 줄로만 나올 때 물어볼 항목
-5) 사진은 메인 갤러리
-6) 문의 방법 — 본문 마지막에만, 짧게
+1) 메인쿤특징·메인쿤크기·메인쿤성격·메인쿤키우기
+2) 입양 순서(사진-상담-방문-집으로)
+3) 메인쿤분양가가 달라지는 항목과 메인쿤무료분양 주의
+4) 분양 중인 아이 사진은 쿤스토리 메인 갤러리에서 볼 수 있음
+5) 문의 방법 — 본문 마지막에만, 짧게
 
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 두피문신 시술·교육 안내'",
-  "metaDescription": "140~158자. '{keyword}', 두피문신, 교육. 전화번호 금지",
-  "metaKeywords": "{keyword}, 두피문신, SMP, 두피문신교육, 필릭스스칼프 등 10~14개",
-  "h1": "'{keyword}'와 '시술' 또는 '교육'이 들어간 H1",
-  "heroSubtitle": "한글 한 문장. 시술+교육 + 디자인 상담",
-  "heroBadge": "시술 · 교육",
-    "heroTitleLine2": "필릭스스칼프",
-  "heroBar": "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요.",
+  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 쿤스토리 메인쿤분양'",
+  "metaDescription": "140~158자. '{keyword}', 메인쿤분양, 메인쿤크기. 전화번호 금지",
+  "metaKeywords": "{keyword}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 쿤스토리 등 10~14개",
+  "h1": "'{keyword}'와 '메인쿤분양' 또는 '입양'이 들어간 H1",
+  "heroSubtitle": "한글 한 문장. 분양 안내 + 사진",
+  "heroBadge": "분양 안내",
+  "heroTitleLine2": "쿤스토리",
+  "heroBar": "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요.",
   "sections": [
-    {"h2": "'{keyword}' 포함, 시술을 보기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
-    {"h2": "디자인 상담과 진행 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
-    {"h2": "시술·교육의 기준", "paragraphs": ["180자+", "180자+", "160자+"]},
-    {"h2": "상담을 여는 방법", "paragraphs": ["160자+", "140자+"]}
+    {"h2": "'{keyword}' 포함, 집을 고르기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
+    {"h2": "메인쿤 입양 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
+    {"h2": "비용이 달라지는 이유·확인할 항목", "paragraphs": ["180자+", "180자+", "160자+"]},
+    {"h2": "사진을 보다가 여는 상담", "paragraphs": ["160자+", "140자+"]}
   ],
   "faqs": [
-    {"q": "여기는 어떤 곳인가요?", "a": "100자+. 시술+교육"},
-    {"q": "두피문신 시술은 어떻게 진행되나요?", "a": "100자+"},
-    {"q": "두피문신 교육도 하나요?", "a": "100자+"},
-    {"q": "시술 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
+    {"q": "메인쿤은 어떤 성격인가요?", "a": "100자+ 구체 답변"},
+    {"q": "메인쿤 크기는 어느 정도인가요?", "a": "100자+"},
+    {"q": "아파트에서도 키울 수 있나요?", "a": "100자+"},
+    {"q": "메인쿤 분양 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
     {"q": "${keyword} 상담은 어떻게 하나요?", "a": "100자+. ${KAKAO_CTA_HINT}"},
-    {"q": "사진은 어디서 보나요?", "a": "80자+. 메인 갤러리 안내"}
+    {"q": "분양 중인 아이는 사진을 볼 수 있나요?", "a": "80자+. 쿤스토리 메인 갤러리 안내"}
   ],
-  "ctaText": "{keyword} 상담 — 시술 부위 또는 교육 과정만 알려 주세요"
+  "ctaText": "{keyword} 분양 상담 — 지역·희망 조건만 알려 주세요"
 }
 
-AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '두피문신'을 자연스럽게 반복.`;
+AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '메인쿤'을 자연스럽게 반복.`;
 }
 
 export async function generateWithGemini(
@@ -111,23 +112,23 @@ export async function generateWithGemini(
 
   return {
     keyword,
-    title: String(data.title || `${keyword} | 두피문신 시술·교육 안내`),
+    title: String(data.title || `${keyword} | 쿤스토리 메인쿤분양`),
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
-        `${keyword}, 두피문신, SMP, 두피문신교육, 필릭스스칼프`
+        `${keyword}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 쿤스토리`
     ),
-    h1: String(data.h1 || `${keyword}, 시술 전에 디자인을 먼저`),
+    h1: String(data.h1 || `${keyword}, 메인쿤분양 안내`),
     heroSubtitle: String(
-      data.heroSubtitle || "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요"
+      data.heroSubtitle || "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요"
     ),
-    heroBadge: String(data.heroBadge || "시술 · 교육"),
+    heroBadge: String(data.heroBadge || "분양 안내"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "필릭스스칼프"),
-    heroBar: String(data.heroBar || "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요."),
+    heroTitleLine2: String(data.heroTitleLine2 || "쿤스토리"),
+    heroBar: String(data.heroBar || "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요."),
     sections,
     faqs,
-    ctaText: String(data.ctaText || `${keyword} 상담 — 시술 부위 또는 교육 과정만 알려 주세요`),
+    ctaText: String(data.ctaText || `${keyword} 상담 — 지역·희망 조건만 알려 주세요`),
   };
 }
 
@@ -144,10 +145,10 @@ export function assembleSeoPage(
     metaKeywords: partial.metaKeywords,
     h1: partial.h1,
     heroSubtitle: partial.heroSubtitle,
-    heroBadge: partial.heroBadge || "시술 · 교육",
+    heroBadge: partial.heroBadge || "분양 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "필릭스스칼프",
-    heroBar: partial.heroBar || "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요.",
+    heroTitleLine2: partial.heroTitleLine2 || "쿤스토리",
+    heroBar: partial.heroBar || "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,
     images: pickImages(3, Date.now() % 100000),

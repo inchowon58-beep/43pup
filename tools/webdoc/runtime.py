@@ -17,7 +17,7 @@ from gemini_gen import DEFAULT_MODEL, model_choices, test_gemini_key
 from indexnow import submit_indexnow
 from naver_register import pending_urls, register_urls
 from project_paths import project_root, webdoc_dir
-from scheduler import DailyScheduler, parse_hhmm
+from scheduler import DailyScheduler, normalize_hhmm, parse_hhmm
 from settings_store import DEFAULT_SITE_URL, load_settings, queue_path, save_settings
 
 
@@ -172,7 +172,8 @@ class WebdocRuntime:
         prev_time = str(self.settings.get("schedule_time") or "")
         self.settings.update(data)
         enabled = bool(self.settings.get("schedule_enabled"))
-        hhmm = str(self.settings.get("schedule_time") or "09:00")
+        hhmm = normalize_hhmm(str(self.settings.get("schedule_time") or ""), prev_time) or "09:00"
+        self.settings["schedule_time"] = hhmm
         if enabled and not parse_hhmm(hhmm):
             self.log("스케줄 시각 형식 오류 — 예: 09:00")
             self.settings["schedule_enabled"] = False
@@ -422,10 +423,11 @@ class WebdocRuntime:
     def set_schedule_enabled(
         self, enabled: bool, hhmm: str, *, from_settings_save: bool = False
     ) -> None:
+        prev_time = str(self.settings.get("schedule_time") or "")
+        hhmm = normalize_hhmm(hhmm, prev_time) or "09:00"
         if enabled and not parse_hhmm(hhmm):
             raise ValueError("시각은 HH:MM 형식이어야 합니다. 예: 09:00")
         was = bool(self.settings.get("schedule_enabled"))
-        prev_time = str(self.settings.get("schedule_time") or "")
         self.settings["schedule_enabled"] = enabled
         self.settings["schedule_time"] = hhmm
         if enabled and not was:

@@ -8,28 +8,30 @@ import { useKakaoHref } from "./KakaoHrefProvider";
 export default function Footer() {
   const kakaoHref = useKakaoHref();
   return (
-    <footer className="border-t border-[var(--line)] bg-[#2a201c] py-12 text-[#f6f1eb]">
+    <footer className="border-t border-[var(--line)] bg-[#1a2e24] py-12 text-[#f4efe6]">
       <div className="container grid gap-8 md:grid-cols-[1.2fr_1fr]">
         <div>
           <Link href="/" className="inline-block">
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#e8cfc4]">{SITE.brandEn}</p>
+            <p className="text-xs font-semibold tracking-[0.2em] text-[#e8d7a8]">{SITE.brandEn}</p>
             <h2 className="mt-1 text-2xl font-bold hover:text-white">{SITE.brand}</h2>
           </Link>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">{SITE.tagline}</p>
         </div>
 
         <div className="space-y-3 text-sm text-white/75">
-          <a
-            href={kakaoHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-white"
-          >
-            <MessageCircle size={16} className="text-[#c45c4a]" />
-            {CTA_KAKAO}
-          </a>
+          {kakaoHref ? (
+            <a
+              href={kakaoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-white"
+            >
+              <MessageCircle size={16} className="text-[#c9a15b]" />
+              {CTA_KAKAO}
+            </a>
+          ) : null}
           <p className="flex items-start gap-2">
-            <MapPin size={16} className="mt-0.5 shrink-0 text-[#c45c4a]" />
+            <MapPin size={16} className="mt-0.5 shrink-0 text-[#c9a15b]" />
             {SITE.location} · {SITE.address}
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-3">

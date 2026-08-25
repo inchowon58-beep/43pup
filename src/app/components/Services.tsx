@@ -7,28 +7,28 @@ import { useKakaoHref } from "./KakaoHrefProvider";
 
 const SERVICES = [
   {
-    title: "두피문신 시술",
-    desc: "헤어라인·정수리·밀도 보완 등 두피 상태에 맞춰 SMP를 진행합니다",
+    title: "메인쿤 특징",
+    desc: "터프트 귀, 목도리 털, 부드러운 발바닥. 개의 친근함과 고양이의 독립성을 함께 지닙니다",
     slot: 5,
-    tag: "시술",
+    tag: "특징",
   },
   {
-    title: "디자인 상담",
-    desc: "얼굴형과 기존 모발을 보고 선을 정한 뒤 시술 범위와 일정을 안내합니다",
-    slot: 9,
-    tag: "상담",
-  },
-  {
-    title: "두피문신 교육",
-    desc: "아카데미에서 SMP 기술·디자인·위생을 교육합니다. 본점·평택점 과정을 안내합니다",
+    title: "메인쿤 크기",
+    desc: "수컷 6~12kg, 암컷 4~8kg 전후의 대형묘. 2~4년에 걸쳐 천천히 자랍니다",
     slot: 10,
-    tag: "교육",
+    tag: "크기",
   },
   {
-    title: "사후관리",
-    desc: "시술 후 관리 방법과 재방문 일정을 정리해 드립니다",
-    slot: 11,
-    tag: "관리",
+    title: "메인쿤 분양가",
+    desc: "혈통·성별·털색·시기에 따라 달라집니다. 단가는 상담에서 포함 항목과 함께 안내합니다",
+    slot: 16,
+    tag: "분양가",
+  },
+  {
+    title: "메인쿤 성격",
+    desc: "사람을 잘 따르고 목소리가 낮고 깊습니다. 아이·다른 반려동물과도 지내는 편이 많습니다",
+    slot: 22,
+    tag: "성격",
   },
 ];
 
@@ -39,32 +39,34 @@ export default function Services() {
       <div className="container">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="section-kicker">SMP · EDUCATION</p>
+            <p className="section-kicker">MAINE COON</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              시술과 교육을 함께 안내합니다
+              특징, 크기, 분양가, 성격
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              두피문신 시술, 디자인 상담, 아카데미 교육. 확인하고 싶은 항목을 말씀해 주시면
-              일정을 안내합니다.
+              메인쿤분양을 알아보실 때 꼭 보는 네 가지입니다. 쿤스토리 갤러리에서 아이 모습을
+              먼저 확인해 보세요.
             </p>
           </div>
-          <a
-            href={kakaoHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-sky shrink-0 inline-flex items-center gap-2"
-          >
-            <MessageCircle size={18} />
-            {CTA_KAKAO}
-          </a>
+          {kakaoHref ? (
+            <a
+              href={kakaoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-sky shrink-0 inline-flex items-center gap-2"
+            >
+              <MessageCircle size={18} />
+              {CTA_KAKAO}
+            </a>
+          ) : null}
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {SERVICES.map((item) => (
-            <article key={item.title} className="group relative overflow-hidden rounded-[0.45rem]">
+            <article key={item.title} className="group relative overflow-hidden rounded-[1.15rem]">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <ImageSlot index={item.slot} fill label={item.title} />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(42,32,28,0.9)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(26,46,36,0.9)_100%)]" />
                 <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>

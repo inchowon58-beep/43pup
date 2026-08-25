@@ -228,7 +228,7 @@ def _site_host(url: str) -> str:
 
 
 def url_to_document(site_url: str, page_url: str) -> str:
-    """수집 요청 입력값 — 등록 사이트 기준 전체 URL (예: https://smp.infocs.co.kr/guide/부천두피문신)."""
+    """수집 요청 입력값 — 등록 사이트 기준 전체 URL (예: https://maincoon.agapet.co.kr/guide/수원메인쿤분양)."""
     site = normalize_site_url(site_url)
     site_parsed = urlparse(site)
     base = f"{site_parsed.scheme}://{site_parsed.netloc}"

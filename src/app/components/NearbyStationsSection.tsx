@@ -11,7 +11,7 @@ interface Props {
 export default function NearbyStationsSection({
   cityLabel,
   stations,
-  keywordSuffix = "두피문신",
+  keywordSuffix = "메인쿤분양",
 }: Props) {
   if (stations.length === 0 || !cityLabel) return null;
 

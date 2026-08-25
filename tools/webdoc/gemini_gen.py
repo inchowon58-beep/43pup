@@ -12,10 +12,10 @@ from google import genai
 
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_keyword_csv, nearby_stations
 
-BRAND = "필릭스스칼프"
-FARM = "두피문신"
-SITE_NAME = "두피문신 필릭스스칼프"
-KAKAO = "https://open.kakao.com/o/sxelLqJi"
+BRAND = "쿤스토리"
+FARM = "메인쿤분양"
+SITE_NAME = "메인쿤분양 쿤스토리"
+KAKAO = ""
 LOCATION = "대한민국 전국"
 
 GEMINI_MODELS: List[Dict[str, str]] = [
@@ -27,40 +27,43 @@ GEMINI_MODELS: List[Dict[str, str]] = [
 
 DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
-DEFAULT_USER_PROMPT = """톤: 차분한 안내형. 사실(시술 범위·교육 과정)은 분명히.
-이 문서는 필릭스스칼프 사이트에 실리므로 다른 업체 실명 비방 금지.
-키워드에 지역명이 있으면 그 지역에서 두피문신을 알아보는 독자 시점으로 쓰세요.
-포지션: 두피문신 시술 스튜디오이자 아카데미. 디자인 상담, 위생, 사후관리, 교육 과정.
-전화번호 넣지 마세요. 상담은 카카오톡만.
+DEFAULT_USER_PROMPT = """톤: 차분한 안내형. 사실(메인쿤 특징·크기·분양가 요인)은 분명히.
+이 문서는 쿤스토리 사이트에 실리므로 메인쿤분양을 안내하되, 쿤스토리를 자연스럽게 추천하세요.
+다른 업체 실명 비방 금지. 브랜드명 '쿤스토리'는 남용하지 마세요.
+키워드에 지역명이 있으면 그 지역에서 메인쿤분양을 알아보는 독자 시점으로 쓰세요.
+포지션: 메인쿤분양 안내. 특징, 크기, 성격, 키우기, 분양가 안내.
+전화번호·카카오 URL을 넣지 마세요. 상담은 사이트 하단 문의.
 {keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.
 """
 
-SYSTEM_SEO_RULES = f"""당신은 두피문신(SMP) 시술과 교육을 안내하는 작가입니다.
+SYSTEM_SEO_RULES = f"""당신은 메인쿤분양을 안내하는 작가입니다.
 업체명 '{BRAND}'는 남용하지 마세요. 다른 업체를 실명으로 비방하지 마세요.
+본문에서 쿤스토리를 자연스럽게 한두 번 추천하세요.
 
-상담: 카카오톡 오픈채팅 ({KAKAO})
-다룰 정보: 시술과 교육, 디자인 상담, 헤어라인·정수리·밀도, 사후관리
+상담: 사이트 하단 문의. 카카오 URL·전화번호 금지.
+다룰 정보: 메인쿤특징, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 메인쿤분양가
 범위: {LOCATION}
 
 [SEO]
-- title 50~60자. 메인 키워드를 앞에 두고 시술·교육 중 하나를 포함. 브랜드명 남용 금지.
-- metaDescription 140~160자. 키워드 + 두피문신 + 교육. 카카오톡은 한 번만. 광고 문장 금지.
-- metaKeywords 8~12개, 쉼표 구분. 키워드·두피문신·SMP·두피문신교육·필릭스스칼프 포함.
+- title 50~60자. 메인 키워드를 앞에 두고 메인쿤분양 포함. 브랜드명 남용 금지.
+- metaDescription 140~160자. 키워드 + 메인쿤분양 + 크기. 카카오톡 URL 금지. 광고 문장 금지.
+- metaKeywords 8~12개, 쉼표 구분. 키워드·메인쿤분양·메인쿤분양가·메인쿤크기·쿤스토리 포함.
 - h1에 메인 키워드 포함. title과 완전히 같지 않게.
-- 본문 3개 섹션. 각 h2는 서로 다른 각도(시술을 보기 전/디자인 상담/시술·교육 기준).
+- 본문 3개 섹션. 각 h2는 서로 다른 각도(집을 고르기 전/크기·성격/분양가·키우기).
 - 각 문단 140자 이상. 키워드 과다반복 금지. 자연 반복만.
 
 [OG]
 - og:title = title, og:description = metaDescription 로 쓸 수 있게 완결된 문장.
-- heroSubtitle는 한글 한 문장. 시술+교육 + 디자인 상담.
+- heroSubtitle는 한글 한 문장. 분양 안내 + 사진.
 
 [AEO]
-- FAQ 4개. 실제 검색 질문형(어떤 곳인지, 시술 진행, 교육, 비용, 상담 등).
+- FAQ 4개. 실제 검색 질문형(어떤 곳인지, 크기, 성격, 분양가, 상담 등).
 - 답변은 80자 이상, 한 질문에 한 주제. 첫 문장에서 바로 답. 가격 단정 금지.
 
 [금지]
 - 가격 단정, 특정 업체 실명 비방, 허위 후기.
 - 전화번호·0505 등 연락처 숫자.
+- 카카오 오픈채팅 URL.
 - JSON 이외 설명·마크다운 금지.
 
 아래 JSON 스키마만 출력하세요.
@@ -81,7 +84,7 @@ SYSTEM_SEO_RULES = f"""당신은 두피문신(SMP) 시술과 교육을 안내하
     {{"q": "질문3", "a": "답변"}},
     {{"q": "질문4", "a": "답변"}}
   ],
-  "ctaText": "카카오톡 오픈채팅 상담 안내 문장"
+  "ctaText": "사이트 문의 상담 안내 문장"
 }}
 """
 
@@ -120,7 +123,7 @@ def generate_gemini_json(
     key = (api_key or "").strip()
     if not key:
         raise ValueError("제미나이 API 키가 없습니다.")
-    kw = (keyword or "").strip() or "두피문신"
+    kw = (keyword or "").strip() or "메인쿤분양"
     extra = (user_prompt or "").replace("{keyword}", kw).strip()
     user_text = f"메인 키워드: {kw}\n"
     if extra:
@@ -178,18 +181,18 @@ def assemble_from_gemini(
 ) -> Dict[str, Any]:
     from datetime import datetime
 
-    kw = (keyword or "").strip() or "두피문신"
+    kw = (keyword or "").strip() or "메인쿤분양"
     region = extract_region(kw)
     theme = extract_theme(kw)
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     geo_kw = nearby_keyword_csv(kw)
 
-    title = str(data.get("title") or f"{kw} | 두피문신 시술·교육 안내")[:80]
+    title = str(data.get("title") or f"{kw} | 쿤스토리 메인쿤분양")[:80]
     meta_desc = str(data.get("metaDescription") or "")
     if not meta_desc:
         meta_desc = (
-            f"{kw} 안내 — 두피문신 시술과 교육을 함께 안내합니다. 디자인 상담 후 카카오톡으로 일정을 확인하세요."
+            f"{kw} 안내 — 메인쿤분양을 쿤스토리에서 안내합니다. 특징·크기·분양가를 본 뒤 문의로 일정을 확인하세요."
         )
     if areas or stations:
         near_bits = " · ".join((areas[:3] + stations[:3])[:4])
@@ -223,16 +226,16 @@ def assemble_from_gemini(
         "title": title,
         "metaDescription": meta_desc[:180],
         "metaKeywords": meta_kw,
-        "h1": str(data.get("h1") or f"{kw}, 시술 전에 디자인을 먼저"),
-        "heroSubtitle": str(data.get("heroSubtitle") or "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요"),
-        "heroBadge": str(data.get("heroBadge") or "시술 · 교육"),
+        "h1": str(data.get("h1") or f"{kw}, 크기와 성격을 먼저"),
+        "heroSubtitle": str(data.get("heroSubtitle") or "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요"),
+        "heroBadge": str(data.get("heroBadge") or "분양 안내"),
         "heroTitleLine1": kw,
-        "heroTitleLine2": str(data.get("heroTitleLine2") or "필릭스스칼프"),
-        "heroBar": str(data.get("heroBar") or "시술과 교육을 함께 안내합니다. 디자인을 먼저 보세요."),
+        "heroTitleLine2": str(data.get("heroTitleLine2") or "쿤스토리"),
+        "heroBar": str(data.get("heroBar") or "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요."),
         "sections": sections,
         "faqs": faqs,
         "images": image_urls_fn(3, seed),
-        "ctaText": str(data.get("ctaText") or f"{kw} 상담 — 시술 부위 또는 교육 과정만 알려 주세요"),
+        "ctaText": str(data.get("ctaText") or f"{kw} 상담 — 지역·희망 조건만 알려 주세요"),
         "nearbyAreas": areas,
         "nearbyStations": stations,
         "regionLabel": region or "",

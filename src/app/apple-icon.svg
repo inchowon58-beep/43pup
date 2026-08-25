@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="필릭스스칼프">
-  <rect width="180" height="180" rx="22" fill="#2a201c"/>
-  <circle cx="62" cy="78" r="9" fill="#c45c4a"/>
-  <circle cx="90" cy="62" r="9" fill="#e8cfc4"/>
-  <circle cx="118" cy="78" r="9" fill="#c45c4a"/>
-  <circle cx="72" cy="106" r="7.5" fill="#8a6a58"/>
-  <circle cx="108" cy="106" r="7.5" fill="#8a6a58"/>
-  <circle cx="90" cy="128" r="7" fill="#d4a090"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="쿤스토리">
+  <rect width="180" height="180" rx="40" fill="#1a2e24"/>
+  <ellipse cx="90" cy="112" rx="44" ry="34" fill="#c9a15b"/>
+  <ellipse cx="56" cy="62" rx="16" ry="28" fill="#e8d7a8"/>
+  <ellipse cx="124" cy="62" rx="16" ry="28" fill="#e8d7a8"/>
+  <circle cx="74" cy="106" r="7" fill="#1a2e24"/>
+  <circle cx="106" cy="106" r="7" fill="#1a2e24"/>
+  <ellipse cx="90" cy="124" rx="8" ry="5" fill="#4a7c59"/>
 </svg>

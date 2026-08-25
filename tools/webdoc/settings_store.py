@@ -10,7 +10,7 @@ from typing import Any, Dict
 from project_paths import webdoc_dir
 
 DEFAULT_VM_PATH = ""
-DEFAULT_SITE_URL = "https://smp.infocs.co.kr"
+DEFAULT_SITE_URL = "https://maincoon.agapet.co.kr"
 
 
 def settings_path() -> str:
@@ -25,7 +25,7 @@ def default_settings() -> Dict[str, Any]:
     return {
         "site_url": DEFAULT_SITE_URL,
         "out_dir": os.path.join(webdoc_dir(), "output"),
-        "keywords_text": "두피문신\nSMP\n두피문신교육\n두피문신시술\n스칼프문신\n두피문신학원\n두피문신상담\n부천두피문신",
+        "keywords_text": "메인쿤분양\n메인쿤분양가\n메인쿤크기\n메인쿤성격\n메인쿤키우기\n메인쿤입양\n메인쿤무료분양\n수원메인쿤분양",
         "regions_text": "서울\n부산\n대구\n인천\n광주\n대전\n울산\n수원\n성남\n고양",
         "total_target": "500",
         "daily_limit": "30",

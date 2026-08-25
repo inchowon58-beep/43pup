@@ -18,14 +18,14 @@ const initial: FormState = {
   name: "",
   phone: "",
   address: "",
-  product: "시술상담",
+  product: "분양상담",
   quantity: "1",
   memo: "",
 };
 
 const TOPICS = [
-  { id: "시술상담", label: "두피문신 시술 상담" },
-  { id: "교육상담", label: "두피문신 교육 문의" },
+  { id: "분양상담", label: "메인쿤분양 상담" },
+  { id: "분양가", label: "메인쿤분양가 문의" },
   { id: "방문예약", label: "방문·상담 일정" },
   { id: "기타", label: "기타 문의" },
 ];
@@ -69,17 +69,20 @@ export default function ContactForm() {
             <CheckCircle2 className="mx-auto text-[var(--sky)]" size={48} />
             <h2 className="mt-4 text-2xl font-extrabold text-[var(--navy)]">문의가 접수되었습니다</h2>
             <p className="mt-3 text-[var(--muted)]">
-              확인 후 빠르게 연락드리겠습니다. 급하신 경우 카카오톡 오픈채팅으로도 문의해 주세요.
+              확인 후 빠르게 연락드리겠습니다.
+              {kakaoHref ? " 급하신 경우 카카오톡 오픈채팅으로도 문의해 주세요." : ""}
             </p>
-            <a
-              href={kakaoHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary mt-6 inline-flex"
-            >
-              <MessageCircle size={18} />
-              {CTA_KAKAO}
-            </a>
+            {kakaoHref ? (
+              <a
+                href={kakaoHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary mt-6 inline-flex"
+              >
+                <MessageCircle size={18} />
+                {CTA_KAKAO}
+              </a>
+            ) : null}
             <button
               type="button"
               className="mt-4 block w-full text-sm font-semibold text-[var(--muted)] underline"
@@ -104,21 +107,19 @@ export default function ContactForm() {
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
             언제든 편하게 연락주세요
           </h2>
-          <p className="mt-4 text-[var(--muted)]">
-            {KEYWORD_INQUIRY}
-          </p>
-          <p className="mt-3 text-sm text-[var(--muted)]">
-            {KAKAO_CTA_HINT}
-          </p>
-          <a
-            href={kakaoHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-sky mt-6 inline-flex"
-          >
-            <MessageCircle size={18} />
-            {CTA_KAKAO}
-          </a>
+          <p className="mt-4 text-[var(--muted)]">{KEYWORD_INQUIRY}</p>
+          <p className="mt-3 text-sm text-[var(--muted)]">{KAKAO_CTA_HINT}</p>
+          {kakaoHref ? (
+            <a
+              href={kakaoHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-sky mt-6 inline-flex"
+            >
+              <MessageCircle size={18} />
+              {CTA_KAKAO}
+            </a>
+          ) : null}
         </div>
 
         <form onSubmit={onSubmit} className="rounded-[1.4rem] border border-[var(--line)] bg-white p-6 md:p-8">
@@ -172,7 +173,7 @@ export default function ContactForm() {
               rows={4}
               value={form.memo}
               onChange={(e) => setForm({ ...form, memo: e.target.value })}
-              placeholder="시술 부위, 교육 과정, 방문 희망일 등을 적어주세요."
+              placeholder="희망 크기·성별, 방문 희망일 등을 적어주세요."
             />
           </div>
           {error && <p className="mb-3 text-sm text-red-600">{error}</p>}

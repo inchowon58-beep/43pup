@@ -1,9 +1,8 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { SITE } from "@/lib/site";
 
-const KakaoHrefContext = createContext<string>(SITE.kakaoOpenChatUrl);
+const KakaoHrefContext = createContext<string>("");
 
 export function KakaoHrefProvider({
   href,
@@ -13,9 +12,7 @@ export function KakaoHrefProvider({
   children: React.ReactNode;
 }) {
   return (
-    <KakaoHrefContext.Provider value={href || SITE.kakaoOpenChatUrl}>
-      {children}
-    </KakaoHrefContext.Provider>
+    <KakaoHrefContext.Provider value={(href || "").trim()}>{children}</KakaoHrefContext.Provider>
   );
 }
 
