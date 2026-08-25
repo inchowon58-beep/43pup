@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="쿤하우스">
-  <rect width="180" height="180" rx="40" fill="#4a2c32"/>
-  <ellipse cx="90" cy="112" rx="44" ry="34" fill="#c4a574"/>
-  <ellipse cx="56" cy="62" rx="16" ry="28" fill="#f4eadc"/>
-  <ellipse cx="124" cy="62" rx="16" ry="28" fill="#f4eadc"/>
-  <circle cx="74" cy="106" r="7" fill="#4a2c32"/>
-  <circle cx="106" cy="106" r="7" fill="#4a2c32"/>
-  <ellipse cx="90" cy="124" rx="8" ry="5" fill="#6a7a5c"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="더제이쿤">
+  <rect width="180" height="180" rx="16" fill="#1b2838"/>
+  <ellipse cx="90" cy="112" rx="44" ry="34" fill="#2a7a6e"/>
+  <ellipse cx="56" cy="62" rx="16" ry="28" fill="#d4b896"/>
+  <ellipse cx="124" cy="62" rx="16" ry="28" fill="#d4b896"/>
+  <circle cx="74" cy="106" r="7" fill="#1b2838"/>
+  <circle cx="106" cy="106" r="7" fill="#1b2838"/>
+  <ellipse cx="90" cy="124" rx="8" ry="5" fill="#d4b896"/>
 </svg>

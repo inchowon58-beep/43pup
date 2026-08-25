@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  /* 쿤하우스 — wine / ivory / olive */
-  --sky: #6a7a5c;
-  --sky-deep: #4a2c32;
-  --sky-soft: #eef1e8;
-  --coral: #8b4557;
-  --coral-deep: #6b3342;
-  --coral-soft: #f3e6e9;
-  --ink: #2a221f;
-  --muted: #6e655e;
-  --bg: #f7f2e9;
-  --bg-warm: #fbf7f0;
-  --line: rgba(74, 44, 50, 0.12);
-  --radius: 0.85rem;
-  --radius-sm: 0.55rem;
-  --radius-lg: 1.15rem;
+  /* 더제이쿤 — slate / jade / sand */
+  --sky: #2a7a6e;
+  --sky-deep: #1b2838;
+  --sky-soft: #e4f0ed;
+  --coral: #2a7a6e;
+  --coral-deep: #1e5c54;
+  --coral-soft: #e4f0ed;
+  --ink: #1a222c;
+  --muted: #5c6774;
+  --bg: #eef2f4;
+  --bg-warm: #f5f7f8;
+  --line: rgba(27, 40, 56, 0.12);
+  --radius: 0.3rem;
+  --radius-sm: 0.18rem;
+  --radius-lg: 0.5rem;
   --font: "Pretendard", "Noto Sans KR", sans-serif;
-  --navy: #4a2c32;
-  --green: #6a7a5c;
+  --navy: #1b2838;
+  --green: #2a7a6e;
   --orange: var(--coral);
   --orange-deep: var(--coral-deep);
   --orange-soft: var(--coral-soft);
@@ -109,13 +109,13 @@ img {
   font-size: 1rem;
   letter-spacing: -0.01em;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 10px 24px rgba(139, 69, 87, 0.28);
+  box-shadow: 0 10px 24px rgba(42, 122, 110, 0.28);
   cursor: pointer;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(139, 69, 87, 0.36);
+  box-shadow: 0 14px 30px rgba(42, 122, 110, 0.36);
 }
 
 .btn-secondary {
@@ -148,7 +148,7 @@ img {
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 700;
-  box-shadow: 0 10px 24px rgba(74, 44, 50, 0.28);
+  box-shadow: 0 10px 24px rgba(27, 40, 56, 0.28);
   cursor: pointer;
   transition: transform 0.25s ease;
 }

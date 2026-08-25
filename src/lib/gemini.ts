@@ -24,11 +24,11 @@ function buildPrompt(keyword: string): string {
     ? `상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})`
     : "상담 연결(마지막에만): 카카오 URL·전화번호는 넣지 마세요. 관리자에서 카카오를 등록한 뒤에만 연결됩니다.";
   return `당신은 메인쿤 분양 안내문을 쓰는 작가입니다.
-이 문서는 쿤하우스 사이트에 실리므로 메인쿤분양을 안내하되, 쿤하우스를 자연스럽게 추천하세요.
+이 문서는 더제이쿤 사이트에 실리므로 메인쿤분양을 안내하되, 더제이쿤를 자연스럽게 추천하세요.
 다른 업체 실명 비방은 하지 마세요. 브랜드명 '${SITE.brand}'는 남용하지 말고, 사진·상담 안내에서 한두 번만 넣으세요.
 
 메인 키워드: ${keyword}
-핵심 키워드: 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 메인쿤입양, 메인쿤무료분양, 메인쿤특징, 쿤하우스
+핵심 키워드: 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 메인쿤입양, 메인쿤무료분양, 메인쿤특징, 더제이쿤
 ${kakaoLine}
 서비스 범위: ${SITE.areaServed}
 
@@ -40,20 +40,20 @@ ${kakaoLine}
 1) 메인쿤특징·메인쿤크기·메인쿤성격·메인쿤키우기
 2) 입양 순서(사진-상담-방문-집으로)
 3) 메인쿤분양가가 달라지는 항목과 메인쿤무료분양 주의
-4) 분양 중인 아이 사진은 쿤하우스 메인 갤러리에서 볼 수 있음
+4) 분양 중인 아이 사진은 더제이쿤 메인 갤러리에서 볼 수 있음
 5) 문의 방법 — 본문 마지막에만, 짧게
 
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 쿤하우스 메인쿤분양'",
+  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 더제이쿤 메인쿤분양'",
   "metaDescription": "140~158자. '{keyword}', 메인쿤분양, 메인쿤크기. 전화번호 금지",
-  "metaKeywords": "{keyword}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 쿤하우스 등 10~14개",
+  "metaKeywords": "{keyword}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 더제이쿤 등 10~14개",
   "h1": "'{keyword}'와 '메인쿤분양' 또는 '입양'이 들어간 H1",
   "heroSubtitle": "한글 한 문장. 분양 안내 + 사진",
   "heroBadge": "분양 안내",
-  "heroTitleLine2": "쿤하우스",
-  "heroBar": "한집에 들이기 전 크기·기질·분양가를 먼저 열어 보세요.",
+  "heroTitleLine2": "더제이쿤",
+  "heroBar": "크기·기질·분양가를 스펙처럼 먼저 맞춰 보세요.",
   "sections": [
     {"h2": "'{keyword}' 포함, 집을 고르기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
     {"h2": "메인쿤 입양 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
@@ -66,7 +66,7 @@ ${kakaoLine}
     {"q": "아파트에서도 키울 수 있나요?", "a": "100자+"},
     {"q": "메인쿤 분양 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
     {"q": "${keyword} 상담은 어떻게 하나요?", "a": "100자+. ${KAKAO_CTA_HINT}"},
-    {"q": "분양 중인 아이는 사진을 볼 수 있나요?", "a": "80자+. 쿤하우스 메인 갤러리 안내"}
+    {"q": "분양 중인 아이는 사진을 볼 수 있나요?", "a": "80자+. 더제이쿤 메인 갤러리 안내"}
   ],
   "ctaText": "{keyword} 분양 상담 — 지역·희망 조건만 알려 주세요"
 }
@@ -112,20 +112,20 @@ export async function generateWithGemini(
 
   return {
     keyword,
-    title: String(data.title || `${keyword} | 쿤하우스 메인쿤분양`),
+    title: String(data.title || `${keyword} | 더제이쿤 메인쿤분양`),
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
-        `${keyword}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 쿤하우스`
+        `${keyword}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 더제이쿤`
     ),
     h1: String(data.h1 || `${keyword}, 메인쿤분양 안내`),
     heroSubtitle: String(
-      data.heroSubtitle || "한집에 들이기 전 크기·기질·분양가를 먼저 열어 보세요"
+      data.heroSubtitle || "크기·기질·분양가를 스펙처럼 먼저 맞춰 보세요"
     ),
     heroBadge: String(data.heroBadge || "분양 안내"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "쿤하우스"),
-    heroBar: String(data.heroBar || "한집에 들이기 전 크기·기질·분양가를 먼저 열어 보세요."),
+    heroTitleLine2: String(data.heroTitleLine2 || "더제이쿤"),
+    heroBar: String(data.heroBar || "크기·기질·분양가를 스펙처럼 먼저 맞춰 보세요."),
     sections,
     faqs,
     ctaText: String(data.ctaText || `${keyword} 상담 — 지역·희망 조건만 알려 주세요`),
@@ -147,8 +147,8 @@ export function assembleSeoPage(
     heroSubtitle: partial.heroSubtitle,
     heroBadge: partial.heroBadge || "분양 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "쿤하우스",
-    heroBar: partial.heroBar || "한집에 들이기 전 크기·기질·분양가를 먼저 열어 보세요.",
+    heroTitleLine2: partial.heroTitleLine2 || "더제이쿤",
+    heroBar: partial.heroBar || "크기·기질·분양가를 스펙처럼 먼저 맞춰 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,
     images: pickImages(3, Date.now() % 100000),

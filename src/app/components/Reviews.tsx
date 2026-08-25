@@ -2,33 +2,33 @@ import { SITE } from "@/lib/site";
 
 const REVIEWS = [
   {
-    quote: "성체가 되면 얼마나 커지는지부터 들어서, 거실 자리를 미리 비워 둘 수 있었습니다.",
-    name: "한○○ 보호자",
+    quote: "성체 체중을 숫자로 들어서, 거실과 복도가 충분한지 바로 가늠했습니다.",
+    name: "차○○ 보호자",
     course: "메인쿤크기",
   },
   {
-    quote: "온순하다는 말 대신, 그 아이가 저녁에 사람 옆에 어떻게 있는지를 들려 주셨습니다.",
-    name: "임○○ 보호자",
+    quote: "온순하다는 말 대신, 저녁에 사람 옆에 어떻게 있는지를 항목으로 설명해 주셨습니다.",
+    name: "표○○ 보호자",
     course: "메인쿤성격",
   },
   {
     quote: "분양가가 갈리는 항목을 표처럼 들어서, 싼 곳과 무엇이 다른지 비교가 됐습니다.",
-    name: "오○○ 보호자",
+    name: "구○○ 보호자",
     course: "메인쿤분양가",
   },
   {
     quote: "빗질 주기와 사료량을 입양 전에 받아서, 대형묘가 덜 막막했습니다.",
-    name: "강○○ 보호자",
+    name: "하○○ 보호자",
     course: "메인쿤키우기",
   },
   {
-    quote: "사진첩에서 고른 털색을 바로 맞춰 주셔서, 상담이 짧았습니다.",
-    name: "노○○ 보호자",
+    quote: "라인업에서 고른 털색을 바로 맞춰 주셔서, 상담이 짧았습니다.",
+    name: "민○○ 보호자",
     course: "분양 상담",
   },
   {
     quote: "초등학생과 함께 사는지부터 물어봐 주셔서, 집 분위기에 맞는 아이를 안내받았습니다.",
-    name: "유○○ 보호자",
+    name: "진○○ 보호자",
     course: "입양 상담",
   },
 ];
@@ -38,9 +38,9 @@ export default function Reviews() {
     <section id="reviews" className="section bg-white/55">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="section-kicker">FROM THE HOUSE</p>
+          <p className="section-kicker">NOTES</p>
           <h2 className="mt-3 text-3xl font-extrabold text-[var(--navy)] md:text-4xl">
-            문을 연 뒤의 말
+            스펙을 맞춘 뒤의 말
           </h2>
           <p className="mt-3 text-[var(--muted)]">
             {SITE.brand}에서 메인쿤분양을 상담한 분의 이야기입니다.

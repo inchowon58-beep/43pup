@@ -47,7 +47,7 @@ export default function DoodleGalleryCta({
       className={`my-8 rounded-[var(--radius-lg)] border border-[var(--coral)] bg-[var(--coral-soft)] p-4 md:p-5 ${className}`}
     >
       <div className="grid items-center gap-5 md:grid-cols-[minmax(0,17.5rem)_1fr]">
-        <div className="relative aspect-video overflow-hidden rounded-[var(--radius)] bg-[#4a2c32] shadow-[0_10px_24px_rgba(74,44,50,0.18)]">
+        <div className="relative aspect-video overflow-hidden rounded-[var(--radius)] bg-[#1b2838] shadow-[0_10px_24px_rgba(27,40,56,0.18)]">
           <iframe
             src={youtubeEmbedUrl(videoId)}
             title={isActive && channel ? `${channel} 유튜브 영상` : CTA_YOUTUBE_HEADING}

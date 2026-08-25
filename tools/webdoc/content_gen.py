@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""문서 본문 생성 (템플릿) — 쿤하우스.
+"""문서 본문 생성 (템플릿) — 더제이쿤.
 키워드 전달 시 SeoPage 스키마(title/meta/OG/FAQ/hero)로
 메인쿤분양 상세 페이지를 생성합니다. 이미지는 3장.
 """
@@ -19,9 +19,9 @@ from urllib.parse import quote
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
 
-BRAND = "쿤하우스"
+BRAND = "더제이쿤"
 FARM = "메인쿤분양"
-SITE_NAME = "메인쿤분양 쿤하우스"
+SITE_NAME = "메인쿤분양 더제이쿤"
 KAKAO = ""  # 관리자에서 등록한 뒤에만 사이트에 연결. 문서 HTML에는 넣지 않음.
 LOCATION = "대한민국 전국"
 IMAGE_BASE = "https://image.cattery.co.kr/maincoon"
@@ -32,7 +32,7 @@ DISPLAY_ORDER = list(range(12, IMAGE_COUNT + 1))
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|maincooninfo".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|maincoonpshop".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -68,13 +68,13 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     rng = _rng(keyword, idx)
     kw = keyword.strip() or "메인쿤분양"
     heroes = [
-        "한집에 들이기 전 크기·기질·분양가를 먼저 열어 보세요",
+        "크기·기질·분양가를 스펙처럼 먼저 맞춰 보세요",
         "성체 크기와 기질을 본 뒤 상담합니다",
-        "메인쿤분양 사진과 키우기 하루를 함께 드립니다",
+        "메인쿤분양 사진과 키우기 루틴을 함께 드립니다",
         "지역만 알려 주셔도 상담 일정을 안내합니다",
     ]
     line2_opts = [
-        "쿤하우스",
+        "더제이쿤",
         "분양 안내",
         "크기·성격",
         "키우기",
@@ -92,7 +92,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         f"{kw}, 특징과 키우기를 함께",
     ]
 
-    title = f"{kw} | 쿤하우스 메인쿤분양"
+    title = f"{kw} | 더제이쿤 메인쿤분양"
     if len(title) > 60:
         title = f"{kw} | 메인쿤분양"
     region = extract_region(kw)
@@ -100,7 +100,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     areas = nearby_areas(region)
     stations = nearby_stations(region)
     meta_desc = (
-        f"{kw} 메인쿤분양을 쿤하우스에서 안내합니다. "
+        f"{kw} 메인쿤분양을 더제이쿤에서 안내합니다. "
         f"메인쿤 특징·크기·분양가를 본 뒤 일정과 과정을 확인하세요."
     )
     if areas or stations:
@@ -118,7 +118,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
             "h2": h2_0,
             "paragraphs": [
                 f"{kw}를 검색하셨다면, 가장 먼저 확인할 것은 ‘우리 집에 큰 고양이가 맞나’입니다. "
-                f"쿤하우스는 메인쿤분양을 집 리듬에 대입해 {tone} 풀어 드립니다.",
+                f"더제이쿤은 메인쿤분양을 스펙 항목으로 {tone} 맞춰 드립니다.",
                 f"수컷은 성체 6~12kg, 암컷은 4~8kg 전후의 대형묘로 2~4년에 걸쳐 자랍니다. "
                 f"분양 중인 아이 사진은 메인 갤러리에서도 이어서 보실 수 있습니다.",
                 f"상담에 필요한 정보는 단순합니다. 거주 지역, 희망 성별·크기입니다. "
@@ -131,7 +131,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
                 f"메인쿤분양가는 혈통, 성별, 털색, 시기에 따라 달라집니다. "
                 f"한 줄 견적만 있으면 포함 항목을 따로 물어보세요. 단가를 단정하지 않습니다.",
                 f"상담 범위는 {LOCATION}입니다. 성격·키우기·입양 순서를 함께 정리할 수 있습니다.",
-                f"{kw}로 찾아오신 분이라면, 얼굴을 본 뒤 쿤하우스 상담을 권합니다.",
+                f"{kw}로 찾아오신 분이라면, 얼굴을 본 뒤 더제이쿤 상담을 권합니다.",
             ],
         },
         {
@@ -150,7 +150,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         },
         {
             "q": "여기는 어떤 곳인가요?",
-            "a": "쿤하우스는 메인쿤분양을 집 기준으로 풀어 드리는 곳입니다. "
+            "a": "더제이쿤은 메인쿤분양을 스펙 기준으로 안내하는 곳입니다. "
             "특징·크기·성격·분양가를 정리하고 아이들 얼굴을 먼저 보여 드립니다.",
         },
         {
@@ -166,7 +166,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
     line2 = line2_opts[idx % len(line2_opts)]
     geo_kw = nearby_keyword_csv(kw)
     meta_keywords = (
-        f"{kw}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 쿤하우스"
+        f"{kw}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 더제이쿤"
     )
     if geo_kw:
         meta_keywords = f"{meta_keywords}, {geo_kw}"
@@ -176,7 +176,7 @@ def build_content(keyword: str, idx: int) -> Dict[str, Any]:
         "title": title,
         "metaDescription": meta_desc,
         "metaKeywords": meta_keywords,
-        "h1": f"{kw}, 한집에 들이기 전에",
+        "h1": f"{kw}, 스펙부터 맞추기",
         "heroSubtitle": heroes[idx % len(heroes)],
         "heroBadge": "분양 안내",
         "heroTitleLine1": kw,

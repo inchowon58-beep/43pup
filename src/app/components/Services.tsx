@@ -8,27 +8,27 @@ import { useKakaoHref } from "./KakaoHrefProvider";
 const SERVICES = [
   {
     title: "메인쿤 특징",
-    desc: "귀 터프트와 목도리 털, 큰 발. 사람 곁과 혼자 쉬는 시간이 함께 있습니다",
-    slot: 4,
-    tag: "특징",
+    desc: "귀 터프트, 목도리 털, 큰 발. 사람 곁과 혼자 쉬는 면이 같이 있습니다",
+    slot: 2,
+    tag: "SPEC 01",
   },
   {
     title: "메인쿤 크기",
     desc: "수컷 6~12kg, 암컷 4~8kg 전후. 2~4년을 두고 천천히 커지는 대형묘입니다",
-    slot: 12,
-    tag: "크기",
+    slot: 9,
+    tag: "SPEC 02",
   },
   {
     title: "메인쿤 분양가",
     desc: "혈통·성별·털색·시기에 따라 폭이 있습니다. 단가보다 포함 항목을 먼저 맞춰 드립니다",
-    slot: 24,
-    tag: "분양가",
+    slot: 17,
+    tag: "SPEC 03",
   },
   {
     title: "메인쿤 성격",
-    desc: "낮고 깊은 목소리, 사람 곁에 머무는 편. 개체 차는 상담에서 열어 드립니다",
-    slot: 31,
-    tag: "성격",
+    desc: "낮고 깊은 목소리, 사람 곁에 머무는 편. 개체 차는 상담에서 풀어 드립니다",
+    slot: 35,
+    tag: "SPEC 04",
   },
 ];
 
@@ -39,12 +39,12 @@ export default function Services() {
       <div className="container">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="section-kicker">MAINE COON</p>
+            <p className="section-kicker">MAINE COON SPEC</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              문을 열기 전 네 가지
+              고르기 전 네 가지 스펙
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              특징, 크기, 분양가, 성격입니다. 쿤하우스 사진첩에서 실제 아이 얼굴을 먼저 보세요.
+              특징, 크기, 분양가, 성격입니다. 더제이쿤 라인업에서 실제 아이 얼굴을 먼저 보세요.
             </p>
           </div>
           {kakaoHref ? (
@@ -65,8 +65,8 @@ export default function Services() {
             <article key={item.title} className="group relative overflow-hidden rounded-[var(--radius)]">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <ImageSlot index={item.slot} fill label={item.title} />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(74,44,50,0.92)_100%)]" />
-                <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(27,40,56,0.92)_100%)]" />
+                <span className="absolute left-2 top-2 bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold tracking-wide text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
