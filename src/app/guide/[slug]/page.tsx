@@ -166,7 +166,7 @@ export default async function GuidePage({ params }: Props) {
         ? { image: [SITE.logo] }
         : {}),
     mainEntityOfPage: pageUrl,
-    about: ["메인쿤분양", "메인쿤크기", "메인쿤성격", "메인쿤분양가", "메인가드너", page.keyword],
+    about: ["메인쿤분양", "메인쿤크기", "메인쿤성격", "메인쿤분양가", "와일드쿤", page.keyword],
   };
 
   return (

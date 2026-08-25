@@ -80,7 +80,7 @@ export async function GET(req: Request) {
         heroSubtitle: SITE.taglineEn,
         sections: [
           {
-            h2: "메인가드너",
+            h2: "와일드쿤",
             paragraphs: [SITE.description, SITE.tagline],
           },
         ],

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""IndexNow 제출 — 메인가드너 로컬/서버 공통 키."""
+"""IndexNow 제출 — 와일드쿤 로컬/서버 공통 키."""
 
 from __future__ import annotations
 

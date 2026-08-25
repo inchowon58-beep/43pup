@@ -1,5 +1,5 @@
 /**
- * 메인가드너 (inchowon58-beep/maincoonmar / maincoon.marketstore.co.kr) 전용 배포 가드
+ * 와일드쿤 (inchowon58-beep/maincoonmar / maincoon.marketstore.co.kr) 전용 배포 가드
  * 기존 mainyou·maincoonpshop·maincooninfo·maincoondmc 저장소와 섞이지 않도록 합니다.
  */
 const { execSync } = require("child_process");
@@ -11,7 +11,7 @@ const BLOCKED_REMOTE =
   /mainyou|maincoonpshop|maincooninfo|maincoondmc|maincoonag|smpinfo|infowedding|pruwedding|dmcwedding|inchowon58-beep\/globalwedding(\.git)?$|pupmaincoon|enmaincoon|puppydoodle|agadoodle|doodlekorea|catterydoodle|muzi02|muzi01|muziga|inchowon58-beep\/eanimal(\.git)?$|inchowon58-beep\/funeral(\.git)?$|inchowon58-beep\/doodle(\.git)?$|cloudshelter|jejumilgam|dogboho|구름이네/i;
 
 function fail(msg) {
-  console.error("이 프로젝트는 maincoonmar (메인가드너 / maincoon.marketstore.co.kr) 전용입니다.");
+  console.error("이 프로젝트는 maincoonmar (와일드쿤 / maincoon.marketstore.co.kr) 전용입니다.");
   console.error("기존 mainyou / maincoonpshop / maincooninfo / maincoondmc / maincoonag / smpinfo / infowedding / pruwedding / dmcwedding / pupmaincoon / doodle / muzi / eanimal / funeral.git 에는 절대 push/deploy 하지 마세요.\n");
   console.error(msg);
   process.exit(1);
@@ -56,4 +56,4 @@ if (!ALLOWED_REMOTE.test(remote)) {
   );
 }
 
-console.log("✅ 배포 대상 확인: 메인가드너 (maincoonmar / maincoon.marketstore.co.kr)");
+console.log("✅ 배포 대상 확인: 와일드쿤 (maincoonmar / maincoon.marketstore.co.kr)");

@@ -5,7 +5,7 @@ const BEDS = [
   {
     n: "고르기 1",
     title: "공간이 받쳐 주는가",
-    desc: "메인쿤은 바닥을 길게 쓰는 대형묘입니다. 메인가드너는 복도와 통로 폭부터 맞춰 봅니다.",
+    desc: "메인쿤은 바닥을 길게 쓰는 대형묘입니다. 와일드쿤은 복도와 통로 폭부터 맞춰 봅니다.",
   },
   {
     n: "고르기 2",
@@ -29,14 +29,14 @@ export default function About() {
           </div>
         </div>
         <div>
-          <p className="section-kicker">MAIN GARDNER</p>
+          <p className="section-kicker">WILD COON</p>
           <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
             메인쿤분양,
             <br />
             골라 보기 쉽게 진열합니다
           </h2>
           <p className="mt-4 text-[var(--muted)]">
-            {SITE.brand}는 외모만 보여 드리지 않습니다. 메인쿤크기와 성격, 키우기 하루를 집 기준으로
+            {SITE.brand}은 외모만 보여 드리지 않습니다. 메인쿤크기와 성격, 키우기 하루를 집 기준으로
             나눠 안내합니다.
           </p>
           <div className="mt-8 space-y-4">

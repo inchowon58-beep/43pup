@@ -44,7 +44,7 @@ export default function Services() {
               고르기 전에 보는 네 가지
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              특징, 크기, 분양가, 성격입니다. 메인가드너 진열에서 실제 아이 얼굴을 먼저 보세요.
+              특징, 크기, 분양가, 성격입니다. 와일드쿤 진열에서 실제 아이 얼굴을 먼저 보세요.
             </p>
           </div>
           {kakaoHref ? (
