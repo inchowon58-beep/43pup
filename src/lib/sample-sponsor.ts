@@ -6,7 +6,7 @@ export const SAMPLE_ACTIVE_SPONSOR: SiteSponsor = {
   status: "ACTIVE",
   sponsor_name: "쿤스토리 분양안내 (샘플)",
   phone_number: "010-1234-5678",
-  link_url: "https://open.kakao.com/o/sxelLqJi",
+  link_url: "",
   homepage_url: "https://www.naver.com",
   recruiting_notice: "",
   rental_price: "30만원",
