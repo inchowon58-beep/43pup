@@ -33,7 +33,7 @@ export const SITE = {
   domain: "maincoon.puppyshop.co.kr",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.puppyshop.co.kr",
   infocsUrl: "https://www.infocs.co.kr/",
-  naverSiteVerification: "cece4bd4b46fc8b1cec51cc220dfc8b51d01b88e",
+  naverSiteVerification: "eb89a776a47758743a08dde6ee0e031efd66c97e",
   themeColor: "#1b2838",
 } as const;
 
