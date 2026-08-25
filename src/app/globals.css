@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  /* 쿤스토리 — pine / honey */
-  --sky: #4a7c59;
-  --sky-deep: #1a2e24;
-  --sky-soft: #e8f0e6;
-  --coral: #c9a15b;
-  --coral-deep: #9a7438;
-  --coral-soft: #f6edd8;
-  --ink: #1c241e;
-  --muted: #5e6b62;
-  --bg: #f4efe6;
-  --bg-warm: #faf6ee;
-  --line: rgba(26, 46, 36, 0.12);
-  --radius: 0.55rem;
-  --radius-sm: 0.4rem;
-  --radius-lg: 1.15rem;
+  /* 메인스테이 — ink navy / terracotta */
+  --sky: #4a6d8c;
+  --sky-deep: #1e2433;
+  --sky-soft: #e8eef4;
+  --coral: #c45c38;
+  --coral-deep: #9a4428;
+  --coral-soft: #f6e6dc;
+  --ink: #1c1a18;
+  --muted: #6a635c;
+  --bg: #f2ebe3;
+  --bg-warm: #f8f4ee;
+  --line: rgba(30, 36, 51, 0.12);
+  --radius: 0.2rem;
+  --radius-sm: 0.12rem;
+  --radius-lg: 0.45rem;
   --font: "Pretendard", "Noto Sans KR", sans-serif;
-  --navy: #1a2e24;
-  --green: #4a7c59;
+  --navy: #1e2433;
+  --green: #4a6d8c;
   --orange: var(--coral);
   --orange-deep: var(--coral-deep);
   --orange-soft: var(--coral-soft);
@@ -36,7 +36,7 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #e4eadc 100%);
+    linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 48%, #e8e0d6 100%);
   font-family: var(--font);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -109,13 +109,13 @@ img {
   font-size: 1rem;
   letter-spacing: -0.01em;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 10px 24px rgba(201, 161, 91, 0.28);
+  box-shadow: 0 10px 24px rgba(196, 92, 56, 0.28);
   cursor: pointer;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(201, 161, 91, 0.36);
+  box-shadow: 0 14px 30px rgba(196, 92, 56, 0.36);
 }
 
 .btn-secondary {
@@ -148,7 +148,7 @@ img {
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 700;
-  box-shadow: 0 10px 24px rgba(26, 46, 36, 0.28);
+  box-shadow: 0 10px 24px rgba(30, 36, 51, 0.28);
   cursor: pointer;
   transition: transform 0.25s ease;
 }

@@ -18,7 +18,7 @@ export default function FAQ() {
           {HOME_FAQS.map((f) => (
             <details
               key={f.q}
-              className="rounded-[1.2rem] border border-[var(--line)] bg-white px-5 py-4"
+              className="rounded-[var(--radius-lg)] border border-[var(--line)] bg-white px-5 py-4"
             >
               <summary className="cursor-pointer font-bold text-[var(--navy)]">{f.q}</summary>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">{f.a}</p>

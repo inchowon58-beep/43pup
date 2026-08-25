@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       locale: "ko_KR",
       url: origin,
-      siteName: SITE.title,
+      siteName: SITE.name,
       title: SITE.title,
       description: SITE.description,
       ...(SITE.ogImage
@@ -39,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
                 url: SITE.ogImage,
                 width: 1200,
                 height: 630,
-                alt: `${SITE.title} ${SITE.brand}`,
+                alt: SITE.name,
               },
             ],
           }

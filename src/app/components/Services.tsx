@@ -8,26 +8,26 @@ import { useKakaoHref } from "./KakaoHrefProvider";
 const SERVICES = [
   {
     title: "메인쿤 특징",
-    desc: "터프트 귀, 목도리 털, 부드러운 발바닥. 개의 친근함과 고양이의 독립성을 함께 지닙니다",
-    slot: 5,
+    desc: "귀 터프트, 목도리 털, 큰 발. 사람을 따르는 면과 혼자 쉬는 면이 같이 있습니다",
+    slot: 3,
     tag: "특징",
   },
   {
     title: "메인쿤 크기",
-    desc: "수컷 6~12kg, 암컷 4~8kg 전후의 대형묘. 2~4년에 걸쳐 천천히 자랍니다",
-    slot: 10,
+    desc: "수컷 6~12kg, 암컷 4~8kg 전후. 2~4년을 두고 천천히 커지는 대형묘입니다",
+    slot: 11,
     tag: "크기",
   },
   {
     title: "메인쿤 분양가",
-    desc: "혈통·성별·털색·시기에 따라 달라집니다. 단가는 상담에서 포함 항목과 함께 안내합니다",
-    slot: 16,
+    desc: "혈통·성별·털색·시기에 따라 폭이 있습니다. 단가보다 포함 항목을 먼저 맞춰 드립니다",
+    slot: 18,
     tag: "분양가",
   },
   {
     title: "메인쿤 성격",
-    desc: "사람을 잘 따르고 목소리가 낮고 깊습니다. 아이·다른 반려동물과도 지내는 편이 많습니다",
-    slot: 22,
+    desc: "목소리가 낮고 깊고, 사람 곁에 머무는 편이 많습니다. 개체 차는 상담에서 풀어 드립니다",
+    slot: 27,
     tag: "성격",
   },
 ];
@@ -41,11 +41,10 @@ export default function Services() {
           <div>
             <p className="section-kicker">MAINE COON</p>
             <h2 className="mt-3 text-3xl font-bold text-[var(--navy)] md:text-4xl">
-              특징, 크기, 분양가, 성격
+              고르기 전에 보는 네 가지
             </h2>
             <p className="mt-3 max-w-xl text-[var(--muted)]">
-              메인쿤분양을 알아보실 때 꼭 보는 네 가지입니다. 쿤스토리 갤러리에서 아이 모습을
-              먼저 확인해 보세요.
+              특징, 크기, 분양가, 성격입니다. 메인스테이 갤러리에서 실제 아이 얼굴을 먼저 보세요.
             </p>
           </div>
           {kakaoHref ? (
@@ -63,11 +62,11 @@ export default function Services() {
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {SERVICES.map((item) => (
-            <article key={item.title} className="group relative overflow-hidden rounded-[1.15rem]">
+            <article key={item.title} className="group relative overflow-hidden rounded-[0.45rem]">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <ImageSlot index={item.slot} fill label={item.title} />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(26,46,36,0.9)_100%)]" />
-                <span className="absolute left-2 top-2 rounded-full bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(30,36,51,0.92)_100%)]" />
+                <span className="absolute left-2 top-2 rounded-[0.12rem] bg-white/92 px-2 py-0.5 text-[0.65rem] font-bold text-[var(--coral-deep)] sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-xs">
                   {item.tag}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">

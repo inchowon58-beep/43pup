@@ -12,9 +12,9 @@ from google import genai
 
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_keyword_csv, nearby_stations
 
-BRAND = "쿤스토리"
+BRAND = "메인스테이"
 FARM = "메인쿤분양"
-SITE_NAME = "메인쿤분양 쿤스토리"
+SITE_NAME = "메인쿤분양 메인스테이"
 KAKAO = ""
 LOCATION = "대한민국 전국"
 
@@ -28,8 +28,8 @@ GEMINI_MODELS: List[Dict[str, str]] = [
 DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
 DEFAULT_USER_PROMPT = """톤: 차분한 안내형. 사실(메인쿤 특징·크기·분양가 요인)은 분명히.
-이 문서는 쿤스토리 사이트에 실리므로 메인쿤분양을 안내하되, 쿤스토리를 자연스럽게 추천하세요.
-다른 업체 실명 비방 금지. 브랜드명 '쿤스토리'는 남용하지 마세요.
+이 문서는 메인스테이 사이트에 실리므로 메인쿤분양을 안내하되, 메인스테이를 자연스럽게 추천하세요.
+다른 업체 실명 비방 금지. 브랜드명 '메인스테이'는 남용하지 마세요.
 키워드에 지역명이 있으면 그 지역에서 메인쿤분양을 알아보는 독자 시점으로 쓰세요.
 포지션: 메인쿤분양 안내. 특징, 크기, 성격, 키우기, 분양가 안내.
 전화번호·카카오 URL을 넣지 마세요. 상담은 관리자에서 카카오를 등록한 뒤에만 연결됩니다.
@@ -38,7 +38,7 @@ DEFAULT_USER_PROMPT = """톤: 차분한 안내형. 사실(메인쿤 특징·크�
 
 SYSTEM_SEO_RULES = f"""당신은 메인쿤분양을 안내하는 작가입니다.
 업체명 '{BRAND}'는 남용하지 마세요. 다른 업체를 실명으로 비방하지 마세요.
-본문에서 쿤스토리를 자연스럽게 한두 번 추천하세요.
+본문에서 메인스테이를 자연스럽게 한두 번 추천하세요.
 
 상담: 카카오 URL·전화번호 금지. 관리자에서 카카오를 등록한 뒤에만 사이트에 연결됩니다.
 다룰 정보: 메인쿤특징, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 메인쿤분양가
@@ -47,7 +47,7 @@ SYSTEM_SEO_RULES = f"""당신은 메인쿤분양을 안내하는 작가입니다
 [SEO]
 - title 50~60자. 메인 키워드를 앞에 두고 메인쿤분양 포함. 브랜드명 남용 금지.
 - metaDescription 140~160자. 키워드 + 메인쿤분양 + 크기. 카카오톡 URL 금지. 광고 문장 금지.
-- metaKeywords 8~12개, 쉼표 구분. 키워드·메인쿤분양·메인쿤분양가·메인쿤크기·쿤스토리 포함.
+- metaKeywords 8~12개, 쉼표 구분. 키워드·메인쿤분양·메인쿤분양가·메인쿤크기·메인스테이 포함.
 - h1에 메인 키워드 포함. title과 완전히 같지 않게.
 - 본문 3개 섹션. 각 h2는 서로 다른 각도(집을 고르기 전/크기·성격/분양가·키우기).
 - 각 문단 140자 이상. 키워드 과다반복 금지. 자연 반복만.
@@ -188,11 +188,11 @@ def assemble_from_gemini(
     stations = nearby_stations(region)
     geo_kw = nearby_keyword_csv(kw)
 
-    title = str(data.get("title") or f"{kw} | 쿤스토리 메인쿤분양")[:80]
+    title = str(data.get("title") or f"{kw} | 메인스테이 메인쿤분양")[:80]
     meta_desc = str(data.get("metaDescription") or "")
     if not meta_desc:
         meta_desc = (
-            f"{kw} 안내 — 메인쿤분양을 쿤스토리에서 안내합니다. 특징·크기·분양가를 본 뒤 문의로 일정을 확인하세요."
+            f"{kw} 안내 — 메인쿤분양을 메인스테이에서 안내합니다. 특징·크기·분양가를 본 뒤 문의로 일정을 확인하세요."
         )
     if areas or stations:
         near_bits = " · ".join((areas[:3] + stations[:3])[:4])
@@ -230,7 +230,7 @@ def assemble_from_gemini(
         "heroSubtitle": str(data.get("heroSubtitle") or "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요"),
         "heroBadge": str(data.get("heroBadge") or "분양 안내"),
         "heroTitleLine1": kw,
-        "heroTitleLine2": str(data.get("heroTitleLine2") or "쿤스토리"),
+        "heroTitleLine2": str(data.get("heroTitleLine2") or "메인스테이"),
         "heroBar": str(data.get("heroBar") or "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요."),
         "sections": sections,
         "faqs": faqs,

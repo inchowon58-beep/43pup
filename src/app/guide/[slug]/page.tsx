@@ -166,7 +166,7 @@ export default async function GuidePage({ params }: Props) {
         ? { image: [SITE.logo] }
         : {}),
     mainEntityOfPage: pageUrl,
-    about: ["메인쿤분양", "메인쿤크기", "메인쿤성격", "메인쿤분양가", "쿤스토리", page.keyword],
+    about: ["메인쿤분양", "메인쿤크기", "메인쿤성격", "메인쿤분양가", "메인스테이", page.keyword],
   };
 
   return (
@@ -188,7 +188,7 @@ export default async function GuidePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(pageUrl)) }}
       />
 
-      <div className="bg-[linear-gradient(180deg,#1a2e24_0%,#c9a15b_38%,#f4efe6_38%)] px-4 pb-10 pt-6">
+      <div className="bg-[linear-gradient(180deg,#1e2433_0%,#c45c38_38%,#f2ebe3_38%)] px-4 pb-10 pt-6">
         <div className="container">
           <GuideHeroThumb page={page} imageSrc={images[0] || SITE.logo} />
         </div>
@@ -259,7 +259,7 @@ export default async function GuidePage({ params }: Props) {
               {page.faqs.map((f) => (
                 <details
                   key={f.q}
-                  className="rounded-[1.2rem] bg-white px-4 py-3 ring-1 ring-[var(--line)]"
+                  className="rounded-[var(--radius-lg)] bg-white px-4 py-3 ring-1 ring-[var(--line)]"
                 >
                   <summary className="cursor-pointer font-medium text-[var(--navy)]">{f.q}</summary>
                   <p className="mt-2 text-sm text-[var(--muted)]">{f.a}</p>

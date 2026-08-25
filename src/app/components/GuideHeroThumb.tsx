@@ -14,11 +14,11 @@ export default function GuideHeroThumb({ page, imageSrc }: Props) {
   const line1 = page.heroTitleLine1 || page.keyword;
   const line2 = page.heroTitleLine2 || SITE.brand;
   const bar =
-    page.heroBar || page.heroSubtitle || "메인쿤 특징·크기·분양가를 보고 조건을 정해 보세요";
+    page.heroBar || page.heroSubtitle || "집에서 키울 때의 크기·성격·분양가를 먼저 맞춰 보세요";
   const real = isRealImage(imageSrc);
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[720px] overflow-hidden rounded-[0.55rem] shadow-[0_18px_44px_rgba(26,46,36,0.22)] ring-1 ring-[#c9a15b]/35">
+    <div className="relative mx-auto aspect-square w-full max-w-[720px] overflow-hidden rounded-[0.2rem] shadow-[0_18px_44px_rgba(30,36,51,0.22)] ring-1 ring-[#c45c38]/35">
       {real ? (
         <Image
           src={imageSrc}
@@ -32,19 +32,19 @@ export default function GuideHeroThumb({ page, imageSrc }: Props) {
       ) : (
         <ImageSlot index={placeholderIndexFrom(imageSrc || 1)} fill label={galleryAlt(page.keyword, 1)} />
       )}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(26,46,36,0.12)_0%,rgba(18,32,26,0.62)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,36,51,0.12)_0%,rgba(18,22,32,0.62)_100%)]" />
 
       <div className="absolute inset-0 flex flex-col items-start justify-end px-7 pb-8 text-left md:px-10 md:pb-10">
-        <span className="rounded-full bg-white/92 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.12em] text-[var(--coral-deep)] md:text-xs">
+        <span className="rounded-[0.12rem] bg-white/92 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.12em] text-[var(--coral-deep)] md:text-xs">
           {badge}
         </span>
 
         <h1 className="mt-4 max-w-[16ch] text-[clamp(1.7rem,6vw,2.9rem)] font-bold leading-[1.25] text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.4)]">
           <span className="block">{line1}</span>
-          <span className="mt-1 block text-[#e8d7a8]">{line2}</span>
+          <span className="mt-1 block text-[#f0e6d8]">{line2}</span>
         </h1>
 
-        <p className="mt-5 max-w-md rounded-2xl bg-black/25 px-4 py-3 text-[0.8rem] font-medium leading-snug text-white/92 md:text-[0.95rem]">
+        <p className="mt-5 max-w-md rounded-[0.2rem] bg-black/25 px-4 py-3 text-[0.8rem] font-medium leading-snug text-white/92 md:text-[0.95rem]">
           {bar}
         </p>
       </div>
