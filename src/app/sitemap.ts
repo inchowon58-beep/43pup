@@ -1,11 +1,24 @@
 import type { MetadataRoute } from "next";
 import { listPageSummaries } from "@/lib/seo-pages";
 import { publicOrigin } from "@/lib/public-url";
+import { catteryRegionFromRequest } from "@/lib/cattery-host";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const region = await catteryRegionFromRequest();
+  if (region) {
+    return [
+      {
+        url: region.siteUrl,
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: 1,
+      },
+    ];
+  }
+
   const base = await publicOrigin();
   const pages = await listPageSummaries();
   const now = new Date();

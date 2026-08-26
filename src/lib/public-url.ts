@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { SITE } from "./site";
 
-/** 끝 슬래시 없는 절대 origin. 예: https://maincoon.marketstore.co.kr */
+/** 끝 슬래시 없는 절대 origin. 요청 Host가 기준이며 와일드쿤 주소는 쓰지 않습니다. */
 export function stripTrailingSlash(url: string): string {
   return (url || "").trim().replace(/\/+$/, "");
 }
@@ -28,7 +28,7 @@ export async function publicOrigin(): Promise<string> {
   } catch {
     /* 정적 생성 등 headers 없는 경로 */
   }
-  return stripTrailingSlash(SITE.siteUrl) || "https://maincoon.marketstore.co.kr";
+  return stripTrailingSlash(SITE.siteUrl) || "https://marketstore.co.kr";
 }
 
 /** origin + path. 끝 슬래시 없음(홈은 origin만). */

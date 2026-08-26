@@ -42,7 +42,10 @@ export default function AdminClient() {
   const isSponsor = role === "sponsor";
 
   function absolutePageUrl(path: string) {
-    const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://maincoon.marketstore.co.kr").replace(
+    const base = (
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      (typeof window !== "undefined" ? window.location.origin : "https://marketstore.co.kr")
+    ).replace(
       /\/$/,
       ""
     );
@@ -289,6 +292,14 @@ export default function AdminClient() {
           )}
         </div>
         <div className="flex flex-wrap gap-2">
+          {!isSponsor && (
+            <Link
+              href="/admin/cattery-meta"
+              className="btn-secondary !text-[var(--navy)] !border-[var(--line)]"
+            >
+              지역 230 네이버 메타
+            </Link>
+          )}
           {isSponsor ? (
             <span className="btn-secondary pointer-events-none cursor-not-allowed opacity-40 !text-[var(--navy)] !border-[var(--line)]">
               입점 샘플

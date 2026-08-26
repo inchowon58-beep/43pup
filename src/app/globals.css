@@ -403,3 +403,243 @@ label {
 section[id] {
   scroll-margin-top: 5.5rem;
 }
+
+body.cattery-mode {
+  padding-bottom: 4.6rem;
+  background: #f4f7f5;
+  color: #1c2e26;
+}
+
+.cattery-root {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.cattery-wrap {
+  width: min(920px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.cattery-header {
+  background: #1b4d3a;
+  color: #fff;
+}
+
+.cattery-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.2rem;
+}
+
+.cattery-kicker {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: #d9e8df;
+}
+
+.cattery-brand {
+  margin: 0.15rem 0 0;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.cattery-btn-yellow {
+  display: inline-flex;
+  align-items: center;
+  background: #f5c518;
+  color: #1c2e26;
+  font-weight: 800;
+  font-size: 0.88rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.35rem;
+}
+
+.cattery-hero {
+  background: linear-gradient(180deg, #1b4d3a 0%, #1b4d3a 42%, transparent 42%);
+  padding: 2.2rem 0 1rem;
+}
+
+.cattery-hero h1 {
+  margin: 0.6rem 0 0;
+  color: #fff;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.3;
+}
+
+.cattery-badge {
+  display: inline-block;
+  margin: 0;
+  background: #f5c518;
+  color: #1c2e26;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+}
+
+.cattery-lead {
+  margin: 1rem 0 0;
+  max-width: 40rem;
+  color: #e7f0ea;
+  line-height: 1.75;
+}
+
+.cattery-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.3rem;
+}
+
+.cattery-btn-green,
+.cattery-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.05rem;
+  border-radius: 0.35rem;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.cattery-btn-green {
+  background: #f5c518;
+  color: #1c2e26;
+}
+
+.cattery-btn-ghost {
+  background: #fff;
+  color: #1b4d3a;
+  border: 1px solid #d5e4db;
+}
+
+.cattery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+@media (min-width: 800px) {
+  .cattery-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.cattery-card {
+  background: #fff;
+  border: 1px solid #d9e6de;
+  border-radius: 0.45rem;
+  padding: 0.9rem;
+}
+
+.cattery-card h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #1b4d3a;
+}
+
+.cattery-card p {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  color: #5b6d64;
+}
+
+.cattery-prose {
+  padding: 1.6rem 0;
+}
+
+.cattery-prose h2 {
+  margin: 0 0 0.8rem;
+  color: #1b4d3a;
+  font-size: 1.35rem;
+}
+
+.cattery-prose p {
+  margin: 0 0 0.85rem;
+  line-height: 1.85;
+  color: #33443c;
+}
+
+.cattery-band {
+  background: #e7f0ea;
+  padding: 0.4rem 0;
+}
+
+.cattery-faq-title {
+  margin: 0 0 0.8rem;
+  color: #1b4d3a;
+}
+
+.cattery-faq details {
+  background: #fff;
+  border: 1px solid #d9e6de;
+  border-radius: 0.45rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.cattery-faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #1b4d3a;
+}
+
+.cattery-faq p {
+  margin: 0.6rem 0 0;
+  color: #4d5f56;
+  line-height: 1.7;
+}
+
+.cattery-footer {
+  margin-top: 2rem;
+  background: #1b4d3a;
+  color: #d9e8df;
+  padding: 1.6rem 0 1.2rem;
+}
+
+.cattery-footer-name {
+  font-weight: 800;
+  color: #fff;
+}
+
+.cattery-footer a {
+  color: #f5c518;
+}
+
+.cattery-sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  padding: 0.45rem 0.7rem calc(0.45rem + env(safe-area-inset-bottom));
+  background: #fff;
+  border-top: 1px solid #d9e6de;
+}
+
+.cattery-sticky-call,
+.cattery-sticky-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 0.4rem;
+  font-weight: 800;
+  font-size: 0.86rem;
+  border-radius: 0.35rem;
+}
+
+.cattery-sticky-call {
+  background: #1b4d3a;
+  color: #fff;
+}
+
+.cattery-sticky-home {
+  background: #f5c518;
+  color: #1c2e26;
+}
+

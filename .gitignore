@@ -21,5 +21,6 @@ tools/webdoc/*.spec
 tools/webdoc/*.exe
 public/order-data/orders/
 public/seo-data/pages/
+public/cattery-data/naver-meta.json
 data/sponsor-login.json
 .vercel

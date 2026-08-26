@@ -4,6 +4,11 @@ import { publicOrigin } from "@/lib/public-url";
 import { faqJsonLd, howToJsonLd, orgJsonLd } from "@/lib/faq-data";
 import { getGlobalSponsor } from "@/lib/site-sponsor";
 import { publicKakaoUrl } from "@/lib/site-sponsor-shared";
+import { catteryRegionFromRequest } from "@/lib/cattery-host";
+import { getCatteryNaverMeta } from "@/lib/cattery-meta";
+import { CATTERY_THEME } from "@/lib/cattery-regions";
+import { buildCatteryPage } from "@/lib/cattery-content";
+import { CATTERY_REGIONS } from "@/lib/cattery-regions";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SponsorStickyFooter from "./components/SponsorStickyFooter";
@@ -12,6 +17,22 @@ import { KakaoHrefProvider } from "./components/KakaoHrefProvider";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
+  const region = await catteryRegionFromRequest();
+  if (region) {
+    const page = buildCatteryPage(region, CATTERY_REGIONS);
+    const naver = await getCatteryNaverMeta(region.slug);
+    return {
+      metadataBase: new URL(region.siteUrl),
+      title: { absolute: region.title },
+      description: page.metaDescription,
+      alternates: { canonical: region.siteUrl },
+      other: {
+        "msapplication-TileColor": CATTERY_THEME,
+        ...(naver ? { "naver-site-verification": naver } : {}),
+      },
+    };
+  }
+
   const origin = await publicOrigin();
   return {
     metadataBase: new URL(origin),
@@ -80,6 +101,24 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const region = await catteryRegionFromRequest();
+  if (region) {
+    const naver = await getCatteryNaverMeta(region.slug);
+    return (
+      <html lang="ko">
+        <head>
+          {naver ? <meta name="naver-site-verification" content={naver} /> : null}
+          <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+          />
+        </head>
+        <body className="cattery-mode">{children}</body>
+      </html>
+    );
+  }
+
   const origin = await publicOrigin();
   const sponsor = await getGlobalSponsor();
   const kakaoHref = publicKakaoUrl(sponsor);
