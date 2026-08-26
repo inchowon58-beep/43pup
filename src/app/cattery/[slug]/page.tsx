@@ -10,6 +10,7 @@ import {
 import { buildCatteryPage } from "@/lib/cattery-content";
 import { getCatteryNaverMeta } from "@/lib/cattery-meta";
 import { requestHost } from "@/lib/cattery-host";
+import { catteryPhotos } from "@/lib/cattery-images";
 import CatteryLanding from "@/app/components/CatteryLanding";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const region = getCatteryRegion(slug);
   if (!region) return {};
   const page = buildCatteryPage(region, CATTERY_REGIONS);
+  const photos = catteryPhotos(region.slug);
   const naver = await getCatteryNaverMeta(region.slug);
   const host = await requestHost();
   const onOwnHost = host === region.host;
@@ -44,6 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: region.title,
       title: region.title,
       description: page.metaDescription,
+      images: [{ url: photos.hero, width: 1200, height: 630, alt: region.title }],
     },
     other: {
       "msapplication-TileColor": CATTERY_THEME,
@@ -72,6 +75,7 @@ export default async function CatteryRegionPage({ params }: Props) {
       streetAddress: region.address,
     },
     areaServed: region.sido,
+    image: catteryPhotos(region.slug).hero,
     sameAs: [CATTERY_HOME],
   };
   const faqLd = {

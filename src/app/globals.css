@@ -406,7 +406,7 @@ section[id] {
 
 body.cattery-mode {
   padding-bottom: 4.6rem;
-  background: #f4f7f5;
+  background: #f3f6f3;
   color: #1c2e26;
 }
 
@@ -415,13 +415,17 @@ body.cattery-mode {
 }
 
 .cattery-wrap {
-  width: min(920px, calc(100% - 2rem));
+  width: min(1120px, calc(100% - 2rem));
   margin-inline: auto;
 }
 
 .cattery-header {
-  background: #1b4d3a;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(27, 77, 58, 0.94);
   color: #fff;
+  backdrop-filter: blur(10px);
 }
 
 .cattery-header-inner {
@@ -429,7 +433,7 @@ body.cattery-mode {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 4.2rem;
+  min-height: 4.3rem;
 }
 
 .cattery-kicker {
@@ -453,19 +457,45 @@ body.cattery-mode {
   font-weight: 800;
   font-size: 0.88rem;
   padding: 0.7rem 1rem;
-  border-radius: 0.35rem;
+  border-radius: 0.4rem;
 }
 
 .cattery-hero {
-  background: linear-gradient(180deg, #1b4d3a 0%, #1b4d3a 42%, transparent 42%);
-  padding: 2.2rem 0 1rem;
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+}
+
+.cattery-hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.cattery-hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(27, 77, 58, 0.42) 0%,
+    rgba(27, 77, 58, 0.08) 38%,
+    rgba(14, 28, 22, 0.92) 100%
+  );
+}
+
+.cattery-hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 0 3.2rem;
 }
 
 .cattery-hero h1 {
-  margin: 0.6rem 0 0;
+  margin: 0.7rem 0 0;
   color: #fff;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  line-height: 1.3;
+  font-size: clamp(1.85rem, 5vw, 3.15rem);
+  line-height: 1.25;
+  max-width: 18ch;
 }
 
 .cattery-badge {
@@ -475,30 +505,31 @@ body.cattery-mode {
   color: #1c2e26;
   font-size: 0.75rem;
   font-weight: 800;
-  padding: 0.2rem 0.55rem;
+  padding: 0.25rem 0.6rem;
   border-radius: 0.25rem;
 }
 
 .cattery-lead {
-  margin: 1rem 0 0;
-  max-width: 40rem;
+  margin: 1.1rem 0 0;
+  max-width: 38rem;
   color: #e7f0ea;
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 .cattery-hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: 1.3rem;
+  margin-top: 1.5rem;
 }
 
 .cattery-btn-green,
 .cattery-btn-ghost {
   display: inline-flex;
   align-items: center;
-  padding: 0.8rem 1.05rem;
-  border-radius: 0.35rem;
+  gap: 0.4rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.4rem;
   font-weight: 800;
   font-size: 0.92rem;
 }
@@ -511,73 +542,269 @@ body.cattery-mode {
 .cattery-btn-ghost {
   background: #fff;
   color: #1b4d3a;
-  border: 1px solid #d5e4db;
 }
 
-.cattery-grid {
+.cattery-section {
+  padding: 4.2rem 0;
+}
+
+.cattery-section-tint {
+  background: #e7efe9;
+}
+
+.cattery-section-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #2d7a58;
+}
+
+.cattery-section h2,
+.cattery-faq-title {
+  margin: 0.55rem 0 0;
+  color: #1b4d3a;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+}
+
+.cattery-muted {
+  margin: 0.85rem 0 0;
+  color: #4d5f56;
+  line-height: 1.85;
+}
+
+.cattery-section-head {
+  max-width: 38rem;
+  margin-bottom: 1.8rem;
+}
+
+.cattery-section-head-center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.cattery-split {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem;
-  margin-top: 1.2rem;
+  gap: 2rem;
+  align-items: center;
 }
 
-@media (min-width: 800px) {
-  .cattery-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+@media (min-width: 860px) {
+  .cattery-split {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.2rem;
+  }
+
+  .cattery-split-rev {
+    direction: rtl;
+  }
+
+  .cattery-split-rev > * {
+    direction: ltr;
   }
 }
 
-.cattery-card {
-  background: #fff;
-  border: 1px solid #d9e6de;
-  border-radius: 0.45rem;
-  padding: 0.9rem;
+.cattery-photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.7rem;
+  box-shadow: 0 22px 50px rgba(27, 77, 58, 0.16);
 }
 
-.cattery-card h2 {
+.cattery-photo-tall {
+  aspect-ratio: 4 / 5;
+}
+
+.cattery-photo-wide {
+  aspect-ratio: 5 / 4;
+}
+
+.cattery-points {
+  margin-top: 1.4rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.cattery-point {
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 0.95rem 1.05rem;
+  box-shadow: 0 8px 24px rgba(27, 77, 58, 0.06);
+}
+
+.cattery-point-n {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #b8880e;
+}
+
+.cattery-point h3 {
+  margin: 0.2rem 0 0;
+  font-size: 1.05rem;
   color: #1b4d3a;
 }
 
-.cattery-card p {
-  margin: 0.4rem 0 0;
-  font-size: 0.82rem;
+.cattery-point p {
+  margin: 0.3rem 0 0;
+  font-size: 0.88rem;
   color: #5b6d64;
 }
 
-.cattery-prose {
-  padding: 1.6rem 0;
+.cattery-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
 }
 
-.cattery-prose h2 {
-  margin: 0 0 0.8rem;
+@media (min-width: 860px) {
+  .cattery-feature-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+}
+
+.cattery-feature {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 0.55rem;
+}
+
+.cattery-feature-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 32%, rgba(14, 28, 22, 0.92) 100%);
+}
+
+.cattery-feature-tag {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  z-index: 1;
+  background: #fff;
   color: #1b4d3a;
-  font-size: 1.35rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
 }
 
-.cattery-prose p {
-  margin: 0 0 0.85rem;
-  line-height: 1.85;
-  color: #33443c;
+.cattery-feature-copy {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  padding: 0.85rem;
 }
 
-.cattery-band {
-  background: #e7f0ea;
-  padding: 0.4rem 0;
+.cattery-feature-copy h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 0.98rem;
+}
+
+.cattery-feature-copy p {
+  margin: 0.3rem 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.cattery-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+@media (min-width: 760px) {
+  .cattery-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+}
+
+.cattery-gallery-feat,
+.cattery-gallery-cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.cattery-gallery-feat {
+  aspect-ratio: 16 / 10;
+}
+
+@media (min-width: 760px) {
+  .cattery-gallery-feat {
+    grid-column: span 2;
+  }
+}
+
+.cattery-gallery-cell {
+  aspect-ratio: 1;
+}
+
+.cattery-steps {
+  display: grid;
+  gap: 1.2rem;
+}
+
+@media (min-width: 800px) {
+  .cattery-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.4rem;
+  }
+}
+
+.cattery-step {
+  text-align: center;
+}
+
+.cattery-step span {
+  display: inline-flex;
+  width: 3.2rem;
+  height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #1b4d3a;
+  color: #f5c518;
+  font-weight: 800;
+}
+
+.cattery-step h3 {
+  margin: 0.8rem 0 0;
+  color: #1b4d3a;
+  font-size: 1.05rem;
+}
+
+.cattery-step p {
+  margin: 0.4rem 0 0;
+  color: #5b6d64;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.cattery-step-note {
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.cattery-faq-wrap {
+  max-width: 760px;
 }
 
 .cattery-faq-title {
-  margin: 0 0 0.8rem;
-  color: #1b4d3a;
+  margin-bottom: 1rem;
 }
 
 .cattery-faq details {
   background: #fff;
   border: 1px solid #d9e6de;
-  border-radius: 0.45rem;
-  padding: 0.85rem 1rem;
-  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.95rem 1.05rem;
+  margin-bottom: 0.55rem;
 }
 
 .cattery-faq summary {
@@ -587,16 +814,15 @@ body.cattery-mode {
 }
 
 .cattery-faq p {
-  margin: 0.6rem 0 0;
+  margin: 0.65rem 0 0;
   color: #4d5f56;
   line-height: 1.7;
 }
 
 .cattery-footer {
-  margin-top: 2rem;
   background: #1b4d3a;
   color: #d9e8df;
-  padding: 1.6rem 0 1.2rem;
+  padding: 2.2rem 0 1.4rem;
 }
 
 .cattery-footer-name {
