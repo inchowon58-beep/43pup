@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { HUGDAY_SITES } from "@/lib/hugday-sites";
 import { hugdayCover } from "@/lib/hugday-images";
 import HugdayPhoto from "./components/HugdayPhoto";
@@ -29,7 +28,12 @@ export default function HomePage() {
           {HUGDAY_SITES.map((s) => {
             const photo = hugdayCover(s.folder);
             return (
-              <Link key={s.slug} href={s.siteUrl} className="hug-hub-card">
+              <a
+                key={s.slug}
+                href={s.siteUrl}
+                className="hug-hub-card"
+                aria-label={s.title}
+              >
                 <HugdayPhoto src={photo} alt={s.title} sizes="33vw" />
                 <div className="hug-hub-card-copy">
                   <p className="hug-eyebrow" style={{ color: "#fff" }}>
@@ -38,7 +42,7 @@ export default function HomePage() {
                   <h2>{s.title}</h2>
                   <p>{s.tag}</p>
                 </div>
-              </Link>
+              </a>
             );
           })}
         </div>

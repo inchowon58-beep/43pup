@@ -1187,12 +1187,15 @@ body.cattery-mode {
 }
 
 .hug-hub-card {
+  display: block;
   background: #fffdf8;
   border: 1px solid var(--line);
   min-height: 210px;
   position: relative;
   overflow: hidden;
   color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .hug-hub-card:hover .hug-photo {
