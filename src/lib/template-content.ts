@@ -83,7 +83,7 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
   const flows = [
     `${kw} 진행은 노트 읽기 → 문의 → 아이 확인 → 입양 순입니다. 급하게 결정하지 않아도 됩니다.`,
     `분양가는 시기·개체에 따라 달라 이 글에 단가를 박지 않습니다. ${HUGDAY_PHONE} 상담에서 포함 항목부터 맞춰 드립니다.`,
-    `공식 안내는 okdog.co.kr 에서 이어서 보실 수 있습니다. 이 페이지는 ${kw}만 다룹니다.`,
+    `연락처는 입점 후 이 사이트에 표시됩니다. 이 페이지는 ${kw}만 다룹니다.`,
   ];
   const trusts = [
     `${kw}에서 ${brand}이 말하는 기준은, 기질을 숨기지 않고 관리 시간을 솔직히 적는 일입니다.`,

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { listPageSummaries, readPage } from "@/lib/seo-pages";
 import { isRealImage } from "@/lib/images";
 import { faqJsonLd } from "@/lib/faq-data";
-import { getGlobalSponsor } from "@/lib/site-sponsor";
+import { getPublicSponsor } from "@/lib/site-sponsor";
 import { hugdaySiteFromRequest } from "@/lib/hugday-host";
 import { absoluteUrl, publicOrigin } from "@/lib/public-url";
 import {
@@ -67,11 +67,11 @@ export default async function GuidePage({ params }: Props) {
   const origin = await publicOrigin();
   const pageUrl = absoluteUrl(origin, `/guide/${encodeURIComponent(page.slug)}`);
   const images = (page.images || []).slice(0, 3);
-  const sponsor = await getGlobalSponsor();
-  const waiting = sponsor.status === "RECRUITING";
-  const phone = sponsor.phone_number.trim();
-  const home = sponsorHomepageUrl(sponsor);
-  const yt = youtubeVideoId(sponsorYoutubeUrl(sponsor, 1));
+  const sponsor = await getPublicSponsor();
+  const waiting = sponsor?.status === "RECRUITING";
+  const phone = sponsor?.status === "ACTIVE" ? sponsor.phone_number.trim() : "";
+  const home = sponsor?.status === "ACTIVE" ? sponsorHomepageUrl(sponsor) : "";
+  const yt = sponsor?.status === "ACTIVE" ? youtubeVideoId(sponsorYoutubeUrl(sponsor, 1)) : null;
 
   const breadcrumb = {
     "@context": "https://schema.org",

@@ -1,5 +1,4 @@
 import { SITE, KAKAO_CTA_HINT } from "./site";
-import { HUGDAY_PHONE } from "./hugday-sites";
 
 export type FaqItem = { q: string; a: string };
 
@@ -14,7 +13,7 @@ export const HOME_FAQS: FaqItem[] = [
   },
   {
     q: "상담은 어떻게 하나요?",
-    a: `전화 ${HUGDAY_PHONE} 또는 공식 안내 사이트로 문의하시면 됩니다. ${KAKAO_CTA_HINT}`,
+    a: `입점된 사이트의 연락처로 문의하시면 됩니다. ${KAKAO_CTA_HINT}`,
   },
   {
     q: "입점대기중이면 어떻게 보이나요?",

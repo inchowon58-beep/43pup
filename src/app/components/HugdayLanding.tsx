@@ -16,13 +16,13 @@ export default function HugdayLanding({
 }: {
   page: HugdayPage;
   site: HugdaySite;
-  sponsor: SiteSponsor;
+  sponsor: SiteSponsor | null;
 }) {
   const photos = hugdayPhotos(site);
-  const waiting = sponsor.status === "RECRUITING";
-  const phone = sponsor.phone_number.trim();
-  const home = sponsorHomepageUrl(sponsor);
-  const yt = youtubeVideoId(sponsorYoutubeUrl(sponsor, 1));
+  const waiting = sponsor?.status === "RECRUITING";
+  const phone = sponsor?.status === "ACTIVE" ? sponsor.phone_number.trim() : "";
+  const home = sponsor?.status === "ACTIVE" ? sponsorHomepageUrl(sponsor) : "";
+  const yt = sponsor?.status === "ACTIVE" ? youtubeVideoId(sponsorYoutubeUrl(sponsor, 1)) : null;
 
   return (
     <div
@@ -195,7 +195,7 @@ export default function HugdayLanding({
         <p className="hug-foot-en">POONG DAY · {kindLabel(site)}</p>
         <p>
           {site.title}
-          {waiting ? " · 입점대기중" : phone ? ` · ${phone}` : ""}
+          {waiting ? " · 입점대기중" : ""}
         </p>
       </footer>
     </div>

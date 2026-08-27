@@ -62,7 +62,8 @@ export function sponsorKakaoUrl(sponsor: SiteSponsor): string {
 }
 
 /** 관리자에서 등록한 카카오만 사용. 비어 있으면 연결하지 않음. */
-export function publicKakaoUrl(sponsor: SiteSponsor): string {
+export function publicKakaoUrl(sponsor: SiteSponsor | null | undefined): string {
+  if (!sponsor) return "";
   return sponsorKakaoUrl(sponsor);
 }
 

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { SITE } from "@/lib/site";
 import { publicOrigin } from "@/lib/public-url";
 import { faqJsonLd, howToJsonLd, orgJsonLd } from "@/lib/faq-data";
-import { getGlobalSponsor } from "@/lib/site-sponsor";
+import { getPublicSponsor } from "@/lib/site-sponsor";
 import { publicKakaoUrl } from "@/lib/site-sponsor-shared";
 import { hugdaySiteFromRequest } from "@/lib/hugday-host";
 import { buildHugdayPage } from "@/lib/hugday-content";
@@ -12,6 +12,7 @@ import { HUGDAY_THEME } from "@/lib/hugday-sites";
 import { getHugdayNaverMeta } from "@/lib/hugday-meta";
 import SponsorStickyFooter from "./components/SponsorStickyFooter";
 import SponsorFooterGate from "./components/SponsorFooterGate";
+import HugdayAdminFooter from "./components/HugdayAdminFooter";
 import { KakaoHrefProvider } from "./components/KakaoHrefProvider";
 import "./globals.css";
 
@@ -79,10 +80,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const site = await hugdaySiteFromRequest();
-  const sponsor = await getGlobalSponsor();
+  const sponsor = await getPublicSponsor();
   const kakaoHref = publicKakaoUrl(sponsor);
   const phone =
-    sponsor.status === "ACTIVE" && sponsor.phone_number.trim()
+    sponsor?.status === "ACTIVE" && sponsor.phone_number.trim()
       ? sponsor.phone_number.trim()
       : undefined;
   const origin = site?.siteUrl || (await publicOrigin());
@@ -121,6 +122,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           {children}
           <SponsorFooterGate>
             <SponsorStickyFooter />
+            <HugdayAdminFooter />
           </SponsorFooterGate>
         </KakaoHrefProvider>
       </body>

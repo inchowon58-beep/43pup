@@ -174,7 +174,7 @@ function writeFs(slug: string, data: SiteSponsor) {
   fs.writeFileSync(p, JSON.stringify(data, null, 2), "utf-8");
 }
 
-export async function readSiteSponsorRaw(slug = ""): Promise<SiteSponsor> {
+export async function readSavedSponsor(slug = ""): Promise<SiteSponsor | null> {
   if (resolveBlobToken()) {
     const blobRaw = await readBlobText(slug);
     if (blobRaw) {
@@ -185,11 +185,22 @@ export async function readSiteSponsorRaw(slug = ""): Promise<SiteSponsor> {
       }
     }
   }
-  return readFs(slug) || defaultHugdaySponsor(slug);
+  return readFs(slug);
+}
+
+export async function readSiteSponsorRaw(slug = ""): Promise<SiteSponsor> {
+  return (await readSavedSponsor(slug)) || defaultHugdaySponsor(slug);
 }
 
 export async function getSponsorBySlug(slug: string): Promise<SiteSponsor> {
   return readSiteSponsorRaw(slug);
+}
+
+/** 저장된 입점만. 허브·미저장은 연락처를 공개하지 않습니다. */
+export async function getPublicSponsor(): Promise<SiteSponsor | null> {
+  const slug = await hugdaySlugFromRequest();
+  if (!slug) return null;
+  return cachedSaved(slug);
 }
 
 export async function getGlobalSponsor(): Promise<SiteSponsor> {
@@ -200,6 +211,12 @@ export async function getGlobalSponsor(): Promise<SiteSponsor> {
 const cachedRead = unstable_cache(
   async (key: string) => readSiteSponsorRaw(key === "hub" ? "" : key),
   ["hugday-site-sponsor"],
+  { tags: [GLOBAL_SPONSOR_TAG], revalidate: 3600 }
+);
+
+const cachedSaved = unstable_cache(
+  async (slug: string) => readSavedSponsor(slug),
+  ["hugday-saved-sponsor"],
   { tags: [GLOBAL_SPONSOR_TAG], revalidate: 3600 }
 );
 

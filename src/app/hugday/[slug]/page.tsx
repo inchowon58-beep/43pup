@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getHugdaySite, HUGDAY_SITES } from "@/lib/hugday-sites";
 import { buildHugdayPage } from "@/lib/hugday-content";
-import { getSponsorBySlug } from "@/lib/site-sponsor";
+import { getPublicSponsor } from "@/lib/site-sponsor";
 import HugdayLanding from "@/app/components/HugdayLanding";
 
 export const dynamic = "force-dynamic";
@@ -17,6 +17,6 @@ export default async function HugdaySitePage({ params }: Props) {
   const site = getHugdaySite(slug);
   if (!site) notFound();
   const page = buildHugdayPage(site);
-  const sponsor = await getSponsorBySlug(site.slug);
+  const sponsor = await getPublicSponsor();
   return <HugdayLanding page={page} site={site} sponsor={sponsor} />;
 }

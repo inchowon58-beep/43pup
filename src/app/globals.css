@@ -1174,9 +1174,34 @@ body.cattery-mode {
 
 .hug-foot {
   border-top: 1px solid var(--line);
-  padding: 2rem 1rem 7rem;
+  padding: 2rem 1rem 2rem;
   text-align: center;
   background: #fffdf8;
+}
+
+.hug-admin-foot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.1rem 1rem 1.4rem;
+  border-top: 1px solid var(--line);
+  background: #fffdf8;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.hug-admin-foot a {
+  display: inline-block;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.hug-admin-foot a:hover {
+  background: var(--hug-soft);
 }
 
 .hug-hub-grid {
@@ -1273,7 +1298,7 @@ body.cattery-mode {
 }
 
 body.hug-mode {
-  padding-bottom: 7.5rem;
+  padding-bottom: 4.2rem;
   background: var(--bg-warm);
 }
 
