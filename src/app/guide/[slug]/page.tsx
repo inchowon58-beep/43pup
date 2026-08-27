@@ -172,6 +172,14 @@ export default async function GuidePage({ params }: Props) {
           ) : null}
         </div>
       </div>
+
+      <footer className="hug-foot">
+        <p className="hug-wordmark">포옹데이</p>
+        <p className="hug-foot-en">POONG DAY · GUIDE</p>
+        <a className="hug-admin-login" href="/admin">
+          관리자 로그인
+        </a>
+      </footer>
     </article>
   );
 }

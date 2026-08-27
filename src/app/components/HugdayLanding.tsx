@@ -197,6 +197,9 @@ export default function HugdayLanding({
           {site.title}
           {waiting ? " · 입점대기중" : ""}
         </p>
+        <a className="hug-admin-login" href="/admin">
+          관리자 로그인
+        </a>
       </footer>
     </div>
   );

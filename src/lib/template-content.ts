@@ -2,7 +2,6 @@ import { SITE, KAKAO_CTA_HINT } from "./site";
 import { pickImages } from "./images";
 import type { SeoPage } from "./seo-pages";
 import { slugifyKeyword } from "./seo-pages";
-import { HUGDAY_PHONE } from "./hugday-sites";
 
 function hash(s: string): number {
   let h = 0;
@@ -82,7 +81,7 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
   ];
   const flows = [
     `${kw} 진행은 노트 읽기 → 문의 → 아이 확인 → 입양 순입니다. 급하게 결정하지 않아도 됩니다.`,
-    `분양가는 시기·개체에 따라 달라 이 글에 단가를 박지 않습니다. ${HUGDAY_PHONE} 상담에서 포함 항목부터 맞춰 드립니다.`,
+    `분양가는 시기·개체에 따라 달라 이 글에 단가를 박지 않습니다. 상담에서 포함 항목부터 맞춰 드립니다.`,
     `연락처는 입점 후 이 사이트에 표시됩니다. 이 페이지는 ${kw}만 다룹니다.`,
   ];
   const trusts = [
@@ -118,7 +117,7 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
     },
     {
       q: `${kw} 상담은 어떻게 하나요?`,
-      a: `전화 ${HUGDAY_PHONE} 또는 공식 안내로 희망 시기만 알려 주셔도 됩니다. ${KAKAO_CTA_HINT}`,
+      a: `입점된 사이트의 연락처 또는 공식 안내로 희망 시기만 알려 주셔도 됩니다. ${KAKAO_CTA_HINT}`,
     },
     {
       q: `분양가는 얼마인가요?`,

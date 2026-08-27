@@ -876,7 +876,7 @@ body.cattery-mode {
   color: var(--ink);
   background: var(--bg-warm);
   min-height: 100vh;
-  padding-bottom: 6rem;
+  padding-bottom: 2rem;
 }
 
 .hug-nav {
@@ -1174,9 +1174,24 @@ body.cattery-mode {
 
 .hug-foot {
   border-top: 1px solid var(--line);
-  padding: 2rem 1rem 2rem;
+  padding: 2rem 1rem 2.4rem;
   text-align: center;
   background: #fffdf8;
+}
+
+.hug-admin-login {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.hug-admin-login:hover {
+  background: var(--hug-soft);
 }
 
 .hug-admin-foot {
@@ -1194,7 +1209,7 @@ body.cattery-mode {
 .hug-admin-foot a {
   display: inline-block;
   padding: 0.45rem 0.85rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--ink);
   color: var(--ink);
   font-weight: 700;
   text-decoration: none;

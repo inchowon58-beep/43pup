@@ -398,7 +398,7 @@
       "gemini_prompt","extras_text","batch_size"
     ];
     const checks = ["do_indexnow","open_chrome_after","schedule_enabled","auto_naver_register"];
-    const DEFAULT_PROMPT = "톤: 현실적 안내. {keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.\\n견종·묘종·보호소 전용 안내입니다. 상담은 0505-300-7779, 공식 사이트는 okdog.co.kr.\\n동·구 지역 키워드는 쓰지 마세요. 금지: 가격 단정, 허위, 다른 업체 실명 비방.\\n";
+    const DEFAULT_PROMPT = "톤: 현실적 안내. {keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.\\n견종·묘종·보호소 전용 안내입니다. 전화번호·공식 사이트 주소는 넣지 마세요. 입점 후 사이트에 표시됩니다.\\n동·구 지역 키워드는 쓰지 마세요. 금지: 가격 단정, 허위, 다른 업체 실명 비방.\\n";
 
     function fillGeminiModels(models, selected) {
       const list = $("gemini_model_list");
