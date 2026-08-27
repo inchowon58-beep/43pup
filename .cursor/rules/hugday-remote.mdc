@@ -1,0 +1,20 @@
+---
+description: 이 프로젝트는 43pup(포옹데이) 전용. 230cat·maincoonmar와 섞지 않는다.
+alwaysApply: true
+---
+
+# 포옹데이 / 43pup 배포 가드
+
+GitHub origin은 오직 `https://github.com/inchowon58-beep/43pup.git` 입니다.
+
+하지 말 것:
+- `230cat`, `maincoonmar` remote로 push
+- 기존 Vercel 프로젝트 `230cat` (`prj_tbkKimIQOrRxK8CJSSvihVN5B8XD`)에 `vercel --prod`
+- marketstore 지역 사이트·동/구 키워드를 이 브랜드에 다시 넣기
+
+해도 되는 것:
+- `43pup` origin 푸시
+- 사용자가 만든 새 Vercel 프로젝트에만 배포
+- 서브도메인 `{folder}pet.puppytimes.co.kr`
+
+브랜드: 포옹데이. 입점 기본값은 입점완료(ACTIVE).

@@ -10,7 +10,7 @@ from typing import Any, Dict
 from project_paths import webdoc_dir
 
 DEFAULT_VM_PATH = ""
-DEFAULT_SITE_URL = "https://marketstore.co.kr"
+DEFAULT_SITE_URL = "https://puppytimes.co.kr"
 
 
 def settings_path() -> str:
@@ -40,8 +40,15 @@ def default_settings() -> Dict[str, Any]:
         "naver_id": "",
         "naver_password": "",
         "naver_site": DEFAULT_SITE_URL,
+        "site_group": "1",
+        "window_start": "07:00",
+        "window_end": "22:00",
+        "batch_size": "3",
+        "extras_text": "분양가\n성격\n키우기\n입양\n특징",
+        "breeds_text": "",
+        "breed_images_text": "",
         "twocaptcha_api_key": "",
-        "naver_daily_limit": "50",
+        "naver_daily_limit": "10000",
         "naver_delay_min": "3",
         "naver_delay_max": "8",
         "schedule_last_run_date": "",
@@ -49,10 +56,9 @@ def default_settings() -> Dict[str, Any]:
         "gemini_api_key": "",
         "gemini_model": "gemini-3.5-flash-lite",
         "gemini_prompt": (
-            "톤: 현실적 안내. 사실(주의 신호·확인 항목)은 분명히.\n"
-            "키워드에 지역명이 있으면 그 지역에서 업체를 고르기 전 독자 시점으로 쓰세요.\n"
-            "한 업체를 홍보하지 마세요. 금지: 가격 단정, 허위, 특정 업체 실명 비방, 전화번호.\n"
-            "{keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요. 상담은 카카오톡만.\n"
+            "톤: 현실적 안내. {keyword}를 제목·H1·본문·FAQ에 자연스럽게 넣으세요.\n"
+            "견종·묘종·보호소 전용 안내입니다. 상담은 0505-300-7779, 공식 사이트는 okdog.co.kr.\n"
+            "동·구 지역 키워드는 쓰지 마세요. 금지: 가격 단정, 허위, 다른 업체 실명 비방.\n"
         ),
     }
 

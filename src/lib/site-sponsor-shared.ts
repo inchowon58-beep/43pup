@@ -1,5 +1,3 @@
-import { SITE } from "./site";
-
 export type SponsorStatus = "RECRUITING" | "ACTIVE";
 
 export type SiteSponsor = {
@@ -26,26 +24,26 @@ export const GLOBAL_SPONSOR_TAG = "global-sponsor";
 
 export const DEFAULT_SPONSOR: SiteSponsor = {
   id: 1,
-  status: "RECRUITING",
-  sponsor_name: "",
-  phone_number: "",
+  status: "ACTIVE",
+  sponsor_name: "포옹데이",
+  phone_number: "0505-300-7779",
   link_url: "",
-  homepage_url: "",
-  recruiting_notice: "전국 메인쿤분양 입점 제휴 · 사이트 임대 모집 중",
+  homepage_url: "https://www.okdog.co.kr",
+  recruiting_notice: "입점대기중 · 제휴·임대 문의",
   rental_price: "30만원",
   highlight_points: [
-    "메인쿤분양 상담",
-    "메인쿤크기·성격 안내",
-    "메인쿤분양가 안내",
+    "견종·묘종 상담",
+    "기질·관리 안내",
+    "분양가 항목 확인",
     "방문·상담 일정",
-    "입양 후 키우기 안내",
+    "입양 후 적응 안내",
   ],
-  youtube_url: "",
+  youtube_url: "https://www.youtube.com/shorts/fbYtG57dN4U",
   youtube_url_2: "",
-  sponsor_youtube_url: "",
+  sponsor_youtube_url: "https://www.youtube.com/shorts/fbYtG57dN4U",
   sponsor_youtube_url_2: "",
-  sponsor_youtube_channel: "",
-  sponsor_youtube_desc: "",
+  sponsor_youtube_channel: "포옹데이",
+  sponsor_youtube_desc: "포옹데이 안내 영상",
 };
 
 export function phoneToTel(_phone: string): string {

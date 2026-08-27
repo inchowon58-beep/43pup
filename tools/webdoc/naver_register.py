@@ -121,6 +121,9 @@ def register_urls(
     on_log: Optional[LogFn] = None,
     stop_requested: Optional[Callable[[], bool]] = None,
     login_retries: int = 3,
+    keep_browser_open: bool = False,
+    existing_driver=None,
+    on_driver: Optional[Callable] = None,
 ) -> Tuple[bool, str]:
     urls = [u.strip() for u in urls if u and u.strip()]
     if not urls:
@@ -178,19 +181,26 @@ def register_urls(
             naver_password=naver_password.strip(),
             twocaptcha_api_key=(twocaptcha_api_key or "").strip(),
             stop_requested=stop_requested,
-            keep_browser_open=False,
-            allow_manual_login=False,  # 팝업 대기 없이 실패 → Chrome 재시작 재시도
+            keep_browser_open=keep_browser_open,
+            existing_driver=existing_driver,
+            allow_manual_login=False,
             login_retries=max(1, int(login_retries)),
         )
+        if on_driver:
+            try:
+                on_driver(getattr(report, "driver", None))
+            except Exception:
+                pass
         try:
-            if report and getattr(report, "driver", None) is not None:
+            if (not keep_browser_open) and report and getattr(report, "driver", None) is not None:
                 safe_quit_driver(report.driver, on_log=log)
                 report.driver = None
         except Exception:
             pass
+        done = "유지" if keep_browser_open else "크롬 종료"
         msg = (
             f"블로그 등록 완료 — 성공 {report.success_count}건, "
-            f"실패 {report.fail_count}건, 스킵 {len(report.skipped)}건 · 크롬 종료"
+            f"실패 {report.fail_count}건, 스킵 {len(report.skipped)}건 · {done}"
         )
         return report.success_count > 0 or report.fail_count == 0, msg
     except Exception as e:
@@ -200,4 +210,24 @@ def register_urls(
                     safe_quit_driver(report.driver, on_log=log)
             except Exception:
                 pass
+        if on_driver:
+            try:
+                on_driver(None)
+            except Exception:
+                pass
         return False, f"블로그 등록 오류: {e}"
+
+
+def quit_kept_driver(driver, on_log: Optional[LogFn] = None) -> None:
+    if driver is None:
+        return
+    try:
+        ensure_naver_import()
+        from naver_searchadvisor import safe_quit_driver  # type: ignore
+
+        safe_quit_driver(driver, on_log=on_log)
+    except Exception:
+        try:
+            driver.quit()
+        except Exception:
+            pass

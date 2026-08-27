@@ -2,12 +2,12 @@ import fs from "fs";
 import path from "path";
 import { get, put } from "@vercel/blob";
 import { revalidateTag, unstable_cache } from "next/cache";
-import { CATTERY_SLUGS } from "./cattery-regions";
+import { HUGDAY_SLUGS } from "./hugday-sites";
 
-export const CATTERY_META_TAG = "cattery-naver-meta";
+export const CATTERY_META_TAG = "hugday-naver-meta";
 
-const BLOB_PATH = "cattery-data/naver-meta.json";
-const DATA_PATH = path.join(process.cwd(), "public", "cattery-data", "naver-meta.json");
+const BLOB_PATH = "hugday-data/naver-meta.json";
+const DATA_PATH = path.join(process.cwd(), "public", "hugday-data", "naver-meta.json");
 const BLOB_ACCESS = "private" as const;
 
 export type CatteryNaverMap = Record<string, string>;
@@ -57,7 +57,7 @@ function normalize(raw: unknown): CatteryNaverMap {
   if (!raw || typeof raw !== "object") return out;
   for (const [k, v] of Object.entries(raw as Record<string, unknown>)) {
     const slug = String(k || "").toLowerCase().trim();
-    if (!CATTERY_SLUGS.has(slug)) continue;
+    if (!HUGDAY_SLUGS.has(slug)) continue;
     const meta = parseNaverMeta(String(v || ""));
     if (meta) out[slug] = meta;
   }
@@ -133,6 +133,10 @@ export async function getCatteryNaverMap(): Promise<CatteryNaverMap> {
 export async function getCatteryNaverMeta(slug: string): Promise<string> {
   const map = await getCatteryNaverMap();
   return map[slug] || "";
+}
+
+export async function getHugdayNaverMeta(slug: string): Promise<string> {
+  return getCatteryNaverMeta(slug);
 }
 
 export async function saveCatteryNaverMap(input: CatteryNaverMap): Promise<CatteryNaverMap> {

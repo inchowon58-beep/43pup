@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { Eye, Globe, MessageCircle, PhoneCall } from "lucide-react";
+import { Globe, MessageCircle, PhoneCall } from "lucide-react";
 import type { SiteSponsor } from "@/lib/site-sponsor-shared";
 import { phoneToTel, sponsorKakaoUrl, sponsorHomepageUrl } from "@/lib/site-sponsor-shared";
-import { SITE, CTA_RENTAL } from "@/lib/site";
+import { CTA_RENTAL } from "@/lib/site";
 
 type Props = {
   sponsor: SiteSponsor;
@@ -24,46 +23,33 @@ export default function SponsorStickyFooterBar({
 
   if (sponsor.status === "RECRUITING") {
     return (
-      <div className={wrapperClass} aria-label="제휴 문의">
+      <div className={wrapperClass} aria-label="입점대기">
         <div className="fixed-cta-inner">
-          {(hasPhone || homepageUrl) && (
-            <div className={hasPhone && homepageUrl ? "fixed-cta-row" : undefined}>
-              {hasPhone && (
-                <a href={phoneHref} className="fixed-cta-call w-full justify-center">
-                  <PhoneCall size={16} aria-hidden />
-                  전화 제휴문의
-                </a>
-              )}
-              {homepageUrl && (
-                <a
-                  href={homepageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="fixed-cta-call fixed-cta-call--alt w-full justify-center"
-                >
-                  <Globe size={16} aria-hidden />
-                  홈페이지
-                </a>
-              )}
-            </div>
-          )}
-          {recruitingKakao ? (
-          <a
-            href={recruitingKakao}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fixed-cta-call w-full justify-center"
-          >
-            <MessageCircle size={16} aria-hidden />
-            {CTA_RENTAL} {sponsor.rental_price ? `· ${sponsor.rental_price}` : ""}
-          </a>
+          <div className="fixed-cta-call w-full justify-center" style={{ cursor: "default" }}>
+            입점대기중
+          </div>
+          {homepageUrl ? (
+            <a
+              href={homepageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fixed-cta-call fixed-cta-call--alt w-full justify-center"
+            >
+              <Globe size={16} aria-hidden />
+              홈페이지
+            </a>
           ) : null}
-          {showPreviewLink && variant === "fixed" && (
-            <Link href="/sample" className="fixed-cta-build w-full justify-center">
-              <Eye size={16} aria-hidden />
-              입점 후 미리보기
-            </Link>
-          )}
+          {recruitingKakao ? (
+            <a
+              href={recruitingKakao}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fixed-cta-call w-full justify-center"
+            >
+              <MessageCircle size={16} aria-hidden />
+              {CTA_RENTAL} {sponsor.rental_price ? `· ${sponsor.rental_price}` : ""}
+            </a>
+          ) : null}
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAdmin } from "@/lib/auth";
-import { CATTERY_REGIONS } from "@/lib/cattery-regions";
+import { HUGDAY_SITES } from "@/lib/hugday-sites";
 import { getCatteryNaverMap, saveCatteryNaverMap } from "@/lib/cattery-meta";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +11,7 @@ export async function GET() {
   }
   const metas = await getCatteryNaverMap();
   return NextResponse.json({
-    items: CATTERY_REGIONS.map((r) => ({
+    items: HUGDAY_SITES.map((r) => ({
       name: r.name,
       slug: r.slug,
       host: r.host,

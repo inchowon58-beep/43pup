@@ -13,7 +13,7 @@ import random
 import string
 import time
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 from urllib.parse import quote
 
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
@@ -32,7 +32,7 @@ DISPLAY_ORDER = list(range(12, IMAGE_COUNT + 1))
 
 
 def _rng(keyword: str, idx: int) -> random.Random:
-    seed = int(hashlib.md5(f"{keyword}|{idx}|maincoonmar".encode()).hexdigest()[:8], 16)
+    seed = int(hashlib.md5(f"{keyword}|{idx}|hugday".encode()).hexdigest()[:8], 16)
     return random.Random(seed)
 
 
@@ -362,3 +362,228 @@ def generate_batch(
         with open(idx_path, "w", encoding="utf-8") as f:
             json.dump(existing, f, ensure_ascii=False, indent=2)
     return urls
+
+
+def cattery_image_pool(breed: str, breed_images: Dict[str, List[str]]) -> List[str]:
+    urls = breed_images.get(breed) or []
+    if urls:
+        return list(urls)
+    neva = [f"https://image.cattery.co.kr/neva/{i:02d}.webp" for i in range(1, 46)]
+    main = [f"https://image.cattery.co.kr/maincoon/{i:02d}.webp" for i in range(1, 46)]
+    return neva + main
+
+
+def pick_cattery_images(keyword: str, breed: str, breed_images: Dict[str, List[str]], count: int = 3) -> List[str]:
+    pool = cattery_image_pool(breed, breed_images)
+    rng = random.Random(int(hashlib.md5(f"{keyword}|cattery".encode()).hexdigest()[:8], 16))
+    shuffled = list(pool)
+    rng.shuffle(shuffled)
+    return shuffled[:count] if shuffled else image_urls(count, 1)
+
+
+def infer_breed(keyword: str, breeds: List[str]) -> str:
+    for b in sorted(breeds, key=len, reverse=True):
+        if b and b in keyword:
+            return b
+    return ""
+
+
+def build_cattery_content(
+    keyword: str,
+    idx: int,
+    *,
+    region_name: str,
+    region_slug: str,
+    images: List[str],
+    kind: str = "",
+    folder: str = "",
+) -> Dict[str, Any]:
+    rng = _rng(keyword + region_slug + folder, idx)
+    kw = keyword.strip()
+    city = region_name
+    now = datetime.utcnow().isoformat() + "Z"
+    title = f"{kw} | {city} 포옹데이"
+    if len(title) > 60:
+        title = f"{kw} | 포옹데이"
+    leads = [
+        f"{kw} 안내. {city} 기질·관리·집 환경을 확인하고 포옹데이에서 상담하세요. 0505-300-7779",
+        f"{city} {kw}. 사진만 보지 말고 생활 리듬부터 맞춰 보세요. 포옹데이 상담 0505-300-7779",
+        f"{kw} | 포옹데이. {city} 입양 전 확인할 항목을 정리했습니다.",
+    ]
+    meta = leads[idx % len(leads)]
+    if len(meta) > 158:
+        meta = meta[:157] + "…"
+    imgs = images[:3] or image_urls(3, idx)
+    p1 = [
+        f"{city}에서 {kw}을 찾으실 때 외모만 보지 마시고, 생활 리듬과 관리 시간부터 그려 보시면 선택이 분명해집니다.",
+        f"{kw}은 {city}마다 같은 문장을 쓰지 않습니다. 이 글은 기질과 집 환경을 먼저 적습니다.",
+        f"{city} {kw}를 고를 때 흔한 오해는 어린 얼굴이 곧 성체라는 점입니다. 성장 후 관리량을 먼저 보세요.",
+    ]
+    p2 = [
+        f"분양가는 시기·개체에 따라 달라 이 글에 단가를 박지 않습니다. {city} 상담에서 포함 항목부터 맞춰 드립니다.",
+        f"한 줄 가격보다 포함 항목이 중요합니다. {kw} 상담에서 월령·건강 기록을 함께 맞춰 드립니다.",
+        f"무료분양 문구만 강조되면 서류를 따로 확인하세요. {city} {kw} 안내는 단가를 박지 않습니다.",
+    ]
+    p3 = [
+        f"공식 안내는 okdog.co.kr 에서 이어서 보실 수 있습니다. 이 페이지는 {kw} 전용 노트입니다.",
+        f"이 사이트는 {city} 전용입니다. 다른 견종·묘종 페이지와 본문을 나눠 두었습니다.",
+        f"포옹데이 {city} 노트는 {kw}만 다룹니다. 동·구 지역 키워드는 쓰지 않습니다.",
+    ]
+    shelter_note = "보호 중인 아이는 품종이 한 가지로 묶이지 않습니다. 지금 이 아이의 안정부터 보세요." if kind == "shelter" else ""
+    return {
+        "slug": kw,
+        "keyword": kw,
+        "regionSlug": region_slug,
+        "regionName": city,
+        "title": title,
+        "metaDescription": meta,
+        "metaKeywords": f"{kw}, {city}, 포옹데이, 분양, 기질, 키우기",
+        "h1": kw,
+        "heroSubtitle": f"{city} {kw}을 알아볼 때 확인하는 노트입니다.",
+        "heroBadge": city,
+        "heroTitleLine1": kw,
+        "heroTitleLine2": "포옹데이",
+        "heroBar": f"{city} 분양 상담",
+        "sections": [
+            {
+                "h2": f"{kw}, 입양 전에 볼 점",
+                "paragraphs": [
+                    p1[rng.randrange(len(p1))],
+                    p2[rng.randrange(len(p2))],
+                    *( [shelter_note] if shelter_note else [] ),
+                    p3[rng.randrange(len(p3))],
+                ],
+            },
+            {
+                "h2": f"{city}에서 {kw} 진행 순서",
+                "paragraphs": [
+                    f"1단계는 이 글에서 {kw} 기본 안내를 확인하는 일입니다.",
+                    "2단계는 0505-300-7779 또는 공식 안내로 희망 시기를 알리는 일입니다.",
+                    f"3단계는 아이 확인 후 입양입니다. {kw}은 보호자 결정이 먼저입니다.",
+                ],
+            },
+            {
+                "h2": f"{kw} FAQ",
+                "paragraphs": [
+                    f"{city}와 희망 시기만 알려 주셔도 상담이 시작됩니다.",
+                    f"같은 브랜드라도 {city} 페이지 본문은 {kw}에 맞춰 따로 두었습니다.",
+                ],
+            },
+        ],
+        "faqs": [
+            {
+                "q": f"{kw}은 어떻게 문의하나요?",
+                "a": "0505-300-7779 로 전화하시거나 https://www.okdog.co.kr 안내를 확인하시면 됩니다.",
+            },
+            {
+                "q": f"{city} 전용 안내인가요?",
+                "a": f"이 글은 {kw} 전용이며, 일정은 포옹데이 상담에서 안내합니다.",
+            },
+            {
+                "q": "공식 홈페이지는 어디인가요?",
+                "a": "https://www.okdog.co.kr 입니다.",
+            },
+        ],
+        "images": imgs,
+        "ctaText": "공식 안내 바로가기",
+        "createdAt": now,
+        "updatedAt": now,
+        "generatedBy": "hugday-template",
+    }
+
+
+def _fs_slug(slug: str) -> str:
+    bad = '<>:"/\\|?*'
+    s = "".join("_" if c in bad else c for c in (slug or "").strip())
+    return s or "page"
+
+
+def write_cattery_job(
+    job: Dict[str, Any],
+    idx: int,
+    out_dir: str,
+    sync_public: str,
+    *,
+    breeds: List[str],
+    breed_images: Dict[str, List[str]],
+    gen_mode: str = "template",
+    gemini_api_key: str = "",
+    gemini_model: str = DEFAULT_MODEL,
+    gemini_prompt: str = "",
+    on_log=None,
+) -> Tuple[str, Dict[str, Any]]:
+    """한 잡 발행. (공개 URL, 페이지 JSON) 반환."""
+    os.makedirs(out_dir, exist_ok=True)
+    pages_dir = os.path.join(out_dir, "pages")
+    os.makedirs(pages_dir, exist_ok=True)
+    kw = str(job.get("keyword") or "").strip()
+    region_name = str(job.get("region") or "")
+    region_slug = str(job.get("slug") or "")
+    site_url = str(job.get("siteUrl") or "").rstrip("/")
+    breed = infer_breed(kw, breeds)
+    folder = str(job.get("folder") or "").strip()
+    if folder:
+        pool = [f"https://image.cattery.co.kr/{folder}/{i:02d}.webp" for i in range(1, 46)]
+        rng = random.Random(int(hashlib.md5(f"{kw}|hugday".encode()).hexdigest()[:8], 16))
+        shuffled = list(pool)
+        rng.shuffle(shuffled)
+        images = shuffled[:3]
+    else:
+        images = pick_cattery_images(kw, breed, breed_images, 3)
+    use_gemini = (gen_mode or "template").strip().lower() == "gemini"
+    if use_gemini:
+        if on_log:
+            on_log(f"제미나이 생성: {kw} ({site_url})")
+        page = build_gemini_page(
+            kw,
+            idx,
+            api_key=gemini_api_key,
+            model=gemini_model or DEFAULT_MODEL,
+            user_prompt=gemini_prompt or "",
+            slugify_fn=lambda k, i: k.strip(),
+            image_urls_fn=lambda n, s: images[:n],
+        )
+        page["slug"] = kw
+        page["regionSlug"] = region_slug
+        page["regionName"] = region_name
+        page["images"] = images
+        if not str(page.get("title") or "").startswith(kw):
+            page["title"] = f"{kw} | {region_name} 포옹데이"
+    else:
+        page = build_cattery_content(
+            kw,
+            idx,
+            region_name=region_name,
+            region_slug=region_slug,
+            images=images,
+            kind=str(job.get("kind") or ""),
+            folder=folder,
+        )
+    file_slug = _fs_slug(str(page["slug"]))
+    with open(os.path.join(pages_dir, f"{file_slug}.json"), "w", encoding="utf-8") as f:
+        json.dump(page, f, ensure_ascii=False, indent=2)
+    if sync_public:
+        pub_root = os.path.join(sync_public, "r", region_slug)
+        pub_pages = os.path.join(pub_root, "pages")
+        os.makedirs(pub_pages, exist_ok=True)
+        with open(os.path.join(pub_pages, f"{file_slug}.json"), "w", encoding="utf-8") as f:
+            json.dump(page, f, ensure_ascii=False, indent=2)
+        idx_path = os.path.join(pub_root, "index.json")
+        existing: Dict[str, Any] = {"slugs": [], "entries": [], "updatedAt": ""}
+        if os.path.isfile(idx_path):
+            with open(idx_path, encoding="utf-8") as f:
+                existing = json.load(f)
+        entry = _page_to_summary(page)
+        slugs = [s for s in (existing.get("slugs") or []) if s != page["slug"]]
+        slugs.insert(0, page["slug"])
+        entries = [e for e in (existing.get("entries") or []) if e.get("slug") != page["slug"]]
+        entries.insert(0, entry)
+        existing = {
+            "slugs": slugs,
+            "entries": entries,
+            "updatedAt": datetime.utcnow().isoformat() + "Z",
+        }
+        with open(idx_path, "w", encoding="utf-8") as f:
+            json.dump(existing, f, ensure_ascii=False, indent=2)
+    return f"{site_url}/guide/{quote(page['slug'])}", page
+

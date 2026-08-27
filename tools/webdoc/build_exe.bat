@@ -9,8 +9,8 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo [2/2] 와일드쿤 웹문서생성기 빌드... (--windowed: 검은 콘솔 없음)
-python -m PyInstaller --noconfirm --clean --windowed --name "와일드쿤웹문서생성기" ^
+echo [2/2] 포옹데이 웹문서생성기 빌드... (--windowed: 검은 콘솔 없음)
+python -m PyInstaller --noconfirm --clean --windowed --name "포옹데이웹문서생성기" ^
   --add-data "indexnow.py;." ^
   --add-data "blob_sync.py;." ^
   --add-data "blob-upload.mjs;." ^
@@ -25,6 +25,11 @@ python -m PyInstaller --noconfirm --clean --windowed --name "와일드쿤웹문�
   --add-data "runtime.py;." ^
   --add-data "webui.py;." ^
   --add-data "chrome_ui.py;." ^
+  --add-data "cattery_catalog.py;." ^
+  --add-data "cattery_places.py;." ^
+  --add-data "hugday_catalog.py;." ^
+  --add-data "..\..\src\lib\hugday-sites.ts;." ^
+  --add-data "..\..\src\lib\cattery-regions.ts;." ^
   --add-data "templates;templates" ^
   --add-data "naver_vm;naver_vm" ^
   --hidden-import "flask" ^
@@ -41,6 +46,9 @@ python -m PyInstaller --noconfirm --clean --windowed --name "와일드쿤웹문�
   --hidden-import "runtime" ^
   --hidden-import "webui" ^
   --hidden-import "chrome_ui" ^
+  --hidden-import "cattery_catalog" ^
+  --hidden-import "cattery_places" ^
+  --hidden-import "hugday_catalog" ^
   --hidden-import "undetected_chromedriver" ^
   --hidden-import "selenium" ^
   --hidden-import "google.genai" ^
@@ -55,11 +63,11 @@ if errorlevel 1 (
 )
 
 echo.
-echo 완료: dist\와일드쿤웹문서생성기\와일드쿤웹문서생성기.exe
+echo 완료: dist\포옹데이웹문서생성기\포옹데이웹문서생성기.exe
 echo.
 echo 실행 방법:
-echo   1) 와일드쿤_웹문서생성기_실행.bat 더블클릭
-echo   2) 또는 dist\와일드쿤웹문서생성기\와일드쿤웹문서생성기.exe
+echo   1) 포옹데이_웹문서생성기_실행.bat 더블클릭
+echo   2) 또는 dist\포옹데이웹문서생성기\포옹데이웹문서생성기.exe
 echo.
 echo 완전 종료는 화면의 [프로그램 종료] 버튼.
 exit /b 0

@@ -27,17 +27,27 @@ BLOB_API_VERSION = "12"
 BLOB_SYNC_BUILD = "20260813-api12-v4"
 
 
-def blob_page_key(slug: str) -> str:
-    h = hashlib.sha256(slug.encode("utf-8")).hexdigest()[:24]
+def blob_page_key(slug: str, region_slug: str = "") -> str:
+    raw = f"{region_slug}\n{slug}" if region_slug else slug
+    h = hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24]
     return f"p_{h}"
 
 
-def blob_page_pathname(slug: str) -> str:
-    key = blob_page_key(slug)
-    path = f"{BLOB_PREFIX}/pages/{key}.json"
+def blob_page_pathname(slug: str, region_slug: str = "") -> str:
+    key = blob_page_key(slug, region_slug)
+    if region_slug:
+        path = f"{BLOB_PREFIX}/r/{region_slug}/pages/{key}.json"
+    else:
+        path = f"{BLOB_PREFIX}/pages/{key}.json"
     if not path.isascii():
         raise RuntimeError(f"non-ASCII blob path generated: {path!r}")
     return path
+
+
+def blob_index_pathname(region_slug: str = "") -> str:
+    if region_slug:
+        return f"{BLOB_PREFIX}/r/{region_slug}/index.json"
+    return f"{BLOB_PREFIX}/index.json"
 
 
 def parse_store_id(token: str) -> str:
@@ -307,3 +317,50 @@ def sync_pages_dir_to_blob(
         True,
         f"Blob 업로드 완료 [{BLOB_SYNC_BUILD}] · {len(uploaded)}건 · 예: {sample_path}{stopped}",
     )
+
+
+def upsert_cattery_page_blob(page: Dict[str, Any]) -> Tuple[bool, str]:
+    token = load_blob_token()
+    if not token:
+        return False, "BLOB_READ_WRITE_TOKEN 없음"
+    slug = str(page.get("slug") or "")
+    region = str(page.get("regionSlug") or "")
+    if not slug or not region:
+        return False, "regionSlug/slug 없음"
+    pathname = blob_page_pathname(slug, region)
+    ok, msg = put_blob_private(pathname, json.dumps(page, ensure_ascii=False), token)
+    if not ok:
+        return False, f"page 실패: {msg}"
+    idx_path = blob_index_pathname(region)
+    slugs: List[str] = []
+    entries: List[Dict[str, Any]] = []
+    raw = get_blob_text(idx_path, token)
+    if raw:
+        try:
+            prev = json.loads(raw)
+            slugs = list(prev.get("slugs") or [])
+            entries = list(prev.get("entries") or [])
+        except json.JSONDecodeError:
+            slugs, entries = [], []
+    slugs = [s for s in slugs if s != slug]
+    slugs.insert(0, slug)
+    entry = {
+        "slug": slug,
+        "keyword": page.get("keyword") or "",
+        "title": page.get("title") or page.get("h1") or slug,
+        "metaDescription": page.get("metaDescription") or "",
+        "h1": page.get("h1") or page.get("title") or slug,
+        "createdAt": page.get("createdAt") or "",
+        "updatedAt": page.get("updatedAt") or page.get("createdAt") or "",
+    }
+    entries = [e for e in entries if e.get("slug") != slug]
+    entries.insert(0, entry)
+    index = {
+        "slugs": slugs,
+        "entries": entries,
+        "updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
+    }
+    ok, msg = put_blob_private(idx_path, json.dumps(index, ensure_ascii=False, indent=2), token)
+    if not ok:
+        return False, f"index 실패: {msg}"
+    return True, pathname

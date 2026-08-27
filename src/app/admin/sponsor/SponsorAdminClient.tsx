@@ -21,12 +21,12 @@ export default function SponsorAdminClient() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [form, setForm] = useState<Omit<SiteSponsor, "id">>({
-    status: "RECRUITING",
+    status: "ACTIVE",
     sponsor_name: "",
     phone_number: "",
     link_url: "",
     homepage_url: "",
-    recruiting_notice: "전국 메인쿤분양 입점 제휴 · 사이트 임대 모집 중",
+    recruiting_notice: "입점대기중 · 제휴·임대 문의",
     rental_price: "30만원",
     highlight_points: [
       "확인할 업체 항목 공개",
@@ -132,7 +132,7 @@ export default function SponsorAdminClient() {
           highlight_points: padHighlightPoints(rest.highlight_points),
         });
       }
-      setMessage("저장되었습니다. 전국 모든 페이지에 즉시 반영됩니다.");
+      setMessage("저장되었습니다. 이 서브도메인 입점 설정에 반영됩니다.");
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "저장 실패");
     } finally {
@@ -192,10 +192,11 @@ export default function SponsorAdminClient() {
     <div className="admin-page-root container min-h-screen py-24 pb-16">
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-sm font-bold text-[var(--sky)]">Global Sponsor</p>
-          <h1 className="text-3xl font-extrabold text-[var(--navy)]">전국 임대 스폰서 관리</h1>
+          <p className="text-sm font-bold text-[var(--sky)]">입점 설정</p>
+          <h1 className="text-3xl font-extrabold text-[var(--navy)]">이 사이트 입점 관리</h1>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            스위치 한 번으로 전국 5,000+ 웹문서의 중간 카드·하단 바가 일괄 반영됩니다.
+            기본은 입점완료입니다. 입점대기로 바꾸면 전화번호 대신 ‘입점대기중’이 노출됩니다.
+            설정은 지금 접속한 서브도메인에만 저장됩니다.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -223,12 +224,12 @@ export default function SponsorAdminClient() {
         <div className="flex items-center justify-between gap-4 rounded-2xl bg-[var(--sky-soft)] p-4">
           <div>
             <p className="font-bold text-[var(--navy)]">
-              {isRecruiting ? "전체 모집 중" : "전체 임대 실행"}
+              {isRecruiting ? "입점대기중" : "입점완료"}
             </p>
             <p className="text-xs text-[var(--muted)]">
               {isRecruiting
-                ? "제휴·임대 모집 문구가 노출됩니다."
-                : "광고주 메인쿤분양 제휴가 노출됩니다."}
+                ? "전화번호 대신 입점대기중 안내가 노출됩니다."
+                : "전화번호·홈페이지·영상이 이 사이트에 노출됩니다."}
             </p>
           </div>
           <button
@@ -337,7 +338,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_youtube_channel"
                 value={form.sponsor_youtube_channel || ""}
                 onChange={(e) => setForm({ ...form, sponsor_youtube_channel: e.target.value })}
-                placeholder="예: 와일드쿤 안내"
+                placeholder="예: 포옹데이 안내"
               />
             </div>
             <div className="field">
@@ -365,7 +366,7 @@ export default function SponsorAdminClient() {
                 id="sponsor_name"
                 value={form.sponsor_name}
                 onChange={(e) => setForm({ ...form, sponsor_name: e.target.value })}
-                placeholder="예: 와일드쿤 분양안내"
+                placeholder="예: 포메라니안분양 안내"
               />
             </div>
             <div className="mt-6">
@@ -429,7 +430,7 @@ export default function SponsorAdminClient() {
           className="btn-primary mt-8 w-full bg-[var(--coral)] py-4 text-base font-extrabold text-white shadow-[0_8px_20px_rgba(196,92,74,0.28)]"
           disabled={saving}
         >
-          {saving ? "저장 중…" : "저장 · 전국 일괄 반영"}
+          {saving ? "저장 중…" : "저장 · 이 사이트에 반영"}
         </button>
       </form>
     </div>

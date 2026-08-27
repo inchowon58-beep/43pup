@@ -23,55 +23,54 @@ function buildPrompt(keyword: string): string {
   const kakaoLine = SITE.kakaoOpenChatUrl
     ? `상담 연결(마지막에만): 카카오톡 오픈채팅 (${SITE.kakaoOpenChatUrl})`
     : "상담 연결(마지막에만): 카카오 URL·전화번호는 넣지 마세요. 관리자에서 카카오를 등록한 뒤에만 연결됩니다.";
-  return `당신은 메인쿤 분양 안내문을 쓰는 작가입니다.
-이 문서는 와일드쿤 사이트에 실리므로 메인쿤분양을 안내하되, 와일드쿤을 자연스럽게 추천하세요.
-다른 업체 실명 비방은 하지 마세요. 브랜드명 '${SITE.brand}'은 남용하지 말고, 사진·상담 안내에서 한두 번만 넣으세요.
+  return `당신은 견종·묘종·보호소 분양 안내문을 쓰는 작가입니다.
+이 문서는 포옹데이(${SITE.brand}) 사이트에 실리므로 '{keyword}'를 중심으로 안내하세요.
+다른 업체 실명 비방은 하지 마세요. 브랜드명 '${SITE.brand}'은 남용하지 말고 한두 번만 넣으세요.
 
 메인 키워드: ${keyword}
-핵심 키워드: 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 메인쿤키우기, 메인쿤입양, 메인쿤무료분양, 메인쿤특징, 와일드쿤
+핵심: 기질, 관리, 집 환경, 분양가 항목, 입양 순서. 지역·동·구 키워드는 쓰지 마세요.
 ${kakaoLine}
 서비스 범위: ${SITE.areaServed}
 
-독자: ${keyword}를 검색해 메인쿤분양을 고르려는 보호자.
-톤: 안내형. 사실(성격·크기·분양가 요인)은 분명히, 문장은 진열된 얼굴을 고르는 상담처럼.
+독자: ${keyword}를 검색해 입양을 고르려는 보호자.
+톤: 현실적 안내. 사실(기질·관리·분양가 요인)은 분명히.
 금지: 가격 단정, 허위, 의료 단정, 타사 비방, 전화번호.
 
 반드시 다룰 내용:
-1) 메인쿤특징·메인쿤크기·메인쿤성격·메인쿤키우기
-2) 입양 순서(사진-상담-방문-집으로)
-3) 메인쿤분양가가 달라지는 항목과 메인쿤무료분양 주의
-4) 분양 중인 아이 사진은 와일드쿤 메인 갤러리에서 볼 수 있음
-5) 문의 방법 — 본문 마지막에만, 짧게
+1) ${keyword} 기질·관리·집 환경
+2) 입양 순서(노트-상담-만남-집으로)
+3) 분양가가 달라지는 항목과 무료분양 주의
+4) 문의 방법 — 본문 마지막에만, 짧게
 
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 와일드쿤 메인쿤분양'",
-  "metaDescription": "140~158자. '{keyword}', 메인쿤분양, 메인쿤크기. 전화번호 금지",
-  "metaKeywords": "{keyword}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 와일드쿤 등 10~14개",
-  "h1": "'{keyword}'와 '메인쿤분양' 또는 '입양'이 들어간 H1",
-  "heroSubtitle": "한글 한 문장. 분양 안내 + 사진",
+  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 포옹데이'",
+  "metaDescription": "140~158자. '{keyword}' 포함. 전화번호 금지",
+  "metaKeywords": "{keyword}, 포옹데이, 분양, 기질, 키우기 등 8~12개",
+  "h1": "'{keyword}'가 들어간 H1",
+  "heroSubtitle": "한글 한 문장",
   "heroBadge": "분양 안내",
-  "heroTitleLine2": "와일드쿤",
-  "heroBar": "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요.",
+  "heroTitleLine2": "포옹데이",
+  "heroBar": "기질·관리·집 환경을 먼저 맞춰 보세요.",
   "sections": [
-    {"h2": "'{keyword}' 포함, 집을 고르기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
-    {"h2": "메인쿤 입양 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
+    {"h2": "'{keyword}' 포함, 들이기 전에", "paragraphs": ["200자+", "180자+", "180자+", "160자+"]},
+    {"h2": "입양 순서", "paragraphs": ["200자+", "180자+", "180자+", "140자+"]},
     {"h2": "비용이 달라지는 이유·확인할 항목", "paragraphs": ["180자+", "180자+", "160자+"]},
-    {"h2": "사진을 보다가 여는 상담", "paragraphs": ["160자+", "140자+"]}
+    {"h2": "상담을 여는 방법", "paragraphs": ["160자+", "140자+"]}
   ],
   "faqs": [
-    {"q": "메인쿤은 어떤 성격인가요?", "a": "100자+ 구체 답변"},
-    {"q": "메인쿤 크기는 어느 정도인가요?", "a": "100자+"},
+    {"q": "${keyword}은 어떤 성격인가요?", "a": "100자+ 구체 답변"},
+    {"q": "초보 보호자와 맞나요?", "a": "100자+"},
     {"q": "아파트에서도 키울 수 있나요?", "a": "100자+"},
-    {"q": "메인쿤 분양 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
+    {"q": "분양 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
     {"q": "${keyword} 상담은 어떻게 하나요?", "a": "100자+. ${KAKAO_CTA_HINT}"},
-    {"q": "분양 중인 아이는 사진을 볼 수 있나요?", "a": "80자+. 와일드쿤 메인 갤러리 안내"}
+    {"q": "사진은 어디서 보나요?", "a": "80자+"}
   ],
-  "ctaText": "{keyword} 분양 상담 — 지역·희망 조건만 알려 주세요"
+  "ctaText": "{keyword} 상담 — 희망 시기만 알려 주세요"
 }
 
-AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'와 '메인쿤'을 자연스럽게 반복.`;
+AEO: FAQ는 실제 검색 질문처럼. 본문에 '{keyword}'를 자연스럽게 반복.`;
 }
 
 export async function generateWithGemini(
@@ -112,20 +111,20 @@ export async function generateWithGemini(
 
   return {
     keyword,
-    title: String(data.title || `${keyword} | 와일드쿤 메인쿤분양`),
+    title: String(data.title || `${keyword} | 포옹데이`),
     metaDescription: clampDesc(data.metaDescription || SITE.description),
     metaKeywords: String(
       data.metaKeywords ||
-        `${keyword}, 메인쿤분양, 메인쿤분양가, 메인쿤크기, 메인쿤성격, 와일드쿤`
+        `${keyword}, 포옹데이, 분양, 기질, 키우기`
     ),
-    h1: String(data.h1 || `${keyword}, 메인쿤분양 안내`),
+    h1: String(data.h1 || `${keyword} | 포옹데이`),
     heroSubtitle: String(
-      data.heroSubtitle || "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요"
+      data.heroSubtitle || "기질·관리·집 환경을 먼저 맞춰 보세요"
     ),
     heroBadge: String(data.heroBadge || "분양 안내"),
     heroTitleLine1: keyword,
-    heroTitleLine2: String(data.heroTitleLine2 || "와일드쿤"),
-    heroBar: String(data.heroBar || "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요."),
+    heroTitleLine2: String(data.heroTitleLine2 || "포옹데이"),
+    heroBar: String(data.heroBar || "기질·관리·집 환경을 먼저 맞춰 보세요."),
     sections,
     faqs,
     ctaText: String(data.ctaText || `${keyword} 상담 — 지역·희망 조건만 알려 주세요`),
@@ -147,8 +146,8 @@ export function assembleSeoPage(
     heroSubtitle: partial.heroSubtitle,
     heroBadge: partial.heroBadge || "분양 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
-    heroTitleLine2: partial.heroTitleLine2 || "와일드쿤",
-    heroBar: partial.heroBar || "진열된 얼굴의 크기·기질·분양가를 먼저 맞춰 보세요.",
+    heroTitleLine2: partial.heroTitleLine2 || "포옹데이",
+    heroBar: partial.heroBar || "기질·관리·집 환경을 먼저 맞춰 보세요.",
     sections: partial.sections,
     faqs: partial.faqs,
     images: pickImages(3, Date.now() % 100000),

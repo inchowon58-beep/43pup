@@ -18,14 +18,14 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
       <aside className="my-10 border border-[var(--sky)] bg-[var(--sky-soft)] p-6 text-center md:p-8">
         <LiveEngineBadge />
         <p className="mt-3 text-lg font-extrabold text-[var(--navy)] md:text-xl">
-          📢 전국 메인쿤분양 입점 제휴 / 사이트 임대 모집 중
+          📢 입점대기중 · 제휴·임대 문의
         </p>
         <p className="mt-2 text-sm text-[var(--muted)]">{sponsor.recruiting_notice}</p>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
           {sponsor.phone_number && (
             <a href={phoneHref} className="btn-primary inline-flex">
               <PhoneCall size={18} />
-              전화 제휴문의
+              입점 문의
             </a>
           )}
           {recruitingKakao ? (
@@ -86,7 +86,7 @@ export default function SponsorMidBox({ sponsor, showPreviewLink = true }: Props
         인증 확인
       </span>
       <p className="pt-6 text-center text-lg font-extrabold text-[var(--navy)] md:text-xl">
-        📍 메인쿤분양 제휴
+        📍 포옹데이 입점
       </p>
       <div className="mt-4 flex flex-col items-center gap-3 text-center">
         {sponsor.sponsor_name && (

@@ -95,7 +95,8 @@ def api_schedule():
     try:
         RUNTIME.set_schedule_enabled(
             bool(data.get("enabled")),
-            str(data.get("time") or ""),
+            str(data.get("window_start") or data.get("time") or ""),
+            str(data.get("window_end") or ""),
         )
         return jsonify(RUNTIME.snapshot())
     except Exception as e:

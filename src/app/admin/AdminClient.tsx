@@ -20,7 +20,7 @@ export default function AdminClient() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [keyword, setKeyword] = useState("메인쿤분양");
+  const [keyword, setKeyword] = useState("말라뮤트분양");
   const [mode, setMode] = useState<"gemini" | "template">("template");
   const [apiKey, setApiKey] = useState("");
   const [publishing, setPublishing] = useState(false);
@@ -297,7 +297,7 @@ export default function AdminClient() {
               href="/admin/cattery-meta"
               className="btn-secondary !text-[var(--navy)] !border-[var(--line)]"
             >
-              지역 230 네이버 메타
+              포옹데이 네이버 메타
             </Link>
           )}
           {isSponsor ? (
@@ -396,7 +396,7 @@ export default function AdminClient() {
                 className="mt-1 w-full rounded-xl border border-[var(--line)] bg-white px-3 py-2"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                placeholder="예: 수원메인쿤분양"
+                placeholder="예: 말라뮤트분양"
                 required
               />
             </label>

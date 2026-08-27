@@ -28,7 +28,7 @@ export async function publicOrigin(): Promise<string> {
   } catch {
     /* 정적 생성 등 headers 없는 경로 */
   }
-  return stripTrailingSlash(SITE.siteUrl) || "https://marketstore.co.kr";
+  return stripTrailingSlash(SITE.siteUrl) || "https://puppytimes.co.kr";
 }
 
 /** origin + path. 끝 슬래시 없음(홈은 origin만). */

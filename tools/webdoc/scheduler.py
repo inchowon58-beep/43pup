@@ -188,3 +188,102 @@ class DailyScheduler:
                 self._log(f"스케줄러 오류: {exc}")
             self._stop.wait(self._poll_sec)
         self._log("스케줄러 중지")
+
+
+def minutes_of(hhmm: str) -> int | None:
+    parsed = parse_hhmm(hhmm)
+    if not parsed:
+        return None
+    return parsed[0] * 60 + parsed[1]
+
+
+def in_time_window(start: str, end: str, *, now: datetime | None = None) -> bool:
+    a = minutes_of(start)
+    b = minutes_of(end)
+    if a is None or b is None:
+        return False
+    now = now or datetime.now()
+    cur = now.hour * 60 + now.minute
+    if a <= b:
+        return a <= cur <= b
+    return cur >= a or cur <= b
+
+
+class WindowScheduler:
+    """시작~종료 시각 동안 on_tick 을 반복 호출. 하루 횟수 제한 없음."""
+
+    def __init__(
+        self,
+        *,
+        get_enabled: Callable[[], bool],
+        get_start: Callable[[], str],
+        get_end: Callable[[], str],
+        is_running: Callable[[], bool],
+        on_tick: Callable[[], None],
+        on_close: Callable[[], None] | None = None,
+        on_log: LogFn = None,
+        on_status: Callable[[str], None] | None = None,
+        poll_sec: float = 20.0,
+    ) -> None:
+        self._get_enabled = get_enabled
+        self._get_start = get_start
+        self._get_end = get_end
+        self._is_running = is_running
+        self._on_tick = on_tick
+        self._on_close = on_close
+        self._on_log = on_log
+        self._on_status = on_status
+        self._poll_sec = poll_sec
+        self._stop = threading.Event()
+        self._thread: threading.Thread | None = None
+        self._was_open = False
+
+    def _log(self, msg: str) -> None:
+        if self._on_log:
+            self._on_log(msg)
+
+    def is_alive(self) -> bool:
+        return bool(self._thread and self._thread.is_alive())
+
+    def start(self) -> None:
+        self.stop()
+        self._stop.clear()
+        self._thread = threading.Thread(target=self._loop, daemon=True)
+        self._thread.start()
+        st = normalize_hhmm(self._get_start(), "07:00") or "07:00"
+        en = normalize_hhmm(self._get_end(), "22:00") or "22:00"
+        self._log(f"시간창 스케줄 ON — 매일 {st}~{en} 동안 계속 발행")
+
+    def stop(self) -> None:
+        self._stop.set()
+        if self._thread and self._thread.is_alive() and threading.current_thread() is not self._thread:
+            self._thread.join(timeout=2.0)
+        self._thread = None
+
+    def _loop(self) -> None:
+        while not self._stop.is_set():
+            try:
+                enabled = bool(self._get_enabled())
+                start = normalize_hhmm(self._get_start(), "07:00") or "07:00"
+                end = normalize_hhmm(self._get_end(), "22:00") or "22:00"
+                open_now = enabled and in_time_window(start, end)
+                if self._on_status:
+                    if not enabled:
+                        self._on_status("스케줄: 꺼짐")
+                    elif open_now:
+                        self._on_status(f"스케줄: {start}~{end} 발행 시간")
+                    else:
+                        self._on_status(f"스케줄: {start}~{end} 대기")
+                if open_now:
+                    if not self._is_running():
+                        self._on_tick()
+                    self._was_open = True
+                else:
+                    if self._was_open and self._on_close:
+                        self._on_close()
+                    self._was_open = False
+            except Exception as exc:
+                self._log(f"시간창 스케줄 오류: {exc}")
+            self._stop.wait(self._poll_sec)
+        self._log("시간창 스케줄 중지")
+

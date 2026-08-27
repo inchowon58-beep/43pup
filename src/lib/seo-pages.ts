@@ -19,6 +19,8 @@ export type SeoPage = {
   heroTitleLine1?: string;
   heroTitleLine2?: string;
   heroBar?: string;
+  regionSlug?: string;
+  regionName?: string;
   sections: {
     h2: string;
     paragraphs: string[];
@@ -55,13 +57,29 @@ const INDEX_PATH = path.join(DATA_DIR, "index.json");
 const BLOB_PREFIX = "seo-data";
 
 /** Blob pathname 용 ASCII 키 (한글 slug 불가 대응) */
-export function blobPageKey(slug: string): string {
-  const h = createHash("sha256").update(slug, "utf8").digest("hex").slice(0, 24);
+export function blobPageKey(slug: string, regionSlug = ""): string {
+  const raw = regionSlug ? `${regionSlug}\n${slug}` : slug;
+  const h = createHash("sha256").update(raw, "utf8").digest("hex").slice(0, 24);
   return `p_${h}`;
 }
 
-function blobPagePathname(slug: string): string {
-  return `${BLOB_PREFIX}/pages/${blobPageKey(slug)}.json`;
+function blobPagePathname(slug: string, regionSlug = ""): string {
+  const key = blobPageKey(slug, regionSlug);
+  if (regionSlug) return `${BLOB_PREFIX}/r/${regionSlug}/pages/${key}.json`;
+  return `${BLOB_PREFIX}/pages/${key}.json`;
+}
+
+function blobIndexPathname(regionSlug = ""): string {
+  if (regionSlug) return `${BLOB_PREFIX}/r/${regionSlug}/index.json`;
+  return `${BLOB_PREFIX}/index.json`;
+}
+
+function regionPagesDir(regionSlug: string): string {
+  return path.join(DATA_DIR, "r", regionSlug, "pages");
+}
+
+function regionIndexPath(regionSlug: string): string {
+  return path.join(DATA_DIR, "r", regionSlug, "index.json");
 }
 
 function normalizePage(page: SeoPage): SeoPage {
@@ -234,23 +252,30 @@ async function writeBlobText(pathname: string, content: string): Promise<void> {
   await put(pathname, content, blobPutOpts());
 }
 
-function readIndexFs(): SeoIndex {
+function readIndexFs(regionSlug = ""): SeoIndex {
   try {
-    if (!fs.existsSync(INDEX_PATH)) {
+    const p = regionSlug ? regionIndexPath(regionSlug) : INDEX_PATH;
+    if (!fs.existsSync(p)) {
       return { slugs: [], entries: [], updatedAt: new Date().toISOString() };
     }
-    return normalizeIndex(JSON.parse(fs.readFileSync(INDEX_PATH, "utf-8")) as SeoIndex);
+    return normalizeIndex(JSON.parse(fs.readFileSync(p, "utf-8")) as SeoIndex);
   } catch {
     return { slugs: [], entries: [], updatedAt: new Date().toISOString() };
   }
 }
 
-function writeIndexFs(index: SeoIndex) {
+function writeIndexFs(index: SeoIndex, regionSlug = "") {
+  if (regionSlug) {
+    const dir = path.dirname(regionIndexPath(regionSlug));
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(regionIndexPath(regionSlug), JSON.stringify(index, null, 2), "utf-8");
+    return;
+  }
   ensureDirs();
   fs.writeFileSync(INDEX_PATH, JSON.stringify(index, null, 2), "utf-8");
 }
 
-function readPageFs(slug: string): SeoPage | null {
+function readPageFs(slug: string, regionSlug = ""): SeoPage | null {
   const candidates = [slug];
   try {
     const decoded = decodeURIComponent(slug);
@@ -258,8 +283,9 @@ function readPageFs(slug: string): SeoPage | null {
   } catch {
     /* ignore */
   }
+  const dir = regionSlug ? regionPagesDir(regionSlug) : PAGES_DIR;
   for (const key of candidates) {
-    const file = path.join(PAGES_DIR, `${key}.json`);
+    const file = path.join(dir, `${key}.json`);
     if (!fs.existsSync(file)) continue;
     try {
       return normalizePage(JSON.parse(fs.readFileSync(file, "utf-8")) as SeoPage);
@@ -270,10 +296,10 @@ function readPageFs(slug: string): SeoPage | null {
   return null;
 }
 
-export async function readIndex(): Promise<SeoIndex> {
+export async function readIndex(regionSlug = ""): Promise<SeoIndex> {
   // Blob은 토큰이 있을 때만 시도 (Vercel에서 토큰 없이 get 호출 시 예외)
   if (resolveBlobToken()) {
-    const blobRaw = await readBlobText(`${BLOB_PREFIX}/index.json`);
+    const blobRaw = await readBlobText(blobIndexPathname(regionSlug));
     if (blobRaw) {
       try {
         return normalizeIndex(JSON.parse(blobRaw) as SeoIndex);
@@ -282,17 +308,17 @@ export async function readIndex(): Promise<SeoIndex> {
       }
     }
   }
-  return readIndexFs();
+  return readIndexFs(regionSlug);
 }
 
-export async function writeIndex(index: SeoIndex): Promise<void> {
+export async function writeIndex(index: SeoIndex, regionSlug = ""): Promise<void> {
   const content = JSON.stringify(index, null, 2);
   if (isVercelRuntime() || resolveBlobToken()) {
     try {
-      await writeBlobText(`${BLOB_PREFIX}/index.json`, content);
+      await writeBlobText(blobIndexPathname(regionSlug), content);
       if (!isVercelRuntime()) {
         try {
-          writeIndexFs(index);
+          writeIndexFs(index, regionSlug);
         } catch {
           /* optional local mirror */
         }
@@ -309,7 +335,7 @@ export async function writeIndex(index: SeoIndex): Promise<void> {
     }
   }
   try {
-    writeIndexFs(index);
+    writeIndexFs(index, regionSlug);
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     if (/EROFS|read-only/i.test(msg)) {
@@ -321,7 +347,7 @@ export async function writeIndex(index: SeoIndex): Promise<void> {
   }
 }
 
-export async function readPage(slug: string): Promise<SeoPage | null> {
+export async function readPage(slug: string, regionSlug = ""): Promise<SeoPage | null> {
   const candidates = [slug];
   try {
     const decoded = decodeURIComponent(slug);
@@ -331,8 +357,7 @@ export async function readPage(slug: string): Promise<SeoPage | null> {
   }
   if (resolveBlobToken()) {
     for (const key of candidates) {
-      // 1) ASCII 해시 키 (신규)
-      const hashed = await readBlobText(blobPagePathname(key));
+      const hashed = await readBlobText(blobPagePathname(key, regionSlug));
       if (hashed) {
         try {
           return normalizePage(JSON.parse(hashed) as SeoPage);
@@ -340,24 +365,25 @@ export async function readPage(slug: string): Promise<SeoPage | null> {
           /* try legacy */
         }
       }
-      // 2) 레거시: slug 파일명 (영문만 성공했을 수 있음)
-      const blobRaw = await readBlobText(`${BLOB_PREFIX}/pages/${key}.json`);
-      if (blobRaw) {
-        try {
-          return normalizePage(JSON.parse(blobRaw) as SeoPage);
-        } catch {
-          /* try next */
+      if (!regionSlug) {
+        const blobRaw = await readBlobText(`${BLOB_PREFIX}/pages/${key}.json`);
+        if (blobRaw) {
+          try {
+            return normalizePage(JSON.parse(blobRaw) as SeoPage);
+          } catch {
+            /* try next */
+          }
         }
       }
     }
   }
-  return readPageFs(slug);
+  return readPageFs(slug, regionSlug);
 }
 
 /** 목록·홈·사이트맵용 — index.json 1회만 읽음 (전체 글 JSON 미조회) */
-export async function listPageSummaries(): Promise<SeoPageSummary[]> {
+export async function listPageSummaries(regionSlug = ""): Promise<SeoPageSummary[]> {
   try {
-    const index = await readIndex();
+    const index = await readIndex(regionSlug);
     if (index.entries && index.entries.length > 0) {
       return [...index.entries].sort((a, b) =>
         (a.createdAt || "") < (b.createdAt || "") ? 1 : -1
@@ -367,10 +393,11 @@ export async function listPageSummaries(): Promise<SeoPageSummary[]> {
       return index.slugs.map((s) => stubSummary(s, index.updatedAt));
     }
     try {
-      if (fs.existsSync(PAGES_DIR)) {
-        const files = fs.readdirSync(PAGES_DIR).filter((f) => f.endsWith(".json"));
+      const dir = regionSlug ? regionPagesDir(regionSlug) : PAGES_DIR;
+      if (fs.existsSync(dir)) {
+        const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
         return files
-          .map((f) => readPageFs(f.replace(/\.json$/, "")))
+          .map((f) => readPageFs(f.replace(/\.json$/, ""), regionSlug))
           .filter((p): p is SeoPage => !!p)
           .map(pageToSummary)
           .sort((a, b) => ((a.createdAt || "") < (b.createdAt || "") ? 1 : -1));
@@ -386,8 +413,11 @@ export async function listPageSummaries(): Promise<SeoPageSummary[]> {
 }
 
 /** 일반 사용자 목록 노출용 — 최신 100건만 공개 */
-export async function listPublicPageSummaries(limit = PUBLIC_PAGE_LIMIT): Promise<SeoPageSummary[]> {
-  const all = await listPageSummaries();
+export async function listPublicPageSummaries(
+  limit = PUBLIC_PAGE_LIMIT,
+  regionSlug = ""
+): Promise<SeoPageSummary[]> {
+  const all = await listPageSummaries(regionSlug);
   return all.slice(0, Math.max(0, limit));
 }
 
@@ -418,7 +448,8 @@ export async function listPages(limit?: number): Promise<SeoPage[]> {
 
 export async function savePage(page: SeoPage): Promise<void> {
   const content = JSON.stringify(page, null, 2);
-  const pagePathname = blobPagePathname(page.slug);
+  const region = page.regionSlug || "";
+  const pagePathname = blobPagePathname(page.slug, region);
 
   if (isVercelRuntime()) {
     try {
@@ -432,12 +463,9 @@ export async function savePage(page: SeoPage): Promise<void> {
     }
   } else {
     try {
-      ensureDirs();
-      fs.writeFileSync(
-        path.join(PAGES_DIR, `${page.slug}.json`),
-        content,
-        "utf-8"
-      );
+      const dir = region ? regionPagesDir(region) : PAGES_DIR;
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(path.join(dir, `${page.slug}.json`), content, "utf-8");
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
       if (/EROFS|read-only/i.test(msg)) {
@@ -456,8 +484,8 @@ export async function savePage(page: SeoPage): Promise<void> {
     }
   }
 
-  const index = upsertIndexEntry(await readIndex(), page);
-  await writeIndex(index);
+  const index = upsertIndexEntry(await readIndex(region), page);
+  await writeIndex(index, region);
 }
 
 export async function deletePage(slug: string): Promise<void> {

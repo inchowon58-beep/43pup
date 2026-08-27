@@ -1,33 +1,55 @@
 import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
 import { SITE } from "@/lib/site";
 import { publicOrigin } from "@/lib/public-url";
 import { faqJsonLd, howToJsonLd, orgJsonLd } from "@/lib/faq-data";
 import { getGlobalSponsor } from "@/lib/site-sponsor";
 import { publicKakaoUrl } from "@/lib/site-sponsor-shared";
-import { catteryRegionFromRequest } from "@/lib/cattery-host";
-import { getCatteryNaverMeta } from "@/lib/cattery-meta";
-import { CATTERY_THEME } from "@/lib/cattery-regions";
-import { buildCatteryPage } from "@/lib/cattery-content";
-import { CATTERY_REGIONS } from "@/lib/cattery-regions";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import { hugdaySiteFromRequest } from "@/lib/hugday-host";
+import { buildHugdayPage } from "@/lib/hugday-content";
+import { pickHugdayImages } from "@/lib/hugday-images";
+import { HUGDAY_THEME } from "@/lib/hugday-sites";
+import { getHugdayNaverMeta } from "@/lib/hugday-meta";
 import SponsorStickyFooter from "./components/SponsorStickyFooter";
 import SponsorFooterGate from "./components/SponsorFooterGate";
 import { KakaoHrefProvider } from "./components/KakaoHrefProvider";
 import "./globals.css";
 
+export const viewport: Viewport = {
+  themeColor: HUGDAY_THEME,
+  width: "device-width",
+  initialScale: 1,
+};
+
 export async function generateMetadata(): Promise<Metadata> {
-  const region = await catteryRegionFromRequest();
-  if (region) {
-    const page = buildCatteryPage(region, CATTERY_REGIONS);
-    const naver = await getCatteryNaverMeta(region.slug);
+  const site = await hugdaySiteFromRequest();
+  if (site) {
+    const page = buildHugdayPage(site);
+    const naver = await getHugdayNaverMeta(site.slug);
+    const og = pickHugdayImages(site, 1)[0];
     return {
-      metadataBase: new URL(region.siteUrl),
-      title: { absolute: region.title },
+      metadataBase: new URL(site.siteUrl),
+      title: { absolute: site.title },
       description: page.metaDescription,
-      alternates: { canonical: region.siteUrl },
+      keywords: page.metaKeywords.split(",").map((s) => s.trim()),
+      alternates: { canonical: site.siteUrl },
+      openGraph: {
+        type: "website",
+        locale: "ko_KR",
+        url: site.siteUrl,
+        siteName: site.title,
+        title: site.title,
+        description: page.metaDescription,
+        images: [{ url: og, alt: site.title }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: site.title,
+        description: page.metaDescription,
+        images: [og],
+      },
       other: {
-        "msapplication-TileColor": CATTERY_THEME,
+        "msapplication-TileColor": site.accent,
         ...(naver ? { "naver-site-verification": naver } : {}),
       },
     };
@@ -36,10 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const origin = await publicOrigin();
   return {
     metadataBase: new URL(origin),
-    title: {
-      default: SITE.title,
-      template: `%s | ${SITE.brand}`,
-    },
+    title: { default: `${SITE.title} · 견종·묘종 노트`, template: `%s | ${SITE.brand}` },
     description: SITE.description,
     keywords: [...SITE.keywords],
     authors: [{ name: SITE.brand }],
@@ -50,108 +69,39 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       locale: "ko_KR",
       url: origin,
-      siteName: SITE.name,
+      siteName: SITE.brand,
       title: SITE.title,
       description: SITE.description,
-      ...(SITE.ogImage
-        ? {
-            images: [
-              {
-                url: SITE.ogImage,
-                width: 1200,
-                height: 630,
-                alt: SITE.name,
-              },
-            ],
-          }
-        : {}),
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: SITE.title,
-      description: SITE.description,
-      ...(SITE.ogImage ? { images: [SITE.ogImage] } : {}),
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
-      },
-    },
-    icons: {
-      icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-      apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    },
-    other: {
-      "msapplication-TileColor": SITE.themeColor,
-      "naver-site-verification": SITE.naverSiteVerification,
+      images: [{ url: SITE.ogImage, alt: SITE.brand }],
     },
   };
 }
 
-export const viewport: Viewport = {
-  themeColor: SITE.themeColor,
-  width: "device-width",
-  initialScale: 1,
-};
-
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const region = await catteryRegionFromRequest();
-  if (region) {
-    const naver = await getCatteryNaverMeta(region.slug);
-    return (
-      <html lang="ko">
-        <head>
-          {naver ? <meta name="naver-site-verification" content={naver} /> : null}
-          <link rel="preconnect" href="https://image.cattery.co.kr" />
-          <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-          />
-        </head>
-        <body className="cattery-mode">{children}</body>
-      </html>
-    );
-  }
-
-  const origin = await publicOrigin();
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const site = await hugdaySiteFromRequest();
   const sponsor = await getGlobalSponsor();
   const kakaoHref = publicKakaoUrl(sponsor);
-  const sponsorPhone =
+  const phone =
     sponsor.status === "ACTIVE" && sponsor.phone_number.trim()
       ? sponsor.phone_number.trim()
       : undefined;
-  const org = orgJsonLd(origin, sponsorPhone);
-  const faq = faqJsonLd();
-  const howTo = howToJsonLd(origin);
+  const origin = site?.siteUrl || (await publicOrigin());
+  const org = orgJsonLd(origin, phone, site?.title);
+  const naver = site ? await getHugdayNaverMeta(site.slug) : "";
+
   return (
     <html lang="ko">
       <head>
-        <meta name="naver-site-verification" content={SITE.naverSiteVerification} />
+        {naver ? <meta name="naver-site-verification" content={naver} /> : null}
+        <link rel="preconnect" href="https://image.cattery.co.kr" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-        {SITE.imageBase ? <link rel="preconnect" href={new URL(SITE.imageBase).origin} /> : null}
-        <link rel="preconnect" href="https://cdn.sanity.io" />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
         <link
-          rel="alternate"
-          type="application/rss+xml"
-          title={`${SITE.name} RSS`}
-          href="/rss.xml"
-        />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title={`${SITE.name} Feed`}
-          href="/feed"
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
         />
         <script
           type="application/ld+json"
@@ -159,18 +109,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(site ? buildHugdayPage(site).faqs : undefined)) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(howTo) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(origin)) }}
         />
       </head>
-      <body>
+      <body className="hug-mode">
         <KakaoHrefProvider href={kakaoHref}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          {children}
           <SponsorFooterGate>
             <SponsorStickyFooter />
           </SponsorFooterGate>
@@ -179,3 +127,4 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   );
 }
+

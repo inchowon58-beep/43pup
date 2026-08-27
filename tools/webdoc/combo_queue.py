@@ -8,7 +8,7 @@ import os
 import random
 from dataclasses import asdict, dataclass, field
 from datetime import date
-from typing import List, Literal, Optional
+from typing import Any, List, Literal, Optional
 
 OrderMode = Literal["sequential", "random"]
 
@@ -17,7 +17,7 @@ OrderMode = Literal["sequential", "random"]
 class QueueState:
     keywords: List[str] = field(default_factory=list)
     regions: List[str] = field(default_factory=list)
-    pending: List[str] = field(default_factory=list)  # 조합 키워드 큐
+    pending: List[Any] = field(default_factory=list)  # 키워드 문자열 또는 잡 dict
     total_target: int = 0
     daily_limit: int = 50
     order_mode: OrderMode = "random"
@@ -101,7 +101,26 @@ def fill_queue(
     )
 
 
-def dequeue(state: QueueState, n: Optional[int] = None) -> List[str]:
+def fill_cattery_jobs(jobs: List[dict], order_mode: OrderMode = "random") -> QueueState:
+    pending = list(jobs)
+    if order_mode == "random":
+        random.shuffle(pending)
+    now = date.today().isoformat()
+    return QueueState(
+        keywords=[],
+        regions=[],
+        pending=pending,
+        total_target=len(pending),
+        daily_limit=max(1, len(pending) or 1),
+        order_mode=order_mode,
+        published_count=0,
+        last_run_date="",
+        created_at=now,
+        updated_at=now,
+    )
+
+
+def dequeue(state: QueueState, n: Optional[int] = None) -> List[Any]:
     """큐에서 최대 n건 꺼냄 (기본: daily_limit)."""
     take = state.daily_limit if n is None else max(1, int(n))
     take = min(take, len(state.pending))
