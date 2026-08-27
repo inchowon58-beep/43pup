@@ -21,10 +21,10 @@ export async function POST(req: Request) {
     const site = await hugdaySiteFromRequest();
     let page;
     if (mode === "template") {
-      page = generateTemplateContent(keyword, Date.now() % 1000);
+      page = generateTemplateContent(keyword, Date.now() % 1000, site);
     } else {
       const partial = await generateWithGemini(keyword, body.apiKey);
-      page = assembleSeoPage(partial);
+      page = assembleSeoPage(partial, undefined, site);
     }
     if (site) {
       page.regionSlug = site.slug;

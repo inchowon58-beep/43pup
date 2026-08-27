@@ -367,19 +367,17 @@ def generate_batch(
 
 def cattery_image_pool(breed: str, breed_images: Dict[str, List[str]]) -> List[str]:
     urls = breed_images.get(breed) or []
-    if urls:
-        return list(urls)
-    neva = [f"https://image.cattery.co.kr/neva/{i:02d}.webp" for i in range(1, 46)]
-    main = [f"https://image.cattery.co.kr/maincoon/{i:02d}.webp" for i in range(1, 46)]
-    return neva + main
+    return list(urls)
 
 
 def pick_cattery_images(keyword: str, breed: str, breed_images: Dict[str, List[str]], count: int = 3) -> List[str]:
     pool = cattery_image_pool(breed, breed_images)
+    if not pool:
+        return []
     rng = random.Random(int(hashlib.md5(f"{keyword}|cattery".encode()).hexdigest()[:8], 16))
     shuffled = list(pool)
     rng.shuffle(shuffled)
-    return shuffled[:count] if shuffled else image_urls(count, 1)
+    return shuffled[:count]
 
 
 def infer_breed(keyword: str, breeds: List[str]) -> str:
@@ -414,7 +412,9 @@ def build_cattery_content(
     meta = leads[idx % len(leads)]
     if len(meta) > 158:
         meta = meta[:157] + "…"
-    imgs = images[:3] or image_urls(3, idx)
+    imgs = [u for u in (images or [])[:3] if u]
+    if not imgs and folder:
+        imgs = [f"https://image.cattery.co.kr/{folder}/01.webp"]
     p1 = [
         f"{city}에서 {kw}을 찾으실 때 외모만 보지 마시고, 생활 리듬과 관리 시간부터 그려 보시면 선택이 분명해집니다.",
         f"{kw}은 {city}마다 같은 문장을 쓰지 않습니다. 이 글은 기질과 집 환경을 먼저 적습니다.",
@@ -523,6 +523,16 @@ def write_cattery_job(
     site_url = str(job.get("siteUrl") or "").rstrip("/")
     breed = infer_breed(kw, breeds)
     folder = str(job.get("folder") or "").strip()
+    if not folder:
+        try:
+            from hugday_catalog import load_sites
+            slug = str(job.get("slug") or "")
+            for s in load_sites():
+                if s.get("slug") == slug:
+                    folder = str(s.get("folder") or "")
+                    break
+        except Exception:
+            folder = folder
     if folder:
         n = folder_image_count(folder)
         pool = [f"https://image.cattery.co.kr/{folder}/{i:02d}.webp" for i in range(1, n + 1)]

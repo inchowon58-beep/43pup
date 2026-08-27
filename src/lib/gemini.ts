@@ -1,6 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { SITE, KAKAO_CTA_HINT } from "./site";
-import { pickImages } from "./images";
+import type { HugdaySite } from "./hugday-sites";
+import { pickHugdayImages } from "./hugday-images";
 import type { SeoPage } from "./seo-pages";
 import { slugifyKeyword } from "./seo-pages";
 
@@ -133,7 +134,8 @@ export async function generateWithGemini(
 
 export function assembleSeoPage(
   partial: Awaited<ReturnType<typeof generateWithGemini>>,
-  slug?: string
+  slug?: string,
+  site?: HugdaySite
 ): SeoPage {
   const now = new Date().toISOString();
   return {
@@ -148,9 +150,11 @@ export function assembleSeoPage(
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
     heroTitleLine2: partial.heroTitleLine2 || "포옹데이",
     heroBar: partial.heroBar || "기질·관리·집 환경을 먼저 맞춰 보세요.",
+    regionSlug: site?.slug,
+    regionName: site?.name,
     sections: partial.sections,
     faqs: partial.faqs,
-    images: pickImages(3, Date.now() % 100000),
+    images: site ? pickHugdayImages(site, 3, slug || partial.keyword) : [],
     ctaText: partial.ctaText,
     createdAt: now,
     updatedAt: now,

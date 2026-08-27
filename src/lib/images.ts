@@ -38,20 +38,8 @@ export function placeholderIndexFrom(urlOrIndex: string | number): number {
 }
 
 export function migrateImageUrl(url: string): string {
-  if (!url) return fileUrl(12);
-  if (!SITE.imageBase) {
-    const file = url.match(/(\d{1,3})\.webp/i);
-    if (file) return `placeholder:${clampFile(Number(file[1]))}`;
-    return url.startsWith("placeholder:") ? url : fileUrl(12);
-  }
-  const mapped = url.replace(
-    /https?:\/\/image\.cattery\.co\.kr\/(?:jejumilgam|dogboho|petfuneral|doodle|maincoon|weding|smp)\/(?:new)?(\d{1,3})\.webp/gi,
-    (_m, num: string) => fileUrl(Number(num))
-  );
-  if (mapped.startsWith("placeholder:")) {
-    return fileUrl(placeholderIndexFrom(mapped));
-  }
-  return mapped;
+  if (!url) return "";
+  return url;
 }
 
 export function allImageUrls(): string[] {

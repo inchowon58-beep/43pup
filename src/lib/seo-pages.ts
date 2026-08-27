@@ -5,6 +5,7 @@ import { del, get, list, put } from "@vercel/blob";
 import { migrateImageUrl } from "./images";
 import { SITE } from "./site";
 import { getHugdaySite } from "./hugday-sites";
+import { alignSeoImages } from "./hugday-images";
 
 export type FaqItem = { q: string; a: string };
 
@@ -146,10 +147,15 @@ function regionIndexPath(regionSlug: string): string {
   return path.join(DATA_DIR, "r", regionSlug, "index.json");
 }
 
-function normalizePage(page: SeoPage): SeoPage {
+function normalizePage(page: SeoPage, regionHint = ""): SeoPage {
+  const site = getHugdaySite(page.regionSlug || regionHint);
+  let images = (page.images || []).map(migrateImageUrl).filter(Boolean);
+  if (site) images = alignSeoImages(images, site, page.slug);
   return {
     ...page,
-    images: (page.images || []).map(migrateImageUrl),
+    images,
+    regionSlug: page.regionSlug || site?.slug || page.regionSlug,
+    regionName: page.regionName || site?.name || page.regionName,
   };
 }
 
@@ -348,7 +354,7 @@ function readPageFs(slug: string, regionSlug = ""): SeoPage | null {
       const file = path.join(dir, `${key}.json`);
       if (!fs.existsSync(file)) continue;
       try {
-        return normalizePage(JSON.parse(fs.readFileSync(file, "utf-8")) as SeoPage);
+        return normalizePage(JSON.parse(fs.readFileSync(file, "utf-8")) as SeoPage, regionSlug);
       } catch {
         /* try next */
       }
@@ -359,7 +365,7 @@ function readPageFs(slug: string, regionSlug = ""): SeoPage | null {
       const file = path.join(PAGES_DIR, `${key}.json`);
       if (!fs.existsSync(file)) continue;
       try {
-        return normalizePage(JSON.parse(fs.readFileSync(file, "utf-8")) as SeoPage);
+        return normalizePage(JSON.parse(fs.readFileSync(file, "utf-8")) as SeoPage, regionSlug);
       } catch {
         /* try next */
       }
@@ -430,7 +436,7 @@ async function readPageFromBlob(
       const hashed = await readBlobText(blobPagePathname(key, region));
       if (!hashed) continue;
       try {
-        return normalizePage(JSON.parse(hashed) as SeoPage);
+        return normalizePage(JSON.parse(hashed) as SeoPage, regionSlug);
       } catch {
         /* try next */
       }
@@ -440,7 +446,7 @@ async function readPageFromBlob(
     const hashed = await readBlobText(blobPagePathname(key, ""));
     if (hashed) {
       try {
-        return normalizePage(JSON.parse(hashed) as SeoPage);
+        return normalizePage(JSON.parse(hashed) as SeoPage, regionSlug);
       } catch {
         /* try legacy */
       }
@@ -448,7 +454,7 @@ async function readPageFromBlob(
     const blobRaw = await readBlobText(`${BLOB_PREFIX}/pages/${key}.json`);
     if (blobRaw) {
       try {
-        return normalizePage(JSON.parse(blobRaw) as SeoPage);
+        return normalizePage(JSON.parse(blobRaw) as SeoPage, regionSlug);
       } catch {
         /* try next */
       }
@@ -554,6 +560,7 @@ export async function listPages(limit?: number): Promise<SeoPage[]> {
 export async function savePage(page: SeoPage): Promise<void> {
   page.slug = normalizeSeoSlug(page.slug);
   if (page.regionSlug) page.regionSlug = normalizeSeoSlug(page.regionSlug);
+  page = normalizePage(page, page.regionSlug || "");
   const content = JSON.stringify(page, null, 2);
   const region = page.regionSlug || "";
   const pagePathname = blobPagePathname(page.slug, region);

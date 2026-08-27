@@ -1,5 +1,6 @@
 import { SITE, KAKAO_CTA_HINT } from "./site";
-import { pickImages } from "./images";
+import type { HugdaySite } from "./hugday-sites";
+import { pickHugdayImages } from "./hugday-images";
 import type { SeoPage } from "./seo-pages";
 import { slugifyKeyword } from "./seo-pages";
 
@@ -62,7 +63,11 @@ const HERO_SUB = [
   "사진만 보고 결정하지 않아도 됩니다",
 ];
 
-export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage {
+export function generateTemplateContent(
+  keyword: string,
+  pageIndex = 1,
+  site?: HugdaySite
+): SeoPage {
   const seed = hash(`${keyword}|${pageIndex}|${SITE.brand}|hugday-v1`);
   const kw = keyword.trim() || "분양 안내";
   const brand = SITE.brand;
@@ -142,9 +147,11 @@ export function generateTemplateContent(keyword: string, pageIndex = 1): SeoPage
     heroTitleLine1: kw,
     heroTitleLine2: "포옹데이",
     heroBar: "기질·관리·집 환경을 먼저 맞춰 보세요.",
+    regionSlug: site?.slug,
+    regionName: site?.name,
     sections,
     faqs,
-    images: pickImages(3, seed),
+    images: site ? pickHugdayImages(site, 3, String(seed)) : [],
     ctaText: `${kw} 상담 — 희망 시기만 알려 주세요`,
     createdAt: now,
     updatedAt: now,

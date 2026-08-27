@@ -94,6 +94,35 @@ export function pickHugdayImages(site: HugdaySite, count: number, salt = ""): st
   return Array.from({ length: count }, (_, i) => shuffled[i % shuffled.length]);
 }
 
+export function cdnFolderFromUrl(url: string): string {
+  const m = String(url || "").match(/image\.cattery\.co\.kr\/([a-z0-9_-]+)\//i);
+  return (m?.[1] || "").toLowerCase();
+}
+
+function clampFolderUrl(url: string, folder: string): string {
+  const m = String(url || "").match(/\/(\d{1,3})\.webp/i);
+  if (!m) return hugdayCover(folder);
+  const n = parseInt(m[1], 10);
+  if (!Number.isFinite(n) || n < 1 || n > folderImageCount(folder)) {
+    return hugdayCover(folder);
+  }
+  return url;
+}
+
+/** SEO 본문 사진이 이 사이트 CDN 폴더가 아니면 해당 견종·묘종 사진으로 교체 */
+export function alignSeoImages(
+  images: string[] | undefined,
+  site: HugdaySite,
+  salt = ""
+): string[] {
+  const folder = site.folder.toLowerCase();
+  const current = (images || []).map((u) => String(u || "").trim()).filter(Boolean);
+  const allMatch =
+    current.length > 0 && current.every((u) => cdnFolderFromUrl(u) === folder);
+  if (allMatch) return current.map((u) => clampFolderUrl(u, site.folder));
+  return pickHugdayImages(site, 3, salt);
+}
+
 export type HugdayPhotos = {
   hero: string;
   portrait: string;
