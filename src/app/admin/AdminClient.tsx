@@ -43,12 +43,8 @@ export default function AdminClient() {
 
   function absolutePageUrl(path: string) {
     const base = (
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      (typeof window !== "undefined" ? window.location.origin : "https://marketstore.co.kr")
-    ).replace(
-      /\/$/,
-      ""
-    );
+      typeof window !== "undefined" ? window.location.origin : ""
+    ).replace(/\/$/, "") || (process.env.NEXT_PUBLIC_SITE_URL || "https://puppytimes.co.kr").replace(/\/$/, "");
     if (!path) return `${base}/guide`;
     if (path.startsWith("http")) return path;
     return `${base}${path.startsWith("/") ? path : `/${path}`}`;

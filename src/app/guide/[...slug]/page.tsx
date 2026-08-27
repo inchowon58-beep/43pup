@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { listPageSummaries, readPage } from "@/lib/seo-pages";
+import { listPageSummaries, readPage, normalizeSeoSlug, pagePath } from "@/lib/seo-pages";
 import { isRealImage } from "@/lib/images";
 import { faqJsonLd } from "@/lib/faq-data";
 import { getPublicSponsor } from "@/lib/site-sponsor";
@@ -16,24 +16,28 @@ import {
 } from "@/lib/site-sponsor-shared";
 import HugdayPhoto from "@/app/components/HugdayPhoto";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ slug: string[] }> };
+
+function paramSlug(raw: string[] | undefined): string {
+  return normalizeSeoSlug((raw || []).join("/"));
+}
 
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const pages = await listPageSummaries();
-  return pages.map((p) => ({ slug: p.slug }));
+  return pages.map((p) => ({ slug: [p.slug] }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug: raw } = await params;
-  const slug = decodeURIComponent(raw);
+  const slug = paramSlug(raw);
   const hostSite = await hugdaySiteFromRequest();
   const page = await readPage(slug, hostSite?.slug || "");
   if (!page) return { title: "페이지 없음" };
   const origin = await publicOrigin();
-  const url = absoluteUrl(origin, `/guide/${encodeURIComponent(page.slug)}`);
+  const url = absoluteUrl(origin, pagePath(page.slug));
   const ogImage = page.images.find((u) => isRealImage(u)) || page.images[0];
   return {
     title: page.title,
@@ -59,13 +63,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuidePage({ params }: Props) {
   const { slug: raw } = await params;
-  const slug = decodeURIComponent(raw);
+  const slug = paramSlug(raw);
   const hostSite = await hugdaySiteFromRequest();
   const page = await readPage(slug, hostSite?.slug || "");
   if (!page) notFound();
 
   const origin = await publicOrigin();
-  const pageUrl = absoluteUrl(origin, `/guide/${encodeURIComponent(page.slug)}`);
+  const pageUrl = absoluteUrl(origin, pagePath(page.slug));
   const images = (page.images || []).slice(0, 3);
   const sponsor = await getPublicSponsor();
   const waiting = sponsor?.status === "RECRUITING";
@@ -113,7 +117,13 @@ export default async function GuidePage({ params }: Props) {
             ) : null}
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className="hug-guide" style={{ paddingBottom: 0 }}>
+          <p className="hug-eyebrow">{page.keyword}</p>
+          <h1>{page.h1}</h1>
+          <p className="hug-lead">{page.heroSubtitle || page.metaDescription}</p>
+        </div>
+      )}
 
       <div className="hug-guide">
         <nav className="hug-eyebrow" style={{ marginBottom: "1.5rem" }}>

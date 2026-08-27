@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdmin } from "@/lib/auth";
 import { deletePage, listPageSummaries, pagePath, PUBLIC_PAGE_LIMIT } from "@/lib/seo-pages";
 import { ADMIN } from "@/lib/admin-config";
+import { hugdaySlugFromRequest } from "@/lib/hugday-host";
 
 export async function GET(req: Request) {
   if (!(await isAdmin())) {
@@ -12,7 +13,8 @@ export async function GET(req: Request) {
   const sort = searchParams.get("sort") === "oldest" ? "oldest" : "latest";
   const scope = searchParams.get("scope") === "all" ? "all" : "recent";
   const q = (searchParams.get("q") || "").trim().toLowerCase();
-  const all = await listPageSummaries();
+  const region = await hugdaySlugFromRequest();
+  const all = await listPageSummaries(region);
   const ordered =
     sort === "oldest"
       ? [...all].sort((a, b) => ((a.createdAt || "") > (b.createdAt || "") ? 1 : -1))
@@ -63,8 +65,9 @@ export async function DELETE(req: Request) {
       return NextResponse.json({ error: "삭제할 페이지가 없습니다." }, { status: 400 });
     }
 
+    const region = await hugdaySlugFromRequest();
     for (const slug of slugs) {
-      await deletePage(slug);
+      await deletePage(slug, region);
     }
 
     return NextResponse.json({ ok: true, deleted: slugs.length });

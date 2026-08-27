@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 import re
+import unicodedata
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -28,6 +29,8 @@ BLOB_SYNC_BUILD = "20260813-api12-v4"
 
 
 def blob_page_key(slug: str, region_slug: str = "") -> str:
+    slug = unicodedata.normalize("NFC", slug or "")
+    region_slug = unicodedata.normalize("NFC", region_slug or "")
     raw = f"{region_slug}\n{slug}" if region_slug else slug
     h = hashlib.sha256(raw.encode("utf-8")).hexdigest()[:24]
     return f"p_{h}"

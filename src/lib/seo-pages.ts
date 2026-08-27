@@ -4,6 +4,7 @@ import { createHash } from "crypto";
 import { del, get, list, put } from "@vercel/blob";
 import { migrateImageUrl } from "./images";
 import { SITE } from "./site";
+import { getHugdaySite } from "./hugday-sites";
 
 export type FaqItem = { q: string; a: string };
 
@@ -56,9 +57,72 @@ const PAGES_DIR = path.join(DATA_DIR, "pages");
 const INDEX_PATH = path.join(DATA_DIR, "index.json");
 const BLOB_PREFIX = "seo-data";
 
+/** URL·Blob 조회용 한글 slug 정규화 (이중 인코딩·NFC) */
+export function normalizeSeoSlug(raw: string): string {
+  let s = (raw || "").trim();
+  for (let i = 0; i < 2; i++) {
+    try {
+      const next = decodeURIComponent(s);
+      if (next === s) break;
+      s = next;
+    } catch {
+      break;
+    }
+  }
+  try {
+    s = s.normalize("NFC");
+  } catch {
+    /* ignore */
+  }
+  return s;
+}
+
+function slugLookupKeys(slug: string): string[] {
+  const keys = new Set<string>();
+  const add = (value: string) => {
+    const t = (value || "").trim();
+    if (t) keys.add(t);
+  };
+  add(slug);
+  add(normalizeSeoSlug(slug));
+  try {
+    add(normalizeSeoSlug(slug).normalize("NFD"));
+  } catch {
+    /* ignore */
+  }
+  return [...keys];
+}
+
+function regionLookupKeys(regionSlug: string): string[] {
+  if (!regionSlug) return [""];
+  const site = getHugdaySite(regionSlug);
+  const keys = new Set<string>([regionSlug]);
+  if (site) {
+    keys.add(site.slug);
+    keys.add(site.folder);
+  }
+  return [...keys];
+}
+
+function summaryMatchesSite(
+  summary: SeoPageSummary,
+  regionSlug: string
+): boolean {
+  const site = getHugdaySite(regionSlug);
+  if (!site) return false;
+  const hay = `${summary.slug} ${summary.keyword} ${summary.title} ${summary.h1}`.toLowerCase();
+  return (
+    hay.includes(site.name.toLowerCase()) ||
+    hay.includes(site.keyword.toLowerCase()) ||
+    hay.includes(site.folder.toLowerCase())
+  );
+}
+
 /** Blob pathname 용 ASCII 키 (한글 slug 불가 대응) */
 export function blobPageKey(slug: string, regionSlug = ""): string {
-  const raw = regionSlug ? `${regionSlug}\n${slug}` : slug;
+  const s = normalizeSeoSlug(slug);
+  const r = normalizeSeoSlug(regionSlug);
+  const raw = r ? `${r}\n${s}` : s;
   const h = createHash("sha256").update(raw, "utf8").digest("hex").slice(0, 24);
   return `p_${h}`;
 }
@@ -276,21 +340,29 @@ function writeIndexFs(index: SeoIndex, regionSlug = "") {
 }
 
 function readPageFs(slug: string, regionSlug = ""): SeoPage | null {
-  const candidates = [slug];
-  try {
-    const decoded = decodeURIComponent(slug);
-    if (decoded !== slug) candidates.push(decoded);
-  } catch {
-    /* ignore */
+  const slugs = slugLookupKeys(slug);
+  const regions = regionLookupKeys(regionSlug);
+  for (const region of regions) {
+    const dir = region ? regionPagesDir(region) : PAGES_DIR;
+    for (const key of slugs) {
+      const file = path.join(dir, `${key}.json`);
+      if (!fs.existsSync(file)) continue;
+      try {
+        return normalizePage(JSON.parse(fs.readFileSync(file, "utf-8")) as SeoPage);
+      } catch {
+        /* try next */
+      }
+    }
   }
-  const dir = regionSlug ? regionPagesDir(regionSlug) : PAGES_DIR;
-  for (const key of candidates) {
-    const file = path.join(dir, `${key}.json`);
-    if (!fs.existsSync(file)) continue;
-    try {
-      return normalizePage(JSON.parse(fs.readFileSync(file, "utf-8")) as SeoPage);
-    } catch {
-      /* try next */
+  if (regionSlug) {
+    for (const key of slugs) {
+      const file = path.join(PAGES_DIR, `${key}.json`);
+      if (!fs.existsSync(file)) continue;
+      try {
+        return normalizePage(JSON.parse(fs.readFileSync(file, "utf-8")) as SeoPage);
+      } catch {
+        /* try next */
+      }
     }
   }
   return null;
@@ -347,51 +419,84 @@ export async function writeIndex(index: SeoIndex, regionSlug = ""): Promise<void
   }
 }
 
-export async function readPage(slug: string, regionSlug = ""): Promise<SeoPage | null> {
-  const candidates = [slug];
-  try {
-    const decoded = decodeURIComponent(slug);
-    if (decoded !== slug) candidates.push(decoded);
-  } catch {
-    /* ignore */
-  }
-  if (resolveBlobToken()) {
-    for (const key of candidates) {
-      const hashed = await readBlobText(blobPagePathname(key, regionSlug));
-      if (hashed) {
-        try {
-          return normalizePage(JSON.parse(hashed) as SeoPage);
-        } catch {
-          /* try legacy */
-        }
-      }
-      if (!regionSlug) {
-        const blobRaw = await readBlobText(`${BLOB_PREFIX}/pages/${key}.json`);
-        if (blobRaw) {
-          try {
-            return normalizePage(JSON.parse(blobRaw) as SeoPage);
-          } catch {
-            /* try next */
-          }
-        }
+async function readPageFromBlob(
+  slug: string,
+  regionSlug = ""
+): Promise<SeoPage | null> {
+  const slugs = slugLookupKeys(slug);
+  const regions = regionLookupKeys(regionSlug);
+  for (const region of regions) {
+    for (const key of slugs) {
+      const hashed = await readBlobText(blobPagePathname(key, region));
+      if (!hashed) continue;
+      try {
+        return normalizePage(JSON.parse(hashed) as SeoPage);
+      } catch {
+        /* try next */
       }
     }
+  }
+  for (const key of slugs) {
+    const hashed = await readBlobText(blobPagePathname(key, ""));
+    if (hashed) {
+      try {
+        return normalizePage(JSON.parse(hashed) as SeoPage);
+      } catch {
+        /* try legacy */
+      }
+    }
+    const blobRaw = await readBlobText(`${BLOB_PREFIX}/pages/${key}.json`);
+    if (blobRaw) {
+      try {
+        return normalizePage(JSON.parse(blobRaw) as SeoPage);
+      } catch {
+        /* try next */
+      }
+    }
+  }
+  return null;
+}
+
+export async function readPage(slug: string, regionSlug = ""): Promise<SeoPage | null> {
+  if (resolveBlobToken()) {
+    const fromBlob = await readPageFromBlob(slug, regionSlug);
+    if (fromBlob) return fromBlob;
   }
   return readPageFs(slug, regionSlug);
 }
 
 /** 목록·홈·사이트맵용 — index.json 1회만 읽음 (전체 글 JSON 미조회) */
+function summariesFromIndex(index: SeoIndex): SeoPageSummary[] {
+  if (index.entries && index.entries.length > 0) {
+    return [...index.entries];
+  }
+  if (index.slugs.length > 0) {
+    return index.slugs.map((s) => stubSummary(s, index.updatedAt));
+  }
+  return [];
+}
+
 export async function listPageSummaries(regionSlug = ""): Promise<SeoPageSummary[]> {
   try {
     const index = await readIndex(regionSlug);
-    if (index.entries && index.entries.length > 0) {
-      return [...index.entries].sort((a, b) =>
+    let items = summariesFromIndex(index);
+
+    if (regionSlug) {
+      const global = await readIndex("");
+      const seen = new Set(items.map((e) => e.slug));
+      for (const extra of summariesFromIndex(global)) {
+        if (seen.has(extra.slug) || !summaryMatchesSite(extra, regionSlug)) continue;
+        seen.add(extra.slug);
+        items.push(extra);
+      }
+    }
+
+    if (items.length > 0) {
+      return items.sort((a, b) =>
         (a.createdAt || "") < (b.createdAt || "") ? 1 : -1
       );
     }
-    if (index.slugs.length > 0) {
-      return index.slugs.map((s) => stubSummary(s, index.updatedAt));
-    }
+
     try {
       const dir = regionSlug ? regionPagesDir(regionSlug) : PAGES_DIR;
       if (fs.existsSync(dir)) {
@@ -447,6 +552,8 @@ export async function listPages(limit?: number): Promise<SeoPage[]> {
 }
 
 export async function savePage(page: SeoPage): Promise<void> {
+  page.slug = normalizeSeoSlug(page.slug);
+  if (page.regionSlug) page.regionSlug = normalizeSeoSlug(page.regionSlug);
   const content = JSON.stringify(page, null, 2);
   const region = page.regionSlug || "";
   const pagePathname = blobPagePathname(page.slug, region);
@@ -488,31 +595,41 @@ export async function savePage(page: SeoPage): Promise<void> {
   await writeIndex(index, region);
 }
 
-export async function deletePage(slug: string): Promise<void> {
-  const pagePathname = blobPagePathname(slug);
+export async function deletePage(slug: string, regionSlug = ""): Promise<void> {
+  const key = normalizeSeoSlug(slug);
+  const regions = regionLookupKeys(regionSlug);
+  const paths = [
+    ...regions.map((region) => blobPagePathname(key, region)),
+    blobPagePathname(key, ""),
+  ];
 
   if (isVercelRuntime() || resolveBlobToken()) {
-    try {
-      await del(pagePathname, blobTokenOpts());
-    } catch (e) {
-      if (isVercelRuntime()) {
-        throw new Error(
-          `Vercel Blob 삭제 실패(page). (${e instanceof Error ? e.message : e})`
-        );
+    for (const pagePathname of [...new Set(paths)]) {
+      try {
+        await del(pagePathname, blobTokenOpts());
+      } catch (e) {
+        if (isVercelRuntime()) {
+          console.error("[seo-pages] blob delete failed", pagePathname, e);
+        }
       }
     }
   }
 
-  try {
-    const file = path.join(PAGES_DIR, `${slug}.json`);
-    if (fs.existsSync(file)) fs.unlinkSync(file);
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    if (!/ENOENT/i.test(msg)) throw e;
+  for (const region of [...regions, ""]) {
+    try {
+      const dir = region ? regionPagesDir(region) : PAGES_DIR;
+      const file = path.join(dir, `${key}.json`);
+      if (fs.existsSync(file)) fs.unlinkSync(file);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      if (!/ENOENT/i.test(msg)) throw e;
+    }
   }
 
-  const index = removeIndexEntry(await readIndex(), slug);
-  await writeIndex(index);
+  for (const region of [...new Set([...regions, ""])]) {
+    const index = removeIndexEntry(await readIndex(region), key);
+    await writeIndex(index, region);
+  }
 }
 
 export function pagePublicUrl(slug: string): string {
@@ -521,7 +638,7 @@ export function pagePublicUrl(slug: string): string {
 }
 
 export function pagePath(slug: string): string {
-  return `/guide/${encodeURIComponent(slug)}`;
+  return `/guide/${normalizeSeoSlug(slug)}`;
 }
 
 /** 파일명용 slug */
