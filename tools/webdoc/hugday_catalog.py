@@ -15,6 +15,56 @@ PARENT = "puppytimes.co.kr"
 
 DEFAULT_EXTRAS = ["분양가", "성격", "키우기", "입양", "특징"]
 
+FOLDER_IMAGE_COUNT = {
+    "abisinan": 20,
+    "american": 18,
+    "bnagal": 20,
+    "bosten": 5,
+    "british": 45,
+    "bunyz": 10,
+    "catboho": 45,
+    "chauchau": 5,
+    "coca": 10,
+    "coldenret": 10,
+    "coton": 30,
+    "daks": 21,
+    "dalma": 21,
+    "doberman": 5,
+    "dogboho": 45,
+    "engbuldog": 5,
+    "frenchi": 25,
+    "italian": 10,
+    "doodle": 40,
+    "maincoon": 45,
+    "malamute": 5,
+    "mcnchikin": 45,
+    "minipin": 10,
+    "neva": 45,
+    "norwe": 25,
+    "oldbig": 10,
+    "perisian": 10,
+    "pekinee": 25,
+    "pome": 45,
+    "pomsky": 45,
+    "ragdoll": 45,
+    "rusian": 15,
+    "samoyed": 15,
+    "scottish": 19,
+    "selti": 45,
+    "shichu": 21,
+    "shuna": 10,
+    "siba": 19,
+    "singa": 19,
+    "spinkix": 20,
+    "welshi": 15,
+    "wterrier": 30,
+    "yoki": 10,
+}
+
+
+def folder_image_count(folder: str) -> int:
+    return int(FOLDER_IMAGE_COUNT.get(folder) or 5)
+
 
 def _sites_ts() -> Path:
     meipass = getattr(sys, "_MEIPASS", None)
@@ -111,7 +161,9 @@ def parse_breed_images(text: str) -> Dict[str, List[str]]:
             if not u:
                 continue
             if u.endswith("/"):
-                urls.extend([f"{u}{i:02d}.webp" for i in range(1, 46)])
+                folder = u.rstrip("/").rsplit("/", 1)[-1]
+                n = folder_image_count(folder)
+                urls.extend([f"{u}{i:02d}.webp" for i in range(1, n + 1)])
             else:
                 urls.append(u)
         if breed and urls:

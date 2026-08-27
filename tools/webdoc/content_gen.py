@@ -18,6 +18,7 @@ from urllib.parse import quote
 
 from nearby_geo import extract_region, extract_theme, nearby_areas, nearby_html_blocks, nearby_keyword_csv, nearby_stations
 from gemini_gen import DEFAULT_MODEL, build_gemini_page
+from hugday_catalog import folder_image_count
 
 BRAND = "와일드쿤"
 FARM = "메인쿤분양"
@@ -523,11 +524,12 @@ def write_cattery_job(
     breed = infer_breed(kw, breeds)
     folder = str(job.get("folder") or "").strip()
     if folder:
-        pool = [f"https://image.cattery.co.kr/{folder}/{i:02d}.webp" for i in range(1, 46)]
+        n = folder_image_count(folder)
+        pool = [f"https://image.cattery.co.kr/{folder}/{i:02d}.webp" for i in range(1, n + 1)]
         rng = random.Random(int(hashlib.md5(f"{kw}|hugday".encode()).hexdigest()[:8], 16))
         shuffled = list(pool)
         rng.shuffle(shuffled)
-        images = shuffled[:3]
+        images = shuffled[:3] or [f"https://image.cattery.co.kr/{folder}/01.webp"]
     else:
         images = pick_cattery_images(kw, breed, breed_images, 3)
     use_gemini = (gen_mode or "template").strip().lower() == "gemini"

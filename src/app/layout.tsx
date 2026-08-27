@@ -7,7 +7,7 @@ import { getGlobalSponsor } from "@/lib/site-sponsor";
 import { publicKakaoUrl } from "@/lib/site-sponsor-shared";
 import { hugdaySiteFromRequest } from "@/lib/hugday-host";
 import { buildHugdayPage } from "@/lib/hugday-content";
-import { pickHugdayImages } from "@/lib/hugday-images";
+import { hugdayCover } from "@/lib/hugday-images";
 import { HUGDAY_THEME } from "@/lib/hugday-sites";
 import { getHugdayNaverMeta } from "@/lib/hugday-meta";
 import SponsorStickyFooter from "./components/SponsorStickyFooter";
@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (site) {
     const page = buildHugdayPage(site);
     const naver = await getHugdayNaverMeta(site.slug);
-    const og = pickHugdayImages(site, 1)[0];
+    const og = hugdayCover(site.folder);
     return {
       metadataBase: new URL(site.siteUrl),
       title: { absolute: site.title },

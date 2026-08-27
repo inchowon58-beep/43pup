@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HUGDAY_SITES } from "@/lib/hugday-sites";
-import { hugdayPhotos } from "@/lib/hugday-images";
+import { hugdayCover } from "@/lib/hugday-images";
 import HugdayPhoto from "./components/HugdayPhoto";
 
 export const dynamic = "force-dynamic";
@@ -27,7 +27,7 @@ export default function HomePage() {
         <p className="hug-hub-count">43 NOTES · PUPPYTIMES.CO.KR</p>
         <div className="hug-hub-grid">
           {HUGDAY_SITES.map((s) => {
-            const photo = hugdayPhotos(s).hero;
+            const photo = hugdayCover(s.folder);
             return (
               <Link key={s.slug} href={s.siteUrl} className="hug-hub-card">
                 <HugdayPhoto src={photo} alt={s.title} sizes="33vw" />
