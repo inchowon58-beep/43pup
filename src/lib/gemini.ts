@@ -4,7 +4,6 @@ import type { HugdaySite } from "./hugday-sites";
 import { pickHugdayImages } from "./hugday-images";
 import type { SeoPage } from "./seo-pages";
 import { slugifyKeyword } from "./seo-pages";
-import { breedSeoSections } from "./hugday-guide";
 
 const MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash-lite";
 
@@ -30,7 +29,8 @@ function buildPrompt(keyword: string): string {
 다른 업체 실명 비방은 하지 마세요. 브랜드명 '${SITE.brand}'은 남용하지 말고 한두 번만 넣으세요.
 
 메인 키워드: ${keyword}
-핵심: 기질, 관리, 집 환경, 분양가 항목, 입양 순서. 지역·동·구 키워드는 쓰지 마세요.
+핵심: 기질, 관리, 집 환경, 분양 가격이 달라지는 이유, 입양 순서.
+전달된 키워드('${keyword}')를 제목과 본문에 그대로 쓰세요. 키워드에 없는 지역명을 새로 만들지 마세요.
 ${kakaoLine}
 서비스 범위: ${SITE.areaServed}
 
@@ -49,11 +49,11 @@ ${kakaoLine}
 아래 JSON만 출력. 설명·마크다운 금지.
 
 {
-  "title": "55자 내. '{keyword}' 포함. 예: '{keyword} | 포옹데이'",
+  "title": "55자 내. 예: '{keyword} 안심가이드 | 포옹데이'",
   "metaDescription": "140~158자. '{keyword}' 포함. 전화번호 금지",
   "metaKeywords": "{keyword}, 포옹데이, 분양, 기질, 키우기 등 8~12개",
-  "h1": "'{keyword}'가 들어간 H1",
-  "heroSubtitle": "한글 한 문장",
+  "h1": "'{keyword} 안심가이드' 또는 '{keyword} 완벽가이드'처럼 키워드+가이드 형식",
+  "heroSubtitle": "한글 한 문장. 생성할 때마다 조금씩 다르게",
   "heroBadge": "분양 안내",
   "heroTitleLine2": "포옹데이",
   "heroBar": "기질·관리·집 환경을 먼저 맞춰 보세요.",
@@ -141,13 +141,16 @@ export function assembleSeoPage(
   site?: HugdaySite
 ): SeoPage {
   const now = new Date().toISOString();
+  const kw = partial.keyword;
+  const h1 = /가이드/.test(partial.h1 || "") ? partial.h1 : `${kw} 안심가이드`;
+  const title = /가이드/.test(partial.title || "") ? partial.title : `${h1} | 포옹데이`;
   return {
     slug: slug || slugifyKeyword(partial.keyword),
     keyword: partial.keyword,
-    title: partial.title,
+    title,
     metaDescription: clampDesc(partial.metaDescription),
     metaKeywords: partial.metaKeywords,
-    h1: partial.h1,
+    h1,
     heroSubtitle: partial.heroSubtitle,
     heroBadge: partial.heroBadge || "분양 안내",
     heroTitleLine1: partial.heroTitleLine1 || partial.keyword,
@@ -155,7 +158,7 @@ export function assembleSeoPage(
     heroBar: partial.heroBar || "기질·관리·집 환경을 먼저 맞춰 보세요.",
     regionSlug: site?.slug,
     regionName: site?.name,
-    sections: site ? [...breedSeoSections(site), ...partial.sections] : partial.sections,
+    sections: partial.sections,
     faqs: partial.faqs,
     images: site ? pickHugdayImages(site, 3, slug || partial.keyword) : [],
     ctaText: partial.ctaText,

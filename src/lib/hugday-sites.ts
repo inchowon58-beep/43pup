@@ -150,3 +150,9 @@ export function kindLabel(site: HugdaySite): string {
 export function kindKo(site: HugdaySite): string {
   return `${site.keyword}안내`;
 }
+
+export function hubNavLabel(site: HugdaySite): string {
+  if (site.kind === "cat") return "다른묘종보기";
+  if (site.kind === "shelter") return "다른보호소보기";
+  return "다른견종보기";
+}

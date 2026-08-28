@@ -22,8 +22,16 @@ import type { HugdaySite } from "@/lib/hugday-sites";
 import { hugdayPhotos } from "@/lib/hugday-images";
 import type { SiteSponsor } from "@/lib/site-sponsor-shared";
 import { phoneToTel, youtubeVideoId, youtubeEmbedUrl, sponsorYoutubeUrl } from "@/lib/site-sponsor-shared";
-import { buildHugdayGuide, type SpecKey, type WarningItem } from "@/lib/hugday-guide";
+import { buildHugdayGuide, isStoredBreedDump, type SpecKey, type WarningItem } from "@/lib/hugday-guide";
 import HugdayPhoto from "./HugdayPhoto";
+
+export type HugdaySeoOverlay = {
+  keyword: string;
+  heroTitle: string;
+  heroSub: string;
+  sections: { h2: string; paragraphs: string[] }[];
+  faqs: { q: string; a: string }[];
+};
 
 const SPEC_ICON: Record<SpecKey, ComponentType<{ size?: number; strokeWidth?: number }>> = {
   size: Ruler,
@@ -39,19 +47,70 @@ const WARN_ICON: Record<WarningItem["icon"], ComponentType<{ size?: number; stro
   paw: PawPrint,
 };
 
+function WarningBand({
+  kicker,
+  title,
+  lead,
+  items,
+  closer,
+}: {
+  kicker: string;
+  title: string;
+  lead: string;
+  items: WarningItem[];
+  closer: string;
+}) {
+  return (
+    <section className="guide-warn-band">
+      <div className="guide-wrap">
+        <div className="guide-warn">
+          <p className="guide-warn-kicker">
+            <ShieldAlert size={18} strokeWidth={2} />
+            {kicker}
+          </p>
+          <h2 className="guide-h2 guide-warn-title">{title}</h2>
+          <p className="guide-warn-lead">{lead}</p>
+          <ul className="guide-warn-grid">
+            {items.map((item) => {
+              const Icon = WARN_ICON[item.icon];
+              return (
+                <li key={item.title} className="guide-warn-card">
+                  <span className="guide-warn-icon" aria-hidden>
+                    <Icon size={20} strokeWidth={1.75} />
+                  </span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="guide-warn-closer">{closer}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function HugdayLanding({
   page,
   site,
   sponsor,
+  seo,
 }: {
   page: HugdayPage;
   site: HugdaySite;
   sponsor: SiteSponsor | null;
+  seo?: HugdaySeoOverlay;
 }) {
   const photos = hugdayPhotos(site);
   const guide = buildHugdayGuide(site, page, sponsor);
   const { encyclopedia: enc, partners } = guide;
   const yt = sponsor?.status === "ACTIVE" ? youtubeVideoId(sponsorYoutubeUrl(sponsor, 1)) : null;
+  const heroTitle = seo?.heroTitle || guide.heroTitle;
+  const heroSub = seo?.heroSub || guide.heroSub;
+  const faqs = seo?.faqs?.length ? seo.faqs : page.faqs;
+  const seoSections = (seo?.sections || []).filter((sec) => !isStoredBreedDump(sec.h2));
+  const briefParas = seo ? enc.paragraphs.slice(0, 2) : enc.paragraphs;
 
   return (
     <div
@@ -71,8 +130,8 @@ export default function HugdayLanding({
             </a>
             <p className="guide-kicker">{guide.kindLabel}</p>
           </div>
-          <a href="#partners" className="guide-head-link">
-            안심파워 보기
+          <a href={guide.hubUrl} className="guide-head-link">
+            {guide.hubNavLabel}
           </a>
         </div>
       </header>
@@ -82,9 +141,9 @@ export default function HugdayLanding({
           <HugdayPhoto src={photos.hero} alt={`${site.name} 대표`} priority sizes="55vw" />
         </div>
         <div>
-          <p className="guide-kicker">{site.tag}</p>
-          <h1 className="guide-h1">{guide.heroTitle}</h1>
-          <p className="guide-lead">{guide.heroSub}</p>
+          <p className="guide-kicker">{seo?.keyword || site.tag}</p>
+          <h1 className="guide-h1">{heroTitle}</h1>
+          <p className="guide-lead">{heroSub}</p>
           <ul className="guide-specs">
             {guide.specs.map((s) => {
               const Icon = SPEC_ICON[s.key];
@@ -104,33 +163,7 @@ export default function HugdayLanding({
         </div>
       </section>
 
-      <section className="guide-warn-band">
-        <div className="guide-wrap">
-          <div className="guide-warn">
-            <p className="guide-warn-kicker">
-              <ShieldAlert size={18} strokeWidth={2} />
-              {guide.warning.kicker}
-            </p>
-            <h2 className="guide-h2 guide-warn-title">{guide.warning.title}</h2>
-            <p className="guide-warn-lead">{guide.warning.lead}</p>
-            <ul className="guide-warn-grid">
-              {guide.warning.items.map((item) => {
-                const Icon = WARN_ICON[item.icon];
-                return (
-                  <li key={item.title} className="guide-warn-card">
-                    <span className="guide-warn-icon" aria-hidden>
-                      <Icon size={20} strokeWidth={1.75} />
-                    </span>
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                  </li>
-                );
-              })}
-            </ul>
-            <p className="guide-warn-closer">{guide.warning.closer}</p>
-          </div>
-        </div>
-      </section>
+      {!seo ? <WarningBand {...guide.warning} /> : null}
 
       <section className="guide-wrap guide-ency">
         <div className="guide-ency-photo">
@@ -144,13 +177,28 @@ export default function HugdayLanding({
           <h2 className="guide-h2">{guide.meetHeading}</h2>
           <p className="guide-origin">{enc.origin}</p>
           <div className="guide-prose">
-            {enc.paragraphs.map((p) => (
+            {briefParas.map((p) => (
               <p key={p.slice(0, 28)}>{p}</p>
             ))}
           </div>
           <p className="guide-beginner">{enc.beginner}</p>
         </div>
       </section>
+
+      {seoSections.length ? (
+        <section className="guide-wrap guide-seo">
+          {seoSections.map((sec) => (
+            <article key={sec.h2} className="guide-seo-block">
+              <h3>{sec.h2}</h3>
+              {sec.paragraphs.map((p) => (
+                <p key={p.slice(0, 28)}>{p}</p>
+              ))}
+            </article>
+          ))}
+        </section>
+      ) : null}
+
+      {seo ? <WarningBand {...guide.warning} /> : null}
 
       <div className="guide-wrap guide-facts">
         <article className="guide-fact">
@@ -214,25 +262,14 @@ export default function HugdayLanding({
             <p className="guide-vax-extra">{guide.costs.vaccines.extra}</p>
           </div>
 
-          <div className="guide-table-wrap">
-            <table className="guide-table">
-              <thead>
-                <tr>
-                  <th>준비 항목</th>
-                  <th>참고 범위</th>
-                  <th>이렇게 보시면 됩니다</th>
-                </tr>
-              </thead>
-              <tbody>
-                {guide.costs.rows.map((r) => (
-                  <tr key={r.item}>
-                    <td>{r.item}</td>
-                    <td>{r.range}</td>
-                    <td>{r.note}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="guide-cost-cards">
+            {guide.costs.rows.map((r) => (
+              <article key={r.item} className="guide-cost-card">
+                <h3>{r.item}</h3>
+                <p className="guide-cost-range">{r.range}</p>
+                <p className="guide-cost-note">{r.note}</p>
+              </article>
+            ))}
           </div>
           <p className="guide-aftercare">{guide.costs.aftercare}</p>
         </div>
@@ -272,30 +309,39 @@ export default function HugdayLanding({
 
       <section id="partners" className="guide-partners">
         <div className="guide-wrap">
-          <p className="guide-partners-kicker">{partners.kicker}</p>
-          <h2 className="guide-h2 guide-partners-title">{partners.title}</h2>
-          {partners.shareNote ? <p className="guide-partners-note">{partners.shareNote}</p> : null}
+          <div className="guide-partners-intro">
+            <div className="guide-partners-intro-copy">
+              <p className="guide-partners-kicker">{partners.kicker}</p>
+              <h2 className="guide-h2 guide-partners-title">{partners.title}</h2>
+              {partners.shareNote ? <p className="guide-partners-note">{partners.shareNote}</p> : null}
+            </div>
+            <div className="guide-partners-intro-thumb">
+              <HugdayPhoto src={photos.portrait} alt={`${site.name} 안심업체`} sizes="220px" />
+            </div>
+          </div>
 
           {partners.featured.length ? (
             <div className="guide-partner-featured">
               {partners.featured.map((c) => (
-                <article key={c.name}>
-                  <p>{partners.featuredLabel}</p>
-                  <h3>{c.name}</h3>
-                  {c.notice ? <p className="guide-partner-notice">{c.notice}</p> : null}
-                  <div className="guide-partner-actions">
-                    {c.phone ? (
-                      <a className="guide-btn-fill" href={phoneToTel(c.phone)}>
-                        <Phone size={16} />
-                        {c.phone}
-                      </a>
-                    ) : null}
-                    {c.home ? (
-                      <a className="guide-btn-line" href={c.home} target="_blank" rel="noopener noreferrer">
-                        공식홈페이지 방문
-                        <ArrowUpRight size={16} />
-                      </a>
-                    ) : null}
+                <article key={c.name} className="guide-partner-card">
+                  <div className="guide-partner-body">
+                    <p>{partners.featuredLabel}</p>
+                    <h3>{c.name}</h3>
+                    {c.notice ? <p className="guide-partner-notice">{c.notice}</p> : null}
+                    <div className="guide-partner-actions">
+                      {c.phone ? (
+                        <a className="guide-btn-fill" href={phoneToTel(c.phone)}>
+                          <Phone size={16} />
+                          {c.phone}
+                        </a>
+                      ) : null}
+                      {c.home ? (
+                        <a className="guide-btn-line" href={c.home} target="_blank" rel="noopener noreferrer">
+                          공식홈페이지 방문
+                          <ArrowUpRight size={16} />
+                        </a>
+                      ) : null}
+                    </div>
                   </div>
                 </article>
               ))}
@@ -341,7 +387,7 @@ export default function HugdayLanding({
         <p className="guide-kicker">Q&A</p>
         <h2 className="guide-h2">자주 묻는 말</h2>
         <div className="guide-faq-list">
-          {page.faqs.map((f) => (
+          {faqs.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
               <p>{f.a}</p>

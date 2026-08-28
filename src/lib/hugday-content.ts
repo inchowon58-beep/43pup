@@ -1,5 +1,5 @@
 import type { HugdaySite } from "./hugday-sites";
-import { BRAND, HUB_URL } from "./hugday-sites";
+import { BRAND, hubNavLabel } from "./hugday-sites";
 import { eunNeun } from "./korean";
 
 export type HugdayFaq = { q: string; a: string };
@@ -120,7 +120,7 @@ export function buildHugdayPage(site: HugdaySite): HugdayPage {
     },
     {
       q: `${BRAND}는 어떤 사이트인가요?`,
-      a: `${BRAND}는 모든 견종·묘종 안내와 함께 보호소, 카페, 장례식장, 애견호텔, 유치원 등 반려동물 관련 정보를 제공하는 포털입니다. 상단 ${BRAND}를 누르면 전체 목록이 있는 메인(${HUB_URL.replace("https://", "")})으로 이동합니다.`,
+      a: `${BRAND}는 모든 견종·묘종 안내와 함께 보호소, 카페, 장례식장, 애견호텔, 유치원 등 반려동물 관련 정보를 제공하는 포털입니다. 상단 ${BRAND}나 ${hubNavLabel(site)}를 누르면 전체 목록이 있는 메인으로 이동합니다.`,
     },
   ];
 

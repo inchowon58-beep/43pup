@@ -1,5 +1,5 @@
 import type { HugdaySite } from "./hugday-sites";
-import { kindKo, HUB_URL } from "./hugday-sites";
+import { kindKo, HUB_URL, hubNavLabel } from "./hugday-sites";
 import type { HugdayPage } from "./hugday-content";
 import { getEncyclopedia, type BreedEncyclopedia, type GuideFact } from "./hugday-encyclopedia";
 import type { SiteSponsor } from "./site-sponsor-shared";
@@ -36,6 +36,7 @@ export type HugdayGuide = {
   kindLabel: string;
   petWord: string;
   hubUrl: string;
+  hubNavLabel: string;
   meetHeading: string;
   specs: { key: SpecKey; label: string; value: string }[];
   warning: {
@@ -74,6 +75,33 @@ export type HugdayGuide = {
     others: PartnerCard[];
   };
 };
+
+function hashFolder(folder: string): number {
+  let h = 0;
+  for (let i = 0; i < folder.length; i++) h = (h * 31 + folder.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+function heroTitleFor(site: HugdaySite): string {
+  const name = site.name;
+  const tails =
+    site.kind === "shelter"
+      ? ["완벽 가이드 & 안심입양 절차", "완벽 가이드 & 안심입양 방법", "성공적인 입양법"]
+      : site.kind === "cat"
+        ? [
+            "완벽 가이드 & 안심분양 방법",
+            "완벽 가이드 & 안심입양 절차",
+            "완벽 가이드 & 안심입양 방법",
+            "성공적인 입양법",
+          ]
+        : [
+            "완벽 가이드 & 안심분양 방법",
+            "완벽 가이드 & 안심입양 절차",
+            "완벽 가이드 & 안심입양 방법",
+            "성공적인 분양법",
+          ];
+  return `${name} ${tails[hashFolder(site.folder) % tails.length]}`;
+}
 
 function petWord(site: HugdaySite): string {
   if (site.kind === "cat") return "고양이";
@@ -275,11 +303,12 @@ export function buildHugdayGuide(site: HugdaySite, page: HugdayPage, sponsor: Si
   partners.title = `${site.keyword} 지금 알아보면 좋은 곳`;
 
   return {
-    heroTitle: `${name} 완벽 가이드 & 안심파워 비교`,
+    heroTitle: heroTitleFor(site),
     heroSub: `${name}${obj} 처음 맞이하려는 분들께, 가격보다 먼저 전하고 싶은 이야기가 있습니다. 기질과 관리, 숨은 조건 없는 안내를 한곳에 모았습니다. 새로운 가족을 들이는 일은 설렘만큼 책임이 따릅니다.`,
     kindLabel: kindKo(site),
     petWord: who,
     hubUrl: HUB_URL,
+    hubNavLabel: hubNavLabel(site),
     meetHeading: `${name}${obj} 처음 맞이한다면`,
     specs: [
       { key: "size", label: "체구", value: site.size },
@@ -359,28 +388,17 @@ export function buildHugdayGuide(site: HugdaySite, page: HugdayPage, sponsor: Si
   };
 }
 
-export function breedSeoSections(site: HugdaySite): { h2: string; paragraphs: string[] }[] {
+export function isStoredBreedDump(h2: string): boolean {
+  return /처음 맞이한다면|유전·건강|챙길|무료 분양의 함정|허위·과장/.test(h2);
+}
+
+export function breedSeoBrief(site: HugdaySite): { heading: string; paragraphs: string[] } {
   const enc = getEncyclopedia(site);
   const obj = eulReul(site.name);
-  const warn = warningFor(site);
-  return [
-    {
-      h2: `${site.name}${obj} 처음 맞이한다면`,
-      paragraphs: [enc.origin, ...enc.paragraphs, enc.beginner],
-    },
-    {
-      h2: `${site.name}에서 주의할 유전·건강`,
-      paragraphs: enc.genetics.map((g) => `${g.name} — ${g.detail}`),
-    },
-    {
-      h2: `초보 보호자가 챙길 ${site.name} 일상`,
-      paragraphs: enc.care.map((g) => `${g.name} — ${g.detail}`),
-    },
-    {
-      h2: warn.title,
-      paragraphs: [warn.lead, ...warn.items.map((item) => `${item.title}. ${item.body}`), warn.closer],
-    },
-  ];
+  return {
+    heading: `${site.name}${obj} 처음 맞이한다면`,
+    paragraphs: [enc.origin, ...enc.paragraphs.slice(0, 2), enc.beginner].filter(Boolean),
+  };
 }
 
 export { phoneToTel };

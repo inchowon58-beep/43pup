@@ -1533,26 +1533,29 @@ body.hug-mode {
 
 .guide-head-inner {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  padding: 1.15rem 0 1rem;
+  gap: 0.75rem;
+  padding: 1.05rem 0 0.95rem;
 }
 
 .guide-brand {
   margin: 0;
   display: inline-block;
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--guide-cocoa);
 }
 
 .guide-head-link {
-  font-size: 0.88rem;
+  flex-shrink: 0;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--guide-rust);
   border-bottom: 1px solid rgba(139, 61, 43, 0.35);
   padding-bottom: 2px;
+  white-space: nowrap;
 }
 
 .guide-hero {
@@ -1911,48 +1914,58 @@ body.hug-mode {
   color: var(--guide-muted);
 }
 
-.guide-table-wrap {
+.guide-cost-cards {
+  display: grid;
+  gap: 0.75rem;
   margin-top: 1.4rem;
-  overflow-x: auto;
+}
+
+.guide-cost-card {
+  padding: 1.05rem 1.15rem 1.15rem;
+  background: var(--guide-card);
+  border: 1px solid var(--guide-line);
+  border-radius: 1.1rem;
+}
+
+.guide-cost-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.guide-cost-range {
+  margin: 0.35rem 0 0;
+  color: var(--guide-rust);
+  font-weight: 700;
+}
+
+.guide-cost-note {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--guide-muted);
+}
+
+.guide-seo {
+  padding: 0.4rem 0 2.2rem;
+}
+
+.guide-seo-block {
+  margin-top: 1.3rem;
+  padding: 1.25rem 1.3rem 1.35rem;
+  background: var(--guide-card);
   border: 1px solid var(--guide-line);
   border-radius: 1.2rem;
 }
 
-.guide-table {
-  width: 100%;
-  min-width: 520px;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.9rem;
+.guide-seo-block h3 {
+  margin: 0;
+  font-size: 1.15rem;
 }
 
-.guide-table th {
-  padding: 0.85rem 1rem;
-  background: var(--guide-cocoa);
-  color: #fffaf5;
-  font-weight: 700;
-}
-
-.guide-table td {
-  padding: 0.9rem 1rem;
-  vertical-align: top;
-  line-height: 1.65;
-}
-
-.guide-table td:first-child {
-  font-weight: 700;
-  color: var(--guide-cocoa);
-  white-space: nowrap;
-}
-
-.guide-table td:nth-child(2) {
-  white-space: nowrap;
-  color: var(--guide-rust);
-  font-weight: 600;
-}
-
-.guide-table tbody tr:nth-child(even) {
-  background: #faf6f0;
+.guide-seo-block p {
+  margin: 0.7rem 0 0;
+  line-height: 1.85;
+  color: var(--guide-muted);
 }
 
 .guide-aftercare {
@@ -2039,6 +2052,33 @@ body.hug-mode {
   color: #f7efe6;
 }
 
+.guide-partners-intro {
+  display: grid;
+  grid-template-columns: 1fr 88px;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .guide-partners-intro {
+    grid-template-columns: 1fr 160px;
+    gap: 1.4rem;
+  }
+}
+
+.guide-partners-intro-copy {
+  min-width: 0;
+}
+
+.guide-partners-intro-thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  aspect-ratio: 1;
+  background: rgba(255, 250, 245, 0.08);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
 .guide-partners-kicker {
   margin: 0;
   font-size: 0.72rem;
@@ -2067,27 +2107,42 @@ body.hug-mode {
 .guide-partner-featured {
   display: grid;
   gap: 0.9rem;
-  margin-top: 1.6rem;
+  margin-top: 1.4rem;
 }
 
-.guide-partner-featured article {
-  padding: 1.4rem 1.45rem;
+.guide-partner-card {
+  display: block;
+  padding: 1rem 1.05rem 1.1rem;
   background: #fffdf8;
   color: var(--guide-ink);
-  border-radius: 1.25rem;
+  border-radius: 1.2rem;
 }
 
-.guide-partner-featured article > p:first-child {
+@media (min-width: 640px) {
+  .guide-partner-card {
+    padding: 1.2rem 1.35rem 1.3rem;
+  }
+}
+
+.guide-partner-body > p:first-child {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   color: var(--guide-gold);
 }
 
 .guide-partner-featured h3 {
-  margin: 0.25rem 0 0;
-  font-size: 1.3rem;
+  margin: 0.2rem 0 0;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+@media (min-width: 640px) {
+  .guide-partner-featured h3 {
+    font-size: 1.3rem;
+  }
 }
 
 .guide-partner-notice {
@@ -2099,19 +2154,28 @@ body.hug-mode {
 .guide-partner-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
 }
 
 .guide-btn-fill,
 .guide-btn-line {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.7rem 1.05rem;
-  border-radius: 0.75rem;
-  font-size: 0.9rem;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.62rem 0.9rem;
+  border-radius: 0.7rem;
+  font-size: 0.82rem;
   font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  .guide-btn-fill,
+  .guide-btn-line {
+    padding: 0.7rem 1.05rem;
+    font-size: 0.9rem;
+  }
 }
 
 .guide-btn-fill {
