@@ -16,11 +16,14 @@ import HugdayAdminFooter from "./components/HugdayAdminFooter";
 import { KakaoHrefProvider } from "./components/KakaoHrefProvider";
 import "./globals.css";
 
-export const viewport: Viewport = {
-  themeColor: HUGDAY_THEME,
-  width: "device-width",
-  initialScale: 1,
-};
+export async function generateViewport(): Promise<Viewport> {
+  const site = await hugdaySiteFromRequest();
+  return {
+    themeColor: site ? HUGDAY_THEME : "#16325c",
+    width: "device-width",
+    initialScale: 1,
+  };
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = await hugdaySiteFromRequest();
@@ -59,7 +62,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const origin = await publicOrigin();
   return {
     metadataBase: new URL(origin),
-    title: { default: `${SITE.title} · 견종·묘종 노트`, template: `%s | ${SITE.brand}` },
+    title: { default: `${SITE.title} · 견종·묘종·보호소`, template: `%s | ${SITE.brand}` },
     description: SITE.description,
     keywords: [...SITE.keywords],
     authors: [{ name: SITE.brand }],
@@ -117,7 +120,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd(origin)) }}
         />
       </head>
-      <body className="hug-mode">
+      <body className={site ? "hug-mode" : "portal-home"}>
         <KakaoHrefProvider href={kakaoHref}>
           {children}
           <SponsorFooterGate>

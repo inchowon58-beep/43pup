@@ -116,6 +116,10 @@ function toSite(row: Row): HugdaySite {
 
 export const HUGDAY_SITES: HugdaySite[] = ROWS.map(toSite);
 
+export const HUGDAY_DOGS = HUGDAY_SITES.filter((s) => s.kind === "dog");
+export const HUGDAY_CATS = HUGDAY_SITES.filter((s) => s.kind === "cat");
+export const HUGDAY_SHELTERS = HUGDAY_SITES.filter((s) => s.kind === "shelter");
+
 export const HUGDAY_SLUGS = new Set(HUGDAY_SITES.map((s) => s.slug));
 
 const BY_SLUG = new Map(HUGDAY_SITES.map((s) => [s.slug, s]));
