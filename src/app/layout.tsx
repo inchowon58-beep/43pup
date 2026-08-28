@@ -105,7 +105,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Song+Myung&display=swap"
         />
         <script
           type="application/ld+json"
