@@ -395,15 +395,6 @@ export default function HugdayLanding({
           ))}
         </div>
       </section>
-
-      <footer className="guide-foot">
-        <p>
-          <a className="guide-brand" href={guide.hubUrl}>
-            포옹데이
-          </a>
-        </p>
-        <p>{site.title}</p>
-      </footer>
     </div>
   );
 }

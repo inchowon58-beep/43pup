@@ -26,6 +26,18 @@ export const SITE = {
   themeColor: "#7a3e2e",
 } as const;
 
+/** 포옹데이 운영사 — 푸터용. 채널 나열은 하지 않고 한 줄로 정리합니다. */
+export const OPERATOR = {
+  name: "주식회사 인포씨에스",
+  ceo: "조춘원",
+  address: "경기 부천시 길주로 246",
+  since: "2017",
+  url: "https://www.infocs.co.kr/",
+  urlLabel: "www.infocs.co.kr",
+  line: "광고·마케팅 전문. 검색·콘텐츠·영상 광고와 사이트 임대·자동화 구축.",
+  hint: "임대 가능 사이트와 비용 안내는 인포씨에스에서 확인하실 수 있습니다.",
+} as const;
+
 export const KEYWORD_INQUIRY = "상담 문의";
 export const CTA_RENTAL = "사이트 임대 · 제휴 문의";
 export const CTA_KAKAO = "카카오톡 상담하기";
