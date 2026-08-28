@@ -15,6 +15,7 @@ import {
   youtubeVideoId,
 } from "@/lib/site-sponsor-shared";
 import HugdayPhoto from "@/app/components/HugdayPhoto";
+import { HUB_URL } from "@/lib/hugday-sites";
 
 type Props = { params: Promise<{ slug: string[] }> };
 
@@ -85,7 +86,7 @@ export default async function GuidePage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 2,
-        name: hostSite ? `${hostSite.keyword} 안내` : "안내",
+        name: hostSite ? `${hostSite.keyword}안내` : "안내",
         item: absoluteUrl(origin, "/guide"),
       },
       { "@type": "ListItem", position: 3, name: page.h1, item: pageUrl },
@@ -99,6 +100,16 @@ export default async function GuidePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(page.faqs)) }}
       />
+      <header className="hug-nav">
+        <div className="hug-nav-inner">
+          <div>
+            <p className="hug-wordmark">
+              <a href={HUB_URL}>포옹데이</a>
+            </p>
+            <p className="hug-nav-sub">{hostSite ? `${hostSite.keyword}안내` : "분양 안내"}</p>
+          </div>
+        </div>
+      </header>
       {images[0] ? (
         <div className="hug-hero" style={{ minHeight: 380 }}>
           <div className="hug-hero-visual">
@@ -108,9 +119,7 @@ export default async function GuidePage({ params }: Props) {
             <p className="hug-eyebrow">{page.keyword}</p>
             <h1>{page.h1}</h1>
             <p className="hug-lead">{page.heroSubtitle || page.metaDescription}</p>
-            {waiting ? (
-              <span className="hug-chip-wait">입점대기중</span>
-            ) : phone ? (
+            {!waiting && phone ? (
               <a className="hug-btn-solid" href={phoneToTel(phone)}>
                 {phone}
               </a>
@@ -129,7 +138,7 @@ export default async function GuidePage({ params }: Props) {
         <nav className="hug-eyebrow" style={{ marginBottom: "1.5rem" }}>
           <Link href="/">홈</Link>
           <span> / </span>
-          <Link href="/guide">{hostSite ? `${hostSite.keyword} 안내` : "안내"}</Link>
+          <Link href="/guide">{hostSite ? `${hostSite.keyword}안내` : "안내"}</Link>
         </nav>
 
         <div className="hug-guide-article">
@@ -176,7 +185,7 @@ export default async function GuidePage({ params }: Props) {
           {!waiting && home ? (
             <p style={{ marginTop: "2rem" }}>
               <a className="hug-btn-line" href={home} target="_blank" rel="noopener noreferrer">
-                공식 안내 보기
+                공식홈페이지 방문
               </a>
             </p>
           ) : null}
@@ -184,7 +193,9 @@ export default async function GuidePage({ params }: Props) {
       </div>
 
       <footer className="hug-foot">
-        <p className="hug-wordmark">포옹데이</p>
+        <p className="hug-wordmark">
+          <a href={HUB_URL}>포옹데이</a>
+        </p>
         <p className="hug-foot-en">POONG DAY · GUIDE</p>
       </footer>
     </article>

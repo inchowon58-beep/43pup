@@ -1,5 +1,6 @@
 import type { HugdaySite } from "./hugday-sites";
-import { BRAND } from "./hugday-sites";
+import { BRAND, HUB_URL } from "./hugday-sites";
+import { eunNeun } from "./korean";
 
 export type HugdayFaq = { q: string; a: string };
 export type HugdayPage = {
@@ -64,7 +65,7 @@ export function buildHugdayPage(site: HugdaySite): HugdayPage {
           `${name}을 ${kw}로 찾으실 때 흔한 오해는 ‘사진 속 얼굴이 곧 성체’라는 점입니다. ${site.size}로 자라며 ${site.coat} 관리량이 집마다 달라집니다.`,
           `${site.temperament} 그래서 처음 일주일은 산책·화장실·잠자리만 고정해 주시는 편이 안전합니다. ${BRAND}는 그 순서를 ${name} 기준으로 풀어 둡니다.`,
           `${site.homeNeed} 이 조건이 빠지면 예쁘게 보여도 생활이 힘듭니다. ${kw} 상담에서는 공간·가족 구성부터 물어봅니다.`,
-          `분양 비용은 시기와 개체에 따라 달라 이 글에 금액을 표기하지 않습니다. 상담 연락처는 입점 후에 이 사이트에 표시됩니다.`,
+          `분양 가격은 혈통과 외모에 따라 달라, 상담에서 지금 만날 수 있는 아이부터 맞춰 드립니다. 상담 연락처는 입점 후에 이 사이트에 표시됩니다.`,
         ],
         [
           `${name}은 ${site.tag}입니다. ${kw}를 고를 때 외모 다음으로 ${site.coat} 관리 시간을 적어 보시면 선택이 분명해집니다.`,
@@ -105,21 +106,21 @@ export function buildHugdayPage(site: HugdaySite): HugdayPage {
   const faqs: HugdayFaq[] = [
     {
       q: `${kw} 상담은 어떻게 하나요?`,
-      a: `입점 후 이 사이트에 표시되는 연락처로 ${name} 희망 시기와 가족 구성만 알려 주셔도 됩니다.`,
+      a: `페이지 아래 연락처로 편하게 문의하시면 됩니다. 지역이 어디든 ${name} 희망 시기와 가족 구성만 알려 주셔도 안내받을 수 있습니다.`,
     },
     {
-      q: `${name}은 초보 보호자와 맞나요?`,
+      q: `${name}${eunNeun(name)} 초보 보호자와 맞나요?`,
       a: isShelter
-        ? `개체마다 다릅니다. ${name}에서는 성격 메모를 보고 속도를 맞춰 드립니다.`
-        : `${site.temperament} ${site.homeNeed} 초보라면 관리 시간을 먼저 가늠해 보세요.`,
+        ? `아이마다 속도가 다릅니다. ${name}에서는 성격 메모를 보고, 천천히 맞출 수 있는지를 함께 봐 드립니다.`
+        : `${site.temperament} ${site.homeNeed} 처음 키우신다면 하루 관리 시간을 먼저 그려 보시는 것이 좋습니다.`,
     },
     {
-      q: `분양 비용을 이 페이지에 적어 두었나요?`,
-      a: `표기하지 않습니다. 시기와 개체에 따라 달라, ${kw} 상담에서 지금 만날 수 있는 아이와 포함 항목부터 맞춰 드립니다.`,
+      q: `${kw} 가격은 어떻게 알아보면 되나요?`,
+      a: `아이들의 혈통과 외모, 월령에 따라 달라집니다. 지금 만날 수 있는 아이와 포함 항목은 상담을 통해 알아보시는 것이 가장 정확합니다.`,
     },
     {
       q: `${BRAND}는 어떤 사이트인가요?`,
-      a: `${site.title} — ${name} 전용 안내 사이트입니다. 다른 견종·묘종 사이트와 내용이 다릅니다.`,
+      a: `${BRAND}는 모든 견종·묘종 안내와 함께 보호소, 카페, 장례식장, 애견호텔, 유치원 등 반려동물 관련 정보를 제공하는 포털입니다. 상단 ${BRAND}를 누르면 전체 목록이 있는 메인(${HUB_URL.replace("https://", "")})으로 이동합니다.`,
     },
   ];
 

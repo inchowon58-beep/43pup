@@ -1,9 +1,10 @@
 import type { HugdaySite } from "./hugday-sites";
-import { kindKo } from "./hugday-sites";
+import { kindKo, HUB_URL } from "./hugday-sites";
 import type { HugdayPage } from "./hugday-content";
 import { getEncyclopedia, type BreedEncyclopedia, type GuideFact } from "./hugday-encyclopedia";
 import type { SiteSponsor } from "./site-sponsor-shared";
 import { phoneToTel, sponsorHomepageUrl } from "./site-sponsor-shared";
+import { eulReul } from "./korean";
 
 export type { BreedEncyclopedia, GuideFact };
 
@@ -34,6 +35,8 @@ export type HugdayGuide = {
   heroSub: string;
   kindLabel: string;
   petWord: string;
+  hubUrl: string;
+  meetHeading: string;
   specs: { key: SpecKey; label: string; value: string }[];
   warning: {
     kicker: string;
@@ -64,6 +67,9 @@ export type HugdayGuide = {
     count: number;
     shareLabel: string;
     shareNote: string;
+    kicker: string;
+    title: string;
+    featuredLabel: string;
     featured: PartnerCard[];
     others: PartnerCard[];
   };
@@ -207,7 +213,7 @@ function warningFor(site: HugdaySite): HugdayGuide["warning"] {
       {
         icon: "paw",
         title: `${young}의 무료분양은 사실상 없습니다`,
-        body: `무료분양이 가능한 경우는 실질적으로 ${mix}처럼 사연이 있는 아이들인 경우가 많습니다. ${young}을 공짜로 내거는 글은 허위·과장일 가능성이 높으니 특히 주의해 주세요.`,
+        body: `무료분양이 가능한 경우는 실질적으로 ${mix}처럼 사연이 있는 아이들인 경우가 많습니다. ${young}${eulReul(young)} 공짜로 내거는 글은 허위·과장일 가능성이 높으니 특히 주의해 주세요.`,
       },
     ],
     closer:
@@ -215,10 +221,15 @@ function warningFor(site: HugdaySite): HugdayGuide["warning"] {
   };
 }
 
+function isDefaultWaitNotice(text: string): boolean {
+  return /입점대기중/.test(text) && /제휴/.test(text);
+}
+
 export function partnersFromSponsor(sponsor: SiteSponsor | null): HugdayGuide["partners"] {
   const phone = sponsor?.status === "ACTIVE" ? sponsor.phone_number.trim() : "";
   const home = sponsor?.status === "ACTIVE" ? sponsorHomepageUrl(sponsor) : "";
   const name = sponsor?.status === "ACTIVE" ? sponsor.sponsor_name.trim() : "";
+  const rawNotice = sponsor?.recruiting_notice?.trim() || "";
   const has = Boolean(name && (phone || home));
   const card: PartnerCard | null = has
     ? {
@@ -226,21 +237,18 @@ export function partnersFromSponsor(sponsor: SiteSponsor | null): HugdayGuide["p
         name,
         phone,
         home,
-        notice: sponsor?.recruiting_notice?.trim() || "",
+        notice: isDefaultWaitNotice(rawNotice) ? "" : rawNotice,
       }
     : null;
   const featured = card ? [card] : [];
   const count = featured.length;
-  const shareLabel = `1/${Math.max(1, count)}`;
   return {
     count,
-    shareLabel,
-    shareNote:
-      count === 0
-        ? "이 품종 페이지는 아직 입점 대기입니다. 입점되면 이 자리에 안내가 열리며, 한 곳일 때는 단독으로, 이후 업체가 늘면 비용은 나누어 부담합니다."
-        : count === 1
-          ? "지금은 한 곳이 입점되어 이 페이지를 단독으로 안내합니다. 같은 페이지에 업체가 늘면 안내와 비용이 나누어집니다."
-          : `지금 ${count}곳이 입점되어 안내와 비용을 나눕니다.`,
+    shareLabel: "",
+    shareNote: count === 0 ? "" : "지금 이 업체를 통해 알아보시면 좋습니다.",
+    kicker: "안심파워",
+    title: "",
+    featuredLabel: "추천 안심파워",
     featured,
     others: [],
   };
@@ -255,18 +263,24 @@ export function buildHugdayGuide(site: HugdaySite, page: HugdayPage, sponsor: Si
   const vaccineSteps =
     site.kind === "shelter" ? shelterVaccines(site) : site.kind === "cat" ? catVaccines() : dogVaccines();
 
+  const obj = eulReul(name);
   const vaccineLead =
     site.kind === "shelter"
       ? `보호소에서 이미 맞은 접종이 있어도, 우리 집 병원에서 차수와 항체를 한 번 더 확인하는 것이 안전합니다. ‘다 맞았다’는 말보다 기록지가 먼저입니다.`
       : site.kind === "cat"
-        ? `${name}을 집으로 맞이한 뒤에도 접종이 남아 있는 경우가 많습니다. 아래에 적어 둔 순서는 초보 보호자가 병원 안내를 따라가기 쉽도록 풀어 적은 것입니다.`
+        ? `${name}${obj} 집으로 맞이한 뒤에도 접종이 남아 있는 경우가 많습니다. 아래에 적어 둔 순서는 초보 보호자가 병원 안내를 따라가기 쉽도록 풀어 적은 것입니다.`
         : `${name} 강아지를 처음 키우실 때 가장 헷갈리는 부분이 접종입니다. 1차부터 5차, 그리고 광견병까지 — 무엇이 들어가는지 순서대로 적어 두었습니다.`;
 
+  const partners = partnersFromSponsor(sponsor);
+  partners.title = `${site.keyword} 지금 알아보면 좋은 곳`;
+
   return {
-    heroTitle: `${name} 완벽 가이드 & 안심 제휴처 비교`,
-    heroSub: `${name}을 처음 맞이하려는 분들께, 가격보다 먼저 전하고 싶은 이야기가 있습니다. 기질과 관리, 숨은 조건 없는 안내를 한곳에 모았습니다. 새로운 가족을 들이는 일은 설렘만큼 책임이 따릅니다.`,
+    heroTitle: `${name} 완벽 가이드 & 안심파워 비교`,
+    heroSub: `${name}${obj} 처음 맞이하려는 분들께, 가격보다 먼저 전하고 싶은 이야기가 있습니다. 기질과 관리, 숨은 조건 없는 안내를 한곳에 모았습니다. 새로운 가족을 들이는 일은 설렘만큼 책임이 따릅니다.`,
     kindLabel: kindKo(site),
     petWord: who,
+    hubUrl: HUB_URL,
+    meetHeading: `${name}${obj} 처음 맞이한다면`,
     specs: [
       { key: "size", label: "체구", value: site.size },
       { key: "coat", label: "코트", value: site.coat },
@@ -280,16 +294,16 @@ export function buildHugdayGuide(site: HugdaySite, page: HugdayPage, sponsor: Si
         site.kind === "shelter"
           ? [
               `${name}의 아이들은 분양 시세가 아니라, 지금 이 아이의 기록과 적응 속도로 만납니다. 책임비는 기관마다 다르고, 그 금액보다 이후 병원비가 클 수 있습니다.`,
-              "이 페이지에는 특정 금액을 표기하지 않습니다. 직접 방문하시거나 전화로, 포함되어 있는 접종·중성화·칩부터 확인해 주세요.",
+              "직접 방문하시거나 전화로, 포함되어 있는 접종·중성화·칩부터 확인해 주세요.",
             ]
           : [
-              `${name} ${breed}의 분양 비용은 적게는 십만 원대부터, 백만 원을 넘는 아이까지 있습니다. 같은 품종이라도 털색·월령·건강 상태에 따라 폭이 있고, 무엇보다 그 순간 매장에 어떤 아이가 있는지는 글에 적어 둘 수 없습니다.`,
-              "그래서 이 페이지에는 금액을 표기하지 않습니다. 직접 방문하시거나 전화로 상담하시는 일이, 지금 만날 수 있는 아이를 확인하는 가장 정직한 방법입니다.",
+              `${name} ${breed}의 분양 가격은 혈통과 외모, 월령에 따라 폭이 있습니다. 같은 품종이라도 그 순간 매장에 어떤 아이가 있는지는 글만으로 알 수 없습니다.`,
+              "직접 방문하시거나 전화로 상담하시는 일이, 지금 만날 수 있는 아이를 확인하는 가장 정확한 방법입니다.",
             ],
       priceNote:
         site.kind === "shelter"
-          ? "책임비와 포함 항목은 기관·시기에 따라 달라, 이 글에 금액을 표기하지 않습니다."
-          : "분양 비용은 시기와 개체에 따라 달라, 이 글에 금액을 표기하지 않습니다.",
+          ? "책임비와 포함 항목은 기관·시기에 따라 다릅니다. 방문이나 전화로 기록을 함께 확인해 주세요."
+          : "분양 가격은 아이들의 혈통과 외모에 따라 달라지므로, 상담을 통해 알아보시는 것이 가장 좋습니다.",
       vaccines: {
         heading: site.kind === "shelter" ? "입양 후 접종, 이렇게 이어 주세요" : "예방접종이 포함하는 것들",
         lead: vaccineLead,
@@ -341,8 +355,32 @@ export function buildHugdayGuide(site: HugdaySite, page: HugdayPage, sponsor: Si
       ],
       promise: `입양은 십 년의 약속입니다. ${name}의 가격만이 아니라, 이 아이와 우리가 오래 건강할 수 있는지를 기준으로 정해 주세요.`,
     },
-    partners: partnersFromSponsor(sponsor),
+    partners,
   };
+}
+
+export function breedSeoSections(site: HugdaySite): { h2: string; paragraphs: string[] }[] {
+  const enc = getEncyclopedia(site);
+  const obj = eulReul(site.name);
+  const warn = warningFor(site);
+  return [
+    {
+      h2: `${site.name}${obj} 처음 맞이한다면`,
+      paragraphs: [enc.origin, ...enc.paragraphs, enc.beginner],
+    },
+    {
+      h2: `${site.name}에서 주의할 유전·건강`,
+      paragraphs: enc.genetics.map((g) => `${g.name} — ${g.detail}`),
+    },
+    {
+      h2: `초보 보호자가 챙길 ${site.name} 일상`,
+      paragraphs: enc.care.map((g) => `${g.name} — ${g.detail}`),
+    },
+    {
+      h2: warn.title,
+      paragraphs: [warn.lead, ...warn.items.map((item) => `${item.title}. ${item.body}`), warn.closer],
+    },
+  ];
 }
 
 export { phoneToTel };

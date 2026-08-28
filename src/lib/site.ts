@@ -9,7 +9,7 @@ export const SITE = {
   tagline: "견종·묘종마다 다른 노트를 펼칩니다",
   taglineEn: "A note for each breed",
   description:
-    "포옹데이는 견종·묘종·보호소마다 별도의 사이트로 안내합니다. 각각의 페이지에서 기질·관리·집 환경을 확인하세요.",
+    "포옹데이는 모든 견종·묘종 안내와 함께 보호소, 카페, 장례식장, 애견호텔, 유치원 등 반려동물 관련 정보를 제공하는 포털입니다.",
   keywords: ["포옹데이", "강아지분양", "고양이분양", "견종", "묘종", "보호소"],
   kakaoOpenChatUrl: "",
   logo: "https://image.cattery.co.kr/malamute/01.webp",

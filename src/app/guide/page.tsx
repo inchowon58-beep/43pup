@@ -4,6 +4,7 @@ import { listPublicPageSummaries, pagePath, PUBLIC_PAGE_LIMIT } from "@/lib/seo-
 import { SITE } from "@/lib/site";
 import { publicPageUrl } from "@/lib/public-url";
 import { hugdaySiteFromRequest } from "@/lib/hugday-host";
+import { HUB_URL } from "@/lib/hugday-sites";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const site = await hugdaySiteFromRequest();
   if (site) {
     return {
-      title: `${site.keyword} 안내`,
+      title: `${site.keyword}안내`,
       description: `${site.title} 안내글`,
       keywords: [site.keyword, site.name],
       alternates: { canonical: url },
@@ -46,7 +47,7 @@ export default async function GuideIndexPage({ searchParams }: Props) {
     <div className="hug-root">
       <div className="hug-guide">
         <p className="hug-eyebrow">ARCHIVE</p>
-        <h1>{hostSite ? `${hostSite.keyword} 안내` : "분양 안내"}</h1>
+        <h1>{hostSite ? `${hostSite.keyword}안내` : "분양 안내"}</h1>
         <p className="hug-lead">
           {hostSite ? `${hostSite.title} 키워드별 노트 ${total}건` : `${total}건`}
         </p>
@@ -56,7 +57,7 @@ export default async function GuideIndexPage({ searchParams }: Props) {
             <li key={p.slug} style={{ borderTop: "1px solid var(--line)", padding: "1.1rem 0" }}>
               <Link href={pagePath(p.slug)}>
                 <div className="hug-eyebrow">{p.keyword}</div>
-                <h2 style={{ fontFamily: "var(--serif)", fontSize: "1.4rem", margin: "0.2rem 0" }}>
+                <h2 style={{ fontFamily: "Pretendard, sans-serif", fontSize: "1.4rem", fontWeight: 800, margin: "0.2rem 0" }}>
                   {p.h1}
                 </h2>
                 <p className="hug-lead" style={{ fontSize: "0.95rem" }}>
@@ -69,7 +70,9 @@ export default async function GuideIndexPage({ searchParams }: Props) {
       </div>
 
       <footer className="hug-foot">
-        <p className="hug-wordmark">포옹데이</p>
+        <p className="hug-wordmark">
+          <a href={HUB_URL}>포옹데이</a>
+        </p>
         <p className="hug-foot-en">POONG DAY · ARCHIVE</p>
       </footer>
     </div>

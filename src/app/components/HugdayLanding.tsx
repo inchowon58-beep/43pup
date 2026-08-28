@@ -51,7 +51,6 @@ export default function HugdayLanding({
   const photos = hugdayPhotos(site);
   const guide = buildHugdayGuide(site, page, sponsor);
   const { encyclopedia: enc, partners } = guide;
-  const waiting = sponsor?.status === "RECRUITING";
   const yt = sponsor?.status === "ACTIVE" ? youtubeVideoId(sponsorYoutubeUrl(sponsor, 1)) : null;
 
   return (
@@ -67,11 +66,13 @@ export default function HugdayLanding({
       <header className="guide-head">
         <div className="guide-wrap guide-head-inner">
           <div>
-            <p className="guide-brand">포옹데이</p>
+            <a className="guide-brand" href={guide.hubUrl}>
+              포옹데이
+            </a>
             <p className="guide-kicker">{guide.kindLabel}</p>
           </div>
           <a href="#partners" className="guide-head-link">
-            제휴처 보기
+            안심파워 보기
           </a>
         </div>
       </header>
@@ -140,9 +141,7 @@ export default function HugdayLanding({
             <BookOpen size={14} strokeWidth={2} />
             품종 백과
           </p>
-          <h2 className="guide-h2">
-            {site.name}을 처음 맞이한다면
-          </h2>
+          <h2 className="guide-h2">{guide.meetHeading}</h2>
           <p className="guide-origin">{enc.origin}</p>
           <div className="guide-prose">
             {enc.paragraphs.map((p) => (
@@ -273,20 +272,15 @@ export default function HugdayLanding({
 
       <section id="partners" className="guide-partners">
         <div className="guide-wrap">
-          <p className="guide-partners-kicker">안심 제휴</p>
-          <h2 className="guide-h2 guide-partners-title">이 품종 페이지 제휴처</h2>
-          <p className="guide-partners-note">{partners.shareNote}</p>
-          {partners.count ? (
-            <p className="guide-partners-count">
-              참여 {partners.count}곳 · {partners.shareLabel}
-            </p>
-          ) : null}
+          <p className="guide-partners-kicker">{partners.kicker}</p>
+          <h2 className="guide-h2 guide-partners-title">{partners.title}</h2>
+          {partners.shareNote ? <p className="guide-partners-note">{partners.shareNote}</p> : null}
 
           {partners.featured.length ? (
             <div className="guide-partner-featured">
               {partners.featured.map((c) => (
                 <article key={c.name}>
-                  <p>추천 제휴처</p>
+                  <p>{partners.featuredLabel}</p>
                   <h3>{c.name}</h3>
                   {c.notice ? <p className="guide-partner-notice">{c.notice}</p> : null}
                   <div className="guide-partner-actions">
@@ -298,7 +292,7 @@ export default function HugdayLanding({
                     ) : null}
                     {c.home ? (
                       <a className="guide-btn-line" href={c.home} target="_blank" rel="noopener noreferrer">
-                        공식 안내
+                        공식홈페이지 방문
                         <ArrowUpRight size={16} />
                       </a>
                     ) : null}
@@ -306,11 +300,7 @@ export default function HugdayLanding({
                 </article>
               ))}
             </div>
-          ) : (
-            <p className="guide-partners-empty">
-              {waiting ? "입점대기중 · 제휴 문의는 관리자 페이지에서 이어집니다." : "현재 이 품종에 공개된 제휴처가 없습니다."}
-            </p>
-          )}
+          ) : null}
 
           {partners.others.length ? (
             <div className="guide-partner-others">
@@ -361,11 +351,12 @@ export default function HugdayLanding({
       </section>
 
       <footer className="guide-foot">
-        <p>포옹데이</p>
         <p>
-          {site.title}
-          {waiting ? " · 입점대기중" : ""}
+          <a className="guide-brand" href={guide.hubUrl}>
+            포옹데이
+          </a>
         </p>
+        <p>{site.title}</p>
       </footer>
     </div>
   );

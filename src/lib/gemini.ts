@@ -1,9 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
-import { SITE, KAKAO_CTA_HINT } from "./site";
+import { SITE } from "./site";
 import type { HugdaySite } from "./hugday-sites";
 import { pickHugdayImages } from "./hugday-images";
 import type { SeoPage } from "./seo-pages";
 import { slugifyKeyword } from "./seo-pages";
+import { breedSeoSections } from "./hugday-guide";
 
 const MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash-lite";
 
@@ -34,8 +35,10 @@ ${kakaoLine}
 서비스 범위: ${SITE.areaServed}
 
 독자: ${keyword}를 검색해 입양을 고르려는 보호자.
-톤: 현실적 안내. 사실(기질·관리·분양가 요인)은 분명히.
-금지: 가격 단정, 허위, 의료 단정, 타사 비방, 전화번호.
+톤: 따뜻하고 전문적인 안내. 사실(기질·관리·분양가 요인)은 분명히.
+금지: 가격 단정, '단가', '박지 않습니다', 허위, 의료 단정, 타사 비방, 전화번호.
+분양 가격은 혈통·외모에 따라 다르다고만 말하고, 상담에서 알아보라고 안내하세요.
+포옹데이는 견종·묘종 안내와 보호소·카페·장례식장·애견호텔·유치원 등 반려동물 정보를 담는 포털입니다.
 
 반드시 다룰 내용:
 1) ${keyword} 기질·관리·집 환경
@@ -64,8 +67,8 @@ ${kakaoLine}
     {"q": "${keyword}은 어떤 성격인가요?", "a": "100자+ 구체 답변"},
     {"q": "초보 보호자와 맞나요?", "a": "100자+"},
     {"q": "아파트에서도 키울 수 있나요?", "a": "100자+"},
-    {"q": "분양 비용은 얼마인가요?", "a": "100자+. 단가 단정 금지"},
-    {"q": "${keyword} 상담은 어떻게 하나요?", "a": "100자+. ${KAKAO_CTA_HINT}"},
+    {"q": "분양 가격은 어떻게 알아보면 되나요?", "a": "100자+. 혈통·외모·월령에 따라 다르니 상담에서 안내. '단가'나 '박지 않습니다' 표현 금지"},
+    {"q": "${keyword} 상담은 어떻게 하나요?", "a": "100자+. 페이지 아래 연락처로, 지역과 관계없이 편하게 문의"},
     {"q": "사진은 어디서 보나요?", "a": "80자+"}
   ],
   "ctaText": "{keyword} 상담 — 희망 시기만 알려 주세요"
@@ -152,7 +155,7 @@ export function assembleSeoPage(
     heroBar: partial.heroBar || "기질·관리·집 환경을 먼저 맞춰 보세요.",
     regionSlug: site?.slug,
     regionName: site?.name,
-    sections: partial.sections,
+    sections: site ? [...breedSeoSections(site), ...partial.sections] : partial.sections,
     faqs: partial.faqs,
     images: site ? pickHugdayImages(site, 3, slug || partial.keyword) : [],
     ctaText: partial.ctaText,

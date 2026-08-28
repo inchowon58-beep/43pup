@@ -22,6 +22,7 @@ export type HugdaySite = {
 };
 
 export const PARENT = "puppytimes.co.kr";
+export const HUB_URL = `https://${PARENT}`;
 export const BRAND = "포옹데이";
 export const HUGDAY_PHONE = "0505-300-7779";
 export const HUGDAY_PHONE_TEL = "tel:05053007779";
@@ -147,7 +148,5 @@ export function kindLabel(site: HugdaySite): string {
 }
 
 export function kindKo(site: HugdaySite): string {
-  if (site.kind === "cat") return "묘종 안내";
-  if (site.kind === "shelter") return "보호소 안내";
-  return "견종 안내";
+  return `${site.keyword}안내`;
 }
